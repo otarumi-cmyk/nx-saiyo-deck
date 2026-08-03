@@ -21,6 +21,7 @@ function bindSectionImages() {
       const abs = new URL(src, document.baseURI).href;
       el.style.setProperty('--chdiv-img', 'url("' + abs + '")');
       el.style.setProperty('--img', 'url("' + abs + '")');
+      el.style.setProperty('--fs-img', 'url("' + abs + '")');
     }
   });
 }

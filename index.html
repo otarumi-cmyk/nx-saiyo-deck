@@ -8,11 +8,12 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+JP:wght@500;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/charts.css">
 <link rel="stylesheet" href="css/fx.css">
 <link rel="stylesheet" href="css/deck.css">
+<link rel="stylesheet" href="css/brand.css">
 <link rel="stylesheet" href="css/fnanim.css">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -413,6 +414,74 @@
   </div>
 </section>
 
+<!-- 20b 向いている企業 -->
+<section class="slide sec-alt" id="fit" data-title="向いている企業">
+  <div class="slide-in wrap">
+    <p class="sec-label reveal">GOOD FIT</p>
+    <h2 class="sec-title reveal">こういう企業に、向いています。</h2>
+    <div class="fit-grid">
+      <div class="fit-col reveal">
+        <h3 class="fit-h">業界</h3>
+        <ul class="fit-list">
+          <li>IT・SaaS・Web</li>
+          <li>広告・マーケティング</li>
+          <li>人材・コンサルティング</li>
+          <li>製造業の技術職・開発職</li>
+          <li>建設・不動産の施工管理／営業</li>
+        </ul>
+        <p class="fit-why">スカウト媒体に候補者が登録されている領域であれば、業界は問いません。</p>
+      </div>
+      <div class="fit-col reveal">
+        <h3 class="fit-h">規模・体制</h3>
+        <ul class="fit-list">
+          <li>従業員 <b>50〜300名</b></li>
+          <li>中途採用 <b>年3〜5名</b></li>
+          <li>採用担当が <b>1〜2名</b></li>
+          <li>担当者が他業務と <b>兼任</b>している</li>
+        </ul>
+        <p class="fit-why">専任チームを持てない規模ほど、雑務の比重が大きくなります。</p>
+      </div>
+      <div class="fit-col reveal is-key">
+        <h3 class="fit-h">こんな状況なら、特に</h3>
+        <ul class="fit-list">
+          <li><b>人材紹介の手数料が重い。</b>依存を減らしたい</li>
+          <li>スカウトを送りたいが、<b>作成が追いつかない</b></li>
+          <li>媒体は契約しているが、<b>使いこなせていない</b></li>
+          <li>担当者の退職・異動で、<b>ノウハウが引き継げない</b></li>
+          <li>複数職種を <b>1人で回している</b></li>
+        </ul>
+      </div>
+    </div>
+    <p class="lead reveal">職種は営業・エンジニア・マーケター・カスタマーサクセス・コーポレートまで対応します。</p>
+  </div>
+</section>
+
+<!-- 20c 向いていないケース -->
+<section class="slide" id="unfit" data-title="向かないケース">
+  <div class="slide-in wrap">
+    <p class="sec-label reveal">NOT A GOOD FIT</p>
+    <h2 class="sec-title reveal">反対に、こういう場合は<br>効果が出にくいです。</h2>
+    <div class="unfit-grid">
+      <div class="unfit reveal">
+        <span class="uf-mark">—</span>
+        <h3>アルバイト・パート採用が中心</h3>
+        <p>スカウト媒体に母集団がほとんど存在しません。求人媒体の運用のほうが適しています。</p>
+      </div>
+      <div class="unfit reveal">
+        <span class="uf-mark">—</span>
+        <h3>年間の中途採用が1名未満</h3>
+        <p>削減できる工数が費用を下回ります。採用が発生したときだけスポットでご相談ください。</p>
+      </div>
+      <div class="unfit reveal">
+        <span class="uf-mark">—</span>
+        <h3>未経験者を大量に採用したい</h3>
+        <p>一人ひとりの経歴を読んで書き分ける仕組みのため、経歴の差が小さい母集団では強みが出ません。</p>
+      </div>
+    </div>
+    <p class="lead reveal">当てはまる場合は、<span class="hl">導入をおすすめしません。</span><br>ご相談の段階で正直にお伝えします。</p>
+  </div>
+</section>
+
 <!-- 21 章扉 -->
 <section class="slide chdiv" data-img="assets/sec_price.webp" data-title="章扉5">
   <div class="slide-in chdiv-inner"><span class="chdiv-n num">05</span><h2 class="chdiv-t">費用と費用対効果</h2></div>
@@ -634,17 +703,16 @@
 <section class="slide sec-alt" id="flow" data-title="導入の流れ">
   <div class="slide-in wrap">
     <p class="sec-label reveal">FLOW</p>
-    <h2 class="sec-title reveal">導入の流れ</h2>
+    <h2 class="sec-title reveal">お申し込みから運用開始まで、<span class="hl">最短5営業日</span>。</h2>
     <ol class="flow-steps">
-      <li class="reveal"><span class="num">01</span><b>お申し込み</b></li>
-      <li class="reveal"><span class="num">02</span><b>キックオフ</b><i>要件ヒアリング</i></li>
-      <li class="reveal"><span class="num">03</span><b>媒体・カレンダー接続</b><i>初期設定は当社が実施</i></li>
-      <li class="reveal"><span class="num">04</span><b>運用開始</b><i>最短5営業日</i></li>
+      <li class="reveal" data-img="assets/flow1_apply.webp"><span class="fs-img"></span><span class="fs-body"><span class="num">01</span><b>お申し込み</b><i>契約書のご締結</i></span></li>
+      <li class="reveal" data-img="assets/flow2_kickoff.webp"><span class="fs-img"></span><span class="fs-body"><span class="num">02</span><b>キックオフ</b><i>採用要件のヒアリング（60分）</i></span></li>
+      <li class="reveal" data-img="assets/flow3_connect.webp"><span class="fs-img"></span><span class="fs-body"><span class="num">03</span><b>媒体・カレンダー接続</b><i>初期設定は当社が実施</i></span></li>
+      <li class="reveal" data-img="assets/flow4_start.webp"><span class="fs-img"></span><span class="fs-body"><span class="num">04</span><b>運用開始</b><i>翌営業日からスカウト送信</i></span></li>
     </ol>
     <div class="media reveal">
       <h3>対応媒体</h3>
       <p>ビズリーチ／Green／Wantedly／AMBI／doda／Offers／転職ドラフト ほか</p>
-      <p class="note wip">※ 対応状況は確認中です。</p>
     </div>
   </div>
 </section>
@@ -663,19 +731,6 @@
 </section>
 
 <!-- 31 CTA -->
-<section class="slide sec-center sec-cta" id="cta" data-img="assets/sec_cta.webp" data-title="お問い合わせ">
-  <div class="slide-in wrap">
-    <h2 class="cta-title reveal">まずは、御社の採用にかかっている<br>時間を可視化しませんか。</h2>
-    <div class="cta-btns reveal">
-      <a class="btn btn-main" href="#">無料で相談する</a>
-      <a class="btn btn-sub" href="#">AIスカウトを2週間無料で試す</a>
-      <a class="btn btn-sub" href="#">資料請求</a>
-    </div>
-    <p class="foot-co">運営：株式会社NEXT</p>
-    <p class="note reveal wip">※ リンク先は未設定です。</p>
-  </div>
-</section>
-
 </div><!-- /.deck -->
 
 <!-- ナビゲーション -->

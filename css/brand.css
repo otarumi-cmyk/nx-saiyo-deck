@@ -1,0 +1,138 @@
+/* ============================================================
+   brand.css — 株式会社NEXT（n-ext.co.jp）のデザインDNAを適用
+   最後に読み込む。フォント・背景・アクセント・イージングを本家に合わせる。
+
+   本家から抽出した指定:
+     --font-en : "Space Grotesk"（英字・数字）
+     --font-jp : "Noto Sans JP"
+     body      : weight 500 / 16px / line-height 1.9 / letter-spacing .02em
+     hero      : Noto Sans JP 900 / line-height 1.06 / letter-spacing -.015em
+     背景      : 240px の粗グリッド ＋ 48px の細グリッドの二重方眼
+     accent    : #2563EB（グラデ #3B82F6 → #2563EB → #1E40AF）
+     ease      : cubic-bezier(.16,1,.3,1)
+   ============================================================ */
+
+:root{
+  --font-en: "Space Grotesk", "Noto Sans JP", sans-serif;
+  --font-jp: "Noto Sans JP", sans-serif;
+  --ease-out: cubic-bezier(.16,1,.3,1);
+
+  /* 本家のダークトークンに合わせる */
+  --bg:        #0B0F1A;
+  --bg-2:      #111726;
+  --surface-1: #151C2E;
+  --surface-2: #1B2438;
+  --ink:       #E7EDF7;
+  --ink-dim:   #93A3BE;
+  --line:      rgba(197,212,232,.16);
+
+  /* アクセントは本家のブランドブルー。暗背景で沈まないよう、
+     本家のグラデ起点 #3B82F6 を主色に、#2563EB を締めに使う */
+  --accent:   #3B82F6;
+  --accent-2: #2563EB;
+  --acc-04: rgba(59,130,246,.06);
+  --acc-10: rgba(59,130,246,.14);
+  --acc-24: rgba(59,130,246,.28);
+  --acc-60: rgba(59,130,246,.62);
+  --glow:   rgba(59,130,246,.28);
+}
+
+/* ---------- 1. 背景：設計図の方眼グリッド（本家の暗色版） ---------- */
+body{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(to right,  rgba(197,212,232,.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197,212,232,.10) 1px, transparent 1px),
+    linear-gradient(to right,  rgba(197,212,232,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197,212,232,.045) 1px, transparent 1px);
+  background-size: 240px 240px, 240px 240px, 48px 48px, 48px 48px;
+  background-attachment:fixed;
+  font-family:var(--font-jp);
+  font-weight:500;
+  line-height:1.9;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+}
+/* スライド自身の塗りつぶしをやめ、方眼を透かす */
+.slide{ background:transparent !important; }
+.slide.sec-alt{ background:rgba(197,212,232,.028) !important; }
+.slide.sec-dark{ background:rgba(0,0,0,.35) !important; }
+/* 中央にごく淡い光。平坦な黒板に見えるのを防ぐ */
+.slide::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(ellipse 90% 70% at 50% 42%, rgba(59,130,246,.055), transparent 70%);
+}
+.slide.chdiv::before, .sec-cta::before, #safety::before{ background-image:var(--chdiv-img); }
+.slide > .slide-in{ position:relative; z-index:2; }
+
+/* ---------- 2. タイポグラフィ ---------- */
+body, .lead, .note, p, li, dd, dt, td, th, summary{
+  font-family:var(--font-jp) !important;
+}
+h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta-title,.tl-title{
+  font-family:var(--font-jp) !important;
+  font-weight:900 !important;
+  letter-spacing:-.015em !important;
+}
+/* 英字・数字は Space Grotesk */
+.num, .sec-label, .price-v, .plan-price, .pm-price, .stat-v, .bignum-v,
+.case-hero b, .tt-h, .bd-val, .cp-v, .roi-cap b, .sc-diff, .fn-badge,
+.deck-counter, .chdiv-n, .f7-n, .only-n, .rt-plus, .ch-num b, .sb-seg b{
+  font-family:var(--font-en) !important;
+  font-weight:600;
+  letter-spacing:.01em;
+}
+.sec-label{ letter-spacing:.18em !important; font-weight:500 !important; }
+
+.hero-title{ line-height:1.06 !important; font-size:clamp(2.6rem,6.6vw,5.6rem) !important; }
+.lead{ line-height:1.9 !important; font-weight:500; }
+.note{ line-height:1.8 !important; }
+.slide .sec-title{ line-height:1.32 !important; }
+.slide .q-big{ line-height:1.34 !important; font-weight:900 !important; }
+
+/* 見出しの前に引かれる短い罫（本家のあしらい） */
+.sec-label{ display:flex; align-items:center; gap:12px; color:var(--ink-dim) !important; }
+.sec-label::before{
+  content:""; width:26px; height:1px; background:var(--accent); flex:none;
+}
+.slide.sec-center .sec-label, .slide.chdiv .sec-label{ justify-content:center; }
+
+/* ---------- 3. アクセントの塗り ---------- */
+.hl, .est{ color:var(--accent) !important; }
+.btn-main{ background:linear-gradient(160deg,#3B82F6 0%,var(--accent-2) 46%,#1E40AF 100%) !important; color:#fff !important; }
+.tt-bar, .bd-list li.is-key .bd-bar, .cmp-col.is-win .cmp-bar, .cb.is-after .cb-bar{
+  background:linear-gradient(90deg,var(--accent-2),var(--accent)) !important;
+}
+.sb-seg.is-chore{ background:linear-gradient(180deg,var(--accent),var(--accent-2)) !important; }
+.sb-seg b, .sb-seg i{ color:#fff !important; }
+.roi-bar.is-save .roi-fill{ background:linear-gradient(180deg,var(--accent),var(--acc-24)) !important; }
+::selection{ background:var(--accent); color:#fff; }
+
+/* ---------- 4. イージングを本家に揃える ---------- */
+.reveal{ transition:opacity .8s var(--ease-out), transform .8s var(--ease-out) !important; }
+.tt-bar, .bd-bar, .cmp-bar, .cb-bar{ transition-timing-function:var(--ease-out) !important; }
+.roi-fill{ transition-timing-function:var(--ease-out) !important; }
+.slide.chdiv::before{ transition:transform 2.4s var(--ease-out) !important; }
+
+/* ---------- 5. 面のあしらい ---------- */
+.fn, .case, .cp, .why, .safe, .only-card, .media, .cmp-col, .stat,
+.plan, .lc-col, .ch-card, .fit-col, .unfit, .roi-item, .flow-steps li, .faq-list details{
+  background:linear-gradient(180deg, rgba(231,237,247,.045), rgba(231,237,247,.012)) !important;
+  border:1px solid var(--line) !important;
+}
+.fn.is-key, .cp.is-key, .plan.is-key, .lc-col.is-key, .ch-card.is-key, .fit-col.is-key, .case.is-key{
+  background:linear-gradient(180deg, rgba(59,130,246,.10), rgba(59,130,246,.02)) !important;
+  border-color:var(--acc-24) !important;
+}
+
+/* ---------- 6. ナビゲーション ---------- */
+.deck-nav{ background:rgba(11,15,26,.78); border-color:var(--line); }
+.deck-dot.is-on{ background:var(--accent); }
+.deck-progress span{ background:var(--accent); box-shadow:0 0 10px var(--acc-60); }
+.deck-flash{
+  background:linear-gradient(90deg,transparent,rgba(59,130,246,.05) 34%,rgba(59,130,246,.26) 50%,rgba(59,130,246,.05) 66%,transparent) !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  body{ background-attachment:scroll; }
+}
