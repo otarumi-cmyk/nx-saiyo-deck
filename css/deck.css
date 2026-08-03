@@ -1009,3 +1009,19 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .sc-row{ grid-template-columns:1fr 1fr; font-size:.8rem; gap:6px; }
   .sc-head{ display:none; }
 }
+
+/* ---------- 27. 経路別の比較（紹介 vs 媒体） ---------- */
+.ch-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-3); margin:var(--sp-4) 0 var(--sp-3); }
+.ch-card{ padding:var(--sp-4); background:var(--surface-1); border:1px solid var(--line); border-radius:6px; }
+.ch-card.is-key{ background:var(--surface-2); border-color:var(--acc-24); }
+.ch-name{ font-size:.9rem !important; color:var(--ink-dim) !important; margin:0 0 var(--sp-3) !important; font-weight:500 !important; }
+.ch-nums{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-3); padding-bottom:var(--sp-3); border-bottom:1px solid var(--line); }
+.ch-num b{ display:block; font-size:clamp(1.8rem,3.4vw,2.9rem); font-weight:700; line-height:1; color:var(--ink); }
+.ch-num b small{ font-size:.34em; margin-left:4px; color:var(--ink-dim); font-weight:400; }
+.ch-num span{ display:block; font-size:.72rem; color:var(--ink-dim); margin-top:8px; }
+.ch-num.is-hot b{ color:var(--accent); text-shadow:0 0 34px var(--acc-24); }
+.ch-note{ font-size:.8rem; color:var(--ink-dim); line-height:1.75; margin:var(--sp-3) 0 var(--sp-3); }
+.ch-verdict{ font-size:.85rem; font-weight:700; margin:0; }
+.ch-verdict.is-bad{ color:var(--ink-dim); }
+.ch-verdict.is-good{ color:var(--accent); }
+@media (max-width:900px){ .ch-grid{ grid-template-columns:1fr; } }
