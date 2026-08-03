@@ -250,6 +250,8 @@ function buildChip(label, kind, i, pos) {
 
   chip.nxStrokes = [s1, s2];
   chip.nxKind = kind;
+  chip.nxX = pos.x;
+  chip.nxY = pos.y;
   return chip;
 }
 
@@ -280,17 +282,33 @@ function setupVision(mount, gsap, still) {
   // CSSがまだ当たっていない場合だけ、最低限の配置をインラインで補う（CSS適用後は何もしない）
   // ※ 中央寄せと傾きは transform で当てる（後述の baseState）。CSSの translate/rotate は
   //   GSAPが transform に畳み込んで消してしまうため使わない
-  if (getComputedStyle(chips[0]).position !== 'absolute') {
+  const fallback = getComputedStyle(chips[0]).position !== 'absolute';
+  if (fallback) {
     field.style.position = 'relative';
     for (let i = 0; i < chips.length; i++) {
       const c = chips[i];
       c.style.position = 'absolute';
-      c.style.left = c.style.getPropertyValue('--x');
-      c.style.top = c.style.getPropertyValue('--y');
       c.style.whiteSpace = 'nowrap';
     }
   }
   if (field.offsetHeight < 120) field.style.minHeight = 'min(56vh, 460px)';
+
+  // チップが舞台からはみ出さないよう、実寸を見て配置を内側に丸める（SPで効く）
+  function clampPositions() {
+    const fw = field.offsetWidth || 1;
+    const fh = field.offsetHeight || 1;
+    for (let i = 0; i < chips.length; i++) {
+      const c = chips[i];
+      const bx = Math.min(49, (c.offsetWidth / 2) / fw * 100 + 1);
+      const by = Math.min(49, (c.offsetHeight / 2) / fh * 100 + 1);
+      const x = Math.round(Math.min(100 - bx, Math.max(bx, c.nxX)) * 10) / 10;
+      const y = Math.round(Math.min(100 - by, Math.max(by, c.nxY)) * 10) / 10;
+      c.style.setProperty('--x', x + '%');
+      c.style.setProperty('--y', y + '%');
+      if (fallback) { c.style.left = x + '%'; c.style.top = y + '%'; }
+    }
+  }
+  clampPositions();
 
   function markCore(on) {
     core.classList.toggle('is-final', on);
@@ -345,6 +363,7 @@ function setupVision(mount, gsap, still) {
     if (played) return;
     played = true;
     if (tl) tl.kill();
+    clampPositions();
     clear();
 
     tl = gsap.timeline();
