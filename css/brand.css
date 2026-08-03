@@ -378,3 +378,22 @@ body{
 .fs2.is-human .fs2-b{ color:#E7EDF7; opacity:.75; }
 @media (max-width:1100px){ .fs2-grid{ grid-template-columns:repeat(4,1fr); } }
 @media (max-width:768px){ .fs2-grid{ grid-template-columns:repeat(2,1fr); } .fs2-t{ font-size:.76rem; } }
+
+/* ---------- 支援先企業のロゴ（実ロゴ・白モノクローム） ---------- */
+.logos.is-marquee{ overflow:hidden; margin-top:var(--sp-5); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
+.logos.is-marquee .logos-track{
+  display:flex !important; align-items:center;
+  gap:clamp(36px,4vw,64px) !important;
+  width:max-content;
+  animation:nx-marquee 46s linear infinite !important;
+}
+.logos.is-marquee .logos-track img{
+  height:clamp(26px,2.6vw,34px); width:auto; display:block; flex:none;
+  filter:brightness(0) invert(1);
+  opacity:.62;
+  transition:opacity .3s ease;
+}
+.logos.is-marquee:hover .logos-track{ animation-play-state:paused !important; }
+.logos.is-marquee .logos-track img:hover{ opacity:1; }
+@keyframes nx-marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@media (prefers-reduced-motion: reduce){ .logos.is-marquee .logos-track{ animation:none !important; flex-wrap:wrap; width:100%; } }
