@@ -198,3 +198,27 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
   .vx-chip.is-final{ font-size:.85rem; padding:9px 16px; }
   .vx-field{ min-height:58vh; }
 }
+
+/* ============================================================
+   日本語の改行制御
+   「でし／ょうか。」のように拗音・促音で行が割れるのを禁則で防ぐ。
+   見出しは <br> で改行位置を固定し、自動折り返しに任せない。
+   ============================================================ */
+h1,h2,h3,p,li,dd,dt,td,th,summary,
+.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.tl-title,.lead,.note{
+  line-break:strict;
+  word-break:normal;
+  overflow-wrap:normal;
+  text-wrap:pretty;
+}
+/* 見出しは指定した位置でだけ折る（幅制限で勝手に折らせない） */
+.slide .sec-title, .slide .q-big, .slide .tl-title,
+.hero-title, .vision-title, .product-name, .chdiv-t{
+  max-width:none !important;
+  text-wrap:balance;
+}
+.slide .q-big{ font-size:clamp(1.7rem,3.6vw,3.2rem) !important; }
+.slide .sec-title{ font-size:clamp(1.5rem,3vw,2.8rem) !important; }
+/* リード文は読みやすい行長に収める */
+.slide .lead{ max-width:46em; }
+.slide.sec-center .lead{ margin-inline:auto; }
