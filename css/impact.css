@@ -1,0 +1,168 @@
+/* ============================================================
+   impact.css — 班I: インパクト可視化（#scout-num）
+   ・旧 .cmp（左右2枚のカード）を隠す
+   ・js/impact.js が差し込む「倍率の共通軸 ＋ before棒 ＋ after矢印」の見た目
+   ・色はシアン1色。黄・金・暖色は使わない。明朝体は使わない。
+   ============================================================ */
+
+/* 旧レイアウトを隠す。JSが .nx-imp-on を付けたときだけ効くので、
+   JSが落ちた場合は元の図がそのまま残る（フォールバック）。 */
+#scout-num.nx-imp-on .cmp,
+#scout-num.nx-imp-on .cmp-col,
+#scout-num.nx-imp-on .cmp-row,
+#scout-num.nx-imp-on .cmp-bar,
+#scout-num.nx-imp-on .cmp-v{ display:none !important; }
+
+/* 旧注記「返信率のグラフは、見やすさのため別の目盛りで表示しています」は
+   新しい図（同一目盛り）と矛盾するので、あわせて隠す。 */
+#scout-num.nx-imp-on > .slide-in > .note{ display:none !important; }
+
+/* ---------- 図の外枠 ---------- */
+.imp{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;            /* 375px でも横スクロールを出さない */
+  box-sizing:border-box;
+}
+
+.imp-top{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:6px 20px;
+  margin:0 0 14px;
+}
+
+.imp-lead{
+  margin:0;
+  font-size:.9rem;
+  line-height:1.5;
+  color:var(--ink-dim);
+  font-family:'Zen Kaku Gothic New',sans-serif;
+}
+.imp-lead b{
+  color:var(--ink);
+  font-weight:700;
+  font-family:'Roboto Mono','Zen Kaku Gothic New',sans-serif;
+}
+
+.imp-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 18px;
+  margin:0;
+  padding:0;
+  list-style:none;
+  font-size:.72rem;
+  color:var(--ink-dim);
+  font-family:'Zen Kaku Gothic New',sans-serif;
+}
+.imp-legend li{ display:flex; align-items:center; gap:7px; }
+.imp-legend li::before{
+  content:'';
+  width:16px; height:8px;
+  border-radius:2px;
+  flex:0 0 auto;
+}
+.imp-lg-b::before{ background:rgba(148,163,180,.30); }
+.imp-lg-a::before{ background:var(--accent); box-shadow:0 0 8px var(--acc-24); }
+
+.imp-svg{
+  display:block;
+  width:100%;
+  height:auto;
+  overflow:visible;
+}
+
+.imp-note{
+  margin:12px 0 0 !important;
+  font-size:.7rem;
+  line-height:1.6;
+  color:var(--ink-dim);
+  opacity:.85;
+  font-family:'Zen Kaku Gothic New',sans-serif;
+}
+
+/* ---------- 目盛り ---------- */
+.imp-grid{ stroke:rgba(255,255,255,.055); stroke-width:1; }
+.imp-axis{ stroke:var(--line); stroke-width:1; }
+.imp-tick{
+  fill:var(--ink-dim);
+  opacity:.75;
+  font-family:'Roboto Mono',monospace;
+  font-weight:500;
+}
+
+/* テンプレート＝1.0倍 の基準線 */
+.imp-ref{
+  stroke:var(--accent);
+  stroke-width:1.5;
+  stroke-dasharray:4 5;
+  opacity:.45;
+}
+.imp-reflab{
+  fill:var(--accent);
+  opacity:.75;
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:500;
+}
+
+/* ---------- 行 ---------- */
+.imp-rowtitle{
+  fill:var(--ink);
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+.imp-before{ fill:rgba(148,163,180,.30); }
+
+.imp-beforelab{
+  fill:var(--ink-dim);
+  font-family:'Zen Kaku Gothic New',sans-serif;
+}
+.imp-beforelab .imp-mono{
+  font-family:'Roboto Mono',monospace;
+  font-weight:700;
+  fill:var(--ink);
+}
+
+/* 矢印 */
+.imp-arrowg{ filter:drop-shadow(0 0 12px rgba(0,212,255,.32)); }
+.imp-g0{ stop-color:var(--accent); stop-opacity:.42; }
+.imp-g1{ stop-color:var(--accent); stop-opacity:1; }
+.imp-streak{ stroke:var(--accent); stroke-linecap:round; opacity:0; }
+
+/* 矢印の上に乗る到達値（濃紺の文字 × シアン地） */
+.imp-pct{
+  fill:#04252E;
+  font-family:'Roboto Mono',monospace;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+/* 倍率（この図の主役） */
+.imp-big{
+  fill:var(--accent);
+  font-family:'Roboto Mono',monospace;
+  font-weight:700;
+  letter-spacing:-.02em;
+}
+.imp-big-u{
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:700;
+  letter-spacing:0;
+}
+
+@media (max-width:620px){
+  .imp-top{ margin-bottom:10px; gap:4px 12px; }
+  .imp-lead{ font-size:.78rem; }
+  .imp-legend{ font-size:.66rem; gap:4px 12px; }
+  .imp-legend li::before{ width:12px; height:7px; }
+  .imp-note{ font-size:.63rem; margin-top:10px !important; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .imp-streak{ opacity:0 !important; }
+}

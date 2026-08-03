@@ -597,8 +597,8 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   width:auto !important;
   height:auto !important;
   inset:auto !important;
-  opacity:1 !important;
 }
+.vision-grid{ opacity:1 !important; }
 .vision-copy{ transform:none !important; }
 
 /* (2) #vision だけスライド高が2倍（1612px）になり、3Dコアの中心が画面外に落ちる */
