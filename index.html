@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AIまるごと採用雑務代行｜株式会社NEXT</title>
-<meta name="description" content="採用の雑務を7つに分解し、そのすべてをAIへ。人事の仕事を、最終面接だけに。">
+<meta name="description" content="採用の雑務を7つに分解し、そのすべてをAIへ。人事の仕事を、面接だけに。">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/charts.css">
 <link rel="stylesheet" href="css/fx.css">
 <link rel="stylesheet" href="css/deck.css">
+<link rel="stylesheet" href="css/fnanim.css">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script type="importmap">
@@ -31,7 +32,7 @@
   <div class="slide-in hero-inner">
     <p class="hero-eyebrow">550社の採用を支援してきた 株式会社NEXT</p>
     <h1 class="hero-title">AIまるごと<br>採用雑務代行</h1>
-    <p class="hero-sub">人事の仕事を、最終面接だけに。</p>
+    <p class="hero-sub">人事の仕事を、面接だけに。</p>
   </div>
 </section>
 
@@ -63,7 +64,7 @@
         <div class="bignum-k">ご担当者の総工数</div>
       </div>
     </div>
-    <p class="note reveal">※ 人材紹介経由で一名採用した場合の試算（紹介手数料 約103万円＋社内工数 約29万円）。手数料は厚生労働省「令和6年度 職業紹介事業報告書の集計結果」。総工数は当社試算です。</p>
+    <p class="note reveal">※ 人材紹介経由で一名採用した場合の試算（紹介手数料 約103万円＋社内工数 約30万円）。手数料は厚生労働省「令和6年度 職業紹介事業報告書の集計結果」。総工数は当社試算です。</p>
   </div>
 </section>
 
@@ -76,13 +77,13 @@
       <ul class="bd-list">
         <li class="reveal"><span class="bd-name">求人広告費<em>約37万円</em></span><span class="bd-bar" style="--w:28%"></span></li>
         <li class="reveal"><span class="bd-name">人材紹介手数料<em>約103万円</em></span><span class="bd-bar" style="--w:78%"></span></li>
-        <li class="reveal is-key"><span class="bd-name">担当者の人件費<em>約29万円（100時間 × 2,900円）</em></span><span class="bd-bar" style="--w:22%"></span></li>
+        <li class="reveal is-key"><span class="bd-name">担当者の人件費<em>約30万円（100時間 × 3,000円）</em></span><span class="bd-bar" style="--w:22%"></span></li>
         <li class="reveal is-key"><span class="bd-name">面接官の時間<em>試算値</em></span><span class="bd-bar" style="--w:14%"></span></li>
       </ul>
       <div class="chart-slot reveal" id="chart-cost-donut" data-chart="cost-donut" aria-label="採用コストの内訳"></div>
     </div>
     <p class="lead reveal">外部に支払う費用は把握されています。しかし、<span class="hl">社内の時間</span>は、ほとんど計測されていません。</p>
-    <p class="note reveal">※ 人材紹介手数料＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり約103万円。求人広告費＝マイナビ「中途採用状況調査2026年版」1人あたり36.7万円。時給換算＝年収480万円（国税庁「令和6年分 民間給与実態統計調査」平均478万円）に法定福利費15.7%を加算し、年間総実労働時間1,926時間で除した当社試算。</p>
+    <p class="note reveal">※ 人材紹介手数料＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり約103万円。求人広告費＝マイナビ「中途採用状況調査2026年版」1人あたり36.7万円。時給換算＝年収500万円 ÷ 年間1,920時間（月160時間×12ヶ月）＝約2,600円に、法定福利費15.7%を加えて約3,000円。</p>
   </div>
 </section>
 
@@ -95,7 +96,7 @@
 <section class="slide tl-slide st-1" id="timeline-1" data-title="1週間①">
   <div class="slide-in wrap tl-wrap">
     <p class="sec-label">A WEEK OF A RECRUITER</p>
-    <h2 class="tl-title">こちらは、ある採用ご担当者の1週間です。</h2>
+    <h2 class="tl-title">こちらは、採用が動いている週の1週間です。</h2>
     <div class="tl-grid" id="tl-grid-1" aria-label="採用ご担当者の1週間のスケジュール"></div>
   </div>
 </section>
@@ -106,8 +107,8 @@
     <p class="sec-label">A WEEK OF A RECRUITER</p>
     <h2 class="tl-title">よく見ると、その多くは採用業務ではありません。</h2>
     <div class="tl-legend">
-      <span class="lg lg-core"><i></i>採用そのもの（会う・見極める・口説く）</span>
       <span class="lg lg-chore"><i></i>雑務（作成・調整・入力・集計）</span>
+      <span class="lg lg-core"><i></i>採用そのもの（会う・見極める・動機づける）</span>
     </div>
     <div class="tl-grid" id="tl-grid-2" aria-label="雑務を塗り分けた1週間"></div>
   </div>
@@ -117,12 +118,12 @@
 <section class="slide tl-slide st-3" id="timeline-3" data-title="1週間③">
   <div class="slide-in wrap tl-wrap">
     <p class="sec-label">A WEEK OF A RECRUITER</p>
-    <h2 class="tl-title">採用業務は週<span class="est">13</span>時間。その大半が、調整と入力です。</h2>
+    <h2 class="tl-title">週<span class="est">33</span>時間。その大半が、調整と入力です。</h2>
     <div class="tl-body">
       <div class="tl-grid" id="tl-grid-3" aria-label="雑務の時間"></div>
       <div class="tl-meter">
-        <div class="tl-meter-v num" data-count="13">0<small>時間 / 週</small></div>
-        <div class="tl-meter-k">採用業務に使える時間<br><span class="src">Indeed Japan「採用担当者の業務実態」調査（2021年・従業員2〜299名で労働時間の35.5%）</span></div>
+        <div class="tl-meter-v num" data-count="33">0<small>時間 / 週</small></div>
+        <div class="tl-meter-k">この週、雑務に費やされた時間<br><span class="src">稼働40時間のうち、面接は7時間。残りはすべて作成・調整・入力・集計です。</span></div>
         <div class="chart-slot chart-inline" id="chart-chore-ratio" data-chart="chore-ratio" aria-label="雑務の比率"></div>
       </div>
     </div>
@@ -146,11 +147,20 @@
 <section class="slide sec-alt" id="hr-only" data-title="人事の仕事">
   <div class="slide-in wrap">
     <p class="sec-label reveal">WHAT ONLY HR CAN DO</p>
-    <h2 class="sec-title reveal">人事にしかできない仕事は、限られています。</h2>
+    <h2 class="sec-title reveal">人事にしかできない仕事は、<br>この3つだけです。</h2>
     <div class="only-grid">
-      <div class="only-card reveal"><span class="only-n num">01</span><h3>カルチャーに合うかどうかの判断</h3></div>
-      <div class="only-card reveal"><span class="only-n num">02</span><h3>言語化しきれない<br>「合う・合わない」の意思決定</h3></div>
-      <div class="only-card reveal"><span class="only-n num">03</span><h3>候補者を口説くこと</h3></div>
+      <div class="only-card reveal" style="--img:url('assets/hr01_culture.webp')">
+        <div class="only-img"></div>
+        <div class="only-body"><span class="only-n num">01</span><h3>カルチャーに合うか<br>どうかの判断</h3></div>
+      </div>
+      <div class="only-card reveal" style="--img:url('assets/hr02_intuition.webp')">
+        <div class="only-img"></div>
+        <div class="only-body"><span class="only-n num">02</span><h3>言語化しきれない<br>「合う・合わない」の意思決定</h3></div>
+      </div>
+      <div class="only-card reveal" style="--img:url('assets/hr03_persuade.webp')">
+        <div class="only-img"></div>
+        <div class="only-body"><span class="only-n num">03</span><h3>候補者の動機づけ</h3></div>
+      </div>
     </div>
     <p class="lead reveal">裏を返せば、それ以外の業務を人が担う必然性はありません。</p>
   </div>
@@ -164,7 +174,7 @@
     <div class="vision-grid" id="vision-grid"></div>
     <div class="vision-copy">
       <p class="sec-label">OUR VISION</p>
-      <h2 class="vision-title">人事の仕事が、<br>最終面接だけになる。</h2>
+      <h2 class="vision-title">人事の仕事が、<br>面接だけになる。</h2>
       <p class="lead">それ以外はすべてAIへ。<br>私たちが目指している、採用の姿です。</p>
     </div>
   </div>
@@ -185,40 +195,136 @@
   <div class="slide-in wrap">
     <p class="sec-label reveal">7 FUNCTIONS</p>
     <h2 class="sec-title reveal">入口から改善まで、採用フローを1周まるごと。</h2>
-    <div class="map-layout">
-      <div class="orbit" id="orbit" aria-hidden="true">
-        <canvas id="orbit-canvas"></canvas>
-        <div class="orbit-core"><span>人が残すのは<br><strong>口説く</strong>と<strong>決める</strong>だけ</span></div>
-      </div>
-      <ol class="orbit-list">
-        <li class="reveal"><span class="num">01</span><em class="step">要件定義・求人設計</em><b>自動応募要件の作成</b></li>
-        <li class="reveal"><span class="num">02</span><em class="step">母集団形成</em><b>AIスカウト</b></li>
-        <li class="reveal"><span class="num">03</span><em class="step">一次スクリーニング</em><b>AI書類選考</b></li>
-        <li class="reveal"><span class="num">04</span><em class="step">見極め</em><b>適性検査</b></li>
-        <li class="reveal"><span class="num">05</span><em class="step">面接調整</em><b>AI日程調整（半自動）</b></li>
-        <li class="reveal"><span class="num">06</span><em class="step">面接・記録</em><b>AI面接文字起こし</b></li>
-        <li class="reveal"><span class="num">07</span><em class="step">振り返り・改善</em><b>AI採用分析ツール</b></li>
-      </ol>
+    <ol class="flow7" id="flow7">
+      <li class="f7 reveal" data-fn="01"><span class="f7-icon"></span><span class="f7-n num">01</span><em class="f7-step">要件定義・求人設計</em><b class="f7-name">自動応募要件の作成</b></li>
+      <li class="f7 reveal is-key" data-fn="02"><span class="f7-icon"></span><span class="f7-n num">02</span><em class="f7-step">母集団形成</em><b class="f7-name">AIスカウト</b></li>
+      <li class="f7 reveal" data-fn="03"><span class="f7-icon"></span><span class="f7-n num">03</span><em class="f7-step">一次スクリーニング</em><b class="f7-name">AI書類選考</b></li>
+      <li class="f7 reveal" data-fn="04"><span class="f7-icon"></span><span class="f7-n num">04</span><em class="f7-step">見極め</em><b class="f7-name">適性検査</b></li>
+      <li class="f7 reveal" data-fn="05"><span class="f7-icon"></span><span class="f7-n num">05</span><em class="f7-step">面接調整</em><b class="f7-name">AI日程調整</b></li>
+      <li class="f7 reveal" data-fn="06"><span class="f7-icon"></span><span class="f7-n num">06</span><em class="f7-step">面接・記録</em><b class="f7-name">AI面接文字起こし</b></li>
+      <li class="f7 reveal" data-fn="07"><span class="f7-icon"></span><span class="f7-n num">07</span><em class="f7-step">振り返り・改善</em><b class="f7-name">AI採用分析</b></li>
+    </ol>
+    <div class="flow7-loop reveal"><span>改善が、次の要件定義に返る</span></div>
+    <div class="flow7-human reveal">
+      <span class="f7h-label">人が残すのは</span>
+      <b>会う</b><i>と</i><b>決める</b><span class="f7h-label">だけ</span>
     </div>
-    <p class="lead reveal">1つだけ自動化しても、残り6つの雑務は残り続けます。</p>
   </div>
 </section>
 
-<!-- 16 できること -->
+<!-- 16 できること（概要） -->
 <section class="slide sec-alt" id="features" data-title="できること">
   <div class="slide-in wrap">
     <p class="sec-label reveal">FUNCTIONS</p>
     <h2 class="sec-title reveal">できること</h2>
-    <div class="fn-grid">
-      <article class="fn reveal"><span class="num">01</span><h3>自動応募要件の作成</h3><p>募集要件と求人票を、AIが作成できます。</p></article>
-      <article class="fn reveal is-key"><span class="num">02</span><h3>AIスカウト</h3><p>候補者ごとのスカウト文を、AIが作成・送信できます。</p></article>
-      <article class="fn reveal"><span class="num">03</span><h3>AI書類選考</h3><p>応募書類の一次確認と、判定の原案作成をAIが行えます。最終判断は人が行います。</p></article>
-      <article class="fn reveal"><span class="num">04</span><h3>適性検査</h3><p>実施から結果の整理まで、まとめて行えます。</p></article>
-      <article class="fn reveal"><span class="num">05</span><h3>AI日程調整（半自動）</h3><p>面接日程の調整を自動化できます。送信の直前だけ人が確認する設計です。</p></article>
-      <article class="fn reveal"><span class="num">06</span><h3>AI面接文字起こし</h3><p>面接の文字起こしと記録を自動化できます。</p></article>
-      <article class="fn reveal"><span class="num">07</span><h3>AI採用分析ツール</h3><p>採用データの集計と可視化を自動化できます。</p></article>
-    </div>
     <p class="lead reveal">この7つが引き取るのは、先ほどご覧いただいた1週間のうち、作成・調整・入力・集計にあたる部分です。</p>
+    <ol class="fn-index">
+      <li class="reveal"><span class="num">01</span><b>自動応募要件の作成</b><i>要件定義・求人設計</i></li>
+      <li class="reveal"><span class="num">02</span><b>AIスカウト</b><i>母集団形成</i></li>
+      <li class="reveal"><span class="num">03</span><b>AI書類選考</b><i>一次スクリーニング</i></li>
+      <li class="reveal"><span class="num">04</span><b>適性検査</b><i>見極め</i></li>
+      <li class="reveal"><span class="num">05</span><b>AI日程調整（半自動）</b><i>面接調整</i></li>
+      <li class="reveal"><span class="num">06</span><b>AI面接文字起こし</b><i>面接・記録</i></li>
+      <li class="reveal"><span class="num">07</span><b>AI採用分析ツール</b><i>振り返り・改善</i></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 機能 01 -->
+<section class="slide fn-slide" id="fn-01" data-title="自動応募要件の作成">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-fig" data-fn="01" aria-hidden="true"></div>
+    <div class="fn-text">
+      <span class="fn-badge num">01 / 07</span>
+      <p class="sec-label reveal">要件定義・求人設計</p>
+      <h2 class="sec-title reveal">自動応募要件の作成</h2>
+      <p class="lead reveal">募集要件と求人票を、AIが作成できます。</p>
+      <p class="fn-sub reveal">対象：職種・条件・社風のメモ</p>
+    </div>
+  </div>
+</section>
+
+<!-- 機能 02 -->
+<section class="slide fn-slide is-key" id="fn-02" data-title="AIスカウト">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-fig" data-fn="02" aria-hidden="true"></div>
+    <div class="fn-text">
+      <span class="fn-badge num">02 / 07</span>
+      <p class="sec-label reveal">母集団形成</p>
+      <h2 class="sec-title reveal">AIスカウト</h2>
+      <p class="lead reveal">候補者ごとのスカウト文を、AIが作成・送信できます。</p>
+      <p class="fn-sub reveal">一人ひとり違う文面を、自動で</p>
+    </div>
+  </div>
+</section>
+
+<!-- 機能 03 -->
+<section class="slide fn-slide" id="fn-03" data-title="AI書類選考">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-fig" data-fn="03" aria-hidden="true"></div>
+    <div class="fn-text">
+      <span class="fn-badge num">03 / 07</span>
+      <p class="sec-label reveal">一次スクリーニング</p>
+      <h2 class="sec-title reveal">AI書類選考</h2>
+      <p class="lead reveal">応募書類の一次確認と、判定の原案作成をAIが行えます。</p>
+      <p class="fn-sub reveal">最終判断は、必ず人が行います</p>
+    </div>
+  </div>
+</section>
+
+<!-- 機能 04 -->
+<section class="slide fn-slide" id="fn-04" data-title="適性検査">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-fig" data-fn="04" aria-hidden="true"></div>
+    <div class="fn-text">
+      <span class="fn-badge num">04 / 07</span>
+      <p class="sec-label reveal">見極め</p>
+      <h2 class="sec-title reveal">適性検査</h2>
+      <p class="lead reveal">実施から結果の整理まで、まとめて行えます。</p>
+      <p class="fn-sub reveal">面接前に、確認すべき点が分かる</p>
+    </div>
+  </div>
+</section>
+
+<!-- 機能 05 -->
+<section class="slide fn-slide" id="fn-05" data-title="AI日程調整（半自動）">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-fig" data-fn="05" aria-hidden="true"></div>
+    <div class="fn-text">
+      <span class="fn-badge num">05 / 07</span>
+      <p class="sec-label reveal">面接調整</p>
+      <h2 class="sec-title reveal">AI日程調整（半自動）</h2>
+      <p class="lead reveal">面接日程の調整を自動化できます。</p>
+      <p class="fn-sub reveal">送信の直前だけ人が確認する設計です</p>
+    </div>
+  </div>
+</section>
+
+<!-- 機能 06 -->
+<section class="slide fn-slide" id="fn-06" data-title="AI面接文字起こし">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-fig" data-fn="06" aria-hidden="true"></div>
+    <div class="fn-text">
+      <span class="fn-badge num">06 / 07</span>
+      <p class="sec-label reveal">面接・記録</p>
+      <h2 class="sec-title reveal">AI面接文字起こし</h2>
+      <p class="lead reveal">面接の文字起こしと記録を自動化できます。</p>
+      <p class="fn-sub reveal">面接に集中できます</p>
+    </div>
+  </div>
+</section>
+
+<!-- 機能 07 -->
+<section class="slide fn-slide" id="fn-07" data-title="AI採用分析ツール">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-fig" data-fn="07" aria-hidden="true"></div>
+    <div class="fn-text">
+      <span class="fn-badge num">07 / 07</span>
+      <p class="sec-label reveal">振り返り・改善</p>
+      <h2 class="sec-title reveal">AI採用分析ツール</h2>
+      <p class="lead reveal">採用データの集計と可視化を自動化できます。</p>
+      <p class="fn-sub reveal">次に直す場所が分かります</p>
+    </div>
   </div>
 </section>
 
@@ -272,11 +378,39 @@
 <section class="slide" id="cases" data-title="導入事例">
   <div class="slide-in wrap">
     <p class="sec-label reveal">CASE</p>
-    <h2 class="sec-title reveal">AIスカウトの導入事例</h2>
+    <h2 class="sec-title reveal">返信率が、<span class="hl">7〜9倍</span>になりました。</h2>
+    <p class="lead reveal">いずれもAIスカウトをご利用いただいた企業様の実績です。倍率はテンプレート送信（開封12%／返信0.3%）との比較です。</p>
     <div class="case-grid">
-      <div class="case reveal"><h3>SaaS企業A社</h3><ul><li>開封率 <b class="num">38%</b></li><li>返信率 <b class="num">2.4%</b></li></ul></div>
-      <div class="case reveal"><h3>IT企業B社</h3><ul><li>開封率 <b class="num">41%</b></li><li>返信率 <b class="num">2.7%</b></li><li class="is-key">面談化率 <b class="num">約2.8倍</b></li></ul></div>
-      <div class="case reveal"><h3>成長ベンチャーC社</h3><ul><li>開封率 <b class="num">35%</b></li><li>返信率 <b class="num">2.1%</b></li><li class="is-key">スカウト単価 <b class="num">約40%削減</b></li></ul></div>
+      <div class="case reveal">
+        <h3>SaaS企業A社</h3>
+        <div class="case-hero"><b class="num">8.0</b><span>倍</span></div>
+        <p class="case-hero-k">返信率</p>
+        <div class="case-ba">
+          <div class="cb"><span class="cb-l">テンプレート</span><span class="cb-bar" style="--w:4%"></span><span class="cb-v num">0.3%</span></div>
+          <div class="cb is-after"><span class="cb-l">A社</span><span class="cb-bar" style="--w:100%"></span><span class="cb-v num">2.4%</span></div>
+        </div>
+        <p class="case-sub">開封率も 12% → <b>38%</b>（3.2倍）</p>
+      </div>
+      <div class="case reveal is-key">
+        <h3>IT企業B社</h3>
+        <div class="case-hero"><b class="num">9.0</b><span>倍</span></div>
+        <p class="case-hero-k">返信率</p>
+        <div class="case-ba">
+          <div class="cb"><span class="cb-l">テンプレート</span><span class="cb-bar" style="--w:4%"></span><span class="cb-v num">0.3%</span></div>
+          <div class="cb is-after"><span class="cb-l">B社</span><span class="cb-bar" style="--w:100%"></span><span class="cb-v num">2.7%</span></div>
+        </div>
+        <p class="case-sub">面談化率 <b>約2.8倍</b>／開封率 12% → <b>41%</b></p>
+      </div>
+      <div class="case reveal">
+        <h3>成長ベンチャーC社</h3>
+        <div class="case-hero"><b class="num">7.0</b><span>倍</span></div>
+        <p class="case-hero-k">返信率</p>
+        <div class="case-ba">
+          <div class="cb"><span class="cb-l">テンプレート</span><span class="cb-bar" style="--w:4%"></span><span class="cb-v num">0.3%</span></div>
+          <div class="cb is-after"><span class="cb-l">C社</span><span class="cb-bar" style="--w:100%"></span><span class="cb-v num">2.1%</span></div>
+        </div>
+        <p class="case-sub">スカウト単価 <b>約40%削減</b>／開封率 12% → <b>35%</b></p>
+      </div>
     </div>
   </div>
 </section>
@@ -295,16 +429,44 @@
 </section>
 
 <!-- 23 価格 -->
-<section class="slide sec-center" id="price" data-title="月額10万円">
+<section class="slide" id="price" data-title="料金プラン">
   <div class="slide-in wrap">
     <p class="sec-label reveal">PRICE</p>
-    <div class="price-main reveal">
-      <span class="price-unit">月額</span>
-      <span class="price-v num">10</span>
-      <span class="price-unit">万円</span>
+    <h2 class="sec-title reveal">採用の量に合わせて、3プラン。</h2>
+    <div class="plans">
+      <div class="plan reveal">
+        <span class="plan-name">ライト</span>
+        <p class="plan-price num">3<small>万円／月</small></p>
+        <p class="plan-target">年1〜2名を採用される企業様<br>（従業員〜50名）</p>
+        <ul class="plan-list">
+          <li>AIスカウト（月<span class="est">500</span>通まで）</li>
+          <li>AI日程調整</li>
+          <li>自動応募要件の作成</li>
+        </ul>
+      </div>
+      <div class="plan reveal is-key">
+        <span class="plan-badge">推奨</span>
+        <span class="plan-name">スタンダード</span>
+        <p class="plan-price num">10<small>万円／月</small></p>
+        <p class="plan-target">年3〜5名を採用される企業様<br>（従業員50〜300名）</p>
+        <ul class="plan-list">
+          <li><b>7機能すべて</b></li>
+          <li>AIスカウト 送信数の上限なし</li>
+          <li>AI書類選考／適性検査／面接文字起こし／採用分析</li>
+        </ul>
+      </div>
+      <div class="plan reveal">
+        <span class="plan-name">フル</span>
+        <p class="plan-price num">30<small>万円／月</small></p>
+        <p class="plan-target">年10名以上を採用される企業様<br>（従業員300名〜）</p>
+        <ul class="plan-list">
+          <li>7機能すべて</li>
+          <li>複数職種・複数媒体の同時運用</li>
+          <li>専任担当による運用の伴走</li>
+        </ul>
+      </div>
     </div>
-    <p class="lead reveal">7つの機能、すべて込みの価格です。</p>
-    <p class="note reveal wip">※ 初期費用・最低契約期間は調整中です。</p>
+    <p class="note reveal wip">※ 送信上限・機能の内訳は調整中です。初期費用・最低契約期間も別途ご案内します。</p>
   </div>
 </section>
 
@@ -312,18 +474,38 @@
 <section class="slide sec-alt" id="roi" data-title="費用対効果">
   <div class="slide-in wrap">
     <p class="sec-label reveal">ROI</p>
-    <h2 class="sec-title reveal">従業員<span class="hl">50〜300名</span>の企業なら、<br>年間<span class="hl">約51万円</span>のプラスです。</h2>
-    <div class="roi-layout">
-      <div class="roi-chart" id="roi-chart">
-        <div class="roi-bar reveal is-save"><div class="roi-fill" style="--h:100%"></div><div class="roi-cap"><b class="num">約171万円</b><span>削減できる費用／年</span></div></div>
-        <div class="roi-bar reveal is-cost"><div class="roi-fill" style="--h:70%"></div><div class="roi-cap"><b class="num">120万円</b><span>本サービス／年</span></div></div>
+    <h2 class="sec-title reveal">どのプランでも、<span class="hl">費用を上回ります。</span></h2>
+    <div class="roi-table">
+      <div class="rt-row rt-head">
+        <span>プラン</span><span>想定の年間採用数</span><span>削減できる人件費</span><span>紹介1名分の内製化</span><span>年間費用</span><span>差引</span>
       </div>
-      <div class="roi-detail">
-        <div class="roi-item reveal"><b class="num">約103万円</b><span>人材紹介を年1名分だけ内製化した場合<br><span class="src">厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり</span></span></div>
-        <div class="roi-item reveal"><b class="num">約68万円</b><span>ご担当者の人件費（年3.9名 × 60時間 × 2,900円）<br><span class="src">採用人数はマイナビ「中途採用状況調査2026年版」51〜300名の平均</span></span></div>
+      <div class="rt-row reveal">
+        <span class="rt-plan">ライト<i>3万円／月</i></span>
+        <span class="num">2名</span>
+        <span class="num">36万円</span>
+        <span class="num">103万円</span>
+        <span class="num">36万円</span>
+        <span class="rt-plus num">＋103万円</span>
+      </div>
+      <div class="rt-row reveal is-key">
+        <span class="rt-plan">スタンダード<i>10万円／月</i></span>
+        <span class="num">4名</span>
+        <span class="num">72万円</span>
+        <span class="num">103万円</span>
+        <span class="num">120万円</span>
+        <span class="rt-plus num">＋55万円</span>
+      </div>
+      <div class="rt-row reveal">
+        <span class="rt-plan">フル<i>30万円／月</i></span>
+        <span class="num">12名</span>
+        <span class="num">216万円</span>
+        <span class="num">206万円<i>（2名分）</i></span>
+        <span class="num">360万円</span>
+        <span class="rt-plus num">＋62万円</span>
       </div>
     </div>
-    <p class="note reveal">※ 1名採用あたりの担当者工数（100時間）と、AIが引き取る割合（6割）は当社試算です。</p>
+    <p class="lead reveal">採用の量が増えるほど、削減できる時間と紹介手数料も増えます。<br>そのため<span class="hl">どの規模でも費用対効果は成立します。</span></p>
+    <p class="note reveal">※ 人材紹介手数料 約103万円＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり。人件費＝1名あたりAIが引き取る工数60時間 × 時給換算3,000円（当社試算）。</p>
   </div>
 </section>
 
@@ -333,11 +515,12 @@
     <p class="sec-label reveal">HOW WE CALCULATE</p>
     <h2 class="sec-title reveal">算出方法<span class="sub-note">（従業員50〜300名・中途採用の場合）</span></h2>
     <ol class="formula-list num">
-      <li class="reveal">ご担当者の年収 <b>480万円</b><br><span class="fm-sub">国税庁「令和6年分 民間給与実態統計調査」平均給与 478万円</span></li>
-      <li class="reveal">＋ 法定福利費（会社負担）<b>15.7%</b> → 年 <b>約555万円</b><br><span class="fm-sub">健康保険4.925%＋厚生年金9.15%＋雇用0.85%＋労災0.3%ほか（令和8年度・東京都・協会けんぽ）</span></li>
-      <li class="reveal">÷ 年間総実労働時間 <b>1,926時間</b> ＝ 時給換算 <b>約2,900円</b><br><span class="fm-sub">労働政策研究・研修機構（一般労働者・2025年）</span></li>
-      <li class="reveal">採用業務に使える時間は <b>週約13時間</b><br><span class="fm-sub">Indeed Japan調査（2021年）従業員2〜299名で労働時間の35.5%／週37時間換算</span></li>
-      <li class="reveal">応募以降のフェーズでは、<b>面接前の調整業務が52.4%</b>を占める<br><span class="fm-sub">同上。面接の実施・同席は16.1%</span></li>
+      <li class="reveal">ご担当者の年収 <b>500万円</b></li>
+      <li class="reveal">÷ 年間 <b>1,920時間</b>（月160時間 × 12ヶ月）＝ <b>約2,600円／時</b></li>
+      <li class="reveal">＋ 法定福利費（会社負担）<b>15.7%</b> → <b>約3,000円／時</b><br><span class="fm-sub">健康保険4.925%＋厚生年金9.15%＋雇用0.85%＋労災0.3%ほか（令和8年度・東京都・協会けんぽ）</span></li>
+      <li class="reveal">年間の中途採用 <b>3.9名</b>（従業員51〜300名の平均）<br><span class="fm-sub">マイナビ「中途採用状況調査2026年版」</span></li>
+      <li class="reveal">1名あたりAIが引き取る工数 <b>60時間</b>（100時間の6割）<span class="fm-sub">当社試算</span></li>
+      <li class="reveal">3.9名 × 60時間 × 3,000円 ＝ <b>約70万円／年</b></li>
     </ol>
     <div class="fm-table reveal">
       <div class="fm-row fm-head"><span>比較対象</span><span>費用</span><span>出典</span></div>
@@ -423,7 +606,7 @@
       <details class="reveal"><summary>情報セキュリティはどうなっていますか。</summary><p>保管期間・アクセス権限・学習利用の有無を明記のうえ、契約書に定めます。</p></details>
       <details class="reveal"><summary>解約条件を教えてください。</summary><p>最低契約期間と解約手続きについては、最終版でご案内します。</p></details>
       <details class="reveal"><summary>対応できる職種に制限はありますか。</summary><p>職種による制限は設けていません。要件に応じて設定を調整します。</p></details>
-      <details class="reveal"><summary>実際に必要な運用工数はどのくらいですか。</summary><p>最終面接と、日程調整時の送信確認が中心となります。</p></details>
+      <details class="reveal"><summary>実際に必要な運用工数はどのくらいですか。</summary><p>面接と、日程調整時の送信確認が中心となります。</p></details>
     </div>
   </div>
 </section>
