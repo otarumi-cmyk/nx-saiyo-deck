@@ -16,7 +16,8 @@
 //     → 黒いフェードインを抜ける currentTime >= 0.3s までは poster を出したままにし、
 //       そこで video をクロスフェードで出す。離脱時は先に隠してから巻き戻す。
 //  4) nx:slide は deck.js の requestAnimationFrame 経由なので、タブが非表示だと発火しない。
-//     → IntersectionObserver を併用して、再生開始/停止を二重化する。
+//     → nx:slide が一度も来ない環境向けに IntersectionObserver を保険として持つ
+//       （nx:slide が来ていればそちらが正）。
 //
 // 検証用フック: window.__fnv.report()
 
@@ -48,7 +49,7 @@ export function init() {
     // 「絵が出ている」と確認できるまで video は透明。
     // インラインstyleなので CSS の読み込み順・詳細度に左右されない。
     v.style.opacity = '0';
-    v.style.transition = reduce ? 'none' : 'opacity .45s ease';
+    v.style.transition = 'none';
     v.style.backgroundColor = 'transparent';
 
     // 自動再生の前提（index.html 側に付いていない場合の保険）
@@ -68,7 +69,6 @@ export function init() {
     const item = {
       v: v,
       wrap: wrap,
-      slide: v.closest('.slide'),
       list: list,
       tried: new Set(),
       want: false,
@@ -77,13 +77,21 @@ export function init() {
     };
 
     // 素材は黒からフェードインするので、頭の黒い区間は poster を見せたままにする。
+    // 出すときだけクロスフェード、隠すときは即時（フェード中に黒フレームを見せないため）。
     const reveal = () => {
       if (item.dead || !item.want) return;
       if (v.error || v.videoWidth === 0 || v.readyState < HAVE_CURRENT_DATA) return;
       if (v.paused || v.currentTime < FADE_IN_DONE) return;
-      if (v.style.opacity !== '1') v.style.opacity = '1';
+      if (v.style.opacity === '1') return;
+      v.style.transition = reduce ? 'none' : 'opacity .45s ease';
+      void v.offsetWidth;                 // transition を確実に効かせる
+      v.style.opacity = '1';
     };
-    const conceal = () => { if (v.style.opacity !== '0') v.style.opacity = '0'; };
+    const conceal = () => {
+      if (v.style.opacity === '0') return;
+      v.style.transition = 'none';        // 即座に消す
+      v.style.opacity = '0';
+    };
     item.reveal = reveal;
     item.conceal = conceal;
 
