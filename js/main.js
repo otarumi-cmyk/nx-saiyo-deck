@@ -5,6 +5,7 @@ import { init as initViz } from './viz.js';
 import { init as initCore3d } from './core3d.js';
 import { init as initCharts } from './charts.js';
 import { init as initDeck } from './deck.js';
+import { init as initFit } from './fit.js';
 import { init as initFnVideo } from './fnvideo.js';
 import { init as initImpact } from './impact.js';
 
@@ -44,6 +45,7 @@ function boot() {
   safe('deck', initDeck);
   safe('fnvideo', initFnVideo);
   safe('impact', initImpact);
+  safe('fit', initFit);
 
   if (window.ScrollTrigger) {
     window.addEventListener('load', () => window.ScrollTrigger.refresh());

@@ -431,3 +431,31 @@ body{
 
 /* イージングの統一 */
 *, *::before, *::after{ transition-timing-function:var(--ease-out); }
+
+/* ============================================================
+   どんなアスペクト比でもスクロール・見切れを出さない
+   fit.js が .nx-stage を transform:scale() で縮小して収める
+   ============================================================ */
+html, body{ overflow:hidden !important; height:100%; }
+.deck{ overflow-y:hidden !important; }
+.slide{ overflow:hidden !important; }
+.slide > .slide-in{
+  overflow:visible !important;
+  max-height:none !important;
+  display:flex !important;
+  align-items:center; justify-content:center;
+  margin:0 auto !important;
+  padding-right:0 !important;
+}
+.nx-stage{
+  transform-origin:center center;
+  will-change:transform;
+  flex:none;
+}
+/* 版面内はどの要素もはみ出させない */
+.nx-stage *{ max-width:100%; }
+.nx-stage img, .nx-stage video, .nx-stage svg{ max-width:100%; height:auto; }
+.nx-stage table{ width:100%; table-layout:auto; }
+/* 中身は上下中央。縦の余白は版面側で持つ */
+.nx-stage > .wrap, .nx-stage.wrap{ width:100%; max-width:100%; }
+@media (prefers-reduced-motion: reduce){ .nx-stage{ will-change:auto; } }

@@ -179,13 +179,7 @@ export function init() {
   // 縦ホイールを横めくりに変換（PCのトラックパッド／マウス）
   let wheelLock = false;
   deck.addEventListener('wheel', (e) => {
-    const inner = e.target.closest && e.target.closest('.slide-in');
-    // スライド内が縦に溢れている場合は、そちらのスクロールを優先する
-    if (inner && inner.scrollHeight > inner.clientHeight + 4) {
-      const atTop = inner.scrollTop <= 0;
-      const atEnd = inner.scrollTop + inner.clientHeight >= inner.scrollHeight - 1;
-      if (!(atTop && e.deltaY < 0) && !(atEnd && e.deltaY > 0)) return;
-    }
+    // fit.js が中身を縮小して収めるため、スライド内の縦スクロールは無い
     if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
     e.preventDefault();
     if (wheelLock) return;
