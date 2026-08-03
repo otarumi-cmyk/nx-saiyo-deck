@@ -34,6 +34,10 @@
 }
 .chdiv-n{ color:var(--ink-dim) !important; }
 .only-n{ color:var(--ink-dim) !important; }
+/* #map の工程番号 01〜15 も同じ理由で落とす。連番は「一番言いたい数値」ではないのに
+   12個が青く光り、1スライドで最多のアクセントになっていた。AI／人の区別は
+   .fs2.is-ai の面（背景と枠線）と凡例が担うので、番号から色を抜いても情報は落ちない。 */
+#map .fs2-n{ color:var(--ink-dim); }
 
 /* ---------- 3. 書体：日本語が monospace に落ちるのを防ぐ ----------
    AD指摘: Roboto Mono に CJK グリフが無く、日本語が第三の書体で描画される。
@@ -99,7 +103,10 @@ body{
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  padding:clamp(48px,7vh,88px) clamp(20px,4vw,64px) clamp(72px,10vh,110px);
+  padding:clamp(48px,7vh,88px)
+          calc(clamp(20px,4vw,64px) + env(safe-area-inset-right, 0px))
+          calc(clamp(72px,10vh,110px) + env(safe-area-inset-bottom, 0px))
+          calc(clamp(20px,4vw,64px) + env(safe-area-inset-left, 0px));
   box-sizing:border-box;
   background:var(--bg);
 }
@@ -132,9 +139,10 @@ body{
 .slide .lead{ margin-top:var(--sp-4) !important; }
 .slide .note{ margin-top:var(--sp-2) !important; }
 
-/* 索引的な見出しは音量を下げる（AD指摘：主張と索引が同じ76pxで叫んでいる） */
-#cases .sec-title, #flow .sec-title, #faq .sec-title,
-#features .sec-title, #roi-formula .sec-title{
+/* 索引的な見出しは音量を下げる（AD指摘：主張と索引が同じ76pxで叫んでいる）
+   対象は純粋な索引ラベルの #faq「よくあるご質問」のみ。
+   #cases /#flow は主張見出しなので他14枚と同じ音量に戻す。 */
+#faq .sec-title{
   font-size:clamp(1.4rem,2.4vw,2rem) !important;
   margin-bottom:var(--sp-4) !important;
 }
@@ -155,10 +163,13 @@ body{
   background:radial-gradient(ellipse at center, rgba(5,7,10,.3) 0%, rgba(5,7,10,.86) 82%);
 }
 .chdiv-inner{ text-align:center; }
-.chdiv-t{ font-size:clamp(1.6rem,4vw,3rem); font-weight:900; margin:0; }
+/* [E-2] 章扉4枚の縦埋まり率が12.7%しかなかった（1440x900で本文113pxのみ）。
+   本文は足さず、章タイトルと章番号の級数だけを上げて版面を持たせる */
+.chdiv-t{ font-size:clamp(2.6rem,6.2vw,4.8rem); font-weight:900; margin:0; }
+.chdiv-n{ font-size:clamp(.86rem,1.15vw,1.05rem); }
 
 /* ---------- ヒーロー ---------- */
-#hero{ padding-bottom:clamp(72px,10vh,110px); }
+#hero{ padding-bottom:calc(clamp(72px,10vh,110px) + env(safe-area-inset-bottom, 0px)); }
 #hero-canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:0; }
 #hero .hero-inner{ text-align:center; overflow:visible; }
 .hero-title{ font-size:clamp(2.4rem,6.4vw,5.4rem); font-weight:900; margin:var(--sp-3) 0; }
@@ -407,7 +418,7 @@ body{
    7. ナビゲーションUI
    ============================================================ */
 .deck-nav{
-  position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
+  position:fixed; left:50%; bottom:calc(20px + env(safe-area-inset-bottom, 0px)); transform:translateX(-50%);
   display:flex; align-items:center; gap:var(--sp-2);
   z-index:60;
   background:rgba(5,7,10,.72);
@@ -425,15 +436,30 @@ body{
 }
 .deck-btn:hover{ border-color:var(--acc-60); color:var(--accent); }
 .deck-btn:disabled{ opacity:.25; cursor:default; }
+/* タップ領域だけを44x44pxへ拡張する（見た目の32px円は変えない）
+   Apple HIG 44x44pt の最小基準対策。border-radius は付けない
+   （角丸にすると四隅がヒットテストから外れ、実効領域が44x44に満たないため） */
+@media (max-width:768px){
+  .deck-btn{ position:relative; }
+  .deck-btn::after{
+    content:""; position:absolute; left:50%; top:50%;
+    width:44px; height:44px; transform:translate(-50%,-50%);
+  }
+  .deck-counter{ pointer-events:none; }
+}
 .deck-dots{ display:flex; gap:5px; max-width:52vw; overflow:hidden; }
 .deck-dot{
+  flex:0 0 auto;
   width:6px; height:6px; border-radius:50%; padding:0;
   background:rgba(148,163,180,.3); border:0; cursor:pointer;
   transition:background .3s ease, width .3s ease;
 }
 .deck-dot.is-on{ background:var(--accent); width:18px; border-radius:3px; }
 .deck-counter{
-  position:fixed; right:22px; bottom:26px; z-index:60;
+  position:fixed;
+  right:calc(22px + env(safe-area-inset-right, 0px));
+  bottom:calc(26px + env(safe-area-inset-bottom, 0px));
+  z-index:60;
   font-family:'Space Grotesk',monospace; font-size:.78rem; color:var(--ink-dim);
 }
 .deck-counter i{ font-style:normal; opacity:.4; margin:0 4px; }
@@ -441,7 +467,10 @@ body{
 .deck-progress{ position:fixed; left:0; top:0; width:100%; height:2px; z-index:60; background:rgba(255,255,255,.05); }
 .deck-progress span{ display:block; height:100%; width:0; background:var(--accent); box-shadow:0 0 10px var(--acc-60); transition:width .35s ease; }
 .deck-hint{
-  position:fixed; left:22px; bottom:26px; z-index:60;
+  position:fixed;
+  left:calc(22px + env(safe-area-inset-left, 0px));
+  bottom:calc(26px + env(safe-area-inset-bottom, 0px));
+  z-index:60;
   font-size:.74rem; color:var(--ink-dim);
   transition:opacity .6s ease;
 }
@@ -469,7 +498,12 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .logos-track{ grid-template-columns:repeat(3,1fr); }
 }
 @media (max-width:768px){
-  .slide{ padding:clamp(40px,6vh,64px) 18px 96px; }
+  .slide{
+    padding:clamp(40px,6vh,64px)
+            calc(18px + env(safe-area-inset-right, 0px))
+            calc(96px + env(safe-area-inset-bottom, 0px))
+            calc(18px + env(safe-area-inset-left, 0px));
+  }
   .slide .sec-title{ font-size:clamp(1.35rem,5.2vw,1.9rem) !important; margin-bottom:var(--sp-3) !important; }
   .slide .q-big{ font-size:clamp(1.5rem,6vw,2.1rem) !important; }
   .tl-slide .tl-grid, .vision-grid{ grid-template-columns:repeat(3,1fr); gap:4px; }
@@ -478,8 +512,13 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .orbit-list li{ grid-template-columns:28px 1fr; }
   .orbit-list .step{ display:none; }
   .roi-chart{ height:210px; gap:var(--sp-3); }
-  .deck-dots{ max-width:40vw; }
+  .deck-dots{ display:none; }
   .deck-hint{ display:none; }
+  /* ページ番号がナビゲーションピルに重なるのを回避（ピルの上へ退避） */
+  .deck-counter{
+    bottom:calc(72px + env(safe-area-inset-bottom, 0px));
+    right:calc(16px + env(safe-area-inset-right, 0px));
+  }
 }
 
 /* ---------- 動きを減らす設定 ---------- */
@@ -839,7 +878,11 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .rt-row.is-key{ background:var(--acc-04); }
 .rt-plan{ font-weight:700; }
 .rt-plan i, .rt-row i{ display:block; font-style:normal; font-size:.68rem; color:var(--ink-dim); font-weight:400; margin-top:2px; }
-.rt-plus{ color:var(--accent) !important; font-weight:700; font-size:1rem; }
+/* [アクセント整理] 差引3行を全部青にすると、推奨プランがどれか色では分からない。
+   料金表（.pm thead .is-key .pm-price）と同じ扱いにして、青は推奨＝スタンダード行の
+   差引1つだけに残す。他の2行は太字＋1remのままなので列としての強さは保たれる。 */
+.rt-plus{ color:var(--ink) !important; font-weight:700; font-size:1rem; }
+.rt-row.is-key .rt-plus{ color:var(--accent) !important; }
 @media (max-width:900px){
   .plans{ grid-template-columns:1fr; }
   .rt-row{ grid-template-columns:1fr 1fr; gap:6px; font-size:.78rem; }
@@ -881,7 +924,10 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   background:linear-gradient(90deg,var(--acc-60),var(--accent));
   box-shadow:0 0 18px var(--acc-24);
 }
-.st-2 .tl-task[data-kind="chore"] .tt-h, .st-3 .tl-task[data-kind="chore"] .tt-h{ color:var(--accent); }
+/* [アクセント整理] 雑務／採用そのものの符号化はバー（青ベタ ↔ 白抜き）が担っている。
+   時間の数値まで青にすると1画面に16個のアクセントが並ぶので、数値は色を持たせず
+   前面のインクだけで立たせる（core は既定の ink-dim のままなので明暗差は残る）。 */
+.st-2 .tl-task[data-kind="chore"] .tt-h, .st-3 .tl-task[data-kind="chore"] .tt-h{ color:var(--ink); }
 .st-2 .tl-task[data-kind="core"] .tt-bar, .st-3 .tl-task[data-kind="core"] .tt-bar{
   background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28);
 }
@@ -1003,7 +1049,9 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .sc-head i{ display:block; font-style:normal; font-size:.62rem; opacity:.7; }
 .sc-row.is-key{ background:var(--acc-04); }
 .sc-n{ color:var(--ink-dim); }
-.sc-ours{ color:var(--accent); font-weight:700; }
+/* [アクセント整理] 自社の金額まで青にすると、この表の主旨である「差額」が色で埋もれる。
+   自社列は太字だけで立たせ、青は .sc-diff（浮く金額）に一本化する。 */
+.sc-ours{ color:var(--ink); font-weight:700; }
 .sc-diff{ color:var(--accent); font-weight:700; font-size:1.05rem; }
 @media (max-width:900px){
   .sc-row{ grid-template-columns:1fr 1fr; font-size:.8rem; gap:6px; }
@@ -1045,7 +1093,10 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .sb-seg b{ font-family:'Space Grotesk',monospace; font-size:.9rem; color:#04222B; }
 .sb-seg.is-core i{ color:var(--ink); }
 .sb-seg.is-core b{ color:var(--ink); }
-.sb-seg:nth-child(n+5) i{ display:none; }
+/* [E-3] 「107時間の中身」なのに5〜7番目（評価入力/求人票/集計）のラベルが消えていた。
+   #breakdown の帯は1280版面で幅95.8/60.1/58.8pxあり1行で入るのでラベルを出す。
+   逆に before/after の細い帯（541px→40/25/24px）は入らないので、そちらだけ従来どおり伏せる。 */
+.ba2-bar .sb-seg:nth-child(n+5) i{ display:none; }
 .sb-legend{ display:flex; gap:var(--sp-5); flex-wrap:wrap; font-size:.85rem; color:var(--ink-dim); }
 .sbl{ display:inline-flex; align-items:center; gap:8px; }
 .sbl i{ width:14px; height:14px; border-radius:3px; display:inline-block; }
@@ -1076,7 +1127,10 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .logos.is-marquee:hover .logos-track{ animation-play-state:paused !important; }
 
 /* ---------- 30. プラン対応表 ---------- */
-.pm-wrap{ width:100%; overflow-x:auto; margin:var(--sp-4) 0 var(--sp-2); }
+/* [E-4] overflow-x:auto だと overflow-y も auto に計算され、上に飛び出す「推奨」バッジ
+   （top:-10px）の上端が9px切れていた。版面は fit.js が固定幅＋scale するので
+   横スクロールは原理的に起きない。visible に戻し、削った分は padding-top で埋める。 */
+.pm-wrap{ width:100%; overflow:visible; padding-top:16px; margin:calc(var(--sp-4) - 16px) 0 var(--sp-2); }
 .pm{ width:100%; border-collapse:collapse; font-size:.85rem; }
 .pm th, .pm td{ padding:9px var(--sp-2); text-align:center; border-bottom:1px solid var(--line); }
 .pm thead th{ vertical-align:bottom; padding-bottom:var(--sp-3); border-bottom:1px solid var(--line); position:relative; }
@@ -1089,9 +1143,18 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .pm thead .is-key .pm-price{ color:var(--accent); }
 .pm-price small{ font-size:.32em; color:var(--ink-dim); margin-left:3px; font-weight:400; }
 .pm-target{ display:block; font-size:.68rem; color:var(--ink-dim); }
-.pm-badge{ position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:.62rem; background:var(--accent); color:#04222B; padding:2px 10px; border-radius:100px; font-weight:700; }
-.pm .ok{ color:var(--accent); font-size:1rem; }
-.pm .no{ color:rgba(148,163,180,.35); }
+/* [E-5] バッジの文字色 #04222B はアクセントがシアン #00D4FF だった頃の残骸で、
+   ブランドブルー #3B82F6 の上では 4.50:1（9.92px/700 で下限ぎりぎり）まで落ちて黒く沈む。
+   締め色 #2563EB ＋ 白文字にして 5.17:1 に上げる（color だけ白にすると
+   #3B82F6 上で 3.68:1 になり不足するため、背景と必ずセットで変える）。 */
+.pm-badge{ position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:.62rem; background:var(--accent-2); color:#fff; padding:2px 10px; border-radius:100px; font-weight:700; }
+/* [アクセント整理] ●が14個も青いと、この節で一番言いたい「推奨プラン＝10万円／月」が
+   埋もれる。●と—は字形で区別できる（.pm .no は薄いグレーの—）ので、●は色を持たせない。
+   青は .pm thead .is-key .pm-price の1つだけに残す。font-size:1rem は字形の維持に必要。 */
+.pm .ok{ color:var(--ink); font-size:1rem; }
+/* [A11y] 半透明(.35)だと実効 1.92:1 で「—」が実質不可視だったため不透明色に。
+   #8C9BB4 は brand.css の .note と同じ控えめ色。非対応セルを目立たせないトーンは維持。 */
+.pm .no{ color:#8C9BB4; }
 .pm tbody tr:hover td{ background:rgba(255,255,255,.02); }
 .pm tbody tr:hover td.is-key{ background:var(--acc-10); }
 
@@ -1115,7 +1178,10 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .lc-chain{ display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:var(--sp-3); }
 .lc-node{ font-size:.72rem; padding:8px 10px; border:1px solid var(--line); border-radius:4px; color:var(--ink-dim); white-space:nowrap; }
 .lc-chain.is-linked .lc-node{ border-color:var(--acc-24); background:var(--acc-04); color:var(--ink); }
-.lc-cut{ color:#8A99AB; opacity:.55; font-size:.9rem; }
+/* [A11y] opacity:.55 だと実効 rgb(86,98,116) となり 2.67:1 で「✕」が読めなかった。
+   opacity を外して #8A99AB の実色にし 5.72:1 に。font-size:.9rem は残す
+   （落とすと親から 16px を継承して 14.4px→16px に太るため）。 */
+.lc-cut{ color:#8A99AB; font-size:.9rem; }
 .lc-arw{ color:var(--accent); font-size:.9rem; }
 .lc-note{ font-size:.8rem; line-height:1.8; color:var(--ink-dim); margin:0; text-align:left; }
 .lc-note b{ color:var(--ink); font-weight:700; }
@@ -1134,7 +1200,9 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 }
 .fs-img::after{ content:""; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(5,7,10,.1), rgba(16,22,31,.9) 82%, var(--surface-1)); }
 .fs-body{ display:block; padding:var(--sp-3); margin-top:-22px; position:relative; z-index:2; }
-#flow .flow-steps .num{ display:block; font-size:.68rem; color:var(--accent); letter-spacing:.14em; margin-bottom:6px; }
+/* [アクセント整理] 01〜04 は連番であって「一番言いたい数値」ではない。
+   基底の .flow-steps .num（ink-dim）に戻し、この節の青は本文の「最短5営業日」だけにする。 */
+#flow .flow-steps .num{ display:block; font-size:.68rem; color:var(--ink-dim); letter-spacing:.14em; margin-bottom:6px; }
 #flow .flow-steps b{ display:block; font-size:.95rem; margin:0 0 4px; }
 #flow .flow-steps i{ display:block; font-style:normal; font-size:.72rem; color:var(--ink-dim); line-height:1.6; }
 @media (max-width:900px){ #flow .flow-steps{ grid-template-columns:repeat(2,1fr); } }
@@ -1158,3 +1226,122 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .unfit h3{ font-size:.95rem !important; margin:0 0 var(--sp-2) !important; color:var(--ink-dim) !important; }
 .unfit p{ font-size:.78rem; line-height:1.75; color:var(--ink-dim); opacity:.8; margin:0; }
 @media (max-width:900px){ .fit-grid, .unfit-grid{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   35. 修正班（css/deck.css）：画面に出ていた不具合の修正
+   fit.js（.nx-stage を transform:scale で版面ごと縮小）が入ったため、
+   縦のはみ出しはレイアウト側では起きない。ここで直すのは
+   「消えているもの」「残骸」「版面が埋まらないこと」の3種。
+   ============================================================ */
+
+/* [35-1] FAQ：行の右端に青い縦棒（18×1px を90度回転）が残っていた。
+   deck.css:969 が ::before だけを新しい＋アイコンに差し替えたため、
+   style.css:1557 の「線2本方式」の ::after だけが取り残されていた。 */
+.faq-list summary::after{ display:none !important; }
+
+/* [35-2] 積み上げ帯：右3つのラベル（評価入力／求人票／集計）が
+   「.sb-seg:nth-child(n+5) i{display:none}」で順番だけを見て消され、
+   「8h / 5h / 5h」という正体不明のブロックになっていた。
+   幅は足りている（版面1280pxで内寸 88 / 52 / 51px）ので当該行は削除し、
+   代わりに「そもそもラベルが空の <i>」だけを消して余白を作らせない
+   （#beforeafter の .ba2-bar は <i> が空。従来の見え方を保つ）。 */
+.sb-seg i:empty{ display:none; }
+/* 版面が720pxに切り替わる幅では末尾3つが1行に収まらない
+   （5番目「評価入力」は内寸46pxに対し実測46.1pxで2行に割れる）ので、そこだけ隠す */
+@media (max-width:900px){
+  .sb-seg:nth-child(n+5) i{ display:none; }
+}
+
+/* [35-3] 比較表：最終列だけ幅が余り、右端に約180pxの死に幅ができていた。
+   数値セルを中央そろえにして（同じデッキの .pm 表と同じ流儀）、
+   ラベル列にだけ幅を回す。 */
+.sc-row > *, .rt-row > *{ text-align:center; }
+.sc-row > *:first-child, .rt-row > *:first-child{ text-align:left; }
+@media (min-width:901px){
+  .sc-row{ grid-template-columns:1.4fr 1fr 1fr 1fr 1fr; }
+  .rt-row{ grid-template-columns:1.5fr .85fr 1fr 1.1fr .9fr 1fr; }
+}
+@media (max-width:900px){
+  .sc-row > *, .rt-row > *{ text-align:left; }
+}
+
+/* [35-4] 埋まり率が4割前後で、上下に300px前後の死に余白が残っていた3枚。
+   版面（1280px）の縦を使い切る寸法に引き上げる。fit.js が最後に
+   ビューポートへ合わせて縮めるので、小さい画面ではみ出すことはない。 */
+
+/* 5枚目：107時間の中身 — 帯そのものが主役なので帯を主役の大きさにする */
+#breakdown .stackbar{ height:250px; margin:var(--sp-6) 0 var(--sp-4); }
+#breakdown .sb-seg{ gap:12px; }
+#breakdown .sb-seg i{ font-size:.8rem; line-height:1.5; }
+#breakdown .sb-seg b{ font-size:1.5rem; }
+#breakdown .sb-legend{ font-size:1rem !important; gap:var(--sp-6); margin-top:var(--sp-2); }
+#breakdown .sbl b{ font-size:1.3rem; }
+#breakdown .sbl i{ width:16px !important; height:16px !important; }
+#breakdown .note{ margin-top:var(--sp-4) !important; font-size:.8rem; }
+/* 版面が720pxに切り替わる幅では、帯も版面比で同じ厚みに戻す
+   （#breakdown 側の指定が .stackbar の既存メディアクエリより強いため、ここで打ち消す） */
+@media (max-width:900px){
+  #breakdown .stackbar{ height:150px; }
+  #breakdown .sb-seg i{ font-size:.72rem; }
+  #breakdown .sb-seg b{ font-size:1.15rem; }
+}
+@media (max-width:768px){
+  #breakdown .stackbar{ height:120px; }
+  #breakdown .sb-seg b{ font-size:.9rem; }
+}
+
+/* 27枚目：安全性 — 4枚のカードに余白と行間を戻す */
+#safety .safe-list{ gap:var(--sp-3) !important; }
+#safety .safe{ padding:var(--sp-4) !important; }
+#safety .safe h3{ font-size:1.05rem !important; margin:0 0 var(--sp-2) !important; }
+#safety .safe p{ font-size:.95rem !important; line-height:2.05 !important; }
+#safety .note{ margin-top:var(--sp-4) !important; }
+
+/* 30枚目：締め — 会社名が本文に貼りついていた。締めの文字を版面いっぱいに */
+#cta .sec-label{ margin-bottom:var(--sp-3) !important; }
+#cta .cta-title{ font-size:clamp(2.2rem,4.4vw,3.6rem) !important; line-height:1.5 !important; }
+#cta .lead{ font-size:clamp(1.05rem,1.6vw,1.4rem) !important; line-height:2.1 !important; margin-top:var(--sp-6) !important; }
+#cta .foot-co{ display:block; margin-top:var(--sp-7); font-size:.85rem; letter-spacing:.1em; opacity:.85; }
+
+/* [35-5] 業務内訳3枚：旧5列カレンダー用の padding が30pxの死に余白として
+   残っていた（style.css:549 .tl-grid{padding:12px 0 18px}）。
+   #vision-grid には .tl-slide が付かないのでスコープを .tl-slide 配下に限定する。
+   併せて、万一 fit.js が動かなかったときに上端を失わないよう safe center にする。 */
+.tl-slide .tl-grid{ padding:0 !important; }
+.tl-slide .tl-wrap{ justify-content:safe center; }
+
+/* ============================================================
+   [E] 図版まわりの指摘対応（css/deck.css 担当分）
+   ============================================================ */
+
+/* [E-1] Before/After：導入前も導入後も帯が541pxで完全に同じ長さだった。
+   107時間と20時間が同じ量に見えるため、見出しの主張を図が否定していた。
+   帯そのものは107時間ぶんの枠として残し、塗りだけ 20/107＝18.69% にする。
+   （枠を縮めるとゴースト表現ができず、擬似要素で枠を足すと .stackbar の
+     border-radius クリップが壊れるので、この「枠は残す・塗りだけ縮める」方式） */
+#beforeafter .ba2-col.is-key .ba2-bar{
+  border-style:dashed;
+  border-color:rgba(59,130,246,.45);
+  background:rgba(59,130,246,.06);
+}
+#beforeafter .ba2-col.is-key .ba2-bar .sb-seg{ width:18.69% !important; }
+
+/* [E-5] FAQ の ::after（右端に残る青い縦棒）は上の [35-1] で殺済み。重複記述はしない。 */
+
+/* [E-7] 導入の流れ：4枚がただ等間隔に並ぶだけで「流れ」に見えなかった。
+   カード間のgap（16px）に山形のコネクタを置いて時間の向きを出す。
+   li は overflow:hidden だったので、画像側の角丸に置き換えて visible に戻す。 */
+#flow .flow-steps li{ overflow:visible; }
+#flow .fs-img{ border-radius:6px 6px 0 0; overflow:hidden; }
+#flow .flow-steps li + li::before{
+  content:"";
+  position:absolute; left:-13px; top:50%; z-index:3;
+  width:9px; height:9px;
+  border-top:2px solid var(--accent);
+  border-right:2px solid var(--accent);
+  transform:translateY(-50%) rotate(45deg);
+}
+@media (max-width:900px){
+  /* 2列になると3枚目は行頭なので、そこだけコネクタを出さない */
+  #flow .flow-steps li:nth-child(3)::before{ content:none; }
+}

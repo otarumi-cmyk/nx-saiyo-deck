@@ -87,7 +87,14 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
 .hero-title{ line-height:1.06 !important; font-size:clamp(2.6rem,6.6vw,5.6rem) !important; }
 .lead{ line-height:1.9 !important; font-weight:500; }
 .note{ line-height:1.8 !important; }
-.slide .sec-title{ line-height:1.32 !important; }
+/* 同格の大見出し（.sec-title / .tl-title / .cta-title）は行送りを揃える。
+   deck.css の .tl-slide .tl-title と .cta-title にだけ line-height:1.5 が残り、
+   2行見出しを並べたときに行送りが目に見えて食い違っていた。 */
+.slide .sec-title, .slide .tl-title, .slide .cta-title{ line-height:1.32 !important; }
+/* deck.css の #cta スコープ（id指定＋!important）は上の行より詳細度が高く、
+   読み込み順に関係なく勝ってしまう。同じ id スコープで行送りだけ揃え直す
+   （文字サイズは deck.css 側の指定をそのまま生かす）。 */
+.slide#cta .cta-title{ line-height:1.32 !important; }
 .slide .q-big{ line-height:1.34 !important; font-weight:900 !important; }
 
 /* 見出しの前に引かれる短い罫（本家のあしらい） */
@@ -100,10 +107,24 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
 /* ---------- 3. アクセントの塗り ---------- */
 .hl, .est{ color:var(--accent) !important; }
 .btn-main{ background:linear-gradient(160deg,#3B82F6 0%,var(--accent-2) 46%,#1E40AF 100%) !important; color:#fff !important; }
-.tt-bar, .bd-list li.is-key .bd-bar, .cmp-col.is-win .cmp-bar, .cb.is-after .cb-bar{
+.st-2 .tl-task[data-kind="chore"] .tt-bar,
+.st-3 .tl-task[data-kind="chore"] .tt-bar,
+.bd-list li.is-key .bd-bar, .cmp-col.is-win .cmp-bar, .cb.is-after .cb-bar{
   background:linear-gradient(90deg,var(--accent-2),var(--accent)) !important;
 }
-.sb-seg.is-chore{ background:linear-gradient(180deg,var(--accent),var(--accent-2)) !important; }
+/* 「雑務」と「採用そのもの」の塗り分けを殺さない。
+   deck.css の .st-2/.st-3 の core（面接）は白抜きが正。上の !important に負けていた。 */
+.st-2 .tl-task[data-kind="core"] .tt-bar,
+.st-3 .tl-task[data-kind="core"] .tt-bar{
+  background:rgba(255,255,255,.14) !important;
+  border:1px solid rgba(255,255,255,.28) !important;
+  box-shadow:none !important;
+}
+/* 積み上げ帯の白文字が読めるところまで青を暗くする。
+   #3B82F6 起点だと #fff とのコントラストが 3.68:1 しかなく、
+   帯の上半分（ラベル・数値の位置）で 4.05〜4.49:1 と WCAG AA を割っていた。
+   #2563EB→#1E40AF なら上端 5.17:1・下端 8.72:1 で全域 4.5:1 超。 */
+.sb-seg.is-chore{ background:linear-gradient(180deg,#2563EB,#1E40AF) !important; }
 .sb-seg b, .sb-seg i{ color:#fff !important; }
 .roi-bar.is-save .roi-fill{ background:linear-gradient(180deg,var(--accent),var(--acc-24)) !important; }
 ::selection{ background:var(--accent); color:#fff; }
@@ -231,14 +252,28 @@ h1,h2,h3,p,li,dd,dt,td,th,summary,
 .ba2-total{ font-family:var(--font-en); font-size:clamp(1.8rem,3.4vw,2.8rem); font-weight:700; margin:var(--sp-3) 0 0; color:var(--ink-dim); }
 .ba2-total small{ font-size:.3em; margin-left:6px; color:var(--ink-dim); font-weight:400; }
 .ba2-total.is-key{ color:var(--accent); }
-.ba2-arrow{ text-align:center; }
-.ba2-arrow svg{ width:100%; height:auto; display:block; margin-top:8px; }
+/* ▶ は左右のバーの帯の中心に置く。素のままだと「差分テキスト＋svg」の縦積みが
+   セル全体で中央寄せされ、svg がバーより下（合計値の行）に落ちてしまうため、
+   左右カラムと同じ3段の行高（1段目=.ba2-l／2段目=.ba2-bar／3段目=.ba2-total）を
+   再現し、2段目＝バーの帯に svg を、1段目＝ラベルの帯に差分テキストを入れる。
+   ⚠ 行高は .ba2-l / .ba2-bar / .ba2-total の指定と同じ値を使うこと（下の3行）。 */
+.ba2-arrow{
+  text-align:center;
+  display:grid;
+  grid-template-rows:
+    calc(.74rem * 1.9 + var(--sp-2))
+    clamp(70px,10vh,110px)
+    calc(clamp(2.2rem,4.2vw,3.4rem) * 1.05 + var(--sp-3));
+  justify-items:center;
+}
+.ba2-arrow .ba2-diff{ grid-row:1; align-self:end; line-height:1.15; }
+.ba2-arrow svg{ width:100%; height:auto; display:block; grid-row:2; align-self:center; margin:0; }
 .ba2-diff{ display:block; font-family:var(--font-en); font-size:clamp(1.4rem,2.6vw,2.2rem); font-weight:700; color:var(--accent); }
 .ba2-diff small{ font-size:.42em; margin-left:3px; }
 .ba2-col.is-key .stackbar{ border-color:var(--acc-24); box-shadow:0 0 50px rgba(59,130,246,.12); }
 .sc-extra{ border-top:1px solid var(--line); }
 .sc-extra .sc-n{ color:var(--ink-dim); font-size:.82rem; }
-@media (max-width:900px){ .ba2{ grid-template-columns:1fr; } .ba2-arrow svg{ transform:rotate(90deg); width:60px; margin:0 auto; } }
+@media (max-width:900px){ .ba2{ grid-template-columns:1fr; } .ba2-arrow{ display:block; } .ba2-arrow svg{ transform:rotate(90deg); width:60px; margin:0 auto; } }
 
 /* ============================================================
    格子背景を撤去（視認性が悪いため）
@@ -260,8 +295,14 @@ body{
 .slide::before{
   background:radial-gradient(ellipse 80% 60% at 50% 38%, rgba(59,130,246,.045), transparent 72%) !important;
 }
+/* 章扉・CTA・安全性の写真。上の .slide::before がショートハンドで
+   background-size/position/repeat を初期値に戻してしまうため、
+   ここで cover / center / no-repeat まで明示して戻す（タイル化防止） */
 .slide.chdiv::before, .sec-cta::before, #safety::before{
   background-image:var(--chdiv-img) !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
 }
 /* 本文のコントラストを上げる */
 :root{ --ink-dim:#A3B2C9; }
@@ -302,11 +343,14 @@ body{
   max-width:none;
 }
 .fn-slide .fn-sub{ display:none; }
+/* 高さの上限を max-height でかけると 16:10 が成立せず、object-fit:contain の
+   映像の左右に死んだ帯が出る。同じ上限を「幅」に置き換えれば縦横比を保ったまま
+   高さを抑えられる（66vh × 16/10）。上限を外して fit.js の scale に任せると
+   版面全体が 0.78 倍に縮み、文字が他スライドより2割小さくなるので採らない。 */
 .fn-slide .fn-video{
   width:100% !important;
-  max-width:none !important;
+  max-width:calc(66vh * 16 / 10) !important;
   aspect-ratio:16/10 !important;
-  max-height:66vh;
   margin:0 auto;
   border-radius:6px;
 }
@@ -315,7 +359,6 @@ body{
 .fn-slide > .slide-in{ max-width:1280px; }
 @media (max-width:900px){
   .fn-slide .fn-text{ grid-template-columns:1fr; gap:6px; }
-  .fn-slide .fn-video{ max-height:44vh; }
 }
 
 /* ============================================================
@@ -371,13 +414,13 @@ body{
   background:transparent;
   border:1px solid rgba(231,237,247,.32);
 }
-.fs2-n{ font-family:var(--font-en); font-size:.62rem; color:var(--ink-dim); letter-spacing:.1em; }
+.fs2-n{ font-family:var(--font-en); font-size:.72rem; line-height:1.2; color:var(--ink-dim); letter-spacing:.1em; }
 .fs2.is-ai .fs2-n{ color:var(--accent); }
 .fs2-t{ font-size:.85rem; font-weight:700; line-height:1.35; color:var(--ink); }
-.fs2-b{ font-size:.66rem; line-height:1.4; color:var(--ink-dim); }
+.fs2-b{ font-size:.78rem; line-height:1.45; color:var(--ink-dim); }
 .fs2.is-human .fs2-b{ color:#E7EDF7; opacity:.75; }
 @media (max-width:1100px){ .fs2-grid{ grid-template-columns:repeat(4,1fr); } }
-@media (max-width:768px){ .fs2-grid{ grid-template-columns:repeat(2,1fr); } .fs2-t{ font-size:.76rem; } }
+@media (max-width:768px){ .fs2-grid{ grid-template-columns:repeat(2,1fr); } .fs2-t{ font-size:.88rem; } .fs2-b{ font-size:.76rem; } }
 
 /* ---------- 支援先企業のロゴ（実ロゴ・白モノクローム） ---------- */
 .logos.is-marquee{ overflow:hidden; margin-top:var(--sp-5); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }

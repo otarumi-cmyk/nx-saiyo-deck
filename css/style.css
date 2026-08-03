@@ -105,6 +105,8 @@ ul {
   overflow: visible;
 }
 
+/* 英数字はブランド書体。総称 monospace には落とさない
+   （CJK グリフを持たないため、日本語が第三の書体＝環境により明朝に流れる） */
 .sec-label,
 .num,
 .price-v,
@@ -117,9 +119,18 @@ ul {
 .tl-meter-k,
 .stat-k,
 .cmp-k,
-.preview-badge,
+.preview-badge {
+  font-family: var(--font-en, 'Space Grotesk', 'Noto Sans JP', sans-serif);
+}
+
+/* 数字は等幅数字で描画する。Space Grotesk のプロポーショナル数字は
+   字幅が揃わず（0 と 1 で約 9px 差）、カウントアップ中に単位が左右に揺れる */
+.num,
+.price-v,
+.stat-v,
+.bignum-v,
 [data-count] {
-  font-family: 'Space Grotesk', monospace;
+  font-variant-numeric: tabular-nums;
 }
 
 .sec-label {
@@ -1406,7 +1417,7 @@ ul {
 
 .why .num {
   display: block;
-  margin-bottom: 58px;
+  margin-bottom: 12px;
   color: var(--accent);
   font-size: .72rem;
   font-weight: 700;
@@ -1510,9 +1521,11 @@ ul {
 }
 
 /* FAQ, CTA and footer */
+/* 版面いっぱいに置く。920px は縦スクロールサイト時代の値で、
+   1280px 版面では右側が死に幅になる */
 .faq-list {
-  max-width: 920px;
-  margin-top: 68px;
+  max-width: none;
+  margin-top: var(--sp-4, 32px);
   border-top: 1px solid var(--line);
 }
 
@@ -1520,10 +1533,13 @@ ul {
   border-bottom: 1px solid var(--line);
 }
 
+/* 1行の設問に上下27pxは縦スクロールサイト時代の余白。
+   カード側（.faq-list details）が24px持っているので行側は最小限にする。
+   右64pxは下の ::after（右端の縦棒）用の逃げ場だったので不要 */
 .faq-list summary {
   position: relative;
   display: block;
-  padding: 27px 64px 27px 0;
+  padding: 8px 0;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
@@ -1535,30 +1551,17 @@ ul {
   display: none;
 }
 
-.faq-list summary::before,
+/* ＋/− アイコンは deck.css [D-6] の ::before に一本化済み。
+   ここで ::after を描くと右端に青い縦棒だけが残るので描画しない。
+   ::before の絶対配置も外し、見出しテキストとインラインで並べる */
 .faq-list summary::after {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  width: 18px;
-  height: 1px;
-  background: var(--accent);
-  content: '';
-  transition: transform .35s ease-out;
-}
-
-.faq-list summary::after {
-  transform: rotate(90deg);
-}
-
-.faq-list details[open] summary::after {
-  transform: rotate(0);
+  content: none;
 }
 
 .faq-list details p {
   max-width: 780px;
-  margin: -4px 0 0;
-  padding: 0 64px 28px 0;
+  margin: 8px 0 0 24px;
+  padding: 0;
   color: var(--ink-dim);
   font-size: .9rem;
   line-height: 1.95;
@@ -2033,7 +2036,7 @@ ul {
   }
 
   .why .num {
-    margin-bottom: 40px;
+    margin-bottom: 12px;
   }
 
   .safe-list {
@@ -2068,22 +2071,16 @@ ul {
   }
 
   .faq-list {
-    margin-top: 48px;
+    margin-top: var(--sp-3, 24px);
   }
 
   .faq-list summary {
-    padding: 23px 46px 23px 0;
+    padding: 6px 0;
     font-size: .95rem;
   }
 
-  .faq-list summary::before,
-  .faq-list summary::after {
-    right: 4px;
-    width: 16px;
-  }
-
   .faq-list details p {
-    padding: 0 30px 24px 0;
+    padding: 0;
     font-size: .84rem;
   }
 

@@ -28,7 +28,7 @@
 
 <div class="deck" id="deck">
 
-<!-- 01 表紙 -->
+<!-- 表紙 -->
 <section class="slide sec-hero" id="hero" data-img="assets/bg_hero.webp" data-title="表紙">
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="slide-in hero-inner">
@@ -38,12 +38,12 @@
   </div>
 </section>
 
-<!-- 02 章扉 -->
+<!-- 章扉 01 -->
 <section class="slide chdiv" data-img="assets/sec_cost.webp" data-title="章扉 01">
   <div class="slide-in chdiv-inner"><span class="chdiv-n num">01</span><h2 class="chdiv-t">採用にかかる、本当のコスト</h2></div>
 </section>
 
-<!-- 03 問いかけ -->
+<!-- 問いかけ -->
 <section class="slide sec-center" id="q-cost" data-img="assets/bg_question.webp" data-title="問いかけ">
   <div class="slide-in wrap">
     <h2 class="q-big reveal">その一名の採用に、<br>いくらと何時間かけていますか。</h2>
@@ -51,7 +51,7 @@
   </div>
 </section>
 
-<!-- 04 数字 -->
+<!-- 採用単価 -->
 <section class="slide" id="num-cost" data-title="採用単価">
   <div class="slide-in wrap">
     <p class="sec-label reveal">COST PER HIRE</p>
@@ -81,6 +81,7 @@
   </div>
 </section>
 
+<!-- 107時間の中身 -->
 <section class="slide sec-alt" id="breakdown" data-title="107時間の中身">
   <div class="slide-in wrap">
     <p class="sec-label reveal">BREAKDOWN</p>
@@ -102,7 +103,7 @@
   </div>
 </section>
 
-<!-- 06 章扉 -->
+<!-- 担当者の1週間 -->
 <section class="slide tl-slide st-2" id="timeline-2" data-title="1週間②">
   <div class="slide-in wrap tl-wrap">
     <p class="sec-label">A WEEK OF A RECRUITER</p>
@@ -112,15 +113,16 @@
       <span class="lg lg-core"><i></i>採用そのもの（面接・見極め・動機づけ）</span>
     </div>
     <div class="tl-grid" id="tl-grid-2" aria-label="雑務を塗り分けた1週間"></div>
+    <p class="note reveal wip">※ 前ページの107時間が「1名あたりの年間工数」であるのに対し、ここは「ご担当者1名の1週間40時間」の内訳です。配分は当社の想定値で、ご担当者へのヒアリングで確定します。</p>
   </div>
 </section>
 
-<!-- 10 章扉 -->
+<!-- 章扉 02 -->
 <section class="slide chdiv" data-img="assets/sec_ai.webp" data-title="章扉 02">
   <div class="slide-in chdiv-inner"><span class="chdiv-n num">02</span><h2 class="chdiv-t">その業務は、AIに任せられます</h2></div>
 </section>
 
-<!-- 11 仮説 -->
+<!-- 仮説 -->
 <section class="slide sec-center" id="hypothesis" data-img="assets/bg_hypothesis.webp" data-title="仮説">
   <div class="slide-in wrap">
     <h2 class="q-big reveal">この作業を、<br>人が行う必要はありますか。</h2>
@@ -128,7 +130,7 @@
   </div>
 </section>
 
-<!-- 12 人事にしかできない仕事 -->
+<!-- 人事にしかできない仕事 -->
 <section class="slide sec-alt" id="hr-only" data-title="人事の仕事">
   <div class="slide-in wrap">
     <p class="sec-label reveal">WHAT ONLY HR CAN DO</p>
@@ -144,14 +146,14 @@
       </div>
       <div class="only-card reveal" data-img="assets/hr03_persuade.webp">
         <div class="only-img"></div>
-        <div class="only-body"><span class="only-n num">03</span><h3>候補者の動機づけ</h3></div>
+        <div class="only-body"><span class="only-n num">03</span><h3>候補者の<br>動機づけ</h3></div>
       </div>
     </div>
     <p class="lead reveal">裏を返せば、それ以外の業務を人が担う必然性はありません。</p>
   </div>
 </section>
 
-<!-- 13 ビジョン -->
+<!-- 採用フロー全体 -->
 <section class="slide" id="map" data-title="採用フロー全体">
   <div class="slide-in wrap">
     <p class="sec-label reveal">COVERAGE</p>
@@ -165,14 +167,15 @@
   </div>
 </section>
 
+<!-- 機能 01 -->
 <section class="slide fn-slide" id="fn-01" data-title="自動応募要件の作成">
   <div class="slide-in wrap fn-wrap">
-    <div class="fn-video"><video class="fn-v" data-fn="01" muted loop autoplay playsinline preload="auto" poster="assets/motion/fn01.jpg"><source src="assets/motion/fn01.mp4" type="video/mp4"></video></div>
+    <div class="fn-video"><video class="fn-v" data-fn="01" muted loop playsinline preload="none" poster="assets/motion/fn01.jpg"><source src="assets/motion/fn01.mp4" type="video/mp4"></video></div>
     <div class="fn-text">
       <span class="fn-badge num">01</span>
       <p class="sec-label reveal">要件定義・求人設計</p>
       <h2 class="sec-title reveal">自動応募要件の作成</h2>
-      <p class="lead reveal">募集要件と求人票を、AIが作成できます。</p>
+      <p class="lead reveal">募集要件と求人票を、<span class="hl">書く作業がなくなります</span>。</p>
       <p class="fn-sub reveal">対象：職種・条件・社風のメモ</p>
     </div>
   </div>
@@ -181,12 +184,12 @@
 <!-- 機能 02 -->
 <section class="slide fn-slide is-key" id="fn-02" data-title="AIスカウト">
   <div class="slide-in wrap fn-wrap">
-    <div class="fn-video"><video class="fn-v" data-fn="02" muted loop autoplay playsinline preload="auto" poster="assets/motion/fn02.jpg"><source src="assets/motion/fn02.mp4" type="video/mp4"></video></div>
+    <div class="fn-video"><video class="fn-v" data-fn="02" muted loop playsinline preload="none" poster="assets/motion/fn02.jpg"><source src="assets/motion/fn02.mp4" type="video/mp4"></video></div>
     <div class="fn-text">
       <span class="fn-badge num">02</span>
       <p class="sec-label reveal">母集団形成</p>
       <h2 class="sec-title reveal">AIスカウト</h2>
-      <p class="lead reveal">候補者ごとのスカウト文を、AIが作成・送信できます。</p>
+      <p class="lead reveal">経歴を1件ずつ読み、1通ずつ書いて送る作業が<span class="hl">なくなります</span>。</p>
       <p class="fn-sub reveal">一人ひとり違う文面を、自動で</p>
     </div>
   </div>
@@ -195,35 +198,63 @@
 <!-- 機能 03 -->
 <section class="slide fn-slide" id="fn-03" data-title="AI書類選考">
   <div class="slide-in wrap fn-wrap">
-    <div class="fn-video"><video class="fn-v" data-fn="03" muted loop autoplay playsinline preload="auto" poster="assets/motion/fn03.jpg"><source src="assets/motion/fn03.mp4" type="video/mp4"></video></div>
+    <div class="fn-video"><video class="fn-v" data-fn="03" muted loop playsinline preload="none" poster="assets/motion/fn03.jpg"><source src="assets/motion/fn03.mp4" type="video/mp4"></video></div>
     <div class="fn-text">
       <span class="fn-badge num">03</span>
       <p class="sec-label reveal">一次スクリーニング</p>
       <h2 class="sec-title reveal">AI書類選考</h2>
-      <p class="lead reveal">応募書類の一次確認と、判定の原案作成をAIが行えます。</p>
+      <p class="lead reveal">応募書類を読み込み、仕分ける作業が<span class="hl">なくなります</span>。</p>
       <p class="fn-sub reveal">最終判断は、必ず人が行います</p>
     </div>
   </div>
 </section>
 
 <!-- 機能 04 -->
+<section class="slide fn-slide" id="fn-04" data-title="適性検査">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-video"><video class="fn-v" data-fn="04" muted loop playsinline preload="none" poster="assets/motion/fn04.jpg"><source src="assets/motion/fn04.mp4" type="video/mp4"></video></div>
+    <div class="fn-text">
+      <span class="fn-badge num">04</span>
+      <p class="sec-label reveal">見極め</p>
+      <h2 class="sec-title reveal">適性検査</h2>
+      <p class="lead reveal">検査の手配と、結果の読み解きが<span class="hl">なくなります</span>。</p>
+      <p class="fn-sub reveal">面接前に、確認すべき点が分かる</p>
+    </div>
+  </div>
+</section>
+
+<!-- 機能 05 -->
 <section class="slide fn-slide" id="fn-05" data-title="AI日程調整（半自動）">
   <div class="slide-in wrap fn-wrap">
-    <div class="fn-video"><video class="fn-v" data-fn="05" muted loop autoplay playsinline preload="auto" poster="assets/motion/fn05.jpg"><source src="assets/motion/fn05.mp4" type="video/mp4"></video></div>
+    <div class="fn-video"><video class="fn-v" data-fn="05" muted loop playsinline preload="none" poster="assets/motion/fn05.jpg"><source src="assets/motion/fn05.mp4" type="video/mp4"></video></div>
     <div class="fn-text">
       <span class="fn-badge num">05</span>
       <p class="sec-label reveal">面接調整</p>
       <h2 class="sec-title reveal">AI日程調整（半自動）</h2>
-      <p class="lead reveal">面接日程の調整を自動化できます。</p>
+      <p class="lead reveal">候補日出し、往復のメール、カレンダー登録が<span class="hl">なくなります</span>。</p>
       <p class="fn-sub reveal">送信の直前だけ人が確認する設計です</p>
     </div>
   </div>
 </section>
 
 <!-- 機能 06 -->
-<section class="slide fn-slide" id="fn-07" data-title="AI採用分析ツール">
+<section class="slide fn-slide" id="fn-06" data-title="AI面接文字起こし">
   <div class="slide-in wrap fn-wrap">
-    <div class="fn-video"><video class="fn-v" data-fn="07" muted loop autoplay playsinline preload="auto" poster="assets/motion/fn07.jpg"><source src="assets/motion/fn07.mp4" type="video/mp4"></video></div>
+    <div class="fn-video"><video class="fn-v" data-fn="06" muted loop playsinline preload="none" poster="assets/motion/fn06.jpg"><source src="assets/motion/fn06.mp4" type="video/mp4"></video></div>
+    <div class="fn-text">
+      <span class="fn-badge num">06</span>
+      <p class="sec-label reveal">面接・記録</p>
+      <h2 class="sec-title reveal">AI面接文字起こし</h2>
+      <p class="lead reveal">議事メモの作成、評価入力、共有が<span class="hl">なくなります</span>。</p>
+      <p class="fn-sub reveal">面接に集中できます</p>
+    </div>
+  </div>
+</section>
+
+<!-- 機能 07 -->
+<section class="slide fn-slide" id="fn-07" data-title="AI採用分析">
+  <div class="slide-in wrap fn-wrap">
+    <div class="fn-video"><video class="fn-v" data-fn="07" muted loop playsinline preload="none" poster="assets/motion/fn07.jpg"><source src="assets/motion/fn07.mp4" type="video/mp4"></video></div>
     <div class="fn-text">
       <span class="fn-badge num">07</span>
       <p class="sec-label reveal">振り返り・改善</p>
@@ -234,7 +265,7 @@
   </div>
 </section>
 
-<!-- 17 章扉 -->
+<!-- Before / After -->
 <section class="slide sec-alt" id="beforeafter" data-title="107→20時間">
   <div class="slide-in wrap">
     <p class="sec-label reveal">BEFORE / AFTER</p>
@@ -263,12 +294,13 @@
       </div>
     </div>
     <p class="lead reveal">年3.9名を採用される企業様なら、<span class="hl">年間340時間</span>が戻ります。</p>
-    <p class="note reveal">※ AIが引き取る割合を7割として算出した当社試算です。</p>
+    <p class="note reveal">※ 人が行う必然性のない87時間を、7機能がすべて引き取る前提の当社試算です（87時間 × 年3.9名 ≒ 340時間）。</p>
   </div>
 </section>
 
+<!-- 章扉 03 -->
 <section class="slide chdiv" data-img="assets/sec_result.webp" data-title="章扉 03">
-  <div class="slide-in chdiv-inner"><span class="chdiv-n num">03</span><h2 class="chdiv-t">実績</h2></div>
+  <div class="slide-in chdiv-inner"><span class="chdiv-n num">03</span><h2 class="chdiv-t">実績と、選ばれる理由</h2></div>
 </section>
 
 <section class="slide" id="results" data-title="会社実績">
@@ -285,7 +317,7 @@
   </div>
 </section>
 
-<!-- 19 スカウトの数字 -->
+<!-- スカウトの数字 -->
 <section class="slide sec-alt" id="scout-num" data-nx-impact="scout" data-title="返信率の伸び">
   <div class="slide-in wrap">
     <p class="sec-label reveal">AI SCOUT</p>
@@ -309,12 +341,16 @@
 <section class="slide" id="cases" data-title="導入事例">
   <div class="slide-in wrap">
     <p class="sec-label reveal">CASE</p>
-    <h2 class="sec-title reveal">返信率が、<span class="hl">7〜9倍</span>になりました。</h2>
+    <h2 class="sec-title reveal">3社が変えたのは、<br><span class="hl">文面の中身</span>です。</h2>
     <div class="case-grid">
       <div class="case reveal">
         <h3>SaaS企業A社<i>営業職／従業員120名</i></h3>
-        <div class="case-hero"><b class="num">8.0</b><span>倍</span></div>
-        <p class="case-hero-k">返信率 0.3% → 2.4%</p>
+        <div class="case-hero"><b class="num">38</b><span>%</span></div>
+        <p class="case-hero-k">開封率（テンプレート送信は12%）</p>
+        <div class="case-ba">
+          <div class="cb"><span class="cb-l">返信率 前</span><span class="cb-bar" style="--w:11%"></span><span class="cb-v num">0.3%</span></div>
+          <div class="cb is-after"><span class="cb-l">返信率 後</span><span class="cb-bar" style="--w:89%"></span><span class="cb-v num">2.4%</span></div>
+        </div>
         <dl class="case-why">
           <dt>導入前</dt><dd>媒体のテンプレートを一斉送信。<br>開封はされても、返信が来ない状態。</dd>
           <dt>変えたこと</dt><dd>職務経歴書から<b>担当プロダクトと売上規模</b>を抽出。<br>その2点に触れた文面をAIが一人ひとり作成。</dd>
@@ -323,8 +359,12 @@
       </div>
       <div class="case reveal is-key">
         <h3>IT企業B社<i>エンジニア職／従業員260名</i></h3>
-        <div class="case-hero"><b class="num">9.0</b><span>倍</span></div>
-        <p class="case-hero-k">返信率 0.3% → 2.7%</p>
+        <div class="case-hero"><b class="num">2.8</b><span>倍</span></div>
+        <p class="case-hero-k">返信からの面談化率</p>
+        <div class="case-ba">
+          <div class="cb"><span class="cb-l">返信率 前</span><span class="cb-bar" style="--w:11%"></span><span class="cb-v num">0.3%</span></div>
+          <div class="cb is-after"><span class="cb-l">返信率 後</span><span class="cb-bar" style="--w:100%"></span><span class="cb-v num">2.7%</span></div>
+        </div>
         <dl class="case-why">
           <dt>導入前</dt><dd>競合が同じ候補者に大量送信。開封すらされない。</dd>
           <dt>変えたこと</dt><dd><b>使用技術スタックと直近の担当案件</b>を引用。<br>自社のどの開発に近いかを冒頭2行で提示。</dd>
@@ -333,8 +373,12 @@
       </div>
       <div class="case reveal">
         <h3>成長ベンチャーC社<i>複数職種／従業員65名</i></h3>
-        <div class="case-hero"><b class="num">7.0</b><span>倍</span></div>
-        <p class="case-hero-k">返信率 0.3% → 2.1%</p>
+        <div class="case-hero"><b class="num">40</b><span>%減</span></div>
+        <p class="case-hero-k">スカウト単価の削減率</p>
+        <div class="case-ba">
+          <div class="cb"><span class="cb-l">返信率 前</span><span class="cb-bar" style="--w:11%"></span><span class="cb-v num">0.3%</span></div>
+          <div class="cb is-after"><span class="cb-l">返信率 後</span><span class="cb-bar" style="--w:78%"></span><span class="cb-v num">2.1%</span></div>
+        </div>
         <dl class="case-why">
           <dt>導入前</dt><dd>担当者1名が複数職種を兼任。<br>作成が追いつかず、送信数が伸びない。</dd>
           <dt>変えたこと</dt><dd>作成・送信を全自動化。職種ごとに訴求を出し分け。<br><b>送信数を増やしても工数は増えない</b>状態に。</dd>
@@ -346,7 +390,7 @@
   </div>
 </section>
 
-<!-- 20b 向いている企業 -->
+<!-- 分析が当たる理由 -->
 <section class="slide sec-alt" id="why-data" data-title="分析が当たる理由">
   <div class="slide-in wrap">
     <p class="sec-label reveal">WHY IT WORKS</p>
@@ -370,14 +414,14 @@
           <span class="lc-node">面接</span><span class="lc-arw">→</span>
           <span class="lc-node">内定</span>
         </div>
-        <p class="lc-note"><b>スカウト1通から内定までが1本の線で繋がります。</b><br>「この訴求で送った候補者は内定承諾まで至りやすい」——<br>この粒度で分かるのは、7工程すべてを通しているからです。</p>
+        <p class="lc-note"><b>スカウト1通から内定までが1本の線で繋がります。</b><br>「この訴求で送った候補者は内定承諾まで至りやすい」——<br>この粒度で分かるのは、7機能すべてを通しているからです。</p>
       </div>
     </div>
     <p class="lead reveal">分析が当たるかどうかは、AIの性能ではなく<span class="hl">データが1周しているか</span>で決まります。</p>
   </div>
 </section>
 
-<!-- 27b 学習元 -->
+<!-- なぜ当社か -->
 <section class="slide" id="why-us" data-img="assets/bg_why.webp" data-title="なぜ当社か">
   <div class="slide-in wrap">
     <p class="sec-label reveal">WHY US</p>
@@ -403,12 +447,12 @@
   </div>
 </section>
 
-<!-- 28 安全性 -->
+<!-- 章扉 04 -->
 <section class="slide chdiv" data-img="assets/sec_price.webp" data-title="章扉 04">
-  <div class="slide-in chdiv-inner"><span class="chdiv-n num">04</span><h2 class="chdiv-t">費用と費用対効果</h2></div>
+  <div class="slide-in chdiv-inner"><span class="chdiv-n num">04</span><h2 class="chdiv-t">向き不向きと、費用</h2></div>
 </section>
 
-<!-- 23 価格 -->
+<!-- 向いている企業 -->
 <section class="slide sec-alt" id="fit" data-img="assets/bg_fit.webp" data-title="向いている企業">
   <div class="slide-in wrap">
     <p class="sec-label reveal">GOOD FIT</p>
@@ -444,13 +488,14 @@
           <li>退職・異動で、<b>ノウハウが残らない</b></li>
           <li>複数職種を <b>1人で回している</b></li>
         </ul>
+        <p class="fit-why">1つでも当てはまる場合は、<br>現在の採用工数の洗い出しからご相談いただけます。</p>
       </div>
     </div>
     <p class="lead reveal">対応職種は、営業・エンジニア・マーケター・カスタマーサクセス・コーポレートです。</p>
   </div>
 </section>
 
-<!-- 21 章扉 -->
+<!-- 料金プラン -->
 <section class="slide" id="price" data-img="assets/bg_price.webp" data-title="料金プラン">
   <div class="slide-in wrap">
     <p class="sec-label reveal">PRICE</p>
@@ -484,7 +529,7 @@
   </div>
 </section>
 
-<!-- 24 ROI -->
+<!-- 費用対効果 -->
 <section class="slide sec-alt" id="roi" data-title="費用対効果">
   <div class="slide-in wrap">
     <p class="sec-label reveal">ROI</p>
@@ -496,34 +541,34 @@
       <div class="rt-row reveal">
         <span class="rt-plan">ライト<i>3万円／月</i></span>
         <span class="num">2名</span>
-        <span class="num">36万円</span>
+        <span class="num">52万円</span>
         <span class="num">103万円</span>
         <span class="num">36万円</span>
-        <span class="rt-plus num">＋103万円</span>
+        <span class="rt-plus num">＋119万円</span>
       </div>
       <div class="rt-row reveal is-key">
         <span class="rt-plan">スタンダード<i>10万円／月</i></span>
         <span class="num">4名</span>
-        <span class="num">72万円</span>
+        <span class="num">104万円</span>
         <span class="num">103万円</span>
         <span class="num">120万円</span>
-        <span class="rt-plus num">＋55万円</span>
+        <span class="rt-plus num">＋87万円</span>
       </div>
       <div class="rt-row reveal">
         <span class="rt-plan">フル<i>30万円／月</i></span>
         <span class="num">12名</span>
-        <span class="num">216万円</span>
+        <span class="num">313万円</span>
         <span class="num">206万円<i>（2名分）</i></span>
         <span class="num">360万円</span>
-        <span class="rt-plus num">＋62万円</span>
+        <span class="rt-plus num">＋159万円</span>
       </div>
     </div>
     <p class="lead reveal">採用の量が増えるほど、削減できる時間と紹介手数料も増えます。<br><span class="hl">どの規模でも、費用対効果は成立します。</span></p>
-    <p class="note reveal">※ 人材紹介手数料 約103万円＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり。人件費＝1名あたりAIが引き取る工数60時間 × 時給換算3,000円（当社試算）。</p>
+    <p class="note reveal">※ 人材紹介手数料 約103万円＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり。人件費＝1名あたりAIが引き取る工数87時間 × 時給換算3,000円（当社試算）。</p>
   </div>
 </section>
 
-<!-- 25 算出方法 -->
+<!-- 代行との比較 -->
 <section class="slide sec-alt" id="cmp-scout" data-title="代行との比較">
   <div class="slide-in wrap">
     <p class="sec-label reveal">VS OUTSOURCING</p>
@@ -538,12 +583,6 @@
       <div class="sc-row reveal is-key">
         <span class="sc-n num">1,000通</span><span class="num">60万円</span><span class="num sc-ours">10万円</span><span class="sc-diff num">−50万円</span><span class="num">100円</span>
       </div>
-      <div class="sc-row reveal">
-        <span class="sc-n num">3,000通</span><span class="num">180万円</span><span class="num sc-ours">10万円</span><span class="sc-diff num">−170万円</span><span class="num">33円</span>
-      </div>
-      <div class="sc-row reveal">
-        <span class="sc-n num">10,000通</span><span class="num">600万円</span><span class="num sc-ours">10万円</span><span class="sc-diff num">−590万円</span><span class="num">10円</span>
-      </div>
       <div class="sc-row reveal sc-extra">
         <span class="sc-n">採用担当者を一名増員</span><span class="num">月46万円</span><span class="num sc-ours">月10万円</span><span class="sc-diff num">−36万円</span><span class="num">—</span>
       </div>
@@ -553,22 +592,27 @@
   </div>
 </section>
 
-<!-- 26 他手段との比較（年額に統一） -->
-<section class="slide" id="safety" data-img="assets/sec_safety.webp" data-title="安全性">
+<!-- 章扉 05 -->
+<section class="slide chdiv" data-img="assets/sec_week.webp" data-title="章扉 05">
+  <div class="slide-in chdiv-inner"><span class="chdiv-n num">05</span><h2 class="chdiv-t">安全性と、導入の進め方</h2></div>
+</section>
+
+<!-- 安全性・公平性 -->
+<section class="slide" id="safety" data-title="安全性">
   <div class="slide-in wrap">
     <p class="sec-label reveal">SAFETY &amp; FAIRNESS</p>
     <h2 class="sec-title reveal">一次選考はAIが、<br>最終判断は人が行います。</h2>
     <div class="safe-list">
-      <div class="safe reveal"><h3>AIが合否を決めるのか</h3><p>AIが行うのは原案作成までです。<br>最終判断は必ず人が行います。</p></div>
-      <div class="safe reveal"><h3>判断根拠を説明できるか</h3><p>判定理由と、根拠となった<br>記載箇所を出力します。</p></div>
-      <div class="safe reveal"><h3>個人情報の取り扱い</h3><p>保管期間・アクセス権限・<br>学習利用の有無を明記します。</p></div>
-      <div class="safe reveal"><h3>応募者への告知</h3><p>録音同意・AI利用告知の<br>運用をご支援します。</p></div>
+      <div class="safe reveal"><svg class="safe-i" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="display:block;margin:0 0 12px"><circle cx="9.5" cy="7.8" r="3.3"/><path d="M3.6 19.4c.5-3.3 3-5.4 5.9-5.4 1 0 1.9.2 2.7.7"/><path style="stroke:var(--accent)" d="M14 16.8l2.4 2.5 4.5-5"/></svg><h3>AIが合否を決めるのか</h3><p>AIが行うのは原案作成までです。<br>最終判断は必ず人が行います。</p></div>
+      <div class="safe reveal"><svg class="safe-i" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="display:block;margin:0 0 12px"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14.5 3.5V8H19"/><path style="stroke:var(--accent)" d="M9 12.6h6M9 16h4"/></svg><h3>判断根拠を説明できるか</h3><p>判定理由と、根拠となった<br>記載箇所を出力します。</p></div>
+      <div class="safe reveal"><svg class="safe-i" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="display:block;margin:0 0 12px"><rect x="4.5" y="10.5" width="15" height="9.5" rx="1.6"/><path d="M8.2 10.5V7.8a3.8 3.8 0 017.6 0v2.7"/><path style="stroke:var(--accent)" d="M12 14v2.6"/></svg><h3>個人情報の取り扱い</h3><p>保管期間・アクセス権限・<br>学習利用の有無を明記します。</p></div>
+      <div class="safe reveal"><svg class="safe-i" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="display:block;margin:0 0 12px"><path d="M4.5 5.5h15v10.6h-8.8L6.5 20v-3.9H4.5z"/><path style="stroke:var(--accent)" d="M8.6 10.8h6.8"/></svg><h3>応募者への告知</h3><p>録音同意・AI利用告知の<br>運用をご支援します。</p></div>
     </div>
     <p class="note reveal wip">※ 法令に関する記載は、確認のうえ最終版で正確に記載します。</p>
   </div>
 </section>
 
-<!-- 29 導入の流れ -->
+<!-- 導入の流れ -->
 <section class="slide sec-alt" id="flow" data-title="導入の流れ">
   <div class="slide-in wrap">
     <p class="sec-label reveal">FLOW</p>
@@ -586,7 +630,7 @@
   </div>
 </section>
 
-<!-- 30 FAQ -->
+<!-- FAQ -->
 <section class="slide" id="faq" data-title="よくあるご質問">
   <div class="slide-in wrap">
     <p class="sec-label reveal">FAQ</p>
@@ -599,13 +643,19 @@
   </div>
 </section>
 
-<!-- 31 CTA -->
+<!-- CTA -->
 <section class="slide sec-center sec-cta" id="cta" data-img="assets/sec_cta.webp" data-title="お問い合わせ">
   <div class="slide-in wrap">
     <p class="sec-label reveal">CONTACT</p>
     <h2 class="cta-title reveal">まずは、御社の採用にかかる<br>時間を可視化しませんか。</h2>
     <p class="lead reveal">現在の採用工数を一緒に洗い出し、<br>どこがどれだけ減らせるかを算出してお渡しします。</p>
-    <p class="foot-co reveal">株式会社NEXT</p>
+    <div class="cta-btns reveal">
+      <a class="btn btn-main" href="#">無料で相談する</a>
+      <a class="btn btn-sub" href="#">AIスカウトを2週間無料で試す</a>
+      <a class="btn btn-sub" href="#">資料請求</a>
+    </div>
+    <p class="note reveal wip">※ リンク先・お問い合わせ先は未設定です。</p>
+    <p class="foot-co reveal">運営：株式会社NEXT</p>
   </div>
 </section>
 
@@ -617,7 +667,7 @@
   <div class="deck-dots" id="deck-dots" role="tablist" aria-label="スライド一覧"></div>
   <button class="deck-btn" id="deck-next" type="button" aria-label="次のスライド">›</button>
 </nav>
-<div class="deck-counter" id="deck-counter" aria-live="polite"><span id="deck-cur">1</span><i>/</i><span id="deck-total">31</span></div>
+<div class="deck-counter" id="deck-counter" aria-live="polite"><span id="deck-cur">1</span><i>/</i><span id="deck-total">34</span></div>
 <div class="deck-progress" id="deck-progress" aria-hidden="true"><span></span></div>
 <div class="deck-hint" id="deck-hint" aria-hidden="true">横にスワイプ／← → キーでめくれます</div>
 
