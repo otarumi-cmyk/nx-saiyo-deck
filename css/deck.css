@@ -1104,3 +1104,22 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .case h3 i{ display:block; font-style:normal; font-size:.68rem; opacity:.7; margin-top:3px; }
 .case-hero-k{ font-size:.72rem; color:var(--ink-dim); margin:2px 0 var(--sp-2); }
 @media (max-width:900px){ .pm{ font-size:.75rem; } .pm-price{ font-size:1.4rem; } }
+
+/* ---------- 32. 分析が当たる理由（データが1周する） ---------- */
+.loop-cmp{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-3); margin:var(--sp-4) 0 var(--sp-3); }
+.lc-col{ padding:var(--sp-4); background:var(--surface-1); border:1px solid var(--line); border-radius:6px; }
+.lc-col.is-key{ background:var(--surface-2); border-color:var(--acc-24); }
+.lc-h{ font-size:.82rem !important; margin:0 0 var(--sp-3) !important; font-weight:500 !important; }
+.lc-h.is-bad{ color:var(--ink-dim) !important; }
+.lc-h.is-good{ color:var(--accent) !important; }
+.lc-chain{ display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:var(--sp-3); }
+.lc-node{ font-size:.72rem; padding:8px 10px; border:1px solid var(--line); border-radius:4px; color:var(--ink-dim); white-space:nowrap; }
+.lc-chain.is-linked .lc-node{ border-color:var(--acc-24); background:var(--acc-04); color:var(--ink); }
+.lc-cut{ color:#8A99AB; opacity:.55; font-size:.9rem; }
+.lc-arw{ color:var(--accent); font-size:.9rem; }
+.lc-note{ font-size:.8rem; line-height:1.8; color:var(--ink-dim); margin:0; text-align:left; }
+.lc-note b{ color:var(--ink); font-weight:700; }
+.why-h{ font-size:1rem !important; margin:var(--sp-1) 0 var(--sp-2) !important; font-weight:700 !important; color:var(--ink) !important; }
+.why p b{ color:var(--ink); font-weight:700; }
+.why .num{ color:var(--ink-dim); font-size:.7rem; }
+@media (max-width:900px){ .loop-cmp{ grid-template-columns:1fr; } }
