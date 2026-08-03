@@ -75,15 +75,13 @@
     <h2 class="sec-title reveal">採用コストの<span class="hl">4分の1</span>は、<br>誰も計測していない社内の時間です。</h2>
     <div class="bd-layout">
       <ul class="bd-list">
-        <li class="reveal"><span class="bd-name">求人広告費<em>約37万円</em></span><span class="bd-bar" style="--w:28%"></span></li>
-        <li class="reveal"><span class="bd-name">人材紹介手数料<em>約103万円</em></span><span class="bd-bar" style="--w:78%"></span></li>
-        <li class="reveal is-key"><span class="bd-name">担当者の人件費<em>約30万円（100時間 × 3,000円）</em></span><span class="bd-bar" style="--w:22%"></span></li>
-        <li class="reveal is-key"><span class="bd-name">面接官の時間<em>試算値</em></span><span class="bd-bar" style="--w:14%"></span></li>
+        <li class="reveal"><span class="bd-name">人材紹介手数料<em>外部に支払う費用</em></span><span class="bd-bar" style="--w:79%"></span><span class="bd-val num">103万円</span></li>
+        <li class="reveal is-key"><span class="bd-name">ご担当者の時間<em>100時間 × 3,000円</em></span><span class="bd-bar" style="--w:21%"></span><span class="bd-val num">30万円</span></li>
       </ul>
-      <div class="chart-slot reveal" id="chart-cost-donut" data-chart="cost-donut" aria-label="採用コストの内訳"></div>
+      
     </div>
     <p class="lead reveal">外部に支払う費用は把握されています。しかし、<span class="hl">社内の時間</span>は、ほとんど計測されていません。</p>
-    <p class="note reveal">※ 人材紹介手数料＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり約103万円。求人広告費＝マイナビ「中途採用状況調査2026年版」1人あたり36.7万円。時給換算＝年収500万円 ÷ 年間1,920時間（月160時間×12ヶ月）＝約2,600円に、法定福利費15.7%を加えて約3,000円。</p>
+    <p class="note reveal">※ 手数料：厚生労働省「令和6年度 職業紹介事業報告書の集計結果」／時給換算は当社試算（算出方法は後述）</p>
   </div>
 </section>
 
@@ -149,15 +147,15 @@
     <p class="sec-label reveal">WHAT ONLY HR CAN DO</p>
     <h2 class="sec-title reveal">人事にしかできない仕事は、<br>この3つだけです。</h2>
     <div class="only-grid">
-      <div class="only-card reveal" style="--img:url('assets/hr01_culture.webp')">
+      <div class="only-card reveal" data-img="assets/hr01_culture.webp">
         <div class="only-img"></div>
         <div class="only-body"><span class="only-n num">01</span><h3>カルチャーに合うか<br>どうかの判断</h3></div>
       </div>
-      <div class="only-card reveal" style="--img:url('assets/hr02_intuition.webp')">
+      <div class="only-card reveal" data-img="assets/hr02_intuition.webp">
         <div class="only-img"></div>
         <div class="only-body"><span class="only-n num">02</span><h3>言語化しきれない<br>「合う・合わない」の意思決定</h3></div>
       </div>
-      <div class="only-card reveal" style="--img:url('assets/hr03_persuade.webp')">
+      <div class="only-card reveal" data-img="assets/hr03_persuade.webp">
         <div class="only-img"></div>
         <div class="only-body"><span class="only-n num">03</span><h3>候補者の動機づけ</h3></div>
       </div>
@@ -529,7 +527,7 @@
       <div class="fm-row"><span>スカウト代行</span><span class="num">500〜800円／通</span><span class="src">当社調べ</span></div>
       <div class="fm-row is-key"><span>本サービス</span><span class="num">120万円／年</span><span class="src">1通10円〜</span></div>
     </div>
-    <div class="chart-slot reveal" id="chart-roi-cumulative" data-chart="roi-cumulative" aria-label="12ヶ月の累積効果"></div>
+    
     <p class="note reveal">※ 出典のない数値（総工数・面接官の時間）は当社試算です。実際の効果は御社の運用によって変動します。</p>
   </div>
 </section>
@@ -601,12 +599,9 @@
     <p class="sec-label reveal">FAQ</p>
     <h2 class="sec-title reveal">よくあるご質問</h2>
     <div class="faq-list">
-      <details class="reveal"><summary>精度はどの程度でしょうか。</summary><p>機能ごとに実測値をご提示します。最新の数値をお伝えします。</p></details>
-      <details class="reveal"><summary>既存のATSと併用できますか。</summary><p>併用を前提としています。連携範囲は個別にご相談ください。</p></details>
-      <details class="reveal"><summary>情報セキュリティはどうなっていますか。</summary><p>保管期間・アクセス権限・学習利用の有無を明記のうえ、契約書に定めます。</p></details>
-      <details class="reveal"><summary>解約条件を教えてください。</summary><p>最低契約期間と解約手続きについては、最終版でご案内します。</p></details>
-      <details class="reveal"><summary>対応できる職種に制限はありますか。</summary><p>職種による制限は設けていません。要件に応じて設定を調整します。</p></details>
-      <details class="reveal"><summary>実際に必要な運用工数はどのくらいですか。</summary><p>面接と、日程調整時の送信確認が中心となります。</p></details>
+      <details class="reveal"><summary>既存のATSと併用できますか。</summary><p>併用を前提としています。連携範囲は御社の運用に合わせて設定します。</p></details>
+      <details class="reveal"><summary>個人情報はどう扱われますか。</summary><p>御社との契約で定めた期間のみ保管し、当社のAIモデルの学習には利用しません。アクセス権限は御社が指定した担当者に限定します。</p></details>
+      <details class="reveal"><summary>実際に必要な運用工数はどのくらいですか。</summary><p>面接と、日程調整時の送信確認が中心です。初期設定は当社が実施します。</p></details>
     </div>
   </div>
 </section>

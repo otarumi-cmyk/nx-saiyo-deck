@@ -935,3 +935,58 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 /* ビジョンの残り1行も同じ迫力で */
 .vision-grid .tl-task{ grid-template-columns:clamp(120px,14vw,200px) 1fr clamp(64px,6vw,92px); }
 .vision-grid .tt-bar{ height:clamp(22px,3.2vh,36px); }
+
+/* ============================================================
+   25. 品質監督班の指摘対応（画面に出ていないものを出す）
+   ============================================================ */
+
+/* [D-1] style.css の旧 #timeline / [data-state] 系ルールが opacity:0 / visibility:hidden を
+   残しており、「週33時間」メーターと凡例が一度も表示されていなかった。 */
+.tl-title, .tl-legend, .tl-meter,
+.tl-title[data-state], .tl-legend[data-state], .tl-meter[data-state]{
+  position:static !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  transform:none !important;
+  height:auto !important;
+  max-height:none !important;
+}
+.tl-head{ min-height:0 !important; }
+.tl-slide .tl-title{ margin:0 0 var(--sp-2) !important; }
+#timeline-2 .tl-legend{ margin:0 0 var(--sp-3) !important; }
+
+/* [D-1-3] スライド9は「40時間のうち33時間」を1本の全幅バーで見せる */
+#timeline-3 .tl-body{ display:block !important; }
+#timeline-3 .tl-meter{
+  display:grid; grid-template-columns:1fr auto; align-items:end;
+  gap:var(--sp-4); margin-top:var(--sp-4);
+  padding-top:var(--sp-4); border-top:1px solid var(--line);
+}
+#timeline-3 .tl-meter-v{ font-size:clamp(2.4rem,5vw,4.2rem); color:var(--accent); line-height:1; }
+
+/* [D-6] FAQ の ＋ アイコンが二重描画で壊れていた（線2本方式に一本化） */
+.faq-list summary::before{
+  content:"" !important;
+  position:relative; display:inline-block;
+  width:12px; height:12px; margin-right:12px;
+  background:
+    linear-gradient(var(--ink-dim),var(--ink-dim)) center/12px 1px no-repeat,
+    linear-gradient(var(--ink-dim),var(--ink-dim)) center/1px 12px no-repeat;
+  transition:background .3s ease;
+}
+.faq-list details[open] summary::before{
+  background:linear-gradient(var(--accent),var(--accent)) center/12px 1px no-repeat !important;
+}
+
+/* [C-6] 問いかけ3枚の埋まり率4% → 改行位置を固定して2行に */
+.q-big{ max-width:22em; margin-left:auto; margin-right:auto; }
+
+/* [D-5] 内訳に金額を独立表示 */
+.bd-list li{ grid-template-columns:220px 1fr 92px !important; }
+.bd-val{ font-size:1.05rem; font-weight:700; text-align:right; color:var(--ink-dim); }
+.bd-list li.is-key .bd-val{ color:var(--accent); }
+@media (max-width:768px){
+  .bd-list li{ grid-template-columns:1fr auto !important; }
+  .bd-list .bd-bar{ grid-column:1 / -1; }
+}
