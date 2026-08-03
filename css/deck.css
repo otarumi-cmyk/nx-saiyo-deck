@@ -846,31 +846,6 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .rt-head{ display:none; }
 }
 
-/* ---------- 20. タイムスケジュール（班C提供の構造に合わせる） ---------- */
-.tl-slide .tl-grid, .vision-grid{
-  display:grid !important;
-  grid-template-columns:auto repeat(5,minmax(0,1fr)) !important;
-  column-gap:6px; row-gap:0; align-items:stretch;
-}
-.tl-slide .tl-times, .tl-slide .tl-day,
-.vision-grid .tl-times, .vision-grid .tl-day{
-  display:grid !important;
-  grid-template-rows:auto repeat(var(--rows,9),minmax(26px,1fr));
-  row-gap:2px;
-}
-.tl-time{
-  font-family:'Roboto Mono',monospace; font-size:.62rem; color:var(--ink-dim);
-  text-align:right; padding-right:8px; align-self:start; transform:translateY(-.45em);
-}
-.tl-times-head{ visibility:hidden; }
-.tl-slide .tl-block, .vision-grid .tl-block{ display:flex; align-items:center; overflow:hidden; }
-@media (max-width:768px){
-  .tl-slide .tl-grid, .vision-grid{ grid-template-columns:auto repeat(5,minmax(0,1fr)) !important; }
-  .tl-slide .tl-block, .vision-grid .tl-block{ font-size:.55rem; padding:4px 3px; }
-  .tl-time{ font-size:.5rem; padding-right:4px; }
-  .tl-slide .tl-day-name{ font-size:.6rem; }
-}
-
 /* ---------- 21. 機能スライドの映像（Remotion） ---------- */
 .fn-video{
   width:100%; aspect-ratio:16/10;
@@ -881,3 +856,82 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 }
 .fn-slide.is-key .fn-video{ border-color:var(--acc-24); box-shadow:0 0 60px rgba(0,212,255,.07); }
 .fn-video video{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ---------- 22. 業務別の時間内訳（カレンダーをやめて何に何時間かを見せる） ---------- */
+.tl-tasks{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; width:100%; }
+.tl-task{
+  display:grid; grid-template-columns:210px 1fr 74px;
+  align-items:center; gap:var(--sp-3);
+}
+.tt-name{ font-size:.9rem; color:var(--ink-dim); text-align:left; line-height:1.4; }
+.tt-bar{
+  height:20px; border-radius:3px;
+  background:rgba(148,163,180,.16);
+  width:0;
+  transition:width .9s cubic-bezier(.22,.8,.3,1), background .5s ease, box-shadow .5s ease;
+  transition-delay:calc(var(--i,0) * 70ms);
+}
+.tl-slide.is-active .tt-bar, .st-1 .tt-bar, .st-2 .tt-bar, .st-3 .tt-bar{
+  width:calc(var(--h,1) / 9 * 100%);
+}
+.tt-h{ font-size:1rem; font-weight:700; text-align:right; color:var(--ink-dim); }
+.tt-h small{ font-size:.62em; margin-left:2px; font-weight:400; }
+/* 状態2・3：雑務を強調、面接は静かに */
+.st-2 .tl-task[data-kind="chore"] .tt-bar, .st-3 .tl-task[data-kind="chore"] .tt-bar{
+  background:linear-gradient(90deg,var(--acc-60),var(--accent));
+  box-shadow:0 0 18px var(--acc-24);
+}
+.st-2 .tl-task[data-kind="chore"] .tt-h, .st-3 .tl-task[data-kind="chore"] .tt-h{ color:var(--accent); }
+.st-2 .tl-task[data-kind="core"] .tt-bar, .st-3 .tl-task[data-kind="core"] .tt-bar{
+  background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28);
+}
+.st-2 .tl-task[data-kind="core"] .tt-name, .st-3 .tl-task[data-kind="core"] .tt-name{ color:var(--ink); font-weight:700; }
+/* ビジョン：残った面接を光らせる */
+.vision-grid .tl-task.is-final .tt-bar{
+  background:linear-gradient(90deg,var(--acc-60),var(--accent));
+  box-shadow:0 0 40px var(--acc-24);
+}
+.vision-grid .tl-task.is-final .tt-name,
+.vision-grid .tl-task.is-final .tt-h{ color:var(--accent); font-weight:700; }
+@media (max-width:768px){
+  .tl-task{ grid-template-columns:120px 1fr 58px; gap:var(--sp-2); }
+  .tt-name{ font-size:.72rem; }
+  .tt-h{ font-size:.82rem; }
+  .tt-bar{ height:16px; }
+}
+
+/* ---------- 23. 業務別内訳への切り替えに伴う旧グリッド指定の打ち消し ----------
+   .tl-grid / .vision-grid は縦スクロール時代の「5列グリッド」指定が
+   style.css・deck.css 双方に残っており、<ul> が1セルに潰れてバーが0pxになる。 */
+.tl-slide .tl-grid, .vision-grid, #tl-grid-1, #tl-grid-2, #tl-grid-3, #vision-grid{
+  display:block !important;
+  grid-template-columns:none !important;
+  grid-template-rows:none !important;
+  gap:0 !important;
+  width:100% !important;
+}
+/* style.css の place-items:center で列幅が min-content に縮む */
+.vision-wrap{ justify-items:stretch !important; align-items:center; }
+.vision-grid, .vision-copy{ width:100% !important; min-width:0; }
+/* ビジョンには .st-* が付かないので、バー幅をここで与える */
+.vision-grid .tt-bar{ width:calc(var(--h,1) / 9 * 100%); }
+/* SPで #vision の左右パディングが消えていた */
+#vision{ padding:clamp(40px,6vh,64px) 18px 96px !important; }
+@media (min-width:769px){
+  #vision{ padding:clamp(48px,7vh,88px) clamp(20px,4vw,64px) clamp(72px,10vh,110px) !important; }
+}
+
+/* ---------- 24. 業務内訳のサイズを画面に合わせて大きく ---------- */
+.tl-slide .tl-wrap{ justify-content:center; }
+.tl-tasks{ gap:clamp(8px,1.3vh,16px); margin-top:var(--sp-4); }
+.tl-task{ grid-template-columns:clamp(150px,17vw,240px) 1fr clamp(70px,7vw,100px); }
+.tt-name{ font-size:clamp(.85rem,1.05vw,1.05rem); }
+.tt-bar{ height:clamp(22px,3.4vh,38px); border-radius:4px; }
+.tt-h{ font-size:clamp(1rem,1.5vw,1.5rem); }
+.tt-h small{ font-size:.5em; }
+.tl-slide .tl-title{ font-size:clamp(1.5rem,3vw,2.6rem); }
+/* 凡例を業務内訳の上に置く */
+#timeline-2 .tl-legend{ margin:var(--sp-2) 0 0; font-size:.82rem; }
+/* ビジョンの残り1行も同じ迫力で */
+.vision-grid .tl-task{ grid-template-columns:clamp(120px,14vw,200px) 1fr clamp(64px,6vw,92px); }
+.vision-grid .tt-bar{ height:clamp(22px,3.2vh,36px); }
