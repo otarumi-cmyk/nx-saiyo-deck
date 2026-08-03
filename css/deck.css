@@ -990,3 +990,22 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .bd-list li{ grid-template-columns:1fr auto !important; }
   .bd-list .bd-bar{ grid-column:1 / -1; }
 }
+
+/* ---------- 26. スカウト代行との金額比較 ---------- */
+.sc-table{ margin:var(--sp-4) 0 var(--sp-3); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+.sc-row{
+  display:grid; grid-template-columns:1fr 1fr 1fr 1.1fr 1.2fr;
+  gap:var(--sp-2); padding:14px var(--sp-3); align-items:center;
+  border-bottom:1px solid var(--line); font-size:.95rem;
+}
+.sc-row:last-child{ border-bottom:0; }
+.sc-head{ background:var(--surface-1); font-size:.7rem; color:var(--ink-dim); }
+.sc-head i{ display:block; font-style:normal; font-size:.62rem; opacity:.7; }
+.sc-row.is-key{ background:var(--acc-04); }
+.sc-n{ color:var(--ink-dim); }
+.sc-ours{ color:var(--accent); font-weight:700; }
+.sc-diff{ color:var(--accent); font-weight:700; font-size:1.05rem; }
+@media (max-width:900px){
+  .sc-row{ grid-template-columns:1fr 1fr; font-size:.8rem; gap:6px; }
+  .sc-head{ display:none; }
+}
