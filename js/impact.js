@@ -110,11 +110,14 @@ export function init() {
   }
 
   // 幅が変わったら組み直す（高さ変化では組み直さない＝ループ防止）
+  // 注意: 図を差し込んだ直後に .slide-in のスクロールバーが出入りして幅が数px動くことがある。
+  //       ここで applyReset() すると再生中のアニメが巻き戻るので、走っている間は座標だけ差し替える。
+  //       （進捗依存の描画は次の onUpdate が新しい r.geom で描き直す）
   const onResize = function () {
     if (!relayout()) return;
-    if (still || done) applyFinal();
-    else if (tl && tl.isActive()) { /* 再生中はそのまま次tickで追従 */ }
-    else applyReset();
+    if (still || done) { applyFinal(); return; }
+    if (tl) return;              // 再生中 → 止めない
+    applyReset();                // 未再生 → 新しい座標で初期状態を描き直す
   };
   window.addEventListener('resize', onResize);
   if (window.ResizeObserver) {

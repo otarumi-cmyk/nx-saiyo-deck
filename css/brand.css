@@ -267,3 +267,53 @@ body{
 :root{ --ink-dim:#A3B2C9; }
 .lead{ color:#C6D2E4 !important; }
 .note{ color:#8C9BB4 !important; }
+
+/* ============================================================
+   機能スライド：動画を全幅にする
+   1920px制作の画面を337pxの枠に入れていたため、映像内の文字が
+   実寸4px以下になり「真っ黒」に見えていた。2カラムをやめて全幅に。
+   ============================================================ */
+.fn-slide .fn-wrap{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:var(--sp-3) !important;
+  width:100%;
+  height:100%;
+  justify-content:center;
+}
+.fn-slide .fn-text{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:baseline;
+  gap:var(--sp-3);
+  width:100%;
+}
+.fn-slide .fn-badge{ margin:0 !important; white-space:nowrap; }
+.fn-slide .sec-label{ margin:0 !important; white-space:nowrap; }
+.fn-slide .sec-title{
+  font-size:clamp(1.3rem,2.2vw,2rem) !important;
+  margin:0 !important;
+  grid-column:1 / -1;
+}
+.fn-slide .lead{
+  font-size:.92rem !important;
+  margin:0 !important;
+  grid-column:1 / -1;
+  max-width:none;
+}
+.fn-slide .fn-sub{ display:none; }
+.fn-slide .fn-video{
+  width:100% !important;
+  max-width:none !important;
+  aspect-ratio:16/10 !important;
+  max-height:66vh;
+  margin:0 auto;
+  border-radius:6px;
+}
+.fn-slide .fn-video video{ width:100%; height:100%; object-fit:contain; background:#05070A; }
+/* テキストは映像の上に1行で収める */
+.fn-slide > .slide-in{ max-width:1280px; }
+@media (max-width:900px){
+  .fn-slide .fn-text{ grid-template-columns:1fr; gap:6px; }
+  .fn-slide .fn-video{ max-height:44vh; }
+}

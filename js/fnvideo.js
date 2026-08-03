@@ -11,12 +11,17 @@
 //     ブラウザは poster の表示をやめ、不透明な黒を描く。これが「完全な真っ黒」の正体。
 //     → poster を親(.fn-video)の background に敷き、<video> は
 //       「実フレームを持っている間だけ」不透明にする。何が起きても黒板にはならない。
-//  3) nx:slide は deck.js の requestAnimationFrame 経由なので、タブが非表示だと発火しない。
+//  3) 全7本とも 0 フレーム目が真っ黒（黒からのフェードイン。実測: 輝度平均 0.0/255、
+//     poster は 13〜24）。つまり再生が始まっていない video は、正常に読めていても黒板になる。
+//     → 黒いフェードインを抜ける currentTime >= 0.3s までは poster を出したままにし、
+//       そこで video をクロスフェードで出す。離脱時は先に隠してから巻き戻す。
+//  4) nx:slide は deck.js の requestAnimationFrame 経由なので、タブが非表示だと発火しない。
 //     → IntersectionObserver を併用して、再生開始/停止を二重化する。
 //
 // 検証用フック: window.__fnv.report()
 
 const HAVE_CURRENT_DATA = 2;
+const FADE_IN_DONE = 0.3;   // 素材の黒フェードインを抜ける秒数（実測 0.34s で輝度 10〜15）
 
 export function init() {
   const vids = Array.from(document.querySelectorAll('video.fn-v'))
@@ -24,8 +29,8 @@ export function init() {
   if (!vids.length) return;
 
   const reduce = !!(window.NX && window.NX.reduce);
-  const items = vids.map(setup);
   let decodeBroken = false;
+  const items = vids.map(setup);
 
   // ---------- 1本ぶんの初期化 ----------
   function setup(v) {
@@ -42,9 +47,10 @@ export function init() {
       wrap.style.backgroundRepeat = 'no-repeat';
     }
 
-    // 実フレームを持つまで video は透明。インラインなので CSS の読み込み順に左右されない。
+    // 「絵が出ている」と確認できるまで video は透明。
+    // インラインstyleなので CSS の読み込み順・詳細度に左右されない。
     v.style.opacity = '0';
-    v.style.transition = reduce ? 'none' : 'opacity .35s ease';
+    v.style.transition = reduce ? 'none' : 'opacity .45s ease';
     v.style.backgroundColor = 'transparent';
 
     // 自動再生の前提（index.html 側に付いていない場合の保険）
@@ -72,11 +78,12 @@ export function init() {
       dead: false
     };
 
+    // 素材は黒からフェードインするので、頭の黒い区間は poster を見せたままにする。
     const reveal = () => {
-      if (item.dead) return;
-      if (v.readyState >= HAVE_CURRENT_DATA && v.videoWidth > 0 && !v.error) {
-        if (v.style.opacity !== '1') v.style.opacity = '1';
-      }
+      if (item.dead || !item.want) return;
+      if (v.error || v.videoWidth === 0 || v.readyState < HAVE_CURRENT_DATA) return;
+      if (v.paused || v.currentTime < FADE_IN_DONE) return;
+      if (v.style.opacity !== '1') v.style.opacity = '1';
     };
     const conceal = () => { if (v.style.opacity !== '0') v.style.opacity = '0'; };
     item.reveal = reveal;
@@ -149,18 +156,24 @@ export function init() {
   }
 
   function enter(item) {
+    if (item.want) { item.reveal(); return; }
     item.want = true;
     kick(item);
     item.reveal();
   }
 
   function leave(item) {
+    if (!item.want && item.v.paused) return;
     item.want = false;
     const v = item.v;
+    item.conceal();                                    // 先に隠す（巻き戻しの黒フレームを見せない）
     if (!v.paused) { try { v.pause(); } catch (e) { /* noop */ } }
-    if (v.readyState > 0 && v.currentTime > 0) {
-      try { v.currentTime = 0; } catch (e) { /* noop */ }
-    }
+    setTimeout(() => {
+      if (item.want) return;
+      if (v.readyState > 0 && v.currentTime > 0) {
+        try { v.currentTime = 0; } catch (e) { /* noop */ }
+      }
+    }, 480);
   }
 
   // ---------- どのスライドにいるかの判定（nx:slide と IntersectionObserver の二重化） ----------
@@ -212,8 +225,10 @@ export function init() {
       src: (it.v.currentSrc || '').split('/').pop(),
       readyState: it.v.readyState,
       paused: it.v.paused,
+      currentTime: Math.round(it.v.currentTime * 100) / 100,
       opacity: it.v.style.opacity,
       videoWidth: it.v.videoWidth,
+      posterBg: !!(it.wrap && it.wrap.style.backgroundImage),
       error: it.v.error ? it.v.error.code : null
     }))
   };
