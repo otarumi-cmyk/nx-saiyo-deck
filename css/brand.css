@@ -459,3 +459,23 @@ html, body{ overflow:hidden !important; height:100%; }
 /* 中身は上下中央。縦の余白は版面側で持つ */
 .nx-stage > .wrap, .nx-stage.wrap{ width:100%; max-width:100%; }
 @media (prefers-reduced-motion: reduce){ .nx-stage{ will-change:auto; } }
+
+/* ---------- 本文スライドの背景画像（文字が最優先で読めること） ---------- */
+#hero, #q-cost, #hypothesis, #fit, #price, #why-us{ position:relative; }
+#hero::after, #q-cost::after, #hypothesis::after, #fit::after, #price::after, #why-us::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background-image:var(--chdiv-img);
+  background-size:cover; background-position:center;
+  opacity:.30;
+}
+#hero::before, #q-cost::before, #hypothesis::before, #fit::before, #price::before, #why-us::before{
+  content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:
+    radial-gradient(ellipse 78% 62% at 50% 46%, rgba(11,15,26,.86) 0%, rgba(11,15,26,.62) 55%, rgba(11,15,26,.9) 100%),
+    linear-gradient(180deg, rgba(11,15,26,.55) 0%, transparent 28%, transparent 72%, rgba(11,15,26,.75) 100%);
+}
+#hero > .slide-in, #q-cost > .slide-in, #hypothesis > .slide-in,
+#fit > .slide-in, #price > .slide-in, #why-us > .slide-in{ z-index:3; }
+/* 情報量の多い2枚は背景をさらに落として可読性を優先 */
+#fit::after, #price::after{ opacity:.16; }
+#why-us::after{ opacity:.20; }
