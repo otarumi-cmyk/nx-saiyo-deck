@@ -1025,3 +1025,35 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .ch-verdict.is-bad{ color:var(--ink-dim); }
 .ch-verdict.is-good{ color:var(--accent); }
 @media (max-width:900px){ .ch-grid{ grid-template-columns:1fr; } }
+
+/* ---------- 28. 積み上げ帯（横バー一覧との重複を避ける） ---------- */
+.stackbar{
+  display:flex; width:100%; height:clamp(88px,13vh,140px);
+  border-radius:6px; overflow:hidden; margin:var(--sp-5) 0 var(--sp-3);
+  border:1px solid var(--line);
+}
+.sb-seg{
+  width:var(--w); min-width:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:6px; padding:0 4px; position:relative;
+  border-right:1px solid rgba(5,7,10,.6);
+}
+.sb-seg:last-child{ border-right:0; }
+.sb-seg.is-chore{ background:linear-gradient(180deg,var(--accent),var(--acc-60)); }
+.sb-seg.is-core{ background:rgba(255,255,255,.13); border-left:1px solid rgba(255,255,255,.3); border-right:1px solid rgba(255,255,255,.3); }
+.sb-seg i{ font-style:normal; font-size:.66rem; line-height:1.3; text-align:center; color:rgba(5,7,10,.78); font-weight:700; }
+.sb-seg b{ font-family:'Roboto Mono',monospace; font-size:.9rem; color:#04222B; }
+.sb-seg.is-core i{ color:var(--ink); }
+.sb-seg.is-core b{ color:var(--ink); }
+.sb-seg:nth-child(n+5) i{ display:none; }
+.sb-legend{ display:flex; gap:var(--sp-5); flex-wrap:wrap; font-size:.85rem; color:var(--ink-dim); }
+.sbl{ display:inline-flex; align-items:center; gap:8px; }
+.sbl i{ width:14px; height:14px; border-radius:3px; display:inline-block; }
+.sbl.is-chore i{ background:var(--accent); }
+.sbl.is-core i{ background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.3); }
+.sbl b{ color:var(--ink); font-size:1.05rem; }
+@media (max-width:768px){
+  .stackbar{ height:96px; }
+  .sb-seg i{ display:none; }
+  .sb-seg b{ font-size:.7rem; }
+}
