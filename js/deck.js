@@ -132,12 +132,13 @@ export function init() {
     const items = slide.querySelectorAll('.reveal');
     items.forEach((el) => el.classList.remove('is-in'));
 
+    const q = (sel) => { const n = slide.querySelectorAll(sel); return n.length ? n : null; };
     const tl = gsap.timeline();
-    tl.fromTo(slide.querySelectorAll('.sec-label, .chdiv-n, .hero-eyebrow'),
+    tl.fromTo(q('.sec-label, .chdiv-n, .hero-eyebrow') || [],
       { opacity: 0, y: 14, letterSpacing: '0.5em' },
       { opacity: 1, y: 0, letterSpacing: '0.14em', duration: 0.7, ease: CENTER_EASE }, 0);
 
-    tl.fromTo(slide.querySelectorAll('.sec-title, .q-big, .chdiv-t, .hero-title, .vision-title, .product-name, .cta-title, .tl-title'),
+    tl.fromTo(q('.sec-title, .q-big, .chdiv-t, .hero-title, .vision-title, .product-name, .cta-title, .tl-title') || [],
       { opacity: 0, y: 34, filter: 'blur(10px)' },
       { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.95, ease: CENTER_EASE }, 0.08);
 

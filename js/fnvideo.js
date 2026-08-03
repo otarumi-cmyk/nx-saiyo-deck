@@ -106,6 +106,10 @@ export function init() {
     ['loadeddata', 'canplay', 'canplaythrough', 'playing', 'timeupdate', 'seeked', 'progress']
       .forEach((ev) => v.addEventListener(ev, reveal));
     v.addEventListener('emptied', conceal);
+    // 停止したまま頭に戻っている＝黒フレームを晒す状態。必ず poster に戻す。
+    const hideIfBlack = () => { if (v.paused && v.currentTime < FADE_IN_DONE) conceal(); };
+    v.addEventListener('pause', hideIfBlack);
+    v.addEventListener('seeked', hideIfBlack);
 
     v.addEventListener('error', () => {
       const code = v.error ? v.error.code : 0;
@@ -194,18 +198,20 @@ export function init() {
   // ---------- どのスライドにいるかの判定（nx:slide と IntersectionObserver の二重化） ----------
   const ioVisible = new Set();
   let evtActive = null;
+  let evtSeen = false;
 
   function recompute() {
-    // IO が「見えている」と言っているものを優先。まだ誰も見えていなければ nx:slide の結果を使う。
+    // deck.js が現在地を教えてくれているならそれが正。
+    // 一度も来ないとき（rAF が止まる環境など）だけ IntersectionObserver に任せる。
     let target;
-    if (ioVisible.size) target = ioVisible;
-    else if (evtActive) target = new Set([evtActive]);
-    else target = new Set();
+    if (evtSeen) target = evtActive ? new Set([evtActive]) : new Set();
+    else target = ioVisible;
     items.forEach((it) => (target.has(it) ? enter(it) : leave(it)));
   }
 
   document.addEventListener('nx:slide', (e) => {
     const slide = e.detail && e.detail.slide;
+    evtSeen = true;
     evtActive = slide ? (items.filter((it) => slide.contains(it.v))[0] || null) : null;
     recompute();
   });
@@ -226,6 +232,13 @@ export function init() {
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) items.forEach((it) => { try { it.v.pause(); } catch (e) {} });
     else recompute();
+  });
+
+  // レイアウトが変わると object-fit の効き方も変わるので、poster の敷き方を合わせ直す
+  let resizeTimer = 0;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => items.forEach((it) => it.syncPosterFit()), 150);
   });
 
   const active = document.querySelector('.slide.is-active');

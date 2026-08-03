@@ -317,3 +317,25 @@ body{
   .fn-slide .fn-text{ grid-template-columns:1fr; gap:6px; }
   .fn-slide .fn-video{ max-height:44vh; }
 }
+
+/* ============================================================
+   コピー修正班からの申し送り3件
+   ============================================================ */
+
+/* (1) #map の .f7 が横オーバーフロー（scrollWidth 160 > clientWidth 149） */
+.f7{ min-width:0; overflow:hidden; }
+.f7 > *{ max-width:100%; }
+.f7-name, .f7-step{ overflow-wrap:anywhere; }
+.flow7{ gap:8px; }
+
+/* (3) カラムが狭くて日本語が語中で折り返す（.why p は1行23文字、.safe p は16文字）
+       → 列を減らして1行あたりの文字数を確保する */
+.why-grid{ grid-template-columns:repeat(3,1fr); gap:var(--sp-3); }
+.why p{ font-size:.86rem !important; line-height:1.95 !important; }
+.safe-list{ grid-template-columns:repeat(2,1fr) !important; gap:var(--sp-3) !important; }
+.safe p{ font-size:.88rem !important; line-height:1.95 !important; }
+.safe h3{ font-size:.95rem !important; }
+.lc-note, .ch-note, .fit-why, .case-why dd{ overflow-wrap:normal; line-break:strict; }
+@media (max-width:900px){
+  .why-grid, .safe-list{ grid-template-columns:1fr !important; }
+}
