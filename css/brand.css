@@ -339,3 +339,6 @@ body{
 @media (max-width:900px){
   .why-grid, .safe-list{ grid-template-columns:1fr !important; }
 }
+.ch-num.is-bad b{ color:var(--ink-dim); }
+.ch-verdict{ font-size:.95rem !important; }
+#num-cost .lead{ font-size:1.05rem !important; }
