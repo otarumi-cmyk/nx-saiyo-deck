@@ -870,3 +870,14 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .tl-time{ font-size:.5rem; padding-right:4px; }
   .tl-slide .tl-day-name{ font-size:.6rem; }
 }
+
+/* ---------- 21. 機能スライドの映像（Remotion） ---------- */
+.fn-video{
+  width:100%; aspect-ratio:16/10;
+  background:var(--surface-1);
+  border:1px solid var(--line);
+  border-radius:8px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.fn-slide.is-key .fn-video{ border-color:var(--acc-24); box-shadow:0 0 60px rgba(0,212,255,.07); }
+.fn-video video{ width:100%; height:100%; object-fit:cover; display:block; }

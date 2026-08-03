@@ -5,7 +5,7 @@ import { init as initViz } from './viz.js';
 import { init as initCore3d } from './core3d.js';
 import { init as initCharts } from './charts.js';
 import { init as initDeck } from './deck.js';
-import { init as initFnAnim } from './fnanim.js';
+import { init as initFnVideo } from './fnvideo.js';
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 window.NX = { reduce };
@@ -38,7 +38,7 @@ function boot() {
   safe('core3d', initCore3d);
   safe('charts', initCharts);
   safe('deck', initDeck);
-  safe('fnanim', initFnAnim);
+  safe('fnvideo', initFnVideo);
 
   if (window.ScrollTrigger) {
     window.addEventListener('load', () => window.ScrollTrigger.refresh());
