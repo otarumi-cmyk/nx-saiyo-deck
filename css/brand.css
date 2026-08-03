@@ -342,3 +342,39 @@ body{
 .ch-num.is-bad b{ color:var(--ink-dim); }
 .ch-verdict{ font-size:.95rem !important; }
 #num-cost .lead{ font-size:1.05rem !important; }
+
+/* ---------- 採用フロー全工程のカバレッジ ---------- */
+.fs2-legend{ display:flex; gap:var(--sp-5); margin:var(--sp-3) 0; font-size:.82rem; color:var(--ink-dim); }
+.fs2-lg{ display:inline-flex; align-items:center; gap:8px; }
+.fs2-lg i{ width:14px; height:14px; border-radius:3px; display:inline-block; }
+.fs2-lg.is-ai i{ background:linear-gradient(160deg,#3B82F6,#2563EB); }
+.fs2-lg.is-human i{ background:transparent; border:1px solid rgba(231,237,247,.4); }
+
+.fs2-grid{
+  list-style:none; padding:0; margin:0 0 var(--sp-4);
+  display:grid; grid-template-columns:repeat(5,1fr); gap:8px;
+}
+.fs2{
+  position:relative;
+  display:flex; flex-direction:column; gap:4px;
+  padding:12px 12px 11px;
+  border-radius:5px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(231,237,247,.04), rgba(231,237,247,.01));
+  min-width:0;
+}
+.fs2.is-ai{
+  background:linear-gradient(160deg, rgba(59,130,246,.20), rgba(37,99,235,.07));
+  border-color:var(--acc-24);
+}
+.fs2.is-human{
+  background:transparent;
+  border:1px solid rgba(231,237,247,.32);
+}
+.fs2-n{ font-family:var(--font-en); font-size:.62rem; color:var(--ink-dim); letter-spacing:.1em; }
+.fs2.is-ai .fs2-n{ color:var(--accent); }
+.fs2-t{ font-size:.85rem; font-weight:700; line-height:1.35; color:var(--ink); }
+.fs2-b{ font-size:.66rem; line-height:1.4; color:var(--ink-dim); }
+.fs2.is-human .fs2-b{ color:#E7EDF7; opacity:.75; }
+@media (max-width:1100px){ .fs2-grid{ grid-template-columns:repeat(4,1fr); } }
+@media (max-width:768px){ .fs2-grid{ grid-template-columns:repeat(2,1fr); } .fs2-t{ font-size:.76rem; } }
