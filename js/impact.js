@@ -261,9 +261,9 @@ function layout(chart, W) {
   const topLab = mob ? 16 : 20;
   const titleH = mob ? 18 : 24;
   const beforeH = mob ? 11 : 16;
-  const gap1 = mob ? 7 : 10;
-  const arrowH = mob ? 36 : 56;                // 矢じりの高さ＝矢印の帯の高さ
-  const rowGap = mob ? 16 : 22;
+  const gap1 = mob ? 6 : 8;                    // before棒と矢印のすき間（近づけて2本1組に見せる）
+  const arrowH = mob ? 38 : 60;                // 矢じりの高さ＝矢印の帯の高さ
+  const rowGap = mob ? 22 : 34;                // 行と行の間（行内のすき間より必ず広く取る）
   const axisH = mob ? 24 : 30;
 
   const shaftH = Math.round(arrowH * 0.52);
@@ -275,18 +275,19 @@ function layout(chart, W) {
   const fRef = mob ? 10 : 12;
   const fPct = Math.max(10, Math.round(shaftH * 0.58));
 
-  // 行ごとの高さ（返信率だけ数字を大きくするので帯の高さが違う）
+  // 行の上半分（見出し＋before棒 ／ 右側に倍率の大きい数字）は横にずれるので同じ帯に同居させる。
+  // こうすると before棒 と矢印が隣り合って「2本1組」に見える。
   let y = topLab;
   const rowTops = [];
   const bigFonts = [];
-  const bigBands = [];
+  const headBands = [];
   for (let i = 0; i < chart.rows.length; i++) {
     const f = Math.round((mob ? 34 : 58) * METRICS[i].emph);
-    const band = Math.round(f * 1.08);
+    const band = Math.max(titleH + beforeH + gap1, Math.round(f * 1.06));
     bigFonts.push(f);
-    bigBands.push(band);
+    headBands.push(band);
     rowTops.push(y);
-    y += titleH + beforeH + gap1 + band + arrowH;
+    y += band + arrowH;
     if (i < chart.rows.length - 1) y += rowGap;
   }
   const axisY = y + (mob ? 8 : 10);
@@ -321,11 +322,12 @@ function layout(chart, W) {
     const r = chart.rows[i];
     const top = rowTops[i];
 
-    r.title.setAttribute('x', x0);
-    r.title.setAttribute('y', top + titleH - (mob ? 4 : 5));
-    r.title.setAttribute('font-size', fTitle);
+    // before棒は帯の下端にそろえる（＝矢印のすぐ上）
+    const byTop = top + headBands[i] - gap1 - beforeH;
 
-    const byTop = top + titleH;
+    r.title.setAttribute('x', x0);
+    r.title.setAttribute('y', byTop - (mob ? 5 : 7));
+    r.title.setAttribute('font-size', fTitle);
     r.before.setAttribute('x', x0);
     r.before.setAttribute('y', byTop);
     r.before.setAttribute('height', beforeH);
@@ -335,8 +337,8 @@ function layout(chart, W) {
     r.bLab.setAttribute('font-size', fBefore);
     r.bLabJa.textContent = mob ? '' : 'テンプレート ';
 
-    const bigBase = byTop + beforeH + gap1 + bigBands[i] - Math.round(bigFonts[i] * 0.12);
-    const cy = byTop + beforeH + gap1 + bigBands[i] + arrowH / 2;
+    const bigBase = top + headBands[i] - Math.round(bigFonts[i] * 0.1);
+    const cy = top + headBands[i] + arrowH / 2;
 
     r.geom = {
       x0: x0,
@@ -405,13 +407,13 @@ function setArrow(r, t) {
     'L' + g.x0 + ' ' + (cy + h / 2) + 'Z');
 
   // 速度線（進行中だけ出て、着地で消える）
-  const op = 0.6 * Math.min(1, t * 4) * Math.pow(Math.max(0, 1 - t), 1.3);
-  const mult = [0.46, 0.3, 0.54, 0.34];
-  const off = [-0.31, -0.47, 0.31, 0.47];
+  const op = 0.9 * Math.min(1, t * 5) * Math.pow(Math.max(0, 1 - t), 1.1);
+  const mult = [0.5, 0.32, 0.58, 0.36];
+  const off = [-0.33, -0.5, 0.33, 0.5];
   for (let i = 0; i < r.streaks.length; i++) {
     const s = r.streaks[i];
     const x2 = xBody - 4;
-    const x1 = Math.max(g.x0, x2 - Math.max(24, len * mult[i]));
+    const x1 = Math.max(g.x0, x2 - Math.max(30, len * mult[i]));
     const y = cy + g.headH * off[i];
     s.setAttribute('x1', x1); s.setAttribute('x2', x2);
     s.setAttribute('y1', y); s.setAttribute('y2', y);
@@ -445,6 +447,7 @@ function buildTimeline(chart, gsap, onDone) {
 
     // 4) before の棒（×1.0）
     const b = { t: 0 };
+    tl.set(r.before, { opacity: 1 }, at + 0.06);
     tl.to(b, {
       t: 1, duration: 0.45, ease: 'power2.out',
       onUpdate: function () { setBefore(r, b.t); },

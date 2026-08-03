@@ -222,3 +222,20 @@ h1,h2,h3,p,li,dd,dt,td,th,summary,
 /* リード文は読みやすい行長に収める */
 .slide .lead{ max-width:46em; }
 .slide.sec-center .lead{ margin-inline:auto; }
+
+/* ---------- Before/After（107→20時間）---------- */
+.ba2{ display:grid; grid-template-columns:1fr 150px 1fr; gap:var(--sp-3); align-items:center; margin:var(--sp-5) 0 var(--sp-3); }
+.ba2-col{ text-align:center; }
+.ba2-l{ display:block; font-size:.74rem; color:var(--ink-dim); letter-spacing:.1em; margin-bottom:var(--sp-2); }
+.ba2-bar{ margin:0 !important; height:clamp(70px,10vh,110px) !important; }
+.ba2-total{ font-family:var(--font-en); font-size:clamp(1.8rem,3.4vw,2.8rem); font-weight:700; margin:var(--sp-3) 0 0; color:var(--ink-dim); }
+.ba2-total small{ font-size:.3em; margin-left:6px; color:var(--ink-dim); font-weight:400; }
+.ba2-total.is-key{ color:var(--accent); }
+.ba2-arrow{ text-align:center; }
+.ba2-arrow svg{ width:100%; height:auto; display:block; margin-top:8px; }
+.ba2-diff{ display:block; font-family:var(--font-en); font-size:clamp(1.4rem,2.6vw,2.2rem); font-weight:700; color:var(--accent); }
+.ba2-diff small{ font-size:.42em; margin-left:3px; }
+.ba2-col.is-key .stackbar{ border-color:var(--acc-24); box-shadow:0 0 50px rgba(59,130,246,.12); }
+.sc-extra{ border-top:1px solid var(--line); }
+.sc-extra .sc-n{ color:var(--ink-dim); font-size:.82rem; }
+@media (max-width:900px){ .ba2{ grid-template-columns:1fr; } .ba2-arrow svg{ transform:rotate(90deg); width:60px; margin:0 auto; } }
