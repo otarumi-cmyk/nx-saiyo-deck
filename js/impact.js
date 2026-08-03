@@ -99,12 +99,15 @@ export function init() {
     tl = buildTimeline(chart, gsap, function () { done = true; });
   }
 
-  // 幅の確定を待つ（スライドは display されているので通常は初回で取れる）
-  if (!relayout()) requestAnimationFrame(relayout);
+  // 幅の確定（スライドは display されているので通常はここで取れる）
+  relayout();
 
   if (still) {
-    // 最終状態で静止。幅が取れ次第そのまま描く。
-    requestAnimationFrame(function () { relayout(); applyFinal(); });
+    // アニメせず最終状態を即表示。
+    // ※ requestAnimationFrame に頼らない：非表示タブ／プレビューでは呼ばれず、
+    //   「動きを減らす」設定の人に何も表示されなくなる。
+    if (measured) applyFinal();
+    else requestAnimationFrame(function () { relayout(); applyFinal(); });
   } else {
     applyReset();
   }

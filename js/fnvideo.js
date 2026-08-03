@@ -42,8 +42,6 @@ export function init() {
     if (wrap && posterAttr) {
       const abs = new URL(posterAttr, document.baseURI).href;
       wrap.style.backgroundImage = 'url("' + abs + '")';
-      wrap.style.backgroundSize = 'cover';
-      wrap.style.backgroundPosition = 'center';
       wrap.style.backgroundRepeat = 'no-repeat';
     }
 
@@ -88,6 +86,22 @@ export function init() {
     const conceal = () => { if (v.style.opacity !== '0') v.style.opacity = '0'; };
     item.reveal = reveal;
     item.conceal = conceal;
+
+    // poster の敷き方を video の object-fit に合わせる。
+    // （cover のつもりで敷くと object-fit:contain のときにレターボックス部分から
+    //   拡大された poster がはみ出して二重像になる）
+    item.syncPosterFit = () => {
+      if (!wrap || !posterAttr) return;
+      const cs = getComputedStyle(v);
+      const fit = cs.objectFit;
+      wrap.style.backgroundSize =
+        fit === 'contain' ? 'contain' :
+        fit === 'fill' ? '100% 100%' :
+        fit === 'none' ? 'auto' : 'cover';
+      wrap.style.backgroundPosition = cs.objectPosition || '50% 50%';
+    };
+    item.syncPosterFit();
+    v.addEventListener('loadedmetadata', item.syncPosterFit);
 
     ['loadeddata', 'canplay', 'canplaythrough', 'playing', 'timeupdate', 'seeked', 'progress']
       .forEach((ev) => v.addEventListener(ev, reveal));
@@ -156,8 +170,9 @@ export function init() {
   }
 
   function enter(item) {
-    if (item.want) { item.reveal(); return; }
     item.want = true;
+    // 毎回 kick する。ブラウザが省電力でバックグラウンド再生を止めた場合、
+    // 復帰時にここで再開させる必要がある（kick は再生中なら何もしない）。
     kick(item);
     item.reveal();
   }

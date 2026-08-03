@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/fx.css">
 <link rel="stylesheet" href="css/deck.css">
 <link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/impact.css">
 <link rel="stylesheet" href="css/fnanim.css">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -151,7 +152,7 @@
     <h2 class="tl-title">上位8つのうち7つが、採用そのものではありません。</h2>
     <div class="tl-legend">
       <span class="lg lg-chore"><i></i>雑務（作成・調整・入力・集計）</span>
-      <span class="lg lg-core"><i></i>採用そのもの（会う・見極める・動機づける）</span>
+      <span class="lg lg-core"><i></i>採用そのもの（面接・見極め・動機づけ）</span>
     </div>
     <div class="tl-grid" id="tl-grid-2" aria-label="雑務を塗り分けた1週間"></div>
   </div>
@@ -165,8 +166,8 @@
 <!-- 11 仮説 -->
 <section class="slide sec-center" id="hypothesis" data-title="仮説">
   <div class="slide-in wrap">
-    <h2 class="q-big reveal">この作業、<br>AIに任せられるとしたら。</h2>
-    <p class="lead reveal">作成も、調整も、入力も、集計も。<br>人が行う必然性のない作業です。</p>
+    <h2 class="q-big reveal">この作業を、<br>人が行う必要はありますか。</h2>
+    <p class="lead reveal">作成も、調整も、入力も、集計も、<br>人が行う必然性はありません。</p>
   </div>
 </section>
 
@@ -202,7 +203,7 @@
     <div class="vision-copy">
       <p class="sec-label">OUR VISION</p>
       <h2 class="vision-title">人事の仕事が、<br>面接だけになる。</h2>
-      <p class="lead">それ以外はすべてAIへ。<br>私たちが目指している、採用の姿です。</p>
+      <p class="lead">それ以外の業務は、すべてAIへ。<br>私たちが目指している採用の姿です。</p>
     </div>
   </div>
 </section>
@@ -211,7 +212,7 @@
 <section class="slide" id="map" data-title="7機能マップ">
   <div class="slide-in wrap">
     <p class="sec-label reveal">7 FUNCTIONS</p>
-    <h2 class="sec-title reveal">入口から改善まで、採用フローを1周まるごと。</h2>
+    <h2 class="sec-title reveal">入口から改善まで、採用フロー全体をカバーします。</h2>
     <ol class="flow7" id="flow7">
       <li class="f7 reveal" data-fn="01"><span class="f7-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h9l5 5v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.4"/><path d="M14 4v5h5M7.5 13h9M7.5 16.5h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span><span class="f7-n num">01</span><em class="f7-step">要件定義・求人設計</em><b class="f7-name">自動応募要件の作成</b></li>
       <li class="f7 reveal is-key" data-fn="02"><span class="f7-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5h13v9H3z" stroke="currentColor" stroke-width="1.4"/><path d="M3 6.5 9.5 12 16 6.5" stroke="currentColor" stroke-width="1.4"/><path d="M18 15.5l3-3-3-3M21 12.5h-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span><span class="f7-n num">02</span><em class="f7-step">母集団形成</em><b class="f7-name">AIスカウト</b></li>
@@ -221,7 +222,7 @@
       <li class="f7 reveal" data-fn="06"><span class="f7-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="2.5" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M8.5 21.5h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span><span class="f7-n num">06</span><em class="f7-step">面接・記録</em><b class="f7-name">AI面接文字起こし</b></li>
       <li class="f7 reveal" data-fn="07"><span class="f7-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3.5 20.5V13M9 20.5V7M14.5 20.5v-9M20 20.5V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="f7-n num">07</span><em class="f7-step">振り返り・改善</em><b class="f7-name">AI採用分析</b></li>
     </ol>
-    <div class="flow7-loop reveal"><span>改善が、次の要件定義に返る</span></div>
+    <div class="flow7-loop reveal"><span>分析結果を、次の要件定義に反映</span></div>
     <div class="flow7-human reveal">
       <span class="f7h-label">人が行うのは</span><b>面接</b><i>と</i><b>最終判断</b><span class="f7h-label">だけです</span>
     </div>
@@ -369,7 +370,7 @@
           <span class="lc-node">面接</span><span class="lc-cut">✕</span>
           <span class="lc-node">内定</span>
         </div>
-        <p class="lc-note">ツールごとにデータが分断されます。「開封率が上がった」までは分かっても、<b>その文面が採用まで至ったか</b>は誰も追えません。改善は担当者の勘に戻ります。</p>
+        <p class="lc-note">ツールごとにデータが分断されます。<br>開封率は分かっても、<b>その文面が採用に至ったか</b>は追えません。<br>改善は担当者の勘に戻ります。</p>
       </div>
       <div class="lc-col reveal is-key">
         <h3 class="lc-h is-good">本サービス（7機能が1本に繋がる）</h3>
@@ -379,7 +380,7 @@
           <span class="lc-node">面接</span><span class="lc-arw">→</span>
           <span class="lc-node">内定</span>
         </div>
-        <p class="lc-note"><b>スカウト1通から内定までが1本の線で繋がります。</b>「この訴求で送った候補者は、内定承諾まで至る確率が高い」——この粒度で分かるのは、7工程すべてを通しているからです。</p>
+        <p class="lc-note"><b>スカウト1通から内定までが1本の線で繋がります。</b><br>「この訴求で送った候補者は内定承諾まで至りやすい」——<br>この粒度で分かるのは、7工程すべてを通しているからです。</p>
       </div>
     </div>
     <p class="lead reveal">分析が当たるかどうかは、AIの性能ではなく<span class="hl">データが1周しているか</span>で決まります。</p>
@@ -400,7 +401,7 @@
       <div class="why reveal">
         <span class="num">02</span>
         <h3 class="why-h">勝ちパターンが先に分かっている</h3>
-        <p>「30代のSaaS営業には、事業フェーズより裁量の大きさを先に書く」——<b>ターゲット×媒体×訴求の組み合わせ</b>が、検証済みの形で組み込まれています。ゼロから試行錯誤する必要がありません。</p>
+        <p>「30代のSaaS営業には、事業フェーズより裁量の大きさを先に書く」——<b>ターゲット×媒体×訴求の組み合わせ</b>が検証済みで組み込まれています。ゼロから試す必要はありません。</p>
       </div>
       <div class="why reveal">
         <span class="num">03</span>
@@ -408,11 +409,31 @@
         <p>分析結果が次のスカウト文面に反映されます。<b>御社で返信が来た訴求が、翌週の文面に効いてくる</b>。汎用のAIツールとの差はここで開きます。</p>
       </div>
     </div>
-    <p class="lead reveal">導入後は、御社の採用ご担当者と同じ目線で運用に伴走します。ツールをお渡しして終わりにはしません。</p>
+    <p class="lead reveal">導入後は、御社の運用に伴走します。ツールをお渡しして終わりにはしません。</p>
   </div>
 </section>
 
 <!-- 28 安全性 -->
+<section class="slide sec-alt" id="scout-num" data-nx-impact="scout" data-title="返信率の伸び">
+  <div class="slide-in wrap">
+    <p class="sec-label reveal">AI SCOUT</p>
+    <h2 class="sec-title reveal">テンプレート送信と比べて、<span class="hl">7.3倍</span>。</h2>
+    <div class="cmp">
+      <div class="cmp-col reveal">
+        <h3>テンプレートのみ</h3>
+        <div class="cmp-row"><span class="cmp-k">開封率</span><span class="cmp-bar" style="--w:12%"></span><span class="cmp-v num">12%</span></div>
+        <div class="cmp-row"><span class="cmp-k">返信率</span><span class="cmp-bar" style="--w:3%"></span><span class="cmp-v num">0.3%</span></div>
+      </div>
+      <div class="cmp-col is-win reveal">
+        <h3>パーソナライズ</h3>
+        <div class="cmp-row"><span class="cmp-k">開封率</span><span class="cmp-bar" style="--w:40%"></span><span class="cmp-v num">40%</span></div>
+        <div class="cmp-row"><span class="cmp-k">返信率</span><span class="cmp-bar" style="--w:22%"></span><span class="cmp-v num">2.2%</span></div>
+      </div>
+    </div>
+    <p class="note reveal">※ 開封率 12%→40%（3.3倍）／返信率 0.3%→2.2%（7.3倍）。</p>
+  </div>
+</section>
+
 <section class="slide" id="cases" data-title="導入事例">
   <div class="slide-in wrap">
     <p class="sec-label reveal">CASE</p>
@@ -423,8 +444,8 @@
         <div class="case-hero"><b class="num">8.0</b><span>倍</span></div>
         <p class="case-hero-k">返信率 0.3% → 2.4%</p>
         <dl class="case-why">
-          <dt>導入前</dt><dd>媒体のテンプレートを一斉送信。開封はされても返信がほぼ来ない状態。</dd>
-          <dt>変えたこと</dt><dd>職務経歴書から<b>担当プロダクトと売上規模</b>を抜き出し、その2点に触れた文面をAIが一人ひとり作成。</dd>
+          <dt>導入前</dt><dd>媒体のテンプレートを一斉送信。<br>開封はされても、返信が来ない状態。</dd>
+          <dt>変えたこと</dt><dd>職務経歴書から<b>担当プロダクトと売上規模</b>を抽出。<br>その2点に触れた文面をAIが一人ひとり作成。</dd>
           <dt>結果</dt><dd>開封率 12%→<b>38%</b>。返信率 <b>8.0倍</b>。</dd>
         </dl>
       </div>
@@ -434,7 +455,7 @@
         <p class="case-hero-k">返信率 0.3% → 2.7%</p>
         <dl class="case-why">
           <dt>導入前</dt><dd>競合が同じ候補者に大量送信。開封すらされない。</dd>
-          <dt>変えたこと</dt><dd><b>使用技術スタックと直近の担当プロジェクト</b>を引用し、自社のどの開発に近いかを冒頭2行で提示。</dd>
+          <dt>変えたこと</dt><dd><b>使用技術スタックと直近の担当案件</b>を引用。<br>自社のどの開発に近いかを冒頭2行で提示。</dd>
           <dt>結果</dt><dd>返信率 <b>9.0倍</b>。返信からの<b>面談化率が約2.8倍</b>に。</dd>
         </dl>
       </div>
@@ -443,8 +464,8 @@
         <div class="case-hero"><b class="num">7.0</b><span>倍</span></div>
         <p class="case-hero-k">返信率 0.3% → 2.1%</p>
         <dl class="case-why">
-          <dt>導入前</dt><dd>担当者1名が複数職種を兼任。作成が追いつかず、送信数自体が伸びない。</dd>
-          <dt>変えたこと</dt><dd>作成・送信を全自動化し、職種ごとに訴求を出し分け。<b>送信数を増やしても工数は増えない</b>状態に。</dd>
+          <dt>導入前</dt><dd>担当者1名が複数職種を兼任。<br>作成が追いつかず、送信数が伸びない。</dd>
+          <dt>変えたこと</dt><dd>作成・送信を全自動化。職種ごとに訴求を出し分け。<br><b>送信数を増やしても工数は増えない</b>状態に。</dd>
           <dt>結果</dt><dd>返信率 <b>7.0倍</b>。<b>スカウト単価は約40%削減</b>。</dd>
         </dl>
       </div>
@@ -496,7 +517,7 @@
 <section class="slide sec-alt" id="roi" data-title="費用対効果">
   <div class="slide-in wrap">
     <p class="sec-label reveal">ROI</p>
-    <h2 class="sec-title reveal">どのプランでも、<span class="hl">費用を上回ります。</span></h2>
+    <h2 class="sec-title reveal">どのプランでも、<span class="hl">効果が費用を上回ります。</span></h2>
     <div class="roi-table">
       <div class="rt-row rt-head">
         <span>プラン</span><span>想定の年間採用数</span><span>削減できる人件費</span><span>紹介1名分の内製化</span><span>年間費用</span><span>差引</span>
@@ -526,7 +547,7 @@
         <span class="rt-plus num">＋62万円</span>
       </div>
     </div>
-    <p class="lead reveal">採用の量が増えるほど、削減できる時間と紹介手数料も増えます。<br>そのため<span class="hl">どの規模でも費用対効果は成立します。</span></p>
+    <p class="lead reveal">採用の量が増えるほど、削減できる時間と紹介手数料も増えます。<br><span class="hl">どの規模でも、費用対効果は成立します。</span></p>
     <p class="note reveal">※ 人材紹介手数料 約103万円＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり。人件費＝1名あたりAIが引き取る工数60時間 × 時給換算3,000円（当社試算）。</p>
   </div>
 </section>
@@ -565,12 +586,12 @@
 <section class="slide" id="safety" data-img="assets/sec_safety.webp" data-title="安全性">
   <div class="slide-in wrap">
     <p class="sec-label reveal">SAFETY &amp; FAIRNESS</p>
-    <h2 class="sec-title reveal">一次はお任せいただき、最終は必ず人が決める。</h2>
+    <h2 class="sec-title reveal">一次選考はAIが、最終判断は人が行います。</h2>
     <div class="safe-list">
-      <div class="safe reveal"><h3>AIが合否を決めるのか</h3><p>AIが行うのは一次選考の原案作成までです。最終判断は必ず人が行います。</p></div>
-      <div class="safe reveal"><h3>判断根拠を説明できるか</h3><p>判定理由と、根拠となった記載箇所を出力します。</p></div>
-      <div class="safe reveal"><h3>個人情報の取り扱い</h3><p>保管期間・アクセス権限・学習利用の有無を明記します。</p></div>
-      <div class="safe reveal"><h3>応募者への告知</h3><p>録音同意・AI利用告知の運用をご支援します。</p></div>
+      <div class="safe reveal"><h3>AIが合否を決めるのか</h3><p>AIが行うのは原案作成までです。<br>最終判断は必ず人が行います。</p></div>
+      <div class="safe reveal"><h3>判断根拠を説明できるか</h3><p>判定理由と、根拠となった<br>記載箇所を出力します。</p></div>
+      <div class="safe reveal"><h3>個人情報の取り扱い</h3><p>保管期間・アクセス権限・<br>学習利用の有無を明記します。</p></div>
+      <div class="safe reveal"><h3>応募者への告知</h3><p>録音同意・AI利用告知の<br>運用をご支援します。</p></div>
     </div>
     <p class="note reveal wip">※ 法令に関する記載は、確認のうえ最終版で正確に記載します。</p>
   </div>
@@ -601,8 +622,8 @@
     <h2 class="sec-title reveal">よくあるご質問</h2>
     <div class="faq-list">
       <details class="reveal"><summary>既存のATSと併用できますか。</summary><p>併用を前提としています。連携範囲は御社の運用に合わせて設定します。</p></details>
-      <details class="reveal"><summary>個人情報はどう扱われますか。</summary><p>御社との契約で定めた期間のみ保管し、当社のAIモデルの学習には利用しません。アクセス権限は御社が指定した担当者に限定します。</p></details>
-      <details class="reveal"><summary>実際に必要な運用工数はどのくらいですか。</summary><p>面接と、日程調整時の送信確認が中心です。初期設定は当社が実施します。</p></details>
+      <details class="reveal"><summary>個人情報はどう扱われますか。</summary><p>御社との契約で定めた期間のみ保管し、当社のAIモデルの学習には利用しません。<br>アクセス権限は、御社が指定した担当者に限定します。</p></details>
+      <details class="reveal"><summary>運用にかかる工数はどのくらいですか。</summary><p>面接と、日程調整時の送信確認が中心です。初期設定は当社が実施します。</p></details>
     </div>
   </div>
 </section>
@@ -611,7 +632,7 @@
 <section class="slide sec-center sec-cta" id="cta" data-img="assets/sec_cta.webp" data-title="お問い合わせ">
   <div class="slide-in wrap">
     <p class="sec-label reveal">CONTACT</p>
-    <h2 class="cta-title reveal">まずは、御社の採用にかかっている<br>時間を可視化しませんか。</h2>
+    <h2 class="cta-title reveal">まずは、御社の採用にかかる<br>時間を可視化しませんか。</h2>
     <p class="lead reveal">現在の採用工数を一緒に洗い出し、<br>どこがどれだけ減らせるかを算出してお渡しします。</p>
     <p class="foot-co reveal">株式会社NEXT</p>
   </div>

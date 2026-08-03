@@ -6,6 +6,7 @@ import { init as initCore3d } from './core3d.js';
 import { init as initCharts } from './charts.js';
 import { init as initDeck } from './deck.js';
 import { init as initFnVideo } from './fnvideo.js';
+import { init as initImpact } from './impact.js';
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 window.NX = { reduce };
@@ -41,6 +42,7 @@ function boot() {
   safe('charts', initCharts);
   safe('deck', initDeck);
   safe('fnvideo', initFnVideo);
+  safe('impact', initImpact);
 
   if (window.ScrollTrigger) {
     window.addEventListener('load', () => window.ScrollTrigger.refresh());
