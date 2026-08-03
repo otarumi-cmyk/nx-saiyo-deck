@@ -38,7 +38,8 @@ function boot() {
   safe('hero', initHero);
   safe('timeline', initTimeline);
   safe('viz', initViz);
-  safe('core3d', initCore3d);
+  // ビジョンスライド削除に伴い停止
+  // safe('core3d', initCore3d);
   safe('charts', initCharts);
   safe('deck', initDeck);
   safe('fnvideo', initFnVideo);
