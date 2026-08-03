@@ -35,12 +35,12 @@
 .sec-alt .nx-chart { --nx-surface: var(--bg-2, #0C121A); }
 
 .nx-chart .nx-t {
-  font-family: 'Zen Kaku Gothic New', system-ui, sans-serif;
+  font-family: 'Noto Sans JP', system-ui, sans-serif;
   letter-spacing: .01em;
 }
 
 .nx-chart .nx-mono {
-  font-family: 'Roboto Mono', 'Zen Kaku Gothic New', sans-serif;
+  font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
   letter-spacing: -.01em;
 }
 

@@ -30,7 +30,7 @@ body {
   overflow-x: hidden;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.85;
@@ -119,7 +119,7 @@ ul {
 .cmp-k,
 .preview-badge,
 [data-count] {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Space Grotesk', monospace;
 }
 
 .sec-label {
@@ -565,7 +565,7 @@ ul {
   display: block;
   margin-bottom: 4px;
   color: var(--ink-dim);
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Space Grotesk', monospace;
   font-size: .7rem;
   font-weight: 700;
   letter-spacing: .1em;
@@ -1109,7 +1109,7 @@ ul {
 
 .logos-track span {
   color: rgba(232, 238, 245, .56);
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Space Grotesk', monospace;
   font-size: .82rem;
   font-weight: 500;
   letter-spacing: .04em;

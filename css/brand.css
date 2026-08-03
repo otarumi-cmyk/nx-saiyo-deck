@@ -397,3 +397,37 @@ body{
 .logos.is-marquee .logos-track img:hover{ opacity:1; }
 @keyframes nx-marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
 @media (prefers-reduced-motion: reduce){ .logos.is-marquee .logos-track{ animation:none !important; flex-wrap:wrap; width:100%; } }
+
+/* ============================================================
+   審査班の指摘：規格の統一
+   角丸が7種類・カード余白が5種類・数値サイズがバラバラだったため揃える
+   ============================================================ */
+.fn,.case,.cp,.why,.safe,.only-card,.media,.cmp-col,.stat,.plan,.lc-col,.ch-card,
+.fit-col,.roi-item,.flow-steps li,.faq-list details,.fs2,.bignum,.only-card{
+  border-radius:6px !important;
+  padding:var(--sp-3) !important;
+}
+.ch-card,.plan,.lc-col{ padding:var(--sp-4) !important; }
+.pm-wrap,.sc-table,.roi-table,.fm-table,.stackbar,.fn-video{ border-radius:6px !important; }
+.deck-nav,.preview-badge,.plan-badge,.pm-badge{ border-radius:100px !important; }
+
+/* 数値の共通スケール（主数値／副数値／単位） */
+.stat-v,.bignum-v,.case-hero b,.ch-num b,.ba2-total,.price-v,.plan-price,.tl-meter-v{
+  font-size:clamp(2.2rem,4.2vw,3.4rem) !important; line-height:1.05 !important;
+}
+.case-hero b{ font-size:clamp(2.6rem,5vw,4rem) !important; }
+.stat-v small,.bignum-v small,.ch-num b small,.ba2-total small,.price-v small,.plan-price small,.tl-meter-v small{
+  font-size:.30em !important; color:var(--ink-dim) !important; font-weight:400 !important; margin-left:5px;
+}
+.case-hero span{ font-size:.30em !important; color:var(--ink-dim) !important; }
+
+/* 凡例スウォッチの規格統一 */
+.tl-legend i,.sbl i,.fs2-lg i,.lg i{ width:13px !important; height:13px !important; border-radius:3px !important; }
+.tl-legend,.sb-legend,.fs2-legend{ font-size:.82rem !important; }
+
+/* 見出し階層の逆転を解消（CTAが節見出しより小さかった） */
+.cta-title{ font-size:clamp(1.8rem,3.4vw,3rem) !important; }
+.tl-title{ font-size:clamp(1.5rem,2.8vw,2.4rem) !important; font-weight:900 !important; }
+
+/* イージングの統一 */
+*, *::before, *::after{ transition-timing-function:var(--ease-out); }

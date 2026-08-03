@@ -21,7 +21,7 @@
 import * as THREE from 'three';
 
 /* ---------- 色（シアン〜青のみ。暖色は使わない） ---------- */
-const COL_ACCENT = new THREE.Color(0x00d4ff); // --accent
+const COL_ACCENT = new THREE.Color(0x3b82f6); // --accent
 const COL_ACCENT2 = new THREE.Color(0x2b6cff); // --accent-2
 const COL_PALE = new THREE.Color(0xbfeeff); // 淡いシアン
 

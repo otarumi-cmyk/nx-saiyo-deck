@@ -42,7 +42,7 @@ const CFG = {
   mouseEase: 1.8
 };
 
-const COL_ACCENT = 0x00d4ff;   // --accent
+const COL_ACCENT = 0x3b82f6;   // --accent
 const COL_ACCENT2 = 0x2b6cff;  // --accent-2
 const COL_PALE = 0xbfeeff;     // 淡いシアン（ハイライト用）
 
