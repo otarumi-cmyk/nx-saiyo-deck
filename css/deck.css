@@ -223,7 +223,7 @@ body{
 /* ---------- ビジョン ---------- */
 #vision .vision-bg{
   position:absolute; inset:0; z-index:0;
-  background:url("../assets/04_final_interview.webp") center/cover no-repeat;
+  background:url("../assets/sec_vision.webp") center/cover no-repeat;
   opacity:.34;
 }
 #vision::after{
