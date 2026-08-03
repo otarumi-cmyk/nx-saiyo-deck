@@ -1,0 +1,233 @@
+/* css/charts.css — 班H：図解・グラフ専用スタイル
+   .chart-slot の基本（width / svg width:100%）は班Aの css/style.css が持つ。
+   ここは班Hが生成する .nx-* と、スロットがスライド内で収まるための最小限だけを書く。
+   色は deck.css / CONTRACT.md のトークンから起こしたロール変数のみ。黄・金・暖色は使わない。 */
+
+/* ------------------------------------------------------------------ */
+/* 1. ロール変数（生のhexはここだけ。JSは var(--nx-*) を参照する）       */
+/* ------------------------------------------------------------------ */
+
+.nx-chart {
+  /* 系列色：emphasis（アクセント1色＋沈んだグレー）
+     validate_palette.js --mode dark --surface #0C121A 実測:
+       CVD ΔE 11.4 (deutan) / normal 15.4 / contrast 全色 ≥3:1 いずれもPASS */
+  --nx-in-1: var(--accent, #00D4FF);   /* 社内の時間・主役   10.4:1 */
+  --nx-in-2: #2C9DBC;                  /* 同じシアンの1段下   5.8:1 */
+  --nx-ex-1: var(--ink-dim, #94A3B4);  /* 外部費用・明        6.3:1 */
+  --nx-ex-2: #5A6879;                  /* 外部費用・暗        3.30:1 */
+  --nx-mute: #6B7A8C;                  /* 雑務／サービス費用  4.29:1 */
+
+  /* テキスト・罫線トークン（系列色を文字には乗せない） */
+  --nx-ink: var(--ink, #EAF0F7);
+  --nx-dim: var(--ink-dim, #94A3B4);
+  --nx-grid: rgba(255, 255, 255, .07);
+  --nx-axis: rgba(255, 255, 255, .16);
+  --nx-track: rgba(255, 255, 255, .05);
+
+  /* サーフェス：隙間・端点リングに使う。スライドの背景と一致させる */
+  --nx-surface: var(--bg, #05070A);
+
+  display: block;
+  min-width: 0;
+  margin: 0;
+}
+
+.sec-alt .nx-chart { --nx-surface: var(--bg-2, #0C121A); }
+
+.nx-chart .nx-t {
+  font-family: 'Zen Kaku Gothic New', system-ui, sans-serif;
+  letter-spacing: .01em;
+}
+
+.nx-chart .nx-mono {
+  font-family: 'Roboto Mono', 'Zen Kaku Gothic New', sans-serif;
+  letter-spacing: -.01em;
+}
+
+/* 未確定のプレースホルダ（deck.css の .ph と同じ作法：破線の下線） */
+.nx-chart .nx-ph {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+}
+
+.nx-chart .nx-note {
+  margin: 12px 0 0;
+  color: var(--nx-dim);
+  font-size: .68rem;
+  line-height: 1.65;
+  opacity: .9;
+}
+
+/* SVGは viewBox で可変。はみ出しで横スクロールを出さない */
+.nx-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+/* スライドは高さ固定。style.css の縦マージン48pxは効きすぎるので殺す */
+.slide .chart-slot[data-chart] { margin: 0; }
+
+/* ------------------------------------------------------------------ */
+/* 2. cost-donut ── 採用コストの内訳                                    */
+/*    置かれた枠の幅で切り替える（列組みが変わっても崩れない）           */
+/* ------------------------------------------------------------------ */
+
+.nx-donut { container-type: inline-size; }
+
+.nx-donut-body {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 18px;
+}
+
+/* スライドは高さ固定。リングは大きくしすぎると .slide-in に縦スクロールが出る */
+.nx-donut-ring {
+  width: 100%;
+  min-width: 0;
+  max-width: 196px;
+}
+
+.nx-legend {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 枠が広いときだけ左右2段組にする */
+@container (min-width: 560px) {
+  .nx-donut-body {
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+    align-items: center;
+    justify-items: stretch;
+    gap: 48px;
+  }
+  .nx-donut-ring { max-width: 300px; }
+}
+
+.nx-lg-grp {
+  padding-left: 12px;
+  border-left: 2px solid var(--nx-grid);
+}
+
+.nx-lg-grp.is-in { border-left-color: var(--nx-in-1); }
+
+.nx-lg-head {
+  display: flex;
+  margin: 0 0 4px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+}
+
+.nx-lg-head b {
+  color: var(--nx-ink);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+
+.nx-lg-grp.is-in .nx-lg-head b { color: var(--nx-in-1); }
+
+.nx-lg-head span {
+  color: var(--nx-dim);
+  font-size: .64rem;
+  letter-spacing: .02em;
+}
+
+.nx-lg-list { margin: 0; padding: 0; list-style: none; }
+
+.nx-lg {
+  display: grid;
+  min-width: 0;
+  padding: 3px 0;
+  grid-template-columns: 10px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 10px;
+}
+
+.nx-sw {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  transform: translateY(1px);
+}
+
+.nx-lg-t {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 7px;
+}
+
+.nx-lg-t b {
+  color: var(--nx-ink);
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.nx-lg-t em {
+  color: var(--nx-dim);
+  font-size: .64rem;
+  font-style: normal;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. chore-ratio ── 雑務の比率（.tl-meter の中・インライン）            */
+/* ------------------------------------------------------------------ */
+
+/* .tl-meter は右寄せの1行フレックス。メーターは折り返して自分の行を持つ */
+.tl-meter { flex-wrap: wrap; }
+
+.tl-meter .chart-slot.chart-inline {
+  flex: 1 0 100%;
+  width: 100%;
+  margin: 12px 0 0;
+}
+
+/* viewBox 240 に対して実寸も 240px 前後に抑える（拡大して文字が暴れるのを防ぐ）。
+   右端の 6px は .slide-in のスクロールバーに文字が潜らないための逃げ。 */
+.nx-ratio { width: 100%; max-width: 242px; margin: 0 6px 0 auto; }
+
+/* ------------------------------------------------------------------ */
+/* 4. roi-cumulative ── 年間の累積効果                                  */
+/* ------------------------------------------------------------------ */
+
+/* SVG内の文字サイズがビューポート幅で暴れないよう描画幅に上限を置く
+   （viewBox 720 → 実寸最大720px＝ほぼ等倍。狭い枠ではJSが縦長版を描き直す） */
+.nx-roi-plot {
+  width: 100%;
+  min-width: 0;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. SP（768px以下）                                                   */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+  .nx-donut-ring { max-width: min(200px, 62vw); }
+  .nx-legend { gap: 12px; }
+  .nx-lg-t b { font-size: .74rem; }
+  .nx-chart .nx-note { margin-top: 10px; font-size: .64rem; }
+  .nx-roi-plot { max-width: 100%; }
+}
+
+/* ------------------------------------------------------------------ */
+/* 6. 動きを減らす設定（JS側も NX.reduce で最終状態を即表示する）        */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-chart * { transition: none !important; }
+}

@@ -1,0 +1,60 @@
+/* =========================================================================
+   css/fx.css — 班G / 3D演出まわりの装飾のみ
+   ---------------------------------------------------------------------
+   ここに書いてよいのは js/core3d.js が描く2枚のキャンバス
+   （#core-canvas / #orbit-canvas）に付随する見た目だけ。
+   位置・サイズ・z-index は他班のCSS（style.css / deck.css）の定義が正本で、
+   このファイルでは一切上書きしない。
+   ========================================================================= */
+
+/* --- 立ち上がり ---------------------------------------------------------
+   WebGLの初回描画が済むまでは透明。core3d.js が .is-live を付ける。
+   WebGL非対応・初期化失敗時は透明のまま＝レイアウトが崩れない。 */
+#core-canvas,
+#orbit-canvas {
+  opacity: 0;
+  transition: opacity 1.1s ease-out;
+}
+
+#core-canvas.is-live,
+#orbit-canvas.is-live {
+  opacity: 1;
+}
+
+/* --- 合成モード ---------------------------------------------------------
+   キャンバスは加算合成で「光」しか描いていない。screen で重ねることで
+   暗部が完全に透け、背景画像・スケジュールのブロック・円環のノードを
+   一切覆い隠さずに発光だけが乗る。 */
+#core-canvas {
+  mix-blend-mode: screen;
+  will-change: opacity;
+}
+
+#orbit-canvas {
+  mix-blend-mode: screen;
+  pointer-events: none; /* 円環は装飾。手前のノード操作を邪魔しない */
+}
+
+/* --- スライドが主役でないときは光量を落とす ----------------------------
+   横デッキでは、めくっている最中に隣のスライドの3Dが視界に入る。
+   主役でない間はコアを沈めて、いま見ているスライドの邪魔をしない。 */
+#vision:not(.is-active) #core-canvas.is-live {
+  opacity: .34;
+}
+
+#map:not(.is-active) #orbit-canvas.is-live {
+  opacity: .45;
+}
+
+/* --- 動きを減らす設定 --------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  #core-canvas,
+  #orbit-canvas {
+    transition: none;
+  }
+
+  #vision:not(.is-active) #core-canvas.is-live,
+  #map:not(.is-active) #orbit-canvas.is-live {
+    opacity: 1;
+  }
+}
