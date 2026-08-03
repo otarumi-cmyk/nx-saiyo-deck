@@ -1057,3 +1057,50 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .sb-seg i{ display:none; }
   .sb-seg b{ font-size:.7rem; }
 }
+
+/* ---------- 29. 指摘対応まとめ ---------- */
+/* 7機能フローのアイコン */
+.f7-icon{ display:flex; align-items:center; justify-content:center; color:var(--accent); padding:9px; }
+.f7-icon svg{ width:100%; height:100%; }
+.f7.is-key .f7-icon{ background:var(--acc-10); border-color:var(--acc-60); }
+
+/* 実績ロゴを流す */
+.logos.is-marquee{ overflow:hidden; margin-top:var(--sp-5); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+.logos.is-marquee .logos-track{
+  display:flex !important; grid-template-columns:none !important;
+  gap:var(--sp-7) !important; width:max-content;
+  animation:nx-marquee 34s linear infinite !important;
+}
+.logos.is-marquee .logos-track span{ display:block !important; white-space:nowrap; font-size:.92rem; opacity:.55; }
+@keyframes nx-marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.logos.is-marquee:hover .logos-track{ animation-play-state:paused !important; }
+
+/* ---------- 30. プラン対応表 ---------- */
+.pm-wrap{ width:100%; overflow-x:auto; margin:var(--sp-4) 0 var(--sp-2); }
+.pm{ width:100%; border-collapse:collapse; font-size:.85rem; }
+.pm th, .pm td{ padding:9px var(--sp-2); text-align:center; border-bottom:1px solid var(--line); }
+.pm thead th{ vertical-align:bottom; padding-bottom:var(--sp-3); border-bottom:1px solid var(--line); position:relative; }
+.pm th.is-key, .pm td.is-key{ background:var(--acc-04); }
+.pm thead th.is-key{ background:var(--surface-2); border-radius:6px 6px 0 0; }
+.pm-fn{ text-align:left !important; color:var(--ink-dim); font-weight:400; white-space:nowrap; }
+.pm-fn i{ display:block; font-style:normal; font-size:.68rem; opacity:.7; }
+.pm-name{ display:block; font-size:.72rem; color:var(--ink-dim); letter-spacing:.06em; }
+.pm-price{ display:block; font-size:1.9rem; font-weight:700; line-height:1.2; margin:2px 0; }
+.pm thead .is-key .pm-price{ color:var(--accent); }
+.pm-price small{ font-size:.32em; color:var(--ink-dim); margin-left:3px; font-weight:400; }
+.pm-target{ display:block; font-size:.68rem; color:var(--ink-dim); }
+.pm-badge{ position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:.62rem; background:var(--accent); color:#04222B; padding:2px 10px; border-radius:100px; font-weight:700; }
+.pm .ok{ color:var(--accent); font-size:1rem; }
+.pm .no{ color:rgba(148,163,180,.35); }
+.pm tbody tr:hover td{ background:rgba(255,255,255,.02); }
+.pm tbody tr:hover td.is-key{ background:var(--acc-10); }
+
+/* ---------- 31. 事例：なぜそうなったか ---------- */
+.case-why{ margin:var(--sp-3) 0 0; text-align:left; }
+.case-why dt{ font-size:.66rem; letter-spacing:.08em; color:var(--ink-dim); margin-top:10px; }
+.case-why dt:first-child{ margin-top:0; }
+.case-why dd{ margin:3px 0 0; font-size:.78rem; line-height:1.7; color:var(--ink-dim); }
+.case-why dd b{ color:var(--ink); font-weight:700; }
+.case h3 i{ display:block; font-style:normal; font-size:.68rem; opacity:.7; margin-top:3px; }
+.case-hero-k{ font-size:.72rem; color:var(--ink-dim); margin:2px 0 var(--sp-2); }
+@media (max-width:900px){ .pm{ font-size:.75rem; } .pm-price{ font-size:1.4rem; } }
