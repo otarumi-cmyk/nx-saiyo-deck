@@ -2,20 +2,30 @@
    impact.css — 班I: インパクト可視化（#scout-num）
    ・旧 .cmp（左右2枚のカード）を隠す
    ・js/impact.js が差し込む「倍率の共通軸 ＋ before棒 ＋ after矢印」の見た目
-   ・色はシアン1色。黄・金・暖色は使わない。明朝体は使わない。
+   ・アクセントは1色だけ。黄・金・暖色は使わない。明朝体は使わない。
+   ・色と書体はデッキのトークン（--accent / --font-en / --font-jp）をそのまま使う。
+     ここで色名を直書きしないので、brand.css の配色変更に自動で追従する。
+     フォールバックは旧トークン（Roboto Mono / Zen Kaku Gothic New）。
    ============================================================ */
+
+.imp{
+  /* 数字は等幅相当（Space Grotesk / Roboto Mono とも tabular figures を持つ）。
+     カウントアップ中に桁幅が揺れないようにする。 */
+  --imp-num: var(--font-en, 'Roboto Mono', monospace);
+  --imp-jp:  var(--font-jp, 'Zen Kaku Gothic New', sans-serif);
+}
 
 /* 旧レイアウトを隠す。JSが .nx-imp-on を付けたときだけ効くので、
    JSが落ちた場合は元の図がそのまま残る（フォールバック）。 */
-#scout-num.nx-imp-on .cmp,
-#scout-num.nx-imp-on .cmp-col,
-#scout-num.nx-imp-on .cmp-row,
-#scout-num.nx-imp-on .cmp-bar,
-#scout-num.nx-imp-on .cmp-v{ display:none !important; }
+.nx-imp-on .cmp,
+.nx-imp-on .cmp-col,
+.nx-imp-on .cmp-row,
+.nx-imp-on .cmp-bar,
+.nx-imp-on .cmp-v{ display:none !important; }
 
 /* 旧注記「返信率のグラフは、見やすさのため別の目盛りで表示しています」は
-   新しい図（同一目盛り）と矛盾するので、あわせて隠す。 */
-#scout-num.nx-imp-on > .slide-in > .note{ display:none !important; }
+   新しい図（同一目盛り）と矛盾するので、旧 .cmp を置き換えたときだけ隠す。 */
+.nx-imp-legacy > .slide-in > .note{ display:none !important; }
 
 /* ---------- 図の外枠 ---------- */
 .imp{
@@ -39,12 +49,12 @@
   font-size:.9rem;
   line-height:1.5;
   color:var(--ink-dim);
-  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-family:var(--imp-jp);
 }
 .imp-lead b{
   color:var(--ink);
   font-weight:700;
-  font-family:'Roboto Mono','Zen Kaku Gothic New',sans-serif;
+  font-family:var(--imp-num); font-variant-numeric:tabular-nums;
 }
 
 .imp-legend{
@@ -56,7 +66,7 @@
   list-style:none;
   font-size:.72rem;
   color:var(--ink-dim);
-  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-family:var(--imp-jp);
 }
 .imp-legend li{ display:flex; align-items:center; gap:7px; }
 .imp-legend li::before{
@@ -65,7 +75,7 @@
   border-radius:2px;
   flex:0 0 auto;
 }
-.imp-lg-b::before{ background:rgba(148,163,180,.30); }
+.imp-lg-b::before{ background:rgba(147,163,190,.34); }
 .imp-lg-a::before{ background:var(--accent); box-shadow:0 0 8px var(--acc-24); }
 
 .imp-svg{
@@ -81,7 +91,7 @@
   line-height:1.6;
   color:var(--ink-dim);
   opacity:.85;
-  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-family:var(--imp-jp);
 }
 
 /* ---------- 目盛り ---------- */
@@ -90,7 +100,7 @@
 .imp-tick{
   fill:var(--ink-dim);
   opacity:.75;
-  font-family:'Roboto Mono',monospace;
+  font-family:var(--imp-num); font-variant-numeric:tabular-nums;
   font-weight:500;
 }
 
@@ -104,40 +114,40 @@
 .imp-reflab{
   fill:var(--accent);
   opacity:.75;
-  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-family:var(--imp-jp);
   font-weight:500;
 }
 
 /* ---------- 行 ---------- */
 .imp-rowtitle{
   fill:var(--ink);
-  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-family:var(--imp-jp);
   font-weight:700;
   letter-spacing:.02em;
 }
 
-.imp-before{ fill:rgba(148,163,180,.30); }
+.imp-before{ fill:rgba(147,163,190,.34); }
 
 .imp-beforelab{
   fill:var(--ink-dim);
-  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-family:var(--imp-jp);
 }
 .imp-beforelab .imp-mono{
-  font-family:'Roboto Mono',monospace;
+  font-family:var(--imp-num); font-variant-numeric:tabular-nums;
   font-weight:700;
   fill:var(--ink);
 }
 
 /* 矢印 */
-.imp-arrowg{ filter:drop-shadow(0 0 12px rgba(0,212,255,.32)); }
+.imp-arrowg{ filter:drop-shadow(0 0 12px var(--acc-24)); }
 .imp-g0{ stop-color:var(--accent); stop-opacity:.42; }
 .imp-g1{ stop-color:var(--accent); stop-opacity:1; }
 .imp-streak{ stroke:var(--accent); stroke-linecap:round; opacity:0; }
 
-/* 矢印の上に乗る到達値（濃紺の文字 × シアン地） */
+/* 矢印の上に乗る到達値（背景色の文字 × アクセント地） */
 .imp-pct{
-  fill:#04252E;
-  font-family:'Roboto Mono',monospace;
+  fill:var(--bg);
+  font-family:var(--imp-num); font-variant-numeric:tabular-nums;
   font-weight:700;
   letter-spacing:.02em;
 }
@@ -145,12 +155,12 @@
 /* 倍率（この図の主役） */
 .imp-big{
   fill:var(--accent);
-  font-family:'Roboto Mono',monospace;
+  font-family:var(--imp-num); font-variant-numeric:tabular-nums;
   font-weight:700;
   letter-spacing:-.02em;
 }
 .imp-big-u{
-  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-family:var(--imp-jp);
   font-weight:700;
   letter-spacing:0;
 }

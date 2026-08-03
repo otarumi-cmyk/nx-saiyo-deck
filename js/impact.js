@@ -35,14 +35,20 @@ export function init() {
   if (booted) return;
   booted = true;
 
-  const sec = document.getElementById('scout-num');
+  // 置き場所: #scout-num（原契約）。構成変更でIDが変わった場合に備えて、
+  // 司令塔が任意のスライドに data-nx-impact="scout" を付ければそこに出る。
+  const sec = document.getElementById('scout-num')
+    || document.querySelector('[data-nx-impact="scout"]');
   if (!sec) return;
   const inner = sec.querySelector('.slide-in');
   if (!inner) return;
   if (inner.querySelector('.imp')) return;   // 二重生成しない
 
+  const hadCmp = !!inner.querySelector('.cmp');
   const chart = build(inner);
   sec.classList.add('nx-imp-on');            // ここで初めて旧 .cmp を隠す
+  // 旧・左右2枚のカードを置き換えた場合だけ、その注記（別目盛りの断り書き）も隠す
+  if (hadCmp) sec.classList.add('nx-imp-legacy');
 
   const gsap = window.gsap || null;
   const reduce = !!(window.NX && window.NX.reduce);
@@ -474,8 +480,9 @@ function buildTimeline(chart, gsap, onDone) {
       onUpdate: function () { setBigValue(r, c.v); },
       onComplete: function () { setBigValue(r, r.disp); },
     }, flyAt + 0.1);
+    // 矢印が終点に近づいてから出す（先回りして終点で待っているように見せない）
     tl.fromTo(r.big, { opacity: 0, x: -26, scale: 0.9, transformOrigin: '100% 50%' },
-      { opacity: 1, x: 0, scale: 1, duration: 0.6, ease: 'power3.out' }, flyAt + 0.22);
+      { opacity: 1, x: 0, scale: 1, duration: 0.52, ease: 'power3.out' }, flyAt + 0.38);
 
     // 7) 到達後の実数（40% / 2.2%）
     tl.fromTo(r.pct, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' },

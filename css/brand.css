@@ -239,3 +239,31 @@ h1,h2,h3,p,li,dd,dt,td,th,summary,
 .sc-extra{ border-top:1px solid var(--line); }
 .sc-extra .sc-n{ color:var(--ink-dim); font-size:.82rem; }
 @media (max-width:900px){ .ba2{ grid-template-columns:1fr; } .ba2-arrow svg{ transform:rotate(90deg); width:60px; margin:0 auto; } }
+
+/* ============================================================
+   格子背景を撤去（視認性が悪いため）
+   フォントとアクセント色でブランドを担保し、背景は無地に近づける。
+   ============================================================ */
+body{
+  background-image:none !important;
+  background-color:var(--bg) !important;
+  background-attachment:scroll !important;
+}
+.slide{
+  background:linear-gradient(180deg,#0B0F1A 0%,#0D1220 100%) !important;
+}
+.slide.sec-alt{
+  background:linear-gradient(180deg,#0E1422 0%,#111827 100%) !important;
+}
+.slide.sec-dark{ background:#070A12 !important; }
+/* 中央の淡い光だけ残す（平坦な黒板に見えないように、ごく弱く） */
+.slide::before{
+  background:radial-gradient(ellipse 80% 60% at 50% 38%, rgba(59,130,246,.045), transparent 72%) !important;
+}
+.slide.chdiv::before, .sec-cta::before, #safety::before{
+  background-image:var(--chdiv-img) !important;
+}
+/* 本文のコントラストを上げる */
+:root{ --ink-dim:#A3B2C9; }
+.lead{ color:#C6D2E4 !important; }
+.note{ color:#8C9BB4 !important; }
