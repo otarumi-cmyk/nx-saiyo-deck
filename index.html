@@ -484,5 +484,26 @@
 <div class="deck-hint" id="deck-hint" aria-hidden="true">横にスワイプ／← → キーでめくれます</div>
 
 <script type="module" src="js/main.js"></script>
+
+<!-- 画面端のナビゲーション（ホバーで出る。既存の ‹ › ボタンに委譲する） -->
+<button class="edge-nav is-prev" id="edge-prev" type="button" aria-label="前のスライド">
+  <span class="edge-chev"></span>
+</button>
+<button class="edge-nav is-next" id="edge-next" type="button" aria-label="次のスライド">
+  <span class="edge-chev"></span>
+</button>
+<script>
+  (function () {
+    var map = { 'edge-prev': 'deck-prev', 'edge-next': 'deck-next' };
+    Object.keys(map).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('click', function () {
+        var t = document.getElementById(map[id]);
+        if (t && !t.disabled) t.click();
+      });
+    });
+  })();
+</script>
 </body>
 </html>

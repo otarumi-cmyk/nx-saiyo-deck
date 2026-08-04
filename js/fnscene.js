@@ -457,7 +457,8 @@ function scene07(root) {
   root.appendChild(f);
   root.appendChild(el('div', 'fs-scan'));
   root.appendChild(el('p', 'fs-flag',
-    '<b>ボトルネックは「開封 → 返信」。</b>前週から <em>−2.1pt</em>。文面の見直しをおすすめします'));
+    '<b>「開封 → 返信」が、業界平均 8.4% より <em>2.9pt 低い</em>。</b>'
+    + '20万件の採用データと突き合わせて、直すべき一点を特定します'));
 
   return (gsap) => {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });

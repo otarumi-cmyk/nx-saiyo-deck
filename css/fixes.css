@@ -1158,3 +1158,79 @@ body:has(#hero.is-active) .nav-hint{ opacity:1; }
   .nav-hint-a{ flex-direction:row; margin:0; }
   .nav-chev{ transform:rotate(-45deg); }
 }
+
+/* ==================================================================
+   50. 表紙の案内：「＞」を大きく・太く・角ばらせ、間隔を空ける
+   ================================================================== */
+.nav-hint{ width:clamp(230px,20vw,310px); }
+.nav-hint-t{
+  font-size:clamp(1.05rem,1.55vw,1.35rem) !important;
+  line-height:1.95 !important; letter-spacing:.2em !important;
+  margin-right:clamp(10px,1.4vw,20px) !important;
+}
+.nav-hint-a{ gap:clamp(16px,1.8vw,26px) !important; margin-right:clamp(18px,2.4vw,38px) !important; }
+.nav-chev{
+  width:clamp(52px,4.6vw,74px) !important;
+  height:clamp(52px,4.6vw,74px) !important;
+  border-right-width:12px !important;
+  border-bottom-width:12px !important;
+  border-radius:0 !important;                /* 角ばらせる */
+}
+
+/* ボトルネックの指摘文 */
+.fs-flag{ font-size:.9rem !important; line-height:1.7; }
+.fs-flag b{ display:inline; }
+.fs-flag em{ color:var(--accent) !important; }
+/* 45度回転すると見た目の高さが 1.41 倍になり、指定した gap が食われて重なる。
+   回転ぶん（辺長 × 0.41）を足してから、実際に空けたい分を上乗せする。 */
+.nav-hint-a{ gap:clamp(46px,5vw,72px) !important; }
+
+/* ==================================================================
+   51. 画面の左右端：マウスを寄せると ‹ › が出て、押すとめくれる
+   ================================================================== */
+.edge-nav{
+  position:fixed; top:0; bottom:78px;          /* 下のドット列は避ける */
+  width:13vw; min-width:96px; max-width:220px;
+  z-index:40; border:0; padding:0; cursor:pointer;
+  background:transparent;
+  display:flex; align-items:center;
+  opacity:0; transition:opacity .28s var(--ease-out);
+  -webkit-tap-highlight-color:transparent;
+}
+.edge-nav.is-prev{ left:0;  justify-content:flex-start; padding-left:clamp(18px,2vw,34px); }
+.edge-nav.is-next{ right:0; justify-content:flex-end;   padding-right:clamp(18px,2vw,34px); }
+.edge-nav::before{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+}
+.edge-nav.is-prev::before{ background:linear-gradient(90deg, rgba(11,37,69,.30), rgba(11,37,69,0)); }
+.edge-nav.is-next::before{ background:linear-gradient(270deg, rgba(11,37,69,.30), rgba(11,37,69,0)); }
+.edge-nav:hover{ opacity:1; }
+.edge-nav:focus-visible{ opacity:1; outline:2px solid var(--accent); outline-offset:-4px; }
+
+.edge-chev{
+  display:block; width:clamp(34px,3.2vw,52px); height:clamp(34px,3.2vw,52px);
+  border-right:10px solid #fff; border-bottom:10px solid #fff;
+  filter:drop-shadow(0 2px 10px rgba(0,0,0,.45));
+  transition:transform .28s var(--ease-out);
+}
+.edge-nav.is-next .edge-chev{ transform:rotate(-45deg); }
+.edge-nav.is-prev .edge-chev{ transform:rotate(135deg); }
+.edge-nav.is-next:hover .edge-chev{ transform:rotate(-45deg) translate(5px,5px); }
+.edge-nav.is-prev:hover .edge-chev{ transform:rotate(135deg) translate(5px,5px); }
+
+/* 白地のスライドでは、白い ‹ › が飛ぶので濃紺にする */
+body:has(.slide.is-active:not(.sec-hero):not(.chdiv):not(.sec-cta):not(.lay-flood):not(#q-cost):not(.is-peak)) .edge-chev{
+  border-color:var(--navy);
+  filter:drop-shadow(0 2px 8px rgba(11,37,69,.25));
+}
+body:has(.slide.is-active:not(.sec-hero):not(.chdiv):not(.sec-cta):not(.lay-flood):not(#q-cost):not(.is-peak)) .edge-nav.is-prev::before{
+  background:linear-gradient(90deg, rgba(11,37,69,.14), rgba(11,37,69,0));
+}
+body:has(.slide.is-active:not(.sec-hero):not(.chdiv):not(.sec-cta):not(.lay-flood):not(#q-cost):not(.is-peak)) .edge-nav.is-next::before{
+  background:linear-gradient(270deg, rgba(11,37,69,.14), rgba(11,37,69,0));
+}
+/* 端のスライドでは、行けない側を出さない */
+body:has(#deck-prev:disabled) .edge-nav.is-prev{ display:none; }
+body:has(#deck-next:disabled) .edge-nav.is-next{ display:none; }
+/* タッチ端末はフリックで足りるので出さない */
+@media (hover:none){ .edge-nav{ display:none; } }
