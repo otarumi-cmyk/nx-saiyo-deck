@@ -44,7 +44,10 @@ export function init() {
       stage.style.width = W + 'px';
       const natH = stage.scrollHeight;
 
-      const scale = Math.min(availW / W, availH / Math.max(natH, 1), 1);
+      // 画面では等倍を上限にする（拡大すると文字が粗く見えるため）。
+      // PDF / PPTX の書き出しだけは window.NX.fitMax を上げて版面を使い切る。
+      const max = (window.NX && window.NX.fitMax) || 1;
+      const scale = Math.min(availW / W, availH / Math.max(natH, 1), max);
       stage.style.transform = 'scale(' + scale.toFixed(4) + ')';
       // 縮小後の実寸を親に伝え、上下中央に置く
       inner.style.width = W + 'px';

@@ -693,3 +693,16 @@
   width:auto !important; height:330px !important; max-width:none !important;
   right:3%; bottom:0; top:auto;
 }
+
+/* 誰が対応できるかを枠の中に出す */
+.fs-cal-g.is-big .fs-cal-x{ gap:3px; }
+.fs-cal-g.is-big .fs-cal-x.is-ok{
+  background:var(--accent) !important; color:#fff !important;
+  box-shadow:0 0 0 2px rgba(22,104,200,.26);
+}
+.fs-cal-g.is-big .fs-cal-x.is-ok::after{ content:none !important; }
+.fs-cal-g.is-big .fs-cal-x i{
+  font-style:normal; font-family:var(--font-en); font-size:.72rem; font-weight:700;
+  line-height:1; padding:2px 4px; border-radius:2px; background:rgba(255,255,255,.22);
+}
+.fs-cal-g.is-big .fs-cal-x.is-ng{ background:#DCE4EE !important; color:#7E93AC !important; box-shadow:none; }

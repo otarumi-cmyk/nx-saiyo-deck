@@ -304,33 +304,45 @@ function scene04(root) {
   };
 }
 
-/* ---------- 05 AI日程調整：3人の週間予定が重なって空き枠が残る ----------
-   ただの色マスでは何の図か伝わらないので、曜日と時間帯を持つ
-   カレンダーの体裁にする。 */
+/* ---------- 05 AI日程調整：誰か1人でも空いていれば候補になる ----------
+   面接は1名で成立するので、「3名とも空いている枠」では条件が厳しすぎる。
+   各枠について「対応できる面接官が誰か」を出し、
+   全員埋まっている枠だけを除外する。 */
 function scene05(root) {
   root.classList.add('fs', 'fs-05');
   const DAYS = ['月', '火', '水', '木', '金'];
   const SLOTS = ['10:00', '14:00'];
-  // 各面接官の埋まっているコマ [行, 列]
-  // 3人の予定が重ならない枠が必ず残るように置く（水10:00 と 金14:00）
+  const NAMES = ['A', 'B', 'C'];
+  // 各面接官の予定が入っているコマ [行, 列]
   const BUSY = [
-    [[0, 1], [0, 3], [1, 1]],
-    [[0, 0], [0, 4], [1, 0], [1, 3]],
-    [[0, 1], [1, 2]],
+    [[0, 0], [0, 2], [1, 1], [1, 3]],
+    [[0, 0], [0, 1], [1, 1], [1, 4]],
+    [[0, 0], [0, 3], [1, 0], [1, 1]],
   ];
-  const NAMES = ['面接官A', '面接官B', '面接官C'];
+  const busySets = BUSY.map((b) => new Set(b.map((x) => x.join(','))));
 
-  function grid(busySet, big) {
+  function grid(k) {                              // k=null なら合成ビュー
+    const big = k === null;
     const g = el('div', 'fs-cal-g' + (big ? ' is-big' : ''));
-    g.appendChild(el('span', 'fs-cal-c'));                     // 左上の空きマス
+    g.appendChild(el('span', 'fs-cal-c'));
     DAYS.forEach((d) => g.appendChild(el('span', 'fs-cal-d', d)));
     SLOTS.forEach((t, r) => {
       g.appendChild(el('span', 'fs-cal-t', t));
       DAYS.forEach((_, c) => {
-        const busy = busySet.has(r + ',' + c);
-        const cell = el('span', 'fs-cal-x' + (busy ? ' is-busy' : ' is-free'));
-        if (busy) cell.textContent = '×';
-        cell.dataset.free = busy ? '0' : '1';
+        const key = r + ',' + c;
+        if (!big) {
+          const busy = busySets[k].has(key);
+          const cell = el('span', 'fs-cal-x' + (busy ? ' is-busy' : ' is-free'));
+          if (busy) cell.textContent = '×';
+          g.appendChild(cell);
+          return;
+        }
+        const who = NAMES.filter((_, i) => !busySets[i].has(key));
+        const cell = el('span', 'fs-cal-x ' + (who.length ? 'is-ok' : 'is-ng'));
+        cell.dataset.free = who.length ? '1' : '0';
+        cell.innerHTML = who.length
+          ? who.map((n) => '<i>' + n + '</i>').join('')
+          : '×';
         g.appendChild(cell);
       });
     });
@@ -340,28 +352,27 @@ function scene05(root) {
   const wrap = el('div', 'fs-cals');
   NAMES.forEach((n, k) => {
     const c = el('div', 'fs-cal');
-    c.appendChild(el('span', 'fs-cal-h', n));
-    c.appendChild(grid(new Set(BUSY[k].map((x) => x.join(','))), false));
+    c.appendChild(el('span', 'fs-cal-h', '面接官' + n));
+    c.appendChild(grid(k));
     wrap.appendChild(c);
   });
   root.appendChild(wrap);
 
-  const all = new Set([].concat(...BUSY).map((x) => x.join(',')));
   const merged = el('div', 'fs-merged');
-  merged.appendChild(el('span', 'fs-cal-h', '3名とも空いている枠'));
-  merged.appendChild(grid(all, true));
-  merged.appendChild(el('p', 'fs-merged-n', '重ならない枠だけを、候補として自動で提示します'));
+  merged.appendChild(el('span', 'fs-cal-h', '対応できる面接官がいる枠'));
+  merged.appendChild(grid(null));
+  merged.appendChild(el('p', 'fs-merged-n', '1名でも空いていれば候補になります。誰が出られるかまで添えて提示します'));
   root.appendChild(merged);
 
   return (gsap) => {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
     const cals = root.querySelectorAll('.fs-cal');
-    const free = merged.querySelectorAll('.fs-cal-x[data-free="1"]');
-    tl.fromTo(cals, { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: .42, stagger: .16 });
+    const ok = merged.querySelectorAll('.fs-cal-x[data-free="1"]');
+    tl.fromTo(cals, { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: .4, stagger: .15 });
     tl.to({}, { duration: 0.4 });
     tl.to(cals, { y: (i) => (1 - i) * 14, scale: .97, opacity: .66, duration: .6, ease: 'power2.inOut' });
     tl.fromTo(merged, { opacity: 0, scale: .95 }, { opacity: 1, scale: 1, duration: .5 }, '<+.2');
-    tl.fromTo(free, { scale: .6, opacity: .25 }, { scale: 1, opacity: 1, duration: .35, stagger: .12 }, '>-.1');
+    tl.fromTo(ok, { scale: .7, opacity: .3 }, { scale: 1, opacity: 1, duration: .3, stagger: .05 }, '>-.1');
     tl.addLabel("done");
     tl.to({}, { duration: 4.3 });
     tl.to([merged, cals], { opacity: 0, duration: 0.22 });
