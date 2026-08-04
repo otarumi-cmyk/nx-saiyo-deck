@@ -1045,3 +1045,48 @@ body:has(#hero.is-active) .nav-hint{ opacity:1; }
   .nav-hint{ right:auto; left:50%; top:auto; bottom:96px; transform:translateX(-50%); padding:14px 18px; }
   .nav-hint-t{ font-size:.78rem; }
 }
+
+/* ==================================================================
+   47. 採用分析：工程間の転換率とボトルネックの指摘を出す
+   ================================================================== */
+.fs-07{ padding:20px 46px !important; position:relative; }
+.fs-07 .fs-funnel{ gap:0 !important; position:relative; }
+.fs-07 .fs-frow{ grid-template-columns:112px 1fr !important; gap:16px; }
+.fs-07 .fs-fk{ font-size:.86rem !important; }
+.fs-07 .fs-fbar{ height:38px !important; }
+.fs-07 .fs-fval{ font-size:1rem !important; }
+.fs-07 .fs-frow:not(.is-narrow) .fs-fval{ margin-left:-52px !important; }
+
+/* 工程間の転換率 */
+.fs-gap{
+  display:flex; align-items:center; gap:9px;
+  margin-left:128px; height:26px; opacity:0;
+}
+.fs-gap-l{ width:16px; height:1px; background:var(--line); flex:none; }
+.fs-gap-v{
+  font-family:var(--font-en); font-size:.82rem; font-weight:700; color:var(--ink-dim);
+  padding:2px 9px; border-radius:100px; background:#EDF2F8;
+}
+.fs-gap-v small{ font-family:var(--font-jp); font-size:.72em; margin-left:1px; }
+.fs-gap.is-bad .fs-gap-v{ background:var(--surface-2); color:var(--accent-2); }
+.fs-gap.is-bad.is-on .fs-gap-v{ background:var(--navy); color:#fff; }
+.fs-gap-w{
+  font-style:normal; font-size:.66rem; font-weight:700; color:var(--accent-2);
+  padding:2px 8px; border-radius:3px; border:1px solid var(--acc-24);
+}
+.fs-gap.is-bad.is-on .fs-gap-w{ background:var(--accent); border-color:var(--accent); color:#fff; }
+
+/* 走査線 */
+.fs-scan{
+  position:absolute; left:26px; right:26px; top:0; height:2px; opacity:0;
+  background:linear-gradient(90deg, rgba(22,104,200,0), var(--accent), rgba(22,104,200,0));
+  box-shadow:0 0 14px rgba(22,104,200,.6); pointer-events:none;
+}
+/* ボトルネックの指摘 */
+.fs-flag{
+  margin:14px 0 0; font-size:.86rem; font-weight:500; color:var(--ink-dim);
+  background:var(--surface-2); border-left:3px solid var(--accent);
+  border-radius:0 5px 5px 0; padding:10px 14px; opacity:0;
+}
+.fs-flag b{ color:var(--ink); font-weight:700; }
+.fs-flag em{ font-style:normal; font-weight:700; color:var(--accent-2); }

@@ -421,52 +421,88 @@ function scene06(root) {
   };
 }
 
-/* ---------- 07 AI採用分析：ファネルが積み上がり、絞られていく ----------
-   細いバーの中に数字を入れると overflow で切れるので、
-   一定幅未満はバーの外に出す。 */
+/* ---------- 07 AI採用分析：工程間の転換率を出し、ボトルネックを指摘する ----------
+   棒が並ぶだけでは「分析している」ようには見えないので、
+   走査 → 各工程の転換率を算出 → いちばん悪い工程を名指し、の順に見せる。 */
 function scene07(root) {
   root.classList.add('fs', 'fs-07');
   const ROWS = [['スカウト送信', 1000, 100], ['開封', 400, 40], ['返信', 22, 12], ['面接', 8, 7], ['内定', 2, 4]];
   const f = el('div', 'fs-funnel');
-  ROWS.forEach(([n, v, w]) => {
-    const narrow = w < 22;                       // 数字が収まらない幅
+  ROWS.forEach(([n, v, w], i) => {
+    const narrow = w < 22;
     const r = el('div', 'fs-frow' + (narrow ? ' is-narrow' : ''));
-    r.style.setProperty('--w', w + '%');   // 数値の位置決めに行側でも幅が要る
+    r.style.setProperty('--w', w + '%');
     r.appendChild(el('span', 'fs-fk', n));
     const track = el('div', 'fs-ftrack');
     const bar = el('b', 'fs-fbar');
     bar.style.setProperty('--w', w + '%');
     track.appendChild(bar);
     const val = el('span', 'fs-fval');
-    val.dataset.v = v;
-    val.textContent = '0';
+    val.dataset.v = v; val.textContent = '0';
     track.appendChild(val);
     r.appendChild(track);
     f.appendChild(r);
+
+    // 工程間の転換率
+    if (i < ROWS.length - 1) {
+      const rate = (ROWS[i + 1][1] / v) * 100;
+      const worst = (i === 1);                         // 開封→返信 が最も低い
+      const g = el('div', 'fs-gap' + (worst ? ' is-bad' : ''));
+      g.innerHTML = '<span class="fs-gap-l"></span>'
+        + '<b class="fs-gap-v">' + rate.toFixed(1) + '<small>%</small></b>'
+        + (worst ? '<i class="fs-gap-w">要改善</i>' : '');
+      f.appendChild(g);
+    }
   });
   root.appendChild(f);
-  root.appendChild(el('p', 'fs-fnote', '前週からの歩留まり変化を、工程ごとに検知します'));
+  root.appendChild(el('div', 'fs-scan'));
+  root.appendChild(el('p', 'fs-flag',
+    '<b>ボトルネックは「開封 → 返信」。</b>前週から <em>−2.1pt</em>。文面の見直しをおすすめします'));
+
   return (gsap) => {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
     const bars = root.querySelectorAll('.fs-fbar');
     const vals = root.querySelectorAll('.fs-fval');
+    const gaps = root.querySelectorAll('.fs-gap');
+    const bad = root.querySelector('.fs-gap.is-bad');
+    const scan = root.querySelector('.fs-scan');
+    const flag = root.querySelector('.fs-flag');
+
+    // 1) 棒が伸びて数値が入る
     bars.forEach((bar, i) => {
       const val = vals[i];
       const target = +val.dataset.v;
       const o = { v: 0 };
-      tl.fromTo(bar, { width: 0, opacity: 0 }, { width: 'var(--w)', opacity: 1, duration: .6, ease: 'power3.out' }, i * 0.3)
-        .fromTo(val, { opacity: 0 }, { opacity: 1, duration: .3 }, '<+.15')
+      tl.fromTo(bar, { width: 0, opacity: 0 }, { width: 'var(--w)', opacity: 1, duration: .5, ease: 'power3.out' }, i * 0.24)
+        .fromTo(val, { opacity: 0 }, { opacity: 1, duration: .25 }, '<+.12')
         .to(o, {
-          v: target, duration: .6, ease: 'power2.out', onUpdate: () => {
-            val.textContent = Math.round(o.v).toLocaleString('ja-JP');
-          },
+          v: target, duration: .5, ease: 'power2.out',
+          onUpdate: () => { val.textContent = Math.round(o.v).toLocaleString('ja-JP'); },
         }, '<');
     });
-    tl.fromTo(root.querySelector('.fs-fnote'), { opacity: 0 }, { opacity: 1, duration: .5 }, 1.7);
+
+    // 2) 走査線が上から下へ流れる
+    tl.fromTo(scan, { top: '0%', opacity: 0 }, { opacity: 1, duration: .2 }, 1.5)
+      .to(scan, { top: '100%', duration: 1.0, ease: 'none' }, '<')
+      .to(scan, { opacity: 0, duration: .2 }, '>-.1');
+
+    // 3) 転換率が順に出る
+    gaps.forEach((g, i) => {
+      tl.fromTo(g, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: .3 }, 1.6 + i * 0.24);
+    });
+
+    // 4) いちばん悪い工程を名指しする
+    if (bad) {
+      tl.fromTo(bad, { scale: 1 }, { scale: 1.06, duration: .3, yoyo: true, repeat: 3, transformOrigin: 'left center' }, 2.8);
+      tl.call(() => bad.classList.add('is-on'), null, 2.8);
+    }
+    tl.fromTo(flag, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .45 }, 3.3);
+
     tl.addLabel("done");
-    tl.to({}, { duration: 4.5 });
+    tl.to({}, { duration: 4.2 });
+    tl.call(() => { if (bad) bad.classList.remove('is-on'); });
     tl.to(bars, { width: 0, opacity: 0, duration: .3, stagger: .04 })
-      .to([vals, root.querySelector('.fs-fnote')], { opacity: 0, duration: 0.22 }, '<');
+      .to([vals, gaps, flag], { opacity: 0, duration: 0.22 }, '<');
     return tl;
   };
 }
