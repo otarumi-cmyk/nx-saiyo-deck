@@ -1014,3 +1014,34 @@
   .roi3{ flex-direction:column; }
   .roi3-op{ justify-content:center; }
 }
+
+/* ==================================================================
+   46. 表紙だけに出す操作案内（ブラウザ版専用。書き出しでは非表示）
+   ================================================================== */
+.nav-hint{
+  position:absolute; right:34px; top:50%; transform:translateY(-50%);
+  z-index:6; display:flex; flex-direction:column; align-items:center; gap:12px;
+  padding:20px 24px; border-radius:12px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(6px);
+  opacity:0; pointer-events:none;
+  transition:opacity .6s var(--ease-out);
+}
+/* 表紙が表示されているときだけ出す */
+body:has(#hero.is-active) .nav-hint{ opacity:1; }
+.nav-hint-t{
+  font-size:.86rem; font-weight:700; line-height:1.7; color:#fff;
+  text-align:center; letter-spacing:.01em;
+}
+.nav-hint-a{ display:block; color:#8EC6FF; animation:navPush 1.8s var(--ease-out) infinite; }
+.nav-hint-a svg{ width:44px; height:24px; display:block; }
+@keyframes navPush{
+  0%,100%{ transform:translateX(0);  opacity:.75; }
+  50%    { transform:translateX(9px); opacity:1; }
+}
+@media (prefers-reduced-motion: reduce){ .nav-hint-a{ animation:none; } }
+@media (max-width:900px){
+  .nav-hint{ right:auto; left:50%; top:auto; bottom:96px; transform:translateX(-50%); padding:14px 18px; }
+  .nav-hint-t{ font-size:.78rem; }
+}
