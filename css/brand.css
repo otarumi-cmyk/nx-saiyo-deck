@@ -533,3 +533,6 @@ html, body{ overflow:hidden !important; height:100%; }
 /* 情報量の多い2枚は背景をさらに落として可読性を優先 */
 #fit::after, #price::after{ opacity:.16; }
 #why-us::after{ opacity:.20; }
+
+/* 表が主役のスライドは背景画像を敷かない（可読性優先） */
+#price::after, #roi::after, #cmp-scout::after{ display:none !important; }
