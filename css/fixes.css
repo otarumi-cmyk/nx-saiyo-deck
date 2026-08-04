@@ -706,3 +706,46 @@
   line-height:1; padding:2px 4px; border-radius:2px; background:rgba(255,255,255,.22);
 }
 .fs-cal-g.is-big .fs-cal-x.is-ng{ background:#DCE4EE !important; color:#7E93AC !important; box-shadow:none; }
+
+/* ==================================================================
+   35. 締め：何をするのかを3ステップで図解し、ボタンを主役にする
+   ================================================================== */
+.ct-flow{
+  display:flex; align-items:stretch; justify-content:center; gap:10px;
+  margin:var(--sp-5) auto var(--sp-5); max-width:1000px;
+}
+.ct-step{
+  flex:1 1 0; min-width:0; text-align:left;
+  background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22);
+  border-radius:8px; padding:18px 20px;
+  display:flex; flex-direction:column; gap:6px;
+}
+.ct-step svg{ width:26px; height:26px; color:#8EC6FF; }
+.ct-no{ font-family:var(--font-en); font-size:.7rem; font-weight:700; color:rgba(255,255,255,.6); letter-spacing:.1em; }
+.ct-t{ font-size:1rem; font-weight:700; color:#fff; line-height:1.45; }
+.ct-d{ font-size:.78rem; font-weight:500; color:rgba(255,255,255,.74); line-height:1.6; }
+.ct-arw{ display:flex; align-items:center; color:rgba(255,255,255,.4); flex:none; }
+.ct-arw svg{ width:12px; height:26px; }
+
+/* ボタンを主役に：大きく・光らせる */
+#cta .cta-book-btn{
+  padding:26px 56px; font-size:1.35rem; border-radius:8px;
+  gap:18px; position:relative;
+  box-shadow:0 0 0 8px rgba(255,255,255,.10), 0 18px 44px rgba(0,0,0,.34);
+  animation:ctaPulse 2.6s var(--ease-out) infinite;
+}
+#cta .cta-book-btn svg{ width:28px; height:28px; }
+#cta .cta-book-btn .cta-arw{ width:24px; height:24px; opacity:.7; }
+@keyframes ctaPulse{
+  0%,100%{ box-shadow:0 0 0 8px rgba(255,255,255,.10), 0 18px 44px rgba(0,0,0,.34); }
+  50%{ box-shadow:0 0 0 16px rgba(255,255,255,.05), 0 18px 44px rgba(0,0,0,.34); }
+}
+@media (prefers-reduced-motion: reduce){ #cta .cta-book-btn{ animation:none; } }
+#cta .cta-book-n{ margin-top:18px; font-size:.9rem; }
+#cta .cta-title{ font-size:clamp(1.35rem,2.6vw,2.1rem) !important; }
+#cta .cta-pts{ display:none; }
+@media (max-width:900px){
+  .ct-flow{ flex-direction:column; }
+  .ct-arw{ transform:rotate(90deg); align-self:center; }
+  #cta .cta-book-btn{ padding:20px 32px; font-size:1.05rem; }
+}

@@ -24,34 +24,36 @@
   /* 上部：資料と同じ濃紺のブロック */
   .hd{
     background:linear-gradient(135deg,#0B2E63 0%,#12539F 55%,#1668C8 100%);
-    color:#fff; padding:44px 24px 40px; text-align:center;
+    color:#fff; padding:52px 24px 46px; text-align:center;
   }
   .hd-eyebrow{
     font-family:var(--font-en); font-size:.78rem; letter-spacing:.14em;
     color:rgba(255,255,255,.75); margin:0 0 14px;
   }
   .hd h1{
-    margin:0 0 14px; font-size:clamp(1.4rem,3.4vw,2.2rem); font-weight:900;
+    margin:0 0 16px; font-size:clamp(1.7rem,4vw,2.7rem); font-weight:900;
     line-height:1.5; letter-spacing:-.015em;
   }
   .hd h1 .hl{ color:#8EC6FF; }
   .hd p{ margin:0; font-size:clamp(.9rem,1.6vw,1rem); font-weight:600; color:rgba(255,255,255,.9); line-height:1.8; }
 
-  /* 相談で分かること */
+  .hd-sub{ margin:0 !important; font-size:clamp(.95rem,1.7vw,1.1rem) !important; font-weight:700 !important; color:rgba(255,255,255,.86) !important; }
+
+  /* 分かること：文章をやめて短い項目だけにする */
   .pts{
-    max-width:900px; margin:-26px auto 0; padding:0 20px;
-    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+    max-width:900px; margin:22px auto 0; padding:0 20px;
+    display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
   }
+  .pts-h{ font-size:.82rem; font-weight:700; color:var(--ink-dim); margin-right:4px; }
   .pt{
-    background:var(--surface); border:1px solid var(--line); border-radius:8px;
-    padding:18px 18px; box-shadow:0 2px 10px rgba(11,37,69,.06), 0 12px 34px rgba(11,37,69,.05);
+    background:var(--surface); border:1px solid var(--line); border-radius:100px;
+    padding:9px 20px; font-size:.92rem; font-weight:700; color:var(--accent-2);
+    box-shadow:0 2px 8px rgba(11,37,69,.06);
   }
-  .pt b{ display:block; font-size:.92rem; font-weight:700; margin-bottom:6px; color:var(--accent-2); }
-  .pt span{ font-size:.84rem; font-weight:500; color:var(--ink-dim); line-height:1.7; }
 
   /* カレンダー本体。等倍で置くので操作が崩れない */
   .cal{
-    max-width:900px; margin:30px auto 0; padding:0 20px 60px;
+    max-width:900px; margin:26px auto 0; padding:0 20px 60px;
   }
   .cal-h{
     font-size:1rem; font-weight:700; margin:0 0 12px;
@@ -70,7 +72,7 @@
   .ft a{ color:var(--accent-2); font-weight:700; text-decoration:none; }
 
   @media (max-width:760px){
-    .pts{ grid-template-columns:1fr; margin-top:-18px; }
+    .pts{ gap:8px; }
     .hd{ padding:34px 18px 34px; }
   }
 </style>
@@ -79,14 +81,15 @@
 
 <header class="hd">
   <p class="hd-eyebrow">AIまるごと採用雑務代行｜株式会社NEXT</p>
-  <h1>採用の工数をお伺いして、<br>どれくらい<span class="hl">AIに置換できるか</span><br>無料で相談します！</h1>
-  <p>現在の採用工数を一緒に洗い出し、どこがどれだけ減らせるかを算出してお渡しします。</p>
+  <h1>採用の工数、<br>どこまで<span class="hl">AIに任せられるか</span>。</h1>
+  <p class="hd-sub">無料で診断します</p>
 </header>
 
 <section class="pts">
-  <div class="pt"><b>いまの工数が分かる</b><span>1名の採用にかかっている時間を、工程ごとに分解します。</span></div>
-  <div class="pt"><b>減らせる量が分かる</b><span>そのうちAIに置き換えられる部分と、残る時間を算出します。</span></div>
-  <div class="pt"><b>費用の目安が分かる</b><span>御社の採用量に当てはめた場合の、月額の目安をお出しします。</span></div>
+  <span class="pts-h">分かること</span>
+  <span class="pt">いまの工数</span>
+  <span class="pt">減らせる量</span>
+  <span class="pt">費用の目安</span>
 </section>
 
 <main class="cal">
