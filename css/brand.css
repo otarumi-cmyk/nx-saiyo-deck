@@ -700,3 +700,70 @@ html, body{ overflow:hidden !important; height:100%; }
 .wd-out svg{ width:20px; height:20px; flex:none; color:var(--accent-2); }
 .wd-out b{ color:var(--accent-2); font-weight:700; }
 @media (max-width:900px){ .wd-k{ width:64px; font-size:.76rem; } .wd-bar{ height:34px; } }
+
+/* ---------- 余白が余っているスライドは、要素そのものを大きくして版面を使い切る ---------- */
+/* 横幅はすでに上限（fit.js の倍率が1.0で頭打ち）なので、縦を伸ばすしかない */
+
+/* 採用フロー15工程 */
+#map .mp-legend{ margin:var(--sp-5) 0 var(--sp-4); }
+#map .mp-legend li{ font-size:.94rem; }
+#map .mp-legend i{ width:14px; height:14px; }
+#map .mp-ph{ font-size:.86rem; padding:11px 6px; margin-bottom:14px; }
+#map .mp-list{ gap:9px; }
+#map .mp-list li{ padding:14px 12px; font-size:.9rem; gap:10px; }
+#map .mp-no{ font-size:.74rem; }
+#map .mp-i{ width:18px; height:18px; }
+#map .mp-chev svg{ width:14px; height:30px; }
+#map .note{ margin-top:var(--sp-4); }
+
+/* 料金 */
+#price .pz-grid{ gap:var(--sp-3); margin:var(--sp-5) 0 var(--sp-4); }
+#price .pz{ padding:var(--sp-5) var(--sp-4); }
+#price .pz-name{ font-size:.9rem; }
+#price .pz-price{ font-size:clamp(2.8rem,5.2vw,4.2rem); margin:14px 0 10px; }
+#price .pz-for{ font-size:.92rem; margin-bottom:var(--sp-4); padding-bottom:var(--sp-4); }
+#price .pz-list li{ font-size:.92rem; padding:11px 0; }
+#price .pz-list svg{ width:20px; height:20px; }
+
+/* 費用対効果 */
+#roi .g5-bar{ margin-bottom:14px; }
+#roi .g5-track, #roi .g5-seg{ height:54px; }
+#roi .g5-mbars, #roi .g5-mbar{ height:16px; }
+#roi .g5-mini{ padding:var(--sp-3) var(--sp-3); }
+#roi .g5-minis{ gap:var(--sp-3); margin-top:var(--sp-4); }
+#roi .g5-roi{ padding:var(--sp-4); }
+
+/* FAQ（閉じたまま見せるので、行そのものを大きく） */
+#faq .g5-faq{ gap:12px; margin-top:var(--sp-5); }
+#faq .g5-q summary{ padding:22px 20px; font-size:1rem; }
+#faq .g5-qi{ width:24px; height:24px; }
+#faq .g5-qt{ font-size:1rem; }
+#faq .g5-q p{ font-size:.94rem; }
+
+/* 1週間② */
+#timeline-2 .g4-week-fig{ margin-top:var(--sp-5); }
+#timeline-2 .g4-verb{ font-size:.92rem; padding:11px 14px; }
+
+/* 文面→採用ファネル */
+#why-data .wd-bar{ height:56px; }
+#why-data .wd-funnel{ gap:13px; margin:var(--sp-2) 0 var(--sp-4); }
+#why-data .wd-k{ font-size:.92rem; width:96px; }
+#why-data .wd-out{ font-size:1rem; }
+
+/* ---------- FAQ：開閉をやめ、答えまで常時表示 ---------- */
+.fq-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3); margin-top:var(--sp-5); }
+.fq{ padding:var(--sp-4); background:var(--surface-1); border:1px solid var(--line); border-radius:6px; }
+.fq-i{ width:34px; height:34px; color:var(--accent); display:block; margin-bottom:var(--sp-3); }
+.fq-t{ font-size:1rem !important; font-weight:700 !important; margin:0 0 12px !important; line-height:1.5 !important; }
+.fq-a{ font-size:.9rem; line-height:1.85; color:var(--ink-dim); margin:0; }
+@media (max-width:900px){ .fq-grid{ grid-template-columns:1fr; } }
+
+/* 1週間②：もう少し版面を使う */
+#timeline-2 .g4-week-num{ margin-bottom:var(--sp-4); }
+#timeline-2 .g4-verbs{ gap:12px; }
+/* FAQ：3項目しかないので1枚を大きく取る */
+#faq .fq-grid{ gap:var(--sp-4); margin-top:var(--sp-6, 64px); }
+#faq .fq{ padding:var(--sp-5) var(--sp-4); }
+#faq .fq-i{ width:42px; height:42px; margin-bottom:var(--sp-4); }
+#faq .fq-t{ font-size:1.15rem !important; margin-bottom:16px !important; }
+#faq .fq-a{ font-size:.95rem; line-height:2; }
