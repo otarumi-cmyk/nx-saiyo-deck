@@ -304,50 +304,68 @@ function scene04(root) {
   };
 }
 
-/* ---------- 05 AI日程調整：3人の予定が重なって空きが残る ---------- */
+/* ---------- 05 AI日程調整：3人の週間予定が重なって空き枠が残る ----------
+   ただの色マスでは何の図か伝わらないので、曜日と時間帯を持つ
+   カレンダーの体裁にする。 */
 function scene05(root) {
   root.classList.add('fs', 'fs-05');
-  const BUSY = [[1, 4, 7, 9], [0, 4, 5, 11], [2, 4, 8, 10]];
+  const DAYS = ['月', '火', '水', '木', '金'];
+  const SLOTS = ['10:00', '14:00'];
+  // 各面接官の埋まっているコマ [行, 列]
+  // 3人の予定が重ならない枠が必ず残るように置く（水10:00 と 金14:00）
+  const BUSY = [
+    [[0, 1], [0, 3], [1, 1]],
+    [[0, 0], [0, 4], [1, 0], [1, 3]],
+    [[0, 1], [1, 2]],
+  ];
   const NAMES = ['面接官A', '面接官B', '面接官C'];
+
+  function grid(busySet, big) {
+    const g = el('div', 'fs-cal-g' + (big ? ' is-big' : ''));
+    g.appendChild(el('span', 'fs-cal-c'));                     // 左上の空きマス
+    DAYS.forEach((d) => g.appendChild(el('span', 'fs-cal-d', d)));
+    SLOTS.forEach((t, r) => {
+      g.appendChild(el('span', 'fs-cal-t', t));
+      DAYS.forEach((_, c) => {
+        const busy = busySet.has(r + ',' + c);
+        const cell = el('span', 'fs-cal-x' + (busy ? ' is-busy' : ' is-free'));
+        if (busy) cell.textContent = '×';
+        cell.dataset.free = busy ? '0' : '1';
+        g.appendChild(cell);
+      });
+    });
+    return g;
+  }
+
   const wrap = el('div', 'fs-cals');
   NAMES.forEach((n, k) => {
     const c = el('div', 'fs-cal');
-    c.dataset.i = k;
     c.appendChild(el('span', 'fs-cal-h', n));
-    const g = el('div', 'fs-grid');
-    for (let i = 0; i < 12; i++) {
-      const cell = el('i', BUSY[k].includes(i) ? 'is-busy' : '');
-      g.appendChild(cell);
-    }
-    c.appendChild(g);
+    c.appendChild(grid(new Set(BUSY[k].map((x) => x.join(','))), false));
     wrap.appendChild(c);
   });
   root.appendChild(wrap);
+
+  const all = new Set([].concat(...BUSY).map((x) => x.join(',')));
   const merged = el('div', 'fs-merged');
-  merged.appendChild(el('span', 'fs-cal-h', '空いている枠'));
-  const mg = el('div', 'fs-grid');
-  const allBusy = new Set([].concat(...BUSY));
-  for (let i = 0; i < 12; i++) {
-    const cell = el('i', allBusy.has(i) ? 'is-busy' : 'is-free');
-    cell.dataset.free = allBusy.has(i) ? '0' : '1';
-    mg.appendChild(cell);
-  }
-  merged.appendChild(mg);
-  merged.appendChild(el('p', 'fs-merged-n', '3名の予定を突き合わせ、候補を自動で提示します'));
+  merged.appendChild(el('span', 'fs-cal-h', '3名とも空いている枠'));
+  merged.appendChild(grid(all, true));
+  merged.appendChild(el('p', 'fs-merged-n', '重ならない枠だけを、候補として自動で提示します'));
   root.appendChild(merged);
+
   return (gsap) => {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
     const cals = root.querySelectorAll('.fs-cal');
-    tl.fromTo(cals, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: .45, stagger: .18 });
-    tl.to({}, { duration: 0.5 });
-    tl.to(cals, { x: 0, y: (i) => (1 - i) * 18, scale: .96, opacity: .62, duration: .7, ease: 'power2.inOut' });
-    tl.fromTo(merged, { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: .55 }, '<+.25');
-    tl.fromTo(merged.querySelectorAll('i[data-free="1"]'),
-      { scale: .5, opacity: 0 }, { scale: 1, opacity: 1, duration: .4, stagger: .1 }, '>-.15');
+    const free = merged.querySelectorAll('.fs-cal-x[data-free="1"]');
+    tl.fromTo(cals, { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: .42, stagger: .16 });
+    tl.to({}, { duration: 0.4 });
+    tl.to(cals, { y: (i) => (1 - i) * 14, scale: .97, opacity: .66, duration: .6, ease: 'power2.inOut' });
+    tl.fromTo(merged, { opacity: 0, scale: .95 }, { opacity: 1, scale: 1, duration: .5 }, '<+.2');
+    tl.fromTo(free, { scale: .6, opacity: .25 }, { scale: 1, opacity: 1, duration: .35, stagger: .12 }, '>-.1');
     tl.addLabel("done");
     tl.to({}, { duration: 4.3 });
     tl.to([merged, cals], { opacity: 0, duration: 0.22 });
-    tl.set(cals, { x: -30, y: 0, scale: 1 });
+    tl.set(cals, { x: -26, y: 0, scale: 1 });
     return tl;
   };
 }

@@ -388,7 +388,7 @@
   <p class="slide-tab">向いている企業と、費用</p>
   <div class="slide-in wrap">
     <p class="sec-label reveal">PRICE</p>
-    <h2 class="sec-title reveal">使った分だけ。<span class="hl">月3万円</span>から。</h2>
+    <h2 class="sec-title reveal"><span class="hl">月3万円</span>〜ご利用いただけます。</h2>
     <p class="lead reveal">課金は<b>スカウトの通数</b>と<b>候補者の人数</b>の2つだけです。</p>
 
     <div class="pm-grid">
@@ -477,7 +477,7 @@
   <p class="slide-tab">導入前に、よくいただくご質問</p>
   <div class="slide-in wrap">
     <p class="sec-label reveal">FAQ</p>
-    <h2 class="sec-title reveal">導入前に必ず聞かれる、<span class="hl">3点</span>です。</h2>
+    <h2 class="sec-title reveal">よくあるご質問</h2>
     <div class="fq-grid"><div class="fq reveal"><img src="assets/ico/link.webp" alt="" class="fq-i ic "><h3 class="fq-t">ATS連携</h3><p class="fq-a">併用を前提としています。連携範囲は御社の運用に合わせて設定します。</p></div><div class="fq reveal"><img src="assets/ico/lock.webp" alt="" class="fq-i ic "><h3 class="fq-t">個人情報</h3><p class="fq-a">御社との契約で定めた期間のみ保管し、当社のAIモデルの学習には利用しません。アクセス権限は、御社が指定した担当者に限定します。</p></div><div class="fq reveal"><img src="assets/ico/stopwatch.webp" alt="" class="fq-i ic "><h3 class="fq-t">運用工数</h3><p class="fq-a">面接と、日程調整時の送信確認が中心です。それ以外の作業は発生しません。</p></div></div>
   </div>
 </section>
@@ -485,10 +485,21 @@
 <section class="slide sec-center sec-cta" id="cta" data-img="assets/sec_cta.webp" data-title="締め" data-anim="zoom">
   <div class="slide-in wrap">
     <h2 class="cta-title reveal">採用の工数をお伺いして、<br>どれくらい<span class="hl">AIに置換できるか</span><br>無料で相談します！</h2>
-    <div class="cta-book reveal">
-      <p class="cta-book-h">ご都合のよい日時をお選びください</p>
-      <div id="timerex_calendar" data-url="https://timerex.net/s/m.inoue_361c_6dde/3ffb8afc"></div>
+    <p class="lead reveal">現在の採用工数を一緒に洗い出し、どこがどれだけ減らせるかを算出してお渡しします。</p>
+
+    <div class="cta-pts reveal">
+      <span><b>いまの工数</b>が分かる</span>
+      <span><b>減らせる量</b>が分かる</span>
+      <span><b>費用の目安</b>が分かる</span>
     </div>
+
+    <a class="cta-book-btn reveal" href="yoyaku.html" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.4"/><path d="M3.5 10h17M8.2 2.8v4M15.8 2.8v4"/></svg>
+      <span>日程を選んで予約する</span>
+      <svg class="cta-arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></svg>
+    </a>
+    <p class="cta-book-n reveal">所要 60分／オンライン（Google Meet）</p>
+
     <p class="note reveal">株式会社NEXT</p>
   </div>
 </section>
@@ -505,25 +516,5 @@
 <div class="deck-hint" id="deck-hint" aria-hidden="true">横にスワイプ／← → キーでめくれます</div>
 
 <script type="module" src="js/main.js"></script>
-  <script id="timerex_embed" src="https://asset.timerex.net/js/embed.js"></script>
-  <script>
-    // 日程調整ウィジェット。締めのスライドに入ったときに一度だけ描画する。
-    (function () {
-      var done = false;
-      function draw() {
-        if (done || typeof TimerexCalendar !== 'function') return;
-        done = true; TimerexCalendar();
-        // 後から高さが変わるので、fit.js に測り直させる
-        setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 900);
-        setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 2200);
-      }
-      document.addEventListener('nx:slide', function (e) {
-        if (e.detail && e.detail.slide && e.detail.slide.id === 'cta') setTimeout(draw, 80);
-      });
-      window.addEventListener('load', function () {
-        if (document.querySelector('#cta.is-active')) draw();
-      });
-    })();
-  </script>
 </body>
 </html>

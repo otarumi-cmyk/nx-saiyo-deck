@@ -610,3 +610,86 @@
 .pm-min b small{ font-family:var(--font-jp); font-size:.46em; }
 .pm-min i{ font-style:normal; font-size:.8rem; }
 @media (max-width:900px){ .pm-grid{ grid-template-columns:1fr; } .pm-list{ grid-template-columns:1fr; } }
+
+/* ==================================================================
+   33. 締め：埋め込みは版面の縮小と相性が悪いので、予約ページへ飛ばす
+   ================================================================== */
+.cta-pts{
+  display:flex; justify-content:center; gap:var(--sp-4); flex-wrap:wrap;
+  margin:var(--sp-4) 0 var(--sp-5);
+}
+.cta-pts span{
+  font-size:.92rem; font-weight:600; color:rgba(255,255,255,.86);
+  padding-left:22px; position:relative;
+}
+.cta-pts span::before{
+  content:""; position:absolute; left:0; top:.42em; width:12px; height:7px;
+  border-left:2px solid #8EC6FF; border-bottom:2px solid #8EC6FF;
+  transform:rotate(-45deg);
+}
+.cta-pts b{ color:#fff; font-weight:700; }
+
+.cta-book-btn{
+  display:inline-flex; align-items:center; gap:14px;
+  padding:20px 40px; border-radius:6px; text-decoration:none;
+  background:#fff; color:var(--navy) !important;
+  font-size:1.12rem; font-weight:700; letter-spacing:.01em;
+  box-shadow:0 10px 30px rgba(0,0,0,.24);
+  transition:transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
+}
+.cta-book-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 38px rgba(0,0,0,.3); }
+.cta-book-btn svg{ width:24px; height:24px; flex:none; color:var(--accent); }
+.cta-book-btn .cta-arw{ width:20px; height:20px; color:var(--navy); opacity:.55; }
+.cta-book-n{ margin:16px 0 0; font-size:.86rem; font-weight:600; color:rgba(255,255,255,.74) !important; }
+#cta .note{ margin-top:var(--sp-5) !important; }
+#cta .cta-title{ font-size:clamp(1.4rem,2.9vw,2.3rem) !important; }
+
+/* ==================================================================
+   34. 日程調整：曜日と時間帯を持つ、カレンダーらしい体裁にする
+   ================================================================== */
+.fs-05{ gap:24px; align-items:center !important; }
+.fs-05 .fs-cals{ flex:0 0 40% !important; display:flex; flex-direction:column; gap:11px; }
+.fs-05 .fs-cal{ background:#fff; border:1px solid var(--line); border-radius:7px; padding:11px 13px; }
+.fs-05 .fs-cal-h{ display:block; font-size:.78rem !important; font-weight:700; color:var(--ink-dim); margin-bottom:7px; }
+.fs-05 .fs-merged{ flex:1 1 auto; padding:18px 20px; }
+.fs-05 .fs-merged .fs-cal-h{ font-size:.94rem !important; color:var(--accent-2); }
+
+.fs-cal-g{
+  display:grid; grid-template-columns:38px repeat(5,1fr); gap:3px;
+  align-items:stretch;
+}
+.fs-cal-g.is-big{ grid-template-columns:52px repeat(5,1fr); gap:5px; }
+.fs-cal-c{ display:block; }
+.fs-cal-d{
+  display:flex; align-items:center; justify-content:center;
+  font-size:.62rem; font-weight:700; color:var(--ink-dim);
+  padding-bottom:2px;
+}
+.fs-cal-g.is-big .fs-cal-d{ font-size:.8rem; padding-bottom:4px; }
+.fs-cal-t{
+  display:flex; align-items:center; justify-content:flex-end; padding-right:5px;
+  font-family:var(--font-en); font-size:.58rem; color:var(--ink-dim);
+}
+.fs-cal-g.is-big .fs-cal-t{ font-size:.74rem; }
+.fs-cal-x{
+  display:flex; align-items:center; justify-content:center;
+  height:22px; border-radius:3px; font-size:.62rem; font-weight:700;
+  background:#F1F5FA; box-shadow:0 0 0 1px var(--line) inset; color:transparent;
+}
+.fs-cal-x.is-busy{ background:#C9D6E5; color:#5B7characters; }
+.fs-cal-x.is-busy{ color:#647E9C; }
+.fs-cal-g.is-big .fs-cal-x{ height:46px; font-size:.92rem; border-radius:4px; }
+.fs-cal-g.is-big .fs-cal-x.is-free{
+  background:var(--accent); box-shadow:0 0 0 2px rgba(22,104,200,.26);
+  color:#fff;
+}
+.fs-cal-g.is-big .fs-cal-x.is-free::after{ content:"○"; font-size:1em; }
+.fs-05 .fs-merged-n{ margin:14px 0 0; font-size:.88rem; font-weight:600; color:var(--ink-dim); }
+/* 人物イラストは縦長なので、幅ではなく高さで揃える */
+.fit-ill{ width:auto !important; height:clamp(220px,30vh,300px); right:5%; bottom:11%; }
+
+/* brand.css の .nx-stage img{height:auto} に負けて原寸で出ていたので、ID で上書きする */
+#fit .fit-ill{
+  width:auto !important; height:330px !important; max-width:none !important;
+  right:3%; bottom:0; top:auto;
+}
