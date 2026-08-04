@@ -83,8 +83,19 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
   letter-spacing:.01em;
 }
 .sec-label{ letter-spacing:.18em !important; font-weight:500 !important; }
+/* 上の .18em は「COST PER HIRE」のような英大文字組み用のトラッキング。
+   機能スライド（#fn-01〜#fn-07）の .sec-label だけは中身が和文
+   （「母集団形成」「面接調整」等）で、全角字面に .18em を入れると
+   12px の字に 2.16px ずつ隙間が空き、単語としてまとまらなくなる。
+   和文ラベルはここでトラッキングを戻す。 */
+.fn-slide .sec-label{ letter-spacing:.04em !important; }
 
-.hero-title{ line-height:1.06 !important; font-size:clamp(2.6rem,6.6vw,5.6rem) !important; }
+/* 表紙タイトルの行送り。本家（欧文中心）から抽出した 1.06 をそのまま和文900に
+   当てると、84.48px 時の行送りが 89.55px となり、1行目の実インク下端と2行目の
+   実インク上端の空きが 11.06px（0.13em）しか残らない。濁点・半濁点や「ご」の
+   ような上に点を持つ字が上行の字面に触れて見えるため、和文ディスプレイの標準域
+   （0.2em 台）に入る 1.16 にする。詰め感を残す場合でも 1.12 が下限。 */
+.hero-title{ line-height:1.16 !important; font-size:clamp(2.6rem,6.6vw,5.6rem) !important; }
 .lead{ line-height:1.9 !important; font-weight:500; }
 .note{ line-height:1.8 !important; }
 /* 同格の大見出し（.sec-title / .tl-title / .cta-title）は行送りを揃える。

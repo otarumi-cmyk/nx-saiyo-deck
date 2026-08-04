@@ -13,15 +13,18 @@
   --surface-2: #16202C;   /* 強調カード */
   --ink:       #EAF0F7;
   --ink-dim:   #94A3B4;   /* 実効コントラストを上げる */
-  --accent:    #00D4FF;
-  --acc-04:    rgba(0,212,255,.04);
-  --acc-10:    rgba(0,212,255,.10);
-  --acc-24:    rgba(0,212,255,.24);
-  --acc-60:    rgba(0,212,255,.60);
+  --accent:    #3B82F6;
+  --acc-04:    rgba(59,130,246,.04);
+  --acc-10:    rgba(59,130,246,.10);
+  --acc-24:    rgba(59,130,246,.24);
+  --acc-60:    rgba(59,130,246,.60);
   --line:      rgba(255,255,255,.09);
   --glow:      var(--acc-24);
   --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px;
   --sp-5:40px; --sp-6:56px; --sp-7:72px; --sp-8:96px;
+  /* 本文（11〜17px）の行送りトークン。デッキ全体で 1.0〜1.95 の12種が混在していたので、
+     読ませる本文はここに寄せる。brand.css が後から同名トークンを定義した場合はそちらが勝つ。 */
+  --lh-body: 1.8;
 }
 
 /* ---------- 2. アクセントの使いすぎを止める ----------
@@ -40,15 +43,17 @@
 #map .fs2-n{ color:var(--ink-dim); }
 
 /* ---------- 3. 書体：日本語が monospace に落ちるのを防ぐ ----------
-   AD指摘: Roboto Mono に CJK グリフが無く、日本語が第三の書体で描画される。
-   Windows では総称 monospace が明朝に解決される構成があり、明朝体禁止に抵触しうる。 */
+   AD指摘: CJK グリフを持たない書体を先頭に置くと、日本語が第三の書体で描画される。
+   Windows では総称 monospace が明朝に解決される構成があり、明朝体禁止に抵触しうる。
+   書体名は直書きせず brand.css の --font-en / --font-jp に一本化する
+   （読み込み済みの Space Grotesk / Noto Sans JP 以外に散らないようにするため）。 */
 .num, .sec-label, .price-unit, .cmp-k, .stat-k, .bignum-k,
 .tl-meter-k, .hero-eyebrow, .formula-list{
-  font-family:'Space Grotesk','Noto Sans JP',sans-serif !important;
+  font-family:var(--font-en,'Space Grotesk','Noto Sans JP',sans-serif) !important;
 }
 /* 日本語しか入らないラベルは等幅から外す */
 .stat-k, .bignum-k, .tl-meter-k, .cmp-k, .hero-eyebrow, .price-unit, .formula-list{
-  font-family:'Noto Sans JP',sans-serif !important;
+  font-family:var(--font-jp,'Noto Sans JP',sans-serif) !important;
 }
 
 /* ---------- 4. 和文の詰めすぎを直す ---------- */
@@ -73,7 +78,7 @@ body{
   overflow:hidden;
   background:var(--bg);
   color:var(--ink);
-  font-family:'Noto Sans JP',sans-serif;
+  font-family:var(--font-jp,'Noto Sans JP',sans-serif);
   -webkit-font-smoothing:antialiased;
 }
 
@@ -276,7 +281,7 @@ body{
   z-index:3; text-align:center; width:88px;
 }
 .orbit-node-n{
-  font-family:'Space Grotesk',monospace; font-size:.66rem;
+  font-family:var(--font-en,'Space Grotesk','Noto Sans JP',sans-serif); font-size:.66rem;
   width:26px; height:26px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   background:var(--surface-2); border:1px solid var(--acc-24); color:var(--accent);
@@ -393,7 +398,13 @@ body{
 .faq-list summary::-webkit-details-marker{ display:none; }
 .faq-list summary::before{ content:"＋"; color:var(--ink-dim); margin-right:10px; font-size:.8rem; }
 .faq-list details[open] summary::before{ content:"−"; color:var(--accent); }
-.faq-list p{ font-size:.85rem; color:var(--ink-dim); line-height:1.85; margin:var(--sp-2) 0 var(--sp-1) 26px; }
+/* FAQ本文。以前は `.faq-list p`（詳細度 0,1,1）で書いていたため、style.css の
+   `.faq-list details p`（0,1,2）に負けて line-height:1.95 のままだった（デッキ最大の行送り）。
+   セレクタを合わせて詳細度で並び、後読みの deck.css が勝つようにして本文標準へ寄せる。
+   margin / max-width は style.css の値をそのまま使うのでここでは宣言しない。 */
+.faq-list details p{ font-size:.9rem; color:var(--ink-dim); line-height:var(--lh-body,1.8); }
+/* 上のルールが style.css の 768px 以下の縮小（.84rem）も上書きしてしまうので、同じ幅で戻す */
+@media (max-width:768px){ .faq-list details p{ font-size:.84rem; } }
 .sec-cta::before{
   content:""; position:absolute; inset:0; z-index:0;
   background-image:var(--chdiv-img); background-size:cover; background-position:center; opacity:.35;
@@ -409,7 +420,7 @@ body{
 .cta-title{ font-size:clamp(1.5rem,3vw,2.4rem); font-weight:900; line-height:1.5; }
 .cta-btns{ display:flex; gap:var(--sp-2); justify-content:center; flex-wrap:wrap; margin:var(--sp-5) 0 var(--sp-3); }
 .btn{ display:inline-block; padding:16px 30px; border-radius:3px; font-size:.9rem; font-weight:700; text-decoration:none; transition:opacity .3s ease; }
-.btn-main{ background:var(--accent); color:#04222B; }
+.btn-main{ background:var(--accent); color:#fff; }
 .btn-sub{ border:1px solid var(--line); color:var(--ink); }
 .btn:hover{ opacity:.82; }
 .foot-co{ font-size:.78rem; color:var(--ink-dim); }
@@ -430,6 +441,8 @@ body{
 .deck-btn{
   width:32px; height:32px; border-radius:50%;
   background:transparent; border:1px solid var(--line); color:var(--ink);
+  /* button は UA スタイルの Arial を持つため、指定しないと ‹ › だけ第三の書体で描かれる */
+  font-family:var(--font-jp,'Noto Sans JP',sans-serif);
   font-size:1.1rem; line-height:1; cursor:pointer;
   display:flex; align-items:center; justify-content:center;
   transition:border-color .3s ease, color .3s ease;
@@ -460,7 +473,7 @@ body{
   right:calc(22px + env(safe-area-inset-right, 0px));
   bottom:calc(26px + env(safe-area-inset-bottom, 0px));
   z-index:60;
-  font-family:'Space Grotesk',monospace; font-size:.78rem; color:var(--ink-dim);
+  font-family:var(--font-en,'Space Grotesk','Noto Sans JP',sans-serif); font-size:.78rem; color:var(--ink-dim);
 }
 .deck-counter i{ font-style:normal; opacity:.4; margin:0 4px; }
 .deck-counter #deck-cur{ color:var(--accent); }
@@ -512,13 +525,45 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .orbit-list li{ grid-template-columns:28px 1fr; }
   .orbit-list .step{ display:none; }
   .roi-chart{ height:210px; gap:var(--sp-3); }
+  /* ドットは非表示のまま。34枚 × 11px ＝ 374px に対し .deck-dots の
+     max-width は 52vw（375px幅で195px）＋ overflow:hidden なので、
+     18枚目以降は現在地のドットが枠外に出て見えない（JS側に追従スクロールが無い）。
+     出すと現在地を誤認させるだけなので、位置の手がかりは進捗バーに寄せる。 */
   .deck-dots{ display:none; }
-  .deck-hint{ display:none; }
-  /* ページ番号がナビゲーションピルに重なるのを回避（ピルの上へ退避） */
-  .deck-counter{
-    bottom:calc(72px + env(safe-area-inset-bottom, 0px));
-    right:calc(16px + env(safe-area-inset-right, 0px));
+
+  /* [操作ヒント] display:none だったため、モバイルの操作の手がかりが ‹ › の2ボタン
+     だけになっていた（#deck-hint は computed display:none／rect 0×0 で実測不可視）。
+     消さずに残し、deck.js が2枚目以降で付ける .is-gone のフェード（opacity .6s）に任せる。
+     既定文言（19文字・375px幅で実測212px）を既定位置の左下22pxに出すと
+     ナビのピル（左端133px）に食い込むので、モバイルではピルの真上に
+     「← スワイプ →」だけを中央置きする。#deck-hint は aria-hidden="true" の
+     装飾要素なので、擬似要素での差し替えで読み上げに影響しない。
+     375×812 実測：ピル上端は下から70px、ヒントは下から76〜99px。
+     ピルとの重なり0px²、ページ番号との重なり0px²、本文との重なりも
+     1〜5枚目すべて0px²（最小クリアランス64px＝4枚目 #num-cost）。 */
+  .deck-hint{
+    left:50%;
+    right:auto;
+    bottom:calc(76px + env(safe-area-inset-bottom, 0px));
+    transform:translateX(-50%);
+    white-space:nowrap;
+    text-align:center;
+    font-size:0;            /* 既定の長い文言を畳む（ピルに重ねないため） */
+    pointer-events:none;    /* 装飾なのでタップを吸わない */
   }
+  .deck-hint::before{
+    content:"← スワイプ →";
+    font-size:.74rem;       /* rem なので親の font-size:0 の影響を受けない */
+    letter-spacing:.08em;
+  }
+
+  /* 進捗バーが2pxで最上部に埋没していた。ドットが無いモバイルでは
+     ここだけが「何枚目か」を示すので4pxにする（PCは2pxのまま）。 */
+  .deck-progress{ height:4px; }
+
+  /* ページ番号は既定位置（bottom:26px / right:22px）のまま。
+     モバイルではドットが非表示でピル幅が110pxに縮むため重ならない（実測66.6px空き）。
+     ピルの上（bottom:72px）へ退避させると、逆にスライド本文へ最大672px²重なる。 */
 }
 
 /* ---------- 動きを減らす設定 ---------- */
@@ -550,9 +595,9 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   pointer-events:none; opacity:0;
   background:linear-gradient(90deg,
     transparent 0%,
-    rgba(0,212,255,.05) 34%,
-    rgba(0,212,255,.30) 50%,
-    rgba(0,212,255,.05) 66%,
+    rgba(59,130,246,.05) 34%,
+    rgba(59,130,246,.30) 50%,
+    rgba(59,130,246,.05) 66%,
     transparent 100%);
   mix-blend-mode:screen;
 }
@@ -657,7 +702,7 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   .vision-grid .tl-block[data-kind]{ opacity:0 !important; }
   .vision-grid .tl-block.is-final{ opacity:1 !important; }
 }
-.src{ display:block; font-size:.66rem; color:var(--ink-dim); opacity:.75; line-height:1.5; margin-top:2px; }
+.src{ display:block; font-size:11px; color:var(--ink-dim); opacity:.75; line-height:1.4; margin-top:2px; }
 .fm-row .src{ margin:0; }
 .formula-list li{ margin-bottom:10px; }
 
@@ -798,7 +843,7 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   overflow:hidden;
   display:flex; align-items:center; justify-content:center;
 }
-.fn-slide.is-key .fn-fig{ border-color:var(--acc-24); box-shadow:0 0 60px rgba(0,212,255,.06); }
+.fn-slide.is-key .fn-fig{ border-color:var(--acc-24); box-shadow:0 0 60px rgba(59,130,246,.06); }
 .fn-slide .fn-fig svg{ width:100%; height:100%; display:block; }
 .fn-badge{ display:inline-block; font-size:.7rem; letter-spacing:.14em; color:var(--ink-dim); margin-bottom:var(--sp-3); }
 .fn-slide .sec-title{ font-size:clamp(1.6rem,3vw,2.6rem) !important; margin-bottom:var(--sp-3) !important; }
@@ -859,8 +904,11 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 /* ---------- 19. 3プラン ＋ プラン別ROI ---------- */
 .plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-2); margin:var(--sp-4) 0 var(--sp-3); }
 .plan{ position:relative; padding:var(--sp-4) var(--sp-3); background:var(--surface-1); border:1px solid var(--line); border-radius:6px; }
-.plan.is-key{ background:var(--surface-2); border-color:var(--acc-60); box-shadow:0 0 40px rgba(0,212,255,.07); }
-.plan-badge{ position:absolute; top:-9px; left:var(--sp-3); font-size:.65rem; letter-spacing:.1em; background:var(--accent); color:#04222B; padding:3px 10px; border-radius:100px; font-weight:700; }
+.plan.is-key{ background:var(--surface-2); border-color:var(--acc-60); box-shadow:0 0 40px rgba(59,130,246,.07); }
+/* [E-5と同処方] 文字色はアクセントがシアンだった頃の暗色が残っていて、ブランドブルーの上では黒く沈む。
+   .pm-badge と同じく 締め色 #2563EB ＋ 白文字＝5.17:1 に揃える。
+   color だけ白にすると #3B82F6 上で 3.68:1 になり 10.4px/700 では不足するため、背景とセットで変える。 */
+.plan-badge{ position:absolute; top:-9px; left:var(--sp-3); font-size:.65rem; letter-spacing:.1em; background:var(--accent-2,#2563EB); color:#fff; padding:3px 10px; border-radius:100px; font-weight:700; }
 .plan-name{ display:block; font-size:.8rem; color:var(--ink-dim); letter-spacing:.08em; margin-bottom:8px; }
 .plan-price{ font-size:clamp(2.2rem,4vw,3.2rem); font-weight:700; color:var(--ink); margin:0 0 var(--sp-2); line-height:1; }
 .plan.is-key .plan-price{ color:var(--accent); }
@@ -897,7 +945,7 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   border-radius:8px; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
 }
-.fn-slide.is-key .fn-video{ border-color:var(--acc-24); box-shadow:0 0 60px rgba(0,212,255,.07); }
+.fn-slide.is-key .fn-video{ border-color:var(--acc-24); box-shadow:0 0 60px rgba(59,130,246,.07); }
 .fn-video video{ width:100%; height:100%; object-fit:cover; display:block; }
 
 /* ---------- 22. 業務別の時間内訳（カレンダーをやめて何に何時間かを見せる） ---------- */
@@ -1046,7 +1094,7 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 }
 .sc-row:last-child{ border-bottom:0; }
 .sc-head{ background:var(--surface-1); font-size:.7rem; color:var(--ink-dim); }
-.sc-head i{ display:block; font-style:normal; font-size:.62rem; opacity:.7; }
+.sc-head i{ display:block; font-style:normal; font-size:.72rem; opacity:.7; }
 .sc-row.is-key{ background:var(--acc-04); }
 .sc-n{ color:var(--ink-dim); }
 /* [アクセント整理] 自社の金額まで青にすると、この表の主旨である「差額」が色で埋もれる。
@@ -1090,7 +1138,7 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .sb-seg.is-chore{ background:linear-gradient(180deg,var(--accent),var(--acc-60)); }
 .sb-seg.is-core{ background:rgba(255,255,255,.13); border-left:1px solid rgba(255,255,255,.3); border-right:1px solid rgba(255,255,255,.3); }
 .sb-seg i{ font-style:normal; font-size:.66rem; line-height:1.3; text-align:center; color:rgba(5,7,10,.78); font-weight:700; }
-.sb-seg b{ font-family:'Space Grotesk',monospace; font-size:.9rem; color:#04222B; }
+.sb-seg b{ font-family:var(--font-en,'Space Grotesk','Noto Sans JP',sans-serif); font-size:.9rem; color:#fff; }
 .sb-seg.is-core i{ color:var(--ink); }
 .sb-seg.is-core b{ color:var(--ink); }
 /* [E-3] 「107時間の中身」なのに5〜7番目（評価入力/求人票/集計）のラベルが消えていた。
@@ -1137,17 +1185,20 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .pm th.is-key, .pm td.is-key{ background:var(--acc-04); }
 .pm thead th.is-key{ background:var(--surface-2); border-radius:6px 6px 0 0; }
 .pm-fn{ text-align:left !important; color:var(--ink-dim); font-weight:400; white-space:nowrap; }
-.pm-fn i{ display:block; font-style:normal; font-size:.68rem; opacity:.7; }
+.pm-fn i{ display:block; font-style:normal; font-size:.72rem; opacity:.7; }
 .pm-name{ display:block; font-size:.72rem; color:var(--ink-dim); letter-spacing:.06em; }
 .pm-price{ display:block; font-size:1.9rem; font-weight:700; line-height:1.2; margin:2px 0; }
 .pm thead .is-key .pm-price{ color:var(--accent); }
-.pm-price small{ font-size:.32em; color:var(--ink-dim); margin-left:3px; font-weight:400; }
-.pm-target{ display:block; font-size:.68rem; color:var(--ink-dim); }
+/* [可読性] 金額まわりの補助文字がデッキ全体の下限(11px)を割っていた。
+   「万円／月」は .32em×30.4px=9.73px、「年1〜2名」は .68rem=10.88px。
+   同じ表の .pm-name が .72rem=11.52px なので、それに揃えて 11px 以上にする。 */
+.pm-price small{ font-size:.38em; color:var(--ink-dim); margin-left:3px; font-weight:400; }
+.pm-target{ display:block; font-size:.72rem; color:var(--ink-dim); }
 /* [E-5] バッジの文字色 #04222B はアクセントがシアン #00D4FF だった頃の残骸で、
    ブランドブルー #3B82F6 の上では 4.50:1（9.92px/700 で下限ぎりぎり）まで落ちて黒く沈む。
    締め色 #2563EB ＋ 白文字にして 5.17:1 に上げる（color だけ白にすると
    #3B82F6 上で 3.68:1 になり不足するため、背景と必ずセットで変える）。 */
-.pm-badge{ position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:.62rem; background:var(--accent-2); color:#fff; padding:2px 10px; border-radius:100px; font-weight:700; }
+.pm-badge{ position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:.72rem; background:var(--accent-2); color:#fff; padding:2px 10px; border-radius:100px; font-weight:700; }
 /* [アクセント整理] ●が14個も青いと、この節で一番言いたい「推奨プラン＝10万円／月」が
    埋もれる。●と—は字形で区別できる（.pm .no は薄いグレーの—）ので、●は色を持たせない。
    青は .pm thead .is-key .pm-price の1つだけに残す。font-size:1rem は字形の維持に必要。 */
@@ -1160,9 +1211,9 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 
 /* ---------- 31. 事例：なぜそうなったか ---------- */
 .case-why{ margin:var(--sp-3) 0 0; text-align:left; }
-.case-why dt{ font-size:.66rem; letter-spacing:.08em; color:var(--ink-dim); margin-top:10px; }
+.case-why dt{ font-size:.72rem; letter-spacing:.08em; color:var(--ink-dim); margin-top:10px; }
 .case-why dt:first-child{ margin-top:0; }
-.case-why dd{ margin:3px 0 0; font-size:.78rem; line-height:1.7; color:var(--ink-dim); }
+.case-why dd{ margin:3px 0 0; font-size:.78rem; line-height:var(--lh-body,1.8); color:var(--ink-dim); }
 .case-why dd b{ color:var(--ink); font-weight:700; }
 .case h3 i{ display:block; font-style:normal; font-size:.68rem; opacity:.7; margin-top:3px; }
 .case-hero-k{ font-size:.72rem; color:var(--ink-dim); margin:2px 0 var(--sp-2); }
@@ -1214,7 +1265,7 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
 .fit-h{ font-size:.78rem !important; color:var(--ink-dim) !important; letter-spacing:.06em; margin:0 0 var(--sp-2) !important; font-weight:500 !important; }
 .fit-col.is-key .fit-h{ color:var(--accent) !important; }
 .fit-list{ list-style:none; padding:0; margin:0; }
-.fit-list li{ font-size:.85rem; line-height:1.65; color:var(--ink-dim); padding:7px 0 7px 16px; position:relative; border-bottom:1px solid rgba(255,255,255,.04); }
+.fit-list li{ font-size:.85rem; line-height:var(--lh-body,1.8); color:var(--ink-dim); padding:7px 0 7px 16px; position:relative; border-bottom:1px solid rgba(255,255,255,.04); }
 .fit-list li:last-child{ border-bottom:0; }
 .fit-list li::before{ content:""; position:absolute; left:0; top:15px; width:5px; height:5px; border-radius:50%; background:var(--acc-60); }
 .fit-list b{ color:var(--ink); font-weight:700; }
@@ -1345,3 +1396,21 @@ body:not(.is-preview) .wip, body:not(.is-preview) .preview-badge{ display:none; 
   /* 2列になると3枚目は行頭なので、そこだけコネクタを出さない */
   #flow .flow-steps li:nth-child(3)::before{ content:none; }
 }
+
+/* [修正班] #roi / #beforeafter の根拠注記を1行に収める。
+   注記が2行に折り返すと版面が縦に伸び、fit.js の縮小率が下がって
+   主要数値（年間340時間・差引＋119万円 など）まで小さくなっていた。
+   brand.css の .note{line-height:1.8 !important} を上書きするので !important が要る。 */
+#roi .note, #beforeafter .note{
+  font-size:11px !important;
+  line-height:1.4 !important;
+}
+
+/* [修正班 #num-cost] 単位（万円／時間）の下限を 12px にする。
+   brand.css の規格統一 .ch-num b small{font-size:.30em !important} は
+   親 .ch-num b の clamp(2.2rem,4.2vw,3.4rem) に比例するため、
+   ビューポートが狭いと 2.2rem×.30＝10.56px（旧 .34em 時代は 9.8px）まで落ちて
+   「103」と「万円」の関係が読み取れなくなっていた。
+   max() で下限だけ 12px に固定する（PC は 16.32px のまま比率.30 を維持）。
+   brand.css は deck.css より後に読まれるので ID で特異度を上げて上書きする。 */
+#num-cost .ch-num b small{ font-size:max(12px, .30em) !important; }
