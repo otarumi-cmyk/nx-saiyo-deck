@@ -1234,3 +1234,14 @@ body:has(#deck-prev:disabled) .edge-nav.is-prev{ display:none; }
 body:has(#deck-next:disabled) .edge-nav.is-next{ display:none; }
 /* タッチ端末はフリックで足りるので出さない */
 @media (hover:none){ .edge-nav{ display:none; } }
+
+/* 52. ボトルネックの指摘：1文が中途半端に折り返していたので、見出しと補足に分ける */
+.fs-flag{ display:block; }
+.fs-flag-h{
+  display:block; font-size:.95rem; font-weight:700; color:var(--ink);
+  line-height:1.5; margin-bottom:5px;
+}
+.fs-flag-h em{ font-style:normal; color:var(--accent) !important; }
+.fs-flag-s{
+  display:block; font-size:.8rem; font-weight:500; color:var(--ink-dim); line-height:1.6;
+}
