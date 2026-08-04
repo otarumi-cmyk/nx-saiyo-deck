@@ -790,3 +790,5 @@
   .gf-list li{ font-size:1.1rem; padding:16px 2px; gap:12px; }
   #fit .fit-ill{ display:none; }
 }
+/* 手描きSVGに切り替え。生成画像は小サイズで形が潰れて意味を成さなかった */
+.ctc svg.ctc-i{ width:78px !important; height:78px !important; display:block; margin-bottom:10px; }
