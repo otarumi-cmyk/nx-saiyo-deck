@@ -828,3 +828,45 @@
     0 0 0 #0B5FA8,
     0 6px 14px rgba(0,0,0,.3) !important;
 }
+
+/* ==================================================================
+   39. 締めのボタンを動かして目立たせる
+       0% を静止状態にしてある（書き出し時はアニメを止めるため）。
+   ================================================================== */
+#cta .cta-book-btn{
+  animation:ctaFloat 2.8s cubic-bezier(.45,0,.55,1) infinite !important;
+  position:relative; overflow:hidden;
+}
+@keyframes ctaFloat{
+  0%,100%{ transform:translateY(0); }
+  50%    { transform:translateY(-7px); }
+}
+/* 光が左から右へ流れる */
+#cta .cta-book-btn::before{
+  content:""; position:absolute; top:0; bottom:0; left:-60%; width:45%;
+  background:linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 100%);
+  transform:skewX(-18deg);
+  animation:ctaShine 2.8s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes ctaShine{
+  0%   { left:-60%; }
+  55%  { left:120%; }
+  100% { left:120%; }
+}
+/* 外側に広がる波紋 */
+#cta .cta-book-btn::after{
+  content:""; position:absolute; inset:-2px; border-radius:20px;
+  border:2px solid rgba(255,255,255,.55);
+  animation:ctaRipple 2.8s ease-out infinite;
+  pointer-events:none;
+}
+@keyframes ctaRipple{
+  0%   { transform:scale(1);    opacity:.55; }
+  70%  { transform:scale(1.12); opacity:0; }
+  100% { transform:scale(1.12); opacity:0; }
+}
+#cta .cta-book-btn:hover{ animation-play-state:paused !important; }
+@media (prefers-reduced-motion: reduce){
+  #cta .cta-book-btn, #cta .cta-book-btn::before, #cta .cta-book-btn::after{ animation:none !important; }
+}
