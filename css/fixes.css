@@ -410,3 +410,51 @@
 .fs-02 .fs-pick{ padding:6px 10px; }
 .fs-02 .fs-pick b{ font-size:.74rem; }
 .fs-02 .fs-pick span{ font-size:.62rem; }
+
+/* ==================================================================
+   24. Before/After：導入前と導入後の棒が同じ長さで、見出しの主張を図が否定していた
+       107時間 → 20時間 の比を、棒の長さそのものに持たせる。
+   ================================================================== */
+#beforeafter .ba2-col.is-key .ba2-bar{ width:18.7% !important; min-width:110px; }
+#beforeafter .ba2-col.is-key .stackbar{ width:18.7% !important; min-width:110px; }
+#beforeafter .ba2-bar{ transition:width .9s var(--ease-out); }
+/* 帯のラベルが10.5pxで読めなかった */
+#beforeafter .sb-seg i, #beforeafter .sb-seg b{ font-size:12.5px !important; }
+#beforeafter .ba2-l{ font-size:.86rem !important; }
+#beforeafter .ba2-total small{ font-size:.5em !important; }
+
+/* 25. 章扉のタイトルが中央から右へ12pxずれていた */
+.slide.chdiv .slide-in, .slide.chdiv .nx-stage{ text-align:center; }
+.slide.chdiv .chdiv-t, .slide.chdiv .chdiv-n{ margin-left:auto; margin-right:auto; }
+
+/* 26. 表紙のアイブロウだけ英数字が和文フォントで組まれていた */
+.sec-hero .hero-eyebrow{ font-family:var(--font-en); letter-spacing:.1em; }
+
+/* 導入後のバーは細いので、中の文字を外に出す（縦に潰れていた） */
+#beforeafter .ba2-col.is-key .sb-seg i,
+#beforeafter .ba2-col.is-key .sb-seg b{ display:none !important; }
+#beforeafter .ba2-col.is-key .ba2-bar{ min-width:96px; }
+#beforeafter .ba2-col.is-key .ba2-l::after{
+  content:"　面接・面談 20h"; font-weight:500; color:rgba(255,255,255,.8);
+}
+
+/* 導入後は1本の白い塊にする（点線の空枠と細い白片が残っていた） */
+#beforeafter .ba2-col.is-key .stackbar,
+#beforeafter .ba2-col.is-key .ba2-bar{
+  width:18.7% !important; min-width:100px;
+  background:none !important; border:0 !important; box-shadow:none !important;
+  outline:0 !important;
+}
+#beforeafter .ba2-col.is-key .sb-seg{
+  width:100% !important; background:#fff !important;
+  border-radius:4px; border:0 !important;
+}
+
+/* 導入後：レガシーの stackbar をやめ、107:20 の比を持つ1本の棒にする */
+.ba-after{ display:flex; align-items:center; gap:14px; margin:10px 0 4px; }
+.ba-after-bar{
+  display:block; height:44px; width:18.7%; min-width:92px;
+  background:#fff; border-radius:4px; flex:0 0 auto;
+}
+.ba-after-t{ font-size:.86rem; font-weight:700; color:rgba(255,255,255,.9); }
+#beforeafter .ba2-col.is-key .ba2-l::after{ content:none; }
