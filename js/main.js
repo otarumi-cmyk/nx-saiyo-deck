@@ -7,6 +7,7 @@ import { init as initCharts } from './charts.js';
 import { init as initDeck } from './deck.js';
 import { init as initFit } from './fit.js';
 import { init as initFnVideo } from './fnvideo.js';
+import { init as initFnScene } from './fnscene.js';
 import { init as initImpact } from './impact.js';
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -44,7 +45,9 @@ function boot() {
   safe('charts', initCharts);
   safe('deck', initDeck);
   safe('fnvideo', initFnVideo);
-  safe('impact', initImpact);
+  safe('fnscene', initFnScene);
+  // 旧インパクト図は #scout-num の比較表に作り替えたため停止
+  // safe('impact', initImpact);
   safe('fit', initFit);
 
   if (window.ScrollTrigger) {

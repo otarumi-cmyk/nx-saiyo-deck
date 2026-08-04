@@ -1,0 +1,145 @@
+/* rhythm.css — 「全部同じ見た目」を壊すためのレイアウト型
+   ------------------------------------------------------------------
+   .nx-stage（fit.js が作る版面）の直下に
+   sec-label / sec-title / lead / 図 / note が並ぶ前提で組んでいる。
+   司令塔が管理。班は編集しない。
+   ------------------------------------------------------------------ */
+
+/* ============================================================
+   1. 機能スライド（fn-01〜07）を3つの型でローテーションする
+      同じ構図が7枚続いて冗長だったので、
+      テキスト左 / テキスト右 / 全面 の3型を交互に当てる。
+   ============================================================ */
+
+/* 共通：番号と進行レール。
+   ゴースト番号は映像に重なると読みづらいので、全面型（型C）でだけ出す。 */
+.fn-slide .fn-text{ position:relative; }
+.fn-ghost{ display:none; }
+.fn-badge{
+  position:relative; z-index:1;
+  display:inline-flex; align-items:baseline; gap:2px;
+  font-family:var(--font-en); font-size:3.4rem; font-weight:700;
+  color:var(--accent-2); line-height:1; letter-spacing:-.02em;
+}
+.fn-badge em{ font-style:normal; font-size:.44em; color:var(--ink-dim); }
+.fn-rail{ display:flex; gap:5px; margin:14px 0 var(--sp-3); position:relative; z-index:1; }
+.fn-rail i{
+  width:22px; height:3px; border-radius:2px; display:block;
+  background:rgba(16,48,92,.12);
+}
+.fn-rail i.is-past{ background:rgba(22,104,200,.42); }
+.fn-rail i.is-on{ background:var(--accent-2); width:38px; box-shadow:0 0 12px rgba(22,104,200,.55); }
+
+/* 版面いっぱいを使う（既存の 66vh 上限は3型それぞれで置き換える） */
+.fn-slide .fn-text > *{ position:relative; z-index:1; }
+.fn-slide .fn-sub{ display:block !important; font-size:.8rem; color:var(--ink-dim); margin:10px 0 0; }
+.fn-slide .sec-title{ margin-bottom:10px !important; }
+
+/* --- 型A：テキスト左 / 映像右 --- */
+.fn-slide.fn-a .fn-wrap, .fn-slide.fn-b .fn-wrap,
+.fn-slide.fn-a .nx-stage, .fn-slide.fn-b .nx-stage{
+  display:grid; align-items:center; column-gap:52px;
+}
+.fn-slide.fn-a .nx-stage{ grid-template-columns:34% 1fr; }
+.fn-slide.fn-a .fn-text{ grid-column:1; grid-row:1; }
+.fn-slide.fn-a .fn-video{ grid-column:2; grid-row:1; }
+
+/* --- 型B：映像左 / テキスト右 --- */
+.fn-slide.fn-b .nx-stage{ grid-template-columns:1fr 34%; }
+.fn-slide.fn-b .fn-video{ grid-column:1; grid-row:1; }
+.fn-slide.fn-b .fn-text{ grid-column:2; grid-row:1; }
+.fn-slide.fn-b .fn-ghost{ left:auto; right:-10px; }
+
+.fn-slide.fn-a .fn-video, .fn-slide.fn-b .fn-video{
+  max-width:none !important; width:100% !important;
+  aspect-ratio:16/10 !important; margin:0 !important;
+}
+
+/* --- 型C：映像を全面に敷き、文字を重ねる（山場用） --- */
+.fn-slide.fn-c .nx-stage{ position:relative; }
+.fn-slide.fn-c .fn-video{
+  max-width:none !important; width:100% !important;
+  aspect-ratio:16/8.6 !important; margin:0 !important;
+  border:0 !important; border-radius:8px;
+}
+.fn-slide.fn-c .fn-video video{ object-fit:cover !important; }
+.fn-slide.fn-c .fn-text{
+  display:grid; grid-template-columns:190px 1fr; align-items:center;
+  column-gap:var(--sp-4); margin-top:var(--sp-4);
+  padding:var(--sp-4) var(--sp-4);
+  background:#fff; border:1px solid var(--line); border-radius:8px;
+}
+.fn-slide.fn-c .fn-badge, .fn-slide.fn-c .fn-rail{ grid-column:1; }
+.fn-slide.fn-c .fn-rail{ margin:12px 0 0; }
+.fn-slide.fn-c .sec-label{ grid-column:2; grid-row:1; align-self:end; }
+.fn-slide.fn-c .sec-title{ grid-column:2; grid-row:2; }
+.fn-slide.fn-c .lead{ grid-column:2; grid-row:3; }
+.fn-slide.fn-c .fn-sub{ grid-column:2; grid-row:4; }
+.fn-slide.fn-c .fn-badge{ grid-row:1 / span 2; align-self:end; }
+.fn-slide.fn-c .fn-rail{ margin:10px 0 12px; }
+.fn-slide.fn-c .lead{ max-width:60ch; }
+
+@media (max-width:900px){
+  .fn-slide.fn-a .nx-stage, .fn-slide.fn-b .nx-stage{ grid-template-columns:1fr; row-gap:var(--sp-3); }
+  .fn-slide.fn-a .fn-text, .fn-slide.fn-b .fn-text,
+  .fn-slide.fn-a .fn-video, .fn-slide.fn-b .fn-video{ grid-column:1; grid-row:auto; }
+  .fn-ghost{ font-size:8rem; }
+}
+
+/* ============================================================
+   2. 本文スライドのレイアウト型
+   ============================================================ */
+
+/* --- lay-split：見出しを左の柱に立て、図を右に大きく置く --- */
+.lay-split .nx-stage{
+  display:grid; grid-template-columns:33% 1fr;
+  column-gap:56px; align-content:center;
+}
+.lay-split .nx-stage > .sec-label{ grid-column:1; grid-row:1; align-self:end; margin-bottom:12px; }
+.lay-split .nx-stage > .sec-title{ grid-column:1; grid-row:2; }
+.lay-split .nx-stage > .lead{ grid-column:1; grid-row:3; align-self:start; margin-top:14px; }
+.lay-split .nx-stage > .note{ grid-column:1; grid-row:4; align-self:end; margin-top:var(--sp-3); }
+.lay-split .nx-stage > :not(.sec-label):not(.sec-title):not(.lead):not(.note){
+  grid-column:2; grid-row:1 / span 4; align-self:center; min-width:0;
+}
+.lay-split .sec-title{ font-size:clamp(1.5rem,2.7vw,2.15rem) !important; }
+/* 左の柱に縦のアクセント線を落として「柱」に見せる */
+.lay-split .nx-stage > .sec-title{ position:relative; padding-left:20px; }
+.lay-split .nx-stage > .sec-title::before{
+  content:""; position:absolute; left:0; top:.22em; bottom:.18em; width:3px;
+  border-radius:2px; background:linear-gradient(180deg,var(--accent),rgba(22,104,200,0));
+}
+@media (max-width:900px){
+  .lay-split .nx-stage{ grid-template-columns:1fr; }
+  .lay-split .nx-stage > *{ grid-column:1 !important; grid-row:auto !important; }
+}
+
+/* --- lay-wide：見出しを小さく上に寄せ、図に版面をほぼ全部渡す --- */
+.lay-wide .nx-stage > .sec-label{ margin-bottom:6px; }
+.lay-wide .sec-title{ font-size:clamp(1.35rem,2.3vw,1.85rem) !important; margin-bottom:var(--sp-3) !important; }
+.lay-wide .lead{ font-size:.92rem !important; margin-bottom:var(--sp-3) !important; }
+
+/* --- lay-flood：ここだけ濃紺〜青で塗り潰し、山場であることを色で示す --- */
+.slide.lay-flood{ background:linear-gradient(140deg,#0B2E63 0%,#12539F 52%,#1668C8 100%) !important; }
+.slide.lay-flood::before, .slide.lay-flood::after{ display:none !important; }
+.slide.lay-flood .sec-label{ color:rgba(255,255,255,.66) !important; }
+.slide.lay-flood .sec-label::before{ background:rgba(255,255,255,.55) !important; }
+.slide.lay-flood .sec-title, .slide.lay-flood .sec-title .hl{ color:#fff !important; }
+.slide.lay-flood .lead, .slide.lay-flood .lead .hl{ color:rgba(255,255,255,.9) !important; }
+.slide.lay-flood .note{ color:rgba(255,255,255,.6) !important; }
+.slide.lay-flood .ba2-l{ color:rgba(255,255,255,.72) !important; }
+.slide.lay-flood .ba2-total, .slide.lay-flood .ba2-total.is-key,
+.slide.lay-flood .ba2-diff{ color:#fff !important; }
+.slide.lay-flood .ba2-total small{ color:rgba(255,255,255,.7) !important; }
+.slide.lay-flood .sb-seg.is-chore{ background:rgba(255,255,255,.26) !important; color:#fff !important; }
+.slide.lay-flood .sb-seg.is-core{ background:#fff !important; color:#0B2E63 !important; }
+.slide.lay-flood .sb-seg i, .slide.lay-flood .sb-seg b{ color:inherit !important; }
+.slide.lay-flood .ba2-arrow svg path[fill]{ fill:#fff !important; }
+.slide.lay-flood .ba2-arrow svg path[stroke]{ stroke:#fff !important; }
+.slide.lay-flood .ba2-col{ background:rgba(255,255,255,.08) !important; border-color:rgba(255,255,255,.2) !important; }
+.slide.lay-flood .ba2-col.is-key{ background:rgba(255,255,255,.16) !important; border-color:rgba(255,255,255,.4) !important; }
+
+/* ============================================================
+   3. アニメーション用の初期状態（JSが解除する）
+   ============================================================ */
+.slide[data-anim="wipe"]:not(.is-active) .nx-stage > *{ clip-path:inset(0 100% 0 0); }

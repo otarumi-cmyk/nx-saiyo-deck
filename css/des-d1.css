@@ -1,0 +1,127 @@
+/* des-d1.css — デザイナー1（課題の感情化）
+   ==================================================================
+   担当: #breakdown（5枚目「107時間の中身」）のみ。
+   組み立て: 見出し → 感情帯（イラスト＋本音の吹き出し2つ）→ 100%積み上げバー → 注記
+   色は light.css のトークンだけを使う。生の色は書かない。
+   クラスは d1- 接頭辞。既存の .voice / .ill は light.css の部品をそのまま使う。
+   ================================================================== */
+
+/* ==================================================================
+   1. 上段＝感情：書類の山に埋もれた担当者が、本音を2つだけ喋る
+   ================================================================== */
+#breakdown .d1-emo{
+  display:flex; align-items:center; gap:28px;
+  margin:22px 0 26px;
+}
+#breakdown .d1-emo .ill{ flex:0 0 auto; }
+
+#breakdown .d1-vr{
+  flex:1 1 auto; min-width:0;
+  display:flex; flex-direction:column; align-items:flex-start;
+  gap:14px;
+}
+#breakdown .d1-vr .voice{
+  max-width:none;
+  padding:16px 24px;
+  font-size:1.02rem; font-weight:600; line-height:1.6;
+  color:var(--ink);
+}
+#breakdown .d1-vr .voice b{
+  font-size:1.22rem; font-weight:700; color:var(--accent-2);
+}
+/* しっぽを左向きに付け替える（担当者が喋っているように見せる） */
+#breakdown .d1-vr .voice::after{
+  left:-9px; bottom:auto; top:26px;
+  border:0;
+  border-left:1px solid var(--line);
+  border-top:1px solid var(--line);
+}
+#breakdown .d1-vr .voice.is-key::after{
+  border-left-color:var(--acc-24);
+  border-top-color:var(--acc-24);
+}
+
+/* ==================================================================
+   2. 下段＝数字：107時間を1本の100%積み上げバーにする
+   ================================================================== */
+#breakdown .d1-fig{ margin:0; }
+
+/* バーの真上のキャップ（雑務87h ／ 面接20h ＝ グループ合計） */
+#breakdown .d1-caps{
+  display:flex; gap:2px; align-items:flex-end;
+  margin:0 0 10px;
+}
+#breakdown .d1-cap{
+  flex-grow:var(--w,1); flex-shrink:1; flex-basis:0;
+  display:flex; align-items:baseline; gap:9px; min-width:0;
+}
+#breakdown .d1-cap-t{
+  font-size:.95rem; font-weight:700; color:var(--ink-dim);
+}
+#breakdown .d1-cap b{
+  font-family:var(--font-en); font-weight:700; font-size:2.2rem; line-height:1;
+  color:var(--accent);
+}
+#breakdown .d1-cap b small{
+  font-size:.4em; font-weight:600; margin-left:3px; color:var(--ink-dim);
+}
+#breakdown .d1-cap.is-core b{ color:var(--ink-dim); }
+
+/* バー本体。左から右へ 1 度だけ開く（バウンドなし・等速寄り） */
+#breakdown .d1-bar{
+  display:flex; gap:2px; height:116px;
+  border-radius:8px; overflow:hidden;
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 1s var(--ease-out) .15s;
+}
+#breakdown.is-active .d1-bar{ clip-path:inset(0 0 0 0); }
+
+#breakdown .d1-seg{
+  flex-grow:var(--w,1); flex-shrink:1; flex-basis:0;
+  min-width:0; overflow:hidden;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:5px;
+  padding:0 6px; text-align:center;
+  background:var(--accent-2); color:var(--surface-1);
+}
+/* 42時間が突出していることを色でも出す */
+#breakdown .d1-seg.is-lead{ background:var(--accent); }
+/* 面接だけは白＝奪われていない時間 */
+#breakdown .d1-seg.is-core{
+  background:var(--surface-1); color:var(--ink);
+  border:1px solid var(--line);
+}
+#breakdown .d1-lb{
+  font-size:.8rem; font-weight:700; line-height:1.2;
+  white-space:nowrap;
+}
+#breakdown .d1-vv{
+  font-family:var(--font-en); font-weight:700; font-size:1.5rem; line-height:1;
+}
+#breakdown .d1-seg.is-sm .d1-lb{ font-size:.72rem; }
+#breakdown .d1-seg.is-sm .d1-vv{ font-size:1.15rem; }
+
+#breakdown .note{ margin-top:16px; }
+
+/* 動きを減らす設定では最終状態で静止させる */
+@media (prefers-reduced-motion: reduce){
+  #breakdown .d1-bar{ clip-path:none; transition:none; }
+}
+
+/* ==================================================================
+   3. 狭い版面（fit.js が 720px 版面に切り替える幅）
+   ================================================================== */
+@media (max-width:900px){
+  #breakdown .d1-emo{ gap:16px; margin:16px 0 20px; }
+  #breakdown .d1-vr{ gap:10px; }
+  #breakdown .d1-vr .voice{ padding:12px 16px; font-size:.9rem; }
+  #breakdown .d1-vr .voice b{ font-size:1.05rem; }
+  #breakdown .d1-vr .voice::after{ top:18px; }
+  #breakdown .d1-cap b{ font-size:1.7rem; }
+  #breakdown .d1-bar{ height:104px; }
+  #breakdown .d1-seg{ padding:0 2px; gap:4px; }
+  #breakdown .d1-lb{ font-size:.7rem; }
+  #breakdown .d1-vv{ font-size:1.25rem; }
+  #breakdown .d1-seg.is-sm .d1-lb{ font-size:.62rem; }
+  #breakdown .d1-seg.is-sm .d1-vv{ font-size:1rem; }
+}

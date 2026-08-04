@@ -1,0 +1,62 @@
+/* fix-g6.css — 費用パート（#price / #roi / #cmp-scout / #faq）の修正
+   ------------------------------------------------------------------
+   ・色は light.css のトークンだけを使う（生の色は書かない）
+   ・新規クラスは g6- 接頭辞
+   ------------------------------------------------------------------ */
+
+/* ==================================================================
+   #roi — 図版2ブロックの重なりを解消する
+   lay-split は「見出し系以外の .nx-stage 直下」を全部 column2 / row1-4 に
+   置くため、.g5-roi と .g5-minis が同じセルに重なっていた。
+   HTML 側で .g6-roi-stack で包み、図版ブロックを1個に戻した上で縦積みにする。
+   ================================================================== */
+#roi .g6-roi-stack{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  row-gap:var(--sp-3);
+  min-width:0;
+}
+#roi .g6-roi-stack > .g5-roi,
+#roi .g6-roi-stack > .g5-minis{
+  margin-top:0;
+  min-width:0;
+}
+
+/* 縦積みにして空いた分、図版を少し大きくして版面を使い切る
+   （brand.css の #roi 指定と同じ強さにならないよう .lay-split を足して勝たせる） */
+#roi.slide .g5-roi{ padding:var(--sp-5); }
+#roi.slide .g5-track, #roi.slide .g5-seg{ height:62px; }
+#roi.slide .g5-bar{ margin-bottom:18px; }
+#roi.slide .g5-mini{ padding:var(--sp-4) var(--sp-3); }
+
+/* 注釈は4行目の最下端に張り付いて見出しとの間に空白帯を作っていたので、
+   見出しの直下（左柱のかたまり）に寄せる */
+#roi.lay-split .nx-stage > .note{
+  grid-row:3;
+  align-self:start;
+  margin-top:var(--sp-4);
+}
+/* 左柱（ラベル＋見出し＋注釈）をひとかたまりとして図版の高さの中央に置く */
+#roi.lay-split .nx-stage{
+  grid-template-rows:minmax(0,1fr) auto auto minmax(0,1fr);
+}
+
+/* ==================================================================
+   #cmp-scout — 下段チップ
+   ・中身が左25%で終わって右が白いままだったので中央寄せにして幅を使い切る
+   ・アイコンが淡すぎたので --accent まで濃くする
+   ・本サービス側（.g6-own）だけ塗りと枠線を青寄りにして、文言を足さずに
+     「どちらが自社の数字か」を区別できるようにする
+   ================================================================== */
+#cmp-scout .g5-chip{
+  justify-content:center;
+  padding-top:14px;
+  padding-bottom:14px;
+}
+#cmp-scout .g5-chip .g5-ic{ color:var(--accent); }
+/* light.css のカード規則が !important のため、ここも !important で上書きする */
+#cmp-scout .g5-chip.g6-own{
+  background:var(--surface-2) !important;
+  border-color:var(--acc-24) !important;
+}
+#cmp-scout .g5-chip.g6-own b{ color:var(--accent-2); }

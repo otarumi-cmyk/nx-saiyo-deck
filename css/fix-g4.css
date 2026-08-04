@@ -1,0 +1,107 @@
+/* fix-g4.css — 実績パート班（beforeafter / results / scout-num / cases）の修正
+   ==================================================================
+   ルール：色は light.css のトークンのみ。
+   例外は濃色スライド（.lay-flood）の白アルファ（rhythm.css の既存作法に合わせる）。
+   新規クラスは g4- 接頭辞。
+   ================================================================== */
+
+/* ------------------------------------------------------------------
+   [1] #beforeafter：章タブが青ベタに埋没していた（コントラスト 1.16:1）。
+       .slide-tab の地（--navy=#0B2E63）と .lay-flood の開始色が同一だったため。
+       濃色スライドだけタブを白面＋濃紺文字に反転させる。
+       ※ .lay-flood は #beforeafter のみ。
+   ------------------------------------------------------------------ */
+.slide.lay-flood > .slide-tab{
+  background:var(--surface-1) !important;
+  color:var(--navy) !important;
+  box-shadow:var(--shadow-card) !important;
+}
+.slide.lay-flood > .slide-tab::after{
+  background:var(--surface-1) !important;
+}
+
+/* ------------------------------------------------------------------
+   [4] #beforeafter：「導入後」カードの面（白.16）が「導入前」の雑務セグメント
+       （白.26）と同じ明るさに見え、20時間ぶんの白チップ以外の440pxが
+       “塗られた帯”に読めていた。面を対のカードと同じ .08 に揃え、
+       強調は既存の border（白.4）だけで持たせる。
+       あわせて 107時間ぶんのゴースト枠は、白チップ以外を一段暗く落として
+       「塗られた帯」ではなく「空いたくぼみ」に見せる（破線の枠は据置）。
+   ------------------------------------------------------------------ */
+.slide.lay-flood .ba2-col.is-key{
+  background:rgba(255,255,255,.08) !important;
+  border-color:rgba(255,255,255,.4) !important;
+}
+#beforeafter .ba2-col.is-key .ba2-bar{
+  /* 107時間ぶんの枠は「くぼみ」に。濃色スライドで使える #0B2E63 のアルファのみ。 */
+  background:rgba(11,46,99,.42) !important;
+  border-color:rgba(255,255,255,.4) !important;
+}
+#beforeafter .ba2-col.is-key .stackbar{
+  box-shadow:none !important;
+}
+
+/* ------------------------------------------------------------------
+   [7] #beforeafter：導入前バーの細い3本（8h/5h/5h）が名前なしだった。
+       バー内には入らないので、グリッドの2行目に凡例を1行だけ置く。
+       名称は #breakdown の aria-label と同じ（評価入力／求人票／集計）。
+   ------------------------------------------------------------------ */
+.g4-ba-legend{
+  grid-column:1; grid-row:2;
+  margin:10px 0 0; text-align:center;
+  font-size:.72rem; font-weight:600; line-height:1.5;
+  color:rgba(255,255,255,.72);
+}
+@media (max-width:900px){
+  .g4-ba-legend{ grid-column:1; grid-row:auto; }
+}
+
+/* ------------------------------------------------------------------
+   [8] #beforeafter：注記が青ベタ上で 4.2:1 まで落ちて痩せていた。
+       白アルファを .6 → .78 に上げる（新しい色は増やさない）。
+   ------------------------------------------------------------------ */
+.slide.lay-flood .note,
+#beforeafter .note{ color:rgba(255,255,255,.78) !important; }
+
+/* ------------------------------------------------------------------
+   [2] #scout-num：左の柱が 422px しかなく、見出しが「返／信率」、
+       リードが「書／き分けた」と語中で割れていた。
+       柱を 38% に広げ、日本語を文節単位で折り返させる。
+       ※ 他の .lay-split（#num-cost / #roi）には影響させない。
+   ------------------------------------------------------------------ */
+#scout-num .nx-stage{ grid-template-columns:38% 1fr !important; }
+#scout-num .nx-stage > .sec-title,
+#scout-num .nx-stage > .lead,
+#scout-num .nx-stage > .note{
+  word-break:auto-phrase;
+  overflow-wrap:normal;
+}
+
+/* ------------------------------------------------------------------
+   [3] #scout-num：比較元（テンプレート送信）のベースラインバーと凡例の
+       スウォッチが地に溶けていた（1.28:1）。--acc-60 に置き換えて
+       約2.4:1 まで上げる。ベタ青の矢印（AI側）とは明度差で従属を保つ。
+   ------------------------------------------------------------------ */
+#scout-num .g3-base{ background:var(--acc-60) !important; }
+#scout-num .g3-lg-b::before{ background:var(--acc-60) !important; }
+
+/* ------------------------------------------------------------------
+   [5] #cases：中央の強調カードだけ面が縦グラデーションで、下半分が
+       ページ地に溶けていた（brand.css の .case.is-key が light.css より
+       詳細度で勝っていた）。他の強調カードと同じベタ面に統一する。
+   ------------------------------------------------------------------ */
+#cases .case.is-key{
+  background:var(--surface-2) !important;
+  /* 面をベタにすると輪郭が弱くなるので、枠だけ --acc-60 で締める（トークンのみ） */
+  border-color:var(--acc-60) !important;
+}
+
+/* ------------------------------------------------------------------
+   [6] #results：出典行の破線がカード幅いっぱい（361px）に伸び、
+       取り消し線のように見えていた（.src が display:block のため）。
+       文字幅にだけ収め、破線色もトークンに寄せる。
+   ------------------------------------------------------------------ */
+#results .src.ph{
+  display:inline !important;
+  border-bottom:1px dashed var(--line) !important;
+}

@@ -1,0 +1,368 @@
+/* fixes.css — 品質判定（2班）で確定した残欠陥の修正。最後に読み込む。
+   司令塔が管理。班は編集しない。 */
+
+/* ==================================================================
+   1. 7機能：版面を1つの型に統一し、突き抜けを止める
+      判定: fn-04 が [80,-54,1280,989]、fn-07 が [80,-68,1280,1017] で
+      スライド外へ出ており、fit.js が 0.73〜0.87 倍に縮めて文字が8px台になっていた。
+      高さを固定し、テキスト柱と図の列を確実に分離する。
+   ================================================================== */
+.fn-slide .nx-stage{
+  display:grid !important;
+  grid-template-columns:31% minmax(0,1fr) !important;
+  column-gap:46px !important;
+  align-items:center !important;
+}
+.fn-slide .fn-text{ grid-column:1 !important; grid-row:1 !important; min-width:0; padding-right:6px; }
+.fn-slide .fn-video{
+  grid-column:2 !important; grid-row:1 !important;
+  width:100% !important; max-width:none !important; margin:0 !important;
+  aspect-ratio:auto !important;
+  height:600px !important;
+  min-width:0;
+}
+/* テキストが図の面に食い込んでいた（実測58px交差）ので、柱の中で必ず折り返す */
+.fn-slide .fn-text .sec-label{
+  max-width:100%; white-space:normal; line-height:1.5;
+}
+.fn-slide .fn-text .sec-title{ font-size:clamp(1.3rem,2.2vw,1.8rem) !important; }
+.fn-slide .fn-text .lead{ font-size:.92rem !important; }
+.fn-slide .fn-badge{ font-size:2.6rem; }
+.fn-scene{ overflow:hidden; align-content:center; }
+
+/* 02 だけ濃色に反転して、章の中に山をつくる（章扉以外に濃色が無かった） */
+.slide.fn-slide.is-peak{
+  background:linear-gradient(135deg,#0B2E63 0%,#12539F 60%,#1668C8 100%) !important;
+}
+.slide.fn-slide.is-peak::after{ display:none !important; }
+.slide.fn-slide.is-peak .sec-label{ color:rgba(255,255,255,.72) !important; }
+.slide.fn-slide.is-peak .sec-label::before{ background:rgba(255,255,255,.6) !important; }
+.slide.fn-slide.is-peak .sec-title{ color:#fff !important; }
+.slide.fn-slide.is-peak .lead, .slide.fn-slide.is-peak .fn-sub{ color:rgba(255,255,255,.9) !important; }
+.slide.fn-slide.is-peak .lead .hl{ color:#8EC6FF !important; }
+.slide.fn-slide.is-peak .fn-badge{ color:#8EC6FF !important; }
+.slide.fn-slide.is-peak .fn-badge em{ color:rgba(255,255,255,.6) !important; }
+.slide.fn-slide.is-peak .fn-rail i{ background:rgba(255,255,255,.22) !important; }
+.slide.fn-slide.is-peak .fn-rail i.is-past{ background:rgba(255,255,255,.5) !important; }
+.slide.fn-slide.is-peak .fn-rail i.is-on{ background:#fff !important; box-shadow:none !important; }
+.slide.fn-slide.is-peak .slide-tab{ box-shadow:none; background:rgba(255,255,255,.16); }
+
+/* ==================================================================
+   2. パネル内の余白過多（インク占有率 35〜51%）
+      図を大きくして版面を使わせる
+   ================================================================== */
+.fs-01 .fs-sheet{ max-height:100%; overflow:hidden; align-self:center; }
+.fs-01 .fs-field{ padding:6px 0; font-size:.8rem; }
+.fs-01 .fs-field b{ font-size:.68rem; }
+.fs-05 .fs-merged .fs-grid i{ height:40px; }
+.fs-05 .fs-cal .fs-grid i{ height:19px; }
+.fs-05 .fs-cal-h{ font-size:.76rem !important; }
+.fs-06 .fs-wave{ height:74px; }
+.fs-06 .fs-script p{ font-size:.9rem; }
+.fs-06 .fs-tag{ font-size:.84rem; padding:8px 15px; }
+.fs-07 .fs-fbar{ height:50px; font-size:1.08rem; }
+.fs-07 .fs-funnel{ gap:16px; }
+.fs-07 .fs-fk{ font-size:.95rem; }
+
+/* 3. fn-05 のカレンダーが「読み込み中」に見える（極薄グレー）ので面と枠を立てる */
+.fs-05 .fs-grid i{ background:var(--surface-2) !important; box-shadow:0 0 0 1px var(--line) inset; }
+.fs-05 .fs-grid i.is-busy{ background:var(--acc-60) !important; box-shadow:none; }
+.fs-05 .fs-merged .fs-grid i.is-free{ background:var(--accent) !important; box-shadow:0 0 0 2px rgba(22,104,200,.28); }
+
+/* ==================================================================
+   4. #results：暗色時代の発光が白地でにじみになる
+   ================================================================== */
+#results .stat-v, #results .num, #cases .num, #cases .cs-x b{ text-shadow:none !important; }
+#results .stat-k{ margin-top:6px; }
+
+/* 5. #roi：意味を持たない灰色のバーが未読み込みに見える */
+#roi .g5-mbars, #roi .g5-mbar{ display:none !important; }
+#roi .g5-mini{ display:flex; align-items:baseline; justify-content:space-between; gap:var(--sp-2); }
+#roi .g5-mini b{ font-size:1.1rem; color:var(--accent-2); }
+
+/* 6. #fit：吹き出しのしっぽが白地で白い矩形として飛び出していた */
+.d5-voice::after, .voice::after{
+  background:var(--surface-1) !important;
+  border:1px solid var(--line) !important;
+  border-top:0 !important; border-left:0 !important;
+  box-shadow:none !important;
+}
+
+/* 7. #cta：背景に横一直線の継ぎ目が出ていた */
+.slide.sec-cta::before{
+  background:linear-gradient(120deg, rgba(11,46,99,.7) 0%, rgba(11,46,99,.34) 58%, rgba(11,46,99,.68) 100%) !important;
+}
+
+/* 8. 章扉の 3px 縦溢れ（scrollHeight 903 > clientHeight 900） */
+.slide.chdiv > .slide-in{ min-height:0 !important; }
+.slide.chdiv{ overflow:hidden; }
+
+/* 9. #map：4列目・5列目の下に200〜270pxの空洞が残っていた */
+.mp-flow{ align-items:flex-start !important; }
+.mp-col{ align-self:flex-start; }
+
+/* ==================================================================
+   10. 代行比較：参考資料と同じ「◎△×の表＋自社列だけ着色＋王冠」
+   ================================================================== */
+.cm-table{ margin:var(--sp-5) 0 var(--sp-3); }
+.cm-head, .cm-row{ display:grid; grid-template-columns:30% 1fr 1fr 1fr; align-items:center; }
+.cm-head{ margin-bottom:4px; }
+.cm-head .cm-v{
+  padding:14px 10px; text-align:center; font-size:.9rem; font-weight:700;
+  color:var(--ink-dim); background:var(--bg); border-radius:6px 6px 0 0;
+}
+.cm-head .cm-v.is-ours{ background:var(--navy); color:#fff; position:relative; }
+.cm-row{ border-bottom:1px solid var(--line); }
+.cm-row:last-child .cm-v.is-ours{ border-radius:0 0 6px 6px; }
+.cm-k{ padding:16px 12px 16px 0; font-size:.92rem; font-weight:600; color:var(--ink-dim); }
+.cm-v{
+  padding:16px 10px; text-align:center;
+  font-family:var(--font-en); font-size:1.5rem; font-weight:700; color:var(--ink);
+}
+.cm-v small{ font-family:var(--font-jp); font-size:.56em; margin-left:2px; }
+.cm-v.is-mark{ font-family:var(--font-jp); font-size:1.6rem; color:var(--ink-dim); }
+.cm-v.is-ours{ background:var(--surface-2); color:var(--accent-2); }
+.cm-v.is-ours.is-mark{ color:var(--accent); }
+.cmp-crown::before{ top:-13px; }
+@media (max-width:900px){
+  .cm-head, .cm-row{ grid-template-columns:1fr; }
+  .cm-k{ padding:12px 0 4px; }
+}
+
+/* AI章に1枚だけ絵を置く（#map の右下が空いていた） */
+.map-ill{ width:clamp(150px,15vw,205px); right:8px; bottom:56px; opacity:.95; }
+#map .slide-in{ position:relative; }
+
+/* ==================================================================
+   11. 白パネル内の余白過多（12〜15枚目）
+       中身が上半分に寄って下が死んでいたので、
+       パネルを詰めたうえで図版そのものを大きくする。
+   ================================================================== */
+.fn-slide .fn-video{ height:552px !important; }
+.fn-scene{ padding:24px 30px; }
+
+/* 04 適性検査：レーダーと質問カードを大きく */
+.fs-04{ gap:26px; }
+.fs-04 .fs-radar{ flex:0 0 43% !important; height:auto; max-height:100%; }
+.fs-04 .fs-ax{ font-size:12.5px; }
+.fs-04 .fs-qs-h{ font-size:.8rem; margin-bottom:14px; }
+.fs-04 .fs-q{ padding:13px 16px; margin-bottom:12px; }
+.fs-04 .fs-q-ax{ font-size:.72rem; margin-bottom:6px; }
+.fs-04 .fs-q-t{ font-size:.88rem; line-height:1.55; }
+
+/* 05 日程調整：3枚のカレンダーを図として立てる */
+.fs-05{ gap:26px; }
+.fs-05 .fs-cals{ flex:0 0 41% !important; gap:14px; }
+.fs-05 .fs-cal{ padding:14px 16px; }
+.fs-05 .fs-cal-h{ font-size:.84rem !important; margin-bottom:9px; }
+.fs-05 .fs-cal .fs-grid{ gap:5px; }
+.fs-05 .fs-cal .fs-grid i{ height:26px !important; }
+.fs-05 .fs-merged{ padding:18px 20px; }
+.fs-05 .fs-merged .fs-cal-h{ font-size:.92rem !important; }
+.fs-05 .fs-merged .fs-grid{ gap:6px; }
+.fs-05 .fs-merged .fs-grid i{ height:54px !important; }
+.fs-05 .fs-merged-n{ font-size:.9rem; margin-top:16px; }
+
+/* 06 文字起こし：波形と発話を大きく */
+.fs-06{ gap:16px; }
+.fs-06 .fs-wave{ height:96px; }
+.fs-06 .fs-wave-h{ font-size:.78rem; }
+.fs-06 .fs-script{ gap:9px; }
+.fs-06 .fs-script p{ font-size:.96rem; line-height:1.5; }
+.fs-06 .fs-script b{ font-size:.74rem; }
+.fs-06 .fs-sum{ padding:15px 18px; }
+.fs-06 .fs-tag{ font-size:.88rem; padding:9px 17px; }
+
+/* 07 採用分析：ファネルを版面いっぱいに */
+.fs-07{ padding:26px 60px; }
+.fs-07 .fs-funnel{ gap:22px; }
+.fs-07 .fs-frow{ grid-template-columns:132px 1fr; gap:20px; }
+.fs-07 .fs-fk{ font-size:1rem; }
+.fs-07 .fs-fbar{ height:62px; font-size:1.2rem; border-radius:5px; }
+.fs-07 .fs-fnote{ font-size:.92rem; margin-top:24px; }
+
+/* 01・02・03 もパネル高に合わせて微調整 */
+.fs-01 .fs-field{ padding:7px 0; }
+.fs-02 .fs-msg{ padding:12px 15px; }
+.fs-02 .fs-msgs{ gap:11px; }
+.fs-03 .fs-case{ padding:15px 17px; }
+.fs-03 .fs-row{ padding:6px 0; font-size:.7rem; }
+
+/* ==================================================================
+   12. 02 AIスカウト：左=根拠と選んだ訴求 / 右=できあがった文面
+   ================================================================== */
+.fs-02{ gap:24px; align-items:stretch !important; }
+.fs-02 .fs-left{ flex:0 0 36%; display:flex; flex-direction:column; gap:14px; min-width:0; }
+.fs-02 .fs-branch{ display:none !important; }
+.fs-02 .fs-cand{ padding:14px 16px; }
+.fs-02 .fs-cand-h{ margin-bottom:8px !important; }
+.fs-02 .fs-fact{ margin:0 0 5px; font-size:.8rem; font-weight:600; color:var(--ink-dim); line-height:1.45; }
+.fs-02 .fs-picks{ display:flex; flex-direction:column; gap:7px; }
+.fs-02 .fs-picks-h{ font-size:.68rem; font-weight:700; color:var(--accent-2); letter-spacing:.06em; }
+.fs-02 .fs-pick{
+  background:#fff; border:1px solid var(--line); border-left:3px solid var(--line);
+  border-radius:5px; padding:8px 12px; transition:border-color .3s, background .3s;
+}
+.fs-02 .fs-pick.is-on{ border-left-color:var(--accent); background:var(--surface-2); }
+.fs-02 .fs-pick b{ display:block; font-size:.8rem; font-weight:700; color:var(--ink); }
+.fs-02 .fs-pick span{ display:block; font-size:.68rem; color:var(--ink-dim); margin-top:2px; line-height:1.4; }
+
+.fs-02 .fs-mail{
+  flex:1 1 auto; min-width:0; display:flex; flex-direction:column;
+  background:#fff; border:1px solid var(--line); border-radius:8px;
+  box-shadow:0 2px 10px rgba(11,37,69,.06); overflow:hidden;
+}
+.fs-02 .fs-mail-h{
+  display:flex; align-items:center; gap:9px; padding:10px 16px;
+  background:var(--surface-2); border-bottom:1px solid var(--line);
+  font-size:.7rem; font-weight:700; color:var(--accent-2);
+}
+.fs-02 .fs-mail-h em{
+  font-style:normal; padding:2px 8px; border-radius:100px;
+  background:var(--accent); color:#fff; font-size:.9em;
+}
+.fs-02 .fs-subj{
+  margin:0; padding:13px 18px 11px; font-size:.92rem; font-weight:700; color:var(--ink);
+  border-bottom:1px solid var(--line); line-height:1.4;
+}
+.fs-02 .fs-mailbody{ padding:14px 18px; display:flex; flex-direction:column; gap:9px; }
+.fs-02 .fs-mailbody p{ margin:0; font-size:.82rem; font-weight:500; color:var(--ink); line-height:1.7; border-radius:3px; }
+.fs-02 .fs-hi{ padding:2px 4px; margin:0 -4px !important; }
+.fs-02 .fs-sign{ margin-top:4px !important; font-size:.74rem !important; color:var(--ink-dim) !important; }
+
+/* 13. 07 ファネル：細いバーの数字が切れていたので、外に出す */
+.fs-07 .fs-frow{ grid-template-columns:132px 1fr !important; }
+.fs-07 .fs-ftrack{ display:flex; align-items:center; gap:12px; min-width:0; }
+.fs-07 .fs-fbar{
+  flex:0 0 auto; width:var(--w); height:62px !important;
+  border-radius:5px; overflow:visible !important;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  padding:0 !important; display:block;
+}
+.fs-07 .fs-fval{
+  font-family:var(--font-en); font-size:1.2rem; font-weight:700;
+  white-space:nowrap; flex:0 0 auto;
+}
+/* 幅が足りる行は、数字をバーの右端の内側に重ねる */
+.fs-07 .fs-frow:not(.is-narrow) .fs-ftrack{ position:relative; }
+.fs-07 .fs-frow:not(.is-narrow) .fs-fval{
+  position:absolute; left:var(--w); transform:translateX(calc(-100% - 14px)); color:#fff;
+}
+.fs-07 .fs-frow.is-narrow .fs-fval{ color:var(--accent-2); }
+
+/* 14. 07 ファネル：--w は .fs-fbar にしか無く、数字側から参照できていなかった */
+.fs-07 .fs-frow{ position:relative; }
+.fs-07 .fs-frow:not(.is-narrow) .fs-fval{
+  position:static; transform:none; margin-left:-14px; color:#fff;
+}
+.fs-07 .fs-frow:not(.is-narrow) .fs-ftrack{ position:relative; }
+.fs-07 .fs-frow:not(.is-narrow) .fs-fbar{ position:relative; }
+.fs-07 .fs-ftrack{ align-items:center; }
+.fs-07 .fs-frow:not(.is-narrow) .fs-fval{ margin-left:-58px; }
+
+/* ==================================================================
+   15. 返信率の比較：矢印をやめ、列を揃えた表にする
+       矢羽根の頭が固定サイズで、短い行だと頭だけが目立っていた
+   ================================================================== */
+.sn-table{ margin:var(--sp-4) 0 var(--sp-3); }
+.sn-head, .sn-row{
+  display:grid; grid-template-columns:96px 1fr 1fr 120px;
+  align-items:center; gap:var(--sp-3);
+}
+.sn-head{ padding-bottom:10px; border-bottom:2px solid var(--line); font-size:.78rem; font-weight:700; color:var(--ink-dim); }
+.sn-row{ padding:var(--sp-3) 0; border-bottom:1px solid var(--line); }
+.sn-k{ font-size:1rem; font-weight:700; color:var(--ink); }
+.sn-lane{ display:flex; align-items:center; gap:12px; min-width:0; }
+.sn-bar{ height:26px; border-radius:4px; flex:0 0 auto; width:var(--w); }
+.sn-bar.is-base{ background:#B9CBE0; }
+.sn-bar.is-ai{ background:linear-gradient(90deg,var(--accent-2),var(--accent)); }
+.sn-v{ font-family:var(--font-en); font-size:1.05rem; font-weight:700; color:var(--ink-dim); white-space:nowrap; }
+.sn-v.is-ai{ color:var(--accent-2); }
+.sn-x{ display:flex; align-items:baseline; gap:4px; justify-content:flex-end; }
+.sn-x b{ font-family:var(--font-en); font-size:clamp(2rem,3.4vw,2.9rem); font-weight:700; color:var(--accent); line-height:1; }
+.sn-x span{ font-size:.9rem; font-weight:700; color:var(--ink-dim); }
+#scout-num .steps{ margin:var(--sp-4) 0 var(--sp-3); }
+#scout-num .step{ font-size:.82rem; }
+@media (max-width:900px){ .sn-head{ display:none; } .sn-row{ grid-template-columns:1fr 1fr; } }
+
+/* ==================================================================
+   16. ROI：注記に埋もれていた計算を、式として画面に出す
+   ================================================================== */
+.ro-calc{
+  display:grid; grid-template-columns:1fr 44px 1.25fr 44px 0.9fr;
+  align-items:stretch; gap:0; margin:var(--sp-5) 0 var(--sp-3);
+}
+.ro-side{
+  background:var(--surface-1); border:1px solid var(--line); border-radius:8px;
+  padding:var(--sp-4); box-shadow:var(--shadow-card);
+}
+.ro-h{
+  display:inline-block; font-size:.78rem; font-weight:700; padding:5px 13px;
+  border-radius:4px; margin-bottom:var(--sp-3);
+}
+.ro-h.is-cost{ background:#E4E9EF; color:var(--ink-dim); }
+.ro-h.is-gain{ background:var(--surface-2); color:var(--accent-2); }
+.ro-line{
+  display:flex; align-items:baseline; justify-content:space-between; gap:var(--sp-3);
+  padding:9px 0; border-bottom:1px dashed var(--line); font-size:.88rem; font-weight:600; color:var(--ink);
+}
+.ro-line i{ display:block; font-style:normal; font-size:.72rem; font-weight:500; color:var(--ink-dim); margin-top:3px; }
+.ro-line b{ font-family:var(--font-en); font-size:1.15rem; white-space:nowrap; }
+.ro-line b small{ font-family:var(--font-jp); font-size:.62em; margin-left:2px; }
+.ro-line.is-sub{ color:var(--ink-dim); }
+.ro-eq{
+  display:flex; align-items:baseline; justify-content:space-between; gap:var(--sp-2);
+  margin-top:var(--sp-3); padding-top:var(--sp-3); border-top:2px solid var(--line);
+  font-size:.84rem; font-weight:600; color:var(--ink-dim);
+}
+.ro-total{ font-family:var(--font-en); font-size:2rem; font-weight:700; line-height:1; }
+.ro-total small{ font-family:var(--font-jp); font-size:.44em; margin-left:3px; }
+.ro-total.is-cost{ color:var(--ink-dim); }
+.ro-total.is-gain{ color:var(--accent-2); }
+.ro-op{ display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:700; color:var(--ink-dim); }
+.ro-res{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  background:var(--navy); color:#fff; border-radius:8px; padding:var(--sp-4) var(--sp-3);
+}
+.ro-res span{ font-size:.82rem; font-weight:700; color:rgba(255,255,255,.72); }
+.ro-res b{ font-family:var(--font-en); font-size:clamp(2rem,3.6vw,3rem); font-weight:700; line-height:1; }
+.ro-res b small{ font-family:var(--font-jp); font-size:.4em; margin-left:3px; }
+.ro-res i{ font-style:normal; font-size:.8rem; color:rgba(255,255,255,.72); }
+@media (max-width:900px){
+  .ro-calc{ grid-template-columns:1fr; }
+  .ro-op{ padding:8px 0; }
+}
+
+/* 17. 自社採用の1名あたり（人材紹介との比較を外して主語を1つに） */
+.nc-pair{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-3); }
+.nc{
+  background:var(--surface-1); border:1px solid var(--line); border-radius:8px;
+  padding:var(--sp-4); box-shadow:var(--shadow-card);
+}
+.nc.is-key{ background:var(--surface-2); border-color:var(--acc-24); }
+.nc-k{ display:block; font-size:.84rem; font-weight:700; color:var(--ink-dim); margin-bottom:10px; }
+.nc-v{ display:block; font-family:var(--font-en); font-size:clamp(2.6rem,5vw,4rem); font-weight:700; line-height:1; color:var(--ink); }
+.nc.is-key .nc-v{ color:var(--accent); }
+.nc-v small{ font-family:var(--font-jp); font-size:.28em; margin-left:5px; color:var(--ink-dim); }
+.nc-n{ margin:14px 0 0; padding-top:12px; border-top:1px solid var(--line); font-size:.82rem; font-weight:500; color:var(--ink-dim); line-height:1.6; }
+@media (max-width:900px){ .nc-pair{ grid-template-columns:1fr; } }
+
+/* 18. lay-split の note が lead と重なっていた（#num-cost） */
+.lay-split .nx-stage{ grid-template-rows:auto auto auto 1fr; row-gap:0; }
+.lay-split .nx-stage > .lead{ margin-bottom:var(--sp-3); }
+.lay-split .nx-stage > .note{ align-self:start !important; margin-top:0 !important; }
+
+/* 19. ROI の差引がパネルからはみ出していた */
+.ro-res{ padding:var(--sp-3) var(--sp-2); overflow:hidden; }
+.ro-res b{ font-size:clamp(1.5rem,2.6vw,2.2rem); white-space:nowrap; }
+.ro-res b small{ font-size:.42em; }
+.ro-calc{ grid-template-columns:1fr 40px 1.3fr 40px 0.78fr; }
+
+/* 20. 旧インパクト図の残骸を念のため隠す */
+#scout-num .imp, #scout-num .g3-imp, #scout-num .cmp{ display:none !important; }
+
+/* 21. 文面カードが縦に伸びて下半分が空いていたので、中身の高さに合わせる */
+.fs-02{ align-items:center !important; }
+.fs-02 .fs-mail{ align-self:center; }
+.fs-02 .fs-mailbody{ padding:16px 18px 18px; }
+.fs-02 .fs-left{ align-self:center; }

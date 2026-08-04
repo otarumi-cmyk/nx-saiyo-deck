@@ -8,7 +8,7 @@
      body      : weight 500 / 16px / line-height 1.9 / letter-spacing .02em
      hero      : Noto Sans JP 900 / line-height 1.06 / letter-spacing -.015em
      背景      : 240px の粗グリッド ＋ 48px の細グリッドの二重方眼
-     accent    : #2563EB（グラデ #3B82F6 → #2563EB → #1E40AF）
+     accent    : #0B4DA2（グラデ #1668C8 → #0B4DA2 → #0B4DA2）
      ease      : cubic-bezier(.16,1,.3,1)
    ============================================================ */
 
@@ -18,33 +18,33 @@
   --ease-out: cubic-bezier(.16,1,.3,1);
 
   /* 本家のダークトークンに合わせる */
-  --bg:        #0B0F1A;
-  --bg-2:      #111726;
-  --surface-1: #151C2E;
-  --surface-2: #1B2438;
-  --ink:       #E7EDF7;
-  --ink-dim:   #93A3BE;
-  --line:      rgba(197,212,232,.16);
+  --bg:        #F2F7FC;
+  --bg-2:      #E9F1F9;
+  --surface-1: #FFFFFF;
+  --surface-2: #E8F1FB;
+  --ink:       #10305C;
+  --ink-dim:   #56718F;
+  --line:      rgba(16,48,92,.16);
 
   /* アクセントは本家のブランドブルー。暗背景で沈まないよう、
-     本家のグラデ起点 #3B82F6 を主色に、#2563EB を締めに使う */
-  --accent:   #3B82F6;
-  --accent-2: #2563EB;
-  --acc-04: rgba(59,130,246,.06);
-  --acc-10: rgba(59,130,246,.14);
-  --acc-24: rgba(59,130,246,.28);
-  --acc-60: rgba(59,130,246,.62);
-  --glow:   rgba(59,130,246,.28);
+     本家のグラデ起点 #1668C8 を主色に、#0B4DA2 を締めに使う */
+  --accent:   #1668C8;
+  --accent-2: #0B4DA2;
+  --acc-04: rgba(22,104,200,.06);
+  --acc-10: rgba(22,104,200,.14);
+  --acc-24: rgba(22,104,200,.28);
+  --acc-60: rgba(22,104,200,.62);
+  --glow:   rgba(22,104,200,.28);
 }
 
 /* ---------- 1. 背景：設計図の方眼グリッド（本家の暗色版） ---------- */
 body{
   background-color:var(--bg);
   background-image:
-    linear-gradient(to right,  rgba(197,212,232,.10) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(197,212,232,.10) 1px, transparent 1px),
-    linear-gradient(to right,  rgba(197,212,232,.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(197,212,232,.045) 1px, transparent 1px);
+    linear-gradient(to right,  rgba(16,48,92,.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16,48,92,.10) 1px, transparent 1px),
+    linear-gradient(to right,  rgba(16,48,92,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16,48,92,.045) 1px, transparent 1px);
   background-size: 240px 240px, 240px 240px, 48px 48px, 48px 48px;
   background-attachment:fixed;
   font-family:var(--font-jp);
@@ -55,12 +55,12 @@ body{
 }
 /* スライド自身の塗りつぶしをやめ、方眼を透かす */
 .slide{ background:transparent !important; }
-.slide.sec-alt{ background:rgba(197,212,232,.028) !important; }
+.slide.sec-alt{ background:rgba(16,48,92,.028) !important; }
 .slide.sec-dark{ background:rgba(0,0,0,.35) !important; }
 /* 中央にごく淡い光。平坦な黒板に見えるのを防ぐ */
 .slide::before{
   content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background:radial-gradient(ellipse 90% 70% at 50% 42%, rgba(59,130,246,.055), transparent 70%);
+  background:radial-gradient(ellipse 90% 70% at 50% 42%, rgba(22,104,200,.055), transparent 70%);
 }
 .slide.chdiv::before, .sec-cta::before, #safety::before{ background-image:var(--chdiv-img); }
 .slide > .slide-in{ position:relative; z-index:2; }
@@ -117,7 +117,7 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
 
 /* ---------- 3. アクセントの塗り ---------- */
 .hl, .est{ color:var(--accent) !important; }
-.btn-main{ background:linear-gradient(160deg,#3B82F6 0%,var(--accent-2) 46%,#1E40AF 100%) !important; color:#fff !important; }
+.btn-main{ background:linear-gradient(160deg,#1668C8 0%,var(--accent-2) 46%,#0B4DA2 100%) !important; color:#fff !important; }
 .st-2 .tl-task[data-kind="chore"] .tt-bar,
 .st-3 .tl-task[data-kind="chore"] .tt-bar,
 .bd-list li.is-key .bd-bar, .cmp-col.is-win .cmp-bar, .cb.is-after .cb-bar{
@@ -127,15 +127,15 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
    deck.css の .st-2/.st-3 の core（面接）は白抜きが正。上の !important に負けていた。 */
 .st-2 .tl-task[data-kind="core"] .tt-bar,
 .st-3 .tl-task[data-kind="core"] .tt-bar{
-  background:rgba(255,255,255,.14) !important;
-  border:1px solid rgba(255,255,255,.28) !important;
+  background:rgba(16,48,92,.14) !important;
+  border:1px solid rgba(16,48,92,.28) !important;
   box-shadow:none !important;
 }
 /* 積み上げ帯の白文字が読めるところまで青を暗くする。
-   #3B82F6 起点だと #fff とのコントラストが 3.68:1 しかなく、
+   #1668C8 起点だと #fff とのコントラストが 3.68:1 しかなく、
    帯の上半分（ラベル・数値の位置）で 4.05〜4.49:1 と WCAG AA を割っていた。
-   #2563EB→#1E40AF なら上端 5.17:1・下端 8.72:1 で全域 4.5:1 超。 */
-.sb-seg.is-chore{ background:linear-gradient(180deg,#2563EB,#1E40AF) !important; }
+   #0B4DA2→#0B4DA2 なら上端 5.17:1・下端 8.72:1 で全域 4.5:1 超。 */
+.sb-seg.is-chore{ background:linear-gradient(180deg,#0B4DA2,#0B4DA2) !important; }
 .sb-seg b, .sb-seg i{ color:#fff !important; }
 .roi-bar.is-save .roi-fill{ background:linear-gradient(180deg,var(--accent),var(--acc-24)) !important; }
 ::selection{ background:var(--accent); color:#fff; }
@@ -149,20 +149,20 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
 /* ---------- 5. 面のあしらい ---------- */
 .fn, .case, .cp, .why, .safe, .only-card, .media, .cmp-col, .stat,
 .plan, .lc-col, .ch-card, .fit-col, .unfit, .roi-item, .flow-steps li, .faq-list details{
-  background:linear-gradient(180deg, rgba(231,237,247,.045), rgba(231,237,247,.012)) !important;
+  background:linear-gradient(180deg, rgba(16,48,92,.045), rgba(16,48,92,.012)) !important;
   border:1px solid var(--line) !important;
 }
 .fn.is-key, .cp.is-key, .plan.is-key, .lc-col.is-key, .ch-card.is-key, .fit-col.is-key, .case.is-key{
-  background:linear-gradient(180deg, rgba(59,130,246,.10), rgba(59,130,246,.02)) !important;
+  background:linear-gradient(180deg, rgba(22,104,200,.10), rgba(22,104,200,.02)) !important;
   border-color:var(--acc-24) !important;
 }
 
 /* ---------- 6. ナビゲーション ---------- */
-.deck-nav{ background:rgba(11,15,26,.78); border-color:var(--line); }
+.deck-nav{ background:rgba(242,247,252,.78); border-color:var(--line); }
 .deck-dot.is-on{ background:var(--accent); }
 .deck-progress span{ background:var(--accent); box-shadow:0 0 10px var(--acc-60); }
 .deck-flash{
-  background:linear-gradient(90deg,transparent,rgba(59,130,246,.05) 34%,rgba(59,130,246,.26) 50%,rgba(59,130,246,.05) 66%,transparent) !important;
+  background:linear-gradient(90deg,transparent,rgba(22,104,200,.05) 34%,rgba(22,104,200,.26) 50%,rgba(22,104,200,.05) 66%,transparent) !important;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -195,14 +195,14 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
   white-space:nowrap;
   padding:7px 12px; border-radius:4px;
   border:1px solid var(--line);
-  background:rgba(17,23,38,.94);
+  background:rgba(231,240,249,.94);
   color:var(--ink-dim);
   font-family:var(--font-jp);
   font-size:.78rem; line-height:1.2; font-weight:500;
 }
-.vx-chip[data-kind="core"]{ color:var(--ink); border-color:rgba(231,237,247,.3); }
+.vx-chip[data-kind="core"]{ color:var(--ink); border-color:rgba(16,48,92,.3); }
 .vx-chip.is-final{
-  background:linear-gradient(160deg,#3B82F6,#2563EB);
+  background:linear-gradient(160deg,#1668C8,#0B4DA2);
   border-color:var(--accent); color:#fff; font-weight:700;
   font-size:1rem; padding:12px 22px;
   box-shadow:0 0 60px var(--acc-24);
@@ -219,7 +219,7 @@ h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta
   text-align:center;
   z-index:5;
   padding:var(--sp-5) var(--sp-4);
-  background:radial-gradient(ellipse at center, rgba(11,15,26,.92) 0%, rgba(11,15,26,.7) 60%, transparent 100%);
+  background:radial-gradient(ellipse at center, rgba(242,247,252,.92) 0%, rgba(242,247,252,.7) 60%, transparent 100%);
   pointer-events:none;
 }
 #vision .vision-copy:not(.is-in){ opacity:0; }
@@ -281,7 +281,7 @@ h1,h2,h3,p,li,dd,dt,td,th,summary,
 .ba2-arrow svg{ width:100%; height:auto; display:block; grid-row:2; align-self:center; margin:0; }
 .ba2-diff{ display:block; font-family:var(--font-en); font-size:clamp(1.4rem,2.6vw,2.2rem); font-weight:700; color:var(--accent); }
 .ba2-diff small{ font-size:.42em; margin-left:3px; }
-.ba2-col.is-key .stackbar{ border-color:var(--acc-24); box-shadow:0 0 50px rgba(59,130,246,.12); }
+.ba2-col.is-key .stackbar{ border-color:var(--acc-24); box-shadow:0 0 50px rgba(22,104,200,.12); }
 .sc-extra{ border-top:1px solid var(--line); }
 .sc-extra .sc-n{ color:var(--ink-dim); font-size:.82rem; }
 @media (max-width:900px){ .ba2{ grid-template-columns:1fr; } .ba2-arrow{ display:block; } .ba2-arrow svg{ transform:rotate(90deg); width:60px; margin:0 auto; } }
@@ -296,15 +296,15 @@ body{
   background-attachment:scroll !important;
 }
 .slide{
-  background:linear-gradient(180deg,#0B0F1A 0%,#0D1220 100%) !important;
+  background:linear-gradient(180deg,#F2F7FC 0%,#E7F0F9 100%) !important;
 }
 .slide.sec-alt{
-  background:linear-gradient(180deg,#0E1422 0%,#111827 100%) !important;
+  background:linear-gradient(180deg,#E7F0F9 0%,#E7F0F9 100%) !important;
 }
-.slide.sec-dark{ background:#070A12 !important; }
+.slide.sec-dark{ background:#F2F7FC !important; }
 /* 中央の淡い光だけ残す（平坦な黒板に見えないように、ごく弱く） */
 .slide::before{
-  background:radial-gradient(ellipse 80% 60% at 50% 38%, rgba(59,130,246,.045), transparent 72%) !important;
+  background:radial-gradient(ellipse 80% 60% at 50% 38%, rgba(22,104,200,.045), transparent 72%) !important;
 }
 /* 章扉・CTA・安全性の写真。上の .slide::before がショートハンドで
    background-size/position/repeat を初期値に戻してしまうため、
@@ -316,8 +316,8 @@ body{
   background-repeat:no-repeat !important;
 }
 /* 本文のコントラストを上げる */
-:root{ --ink-dim:#A3B2C9; }
-.lead{ color:#C6D2E4 !important; }
+:root{ --ink-dim:#56718F; }
+.lead{ color:#3E5A7E !important; }
 .note{ color:#8C9BB4 !important; }
 
 /* ============================================================
@@ -353,19 +353,32 @@ body{
   grid-column:1 / -1;
   max-width:none;
 }
-.fn-slide .fn-sub{ display:none; }
+/* 補足1行。display:none だと HTML にある7本の文言（「最終判断は、必ず人が行います」等）が
+   1枚も出ない。.fn-text は grid-template-columns:auto 1fr auto なので grid-column が要る。
+   字送り・色・余白は rhythm.css（司令塔管理）の .fn-sub 指定に任せる。 */
+.fn-slide .fn-sub{
+  display:block;
+  grid-column:1 / -1;
+}
 /* 高さの上限を max-height でかけると 16:10 が成立せず、object-fit:contain の
    映像の左右に死んだ帯が出る。同じ上限を「幅」に置き換えれば縦横比を保ったまま
    高さを抑えられる（66vh × 16/10）。上限を外して fit.js の scale に任せると
    版面全体が 0.78 倍に縮み、文字が他スライドより2割小さくなるので採らない。 */
+.fn-slide .fn-wrap{ --fn-w:calc(66vh * 16 / 10); }
 .fn-slide .fn-video{
   width:100% !important;
-  max-width:calc(66vh * 16 / 10) !important;
+  max-width:var(--fn-w) !important;
   aspect-ratio:16/10 !important;
   margin:0 auto;
   border-radius:6px;
 }
-.fn-slide .fn-video video{ width:100%; height:100%; object-fit:contain; background:#05070A; }
+/* 見出し・本文の左右基準線を映像パネルに合わせる（合わせないと 164.8px ずれる）。
+   rhythm.css の型A/B/C が付いた枚は向こうのグリッドが左右を決めるので対象外にする
+   （特に型Cは .fn-text を映像に重ねる全幅パネルで、幅を絞ると帯が映像より狭くなる）。 */
+.fn-slide:not(.fn-a):not(.fn-b):not(.fn-c) .fn-text{
+  max-width:var(--fn-w); margin-left:auto; margin-right:auto;
+}
+.fn-slide .fn-video video{ width:100%; height:100%; object-fit:contain; background:#F2F7FC; }
 /* テキストは映像の上に1行で収める */
 .fn-slide > .slide-in{ max-width:1280px; }
 @media (max-width:900px){
@@ -401,8 +414,8 @@ body{
 .fs2-legend{ display:flex; gap:var(--sp-5); margin:var(--sp-3) 0; font-size:.82rem; color:var(--ink-dim); }
 .fs2-lg{ display:inline-flex; align-items:center; gap:8px; }
 .fs2-lg i{ width:14px; height:14px; border-radius:3px; display:inline-block; }
-.fs2-lg.is-ai i{ background:linear-gradient(160deg,#3B82F6,#2563EB); }
-.fs2-lg.is-human i{ background:transparent; border:1px solid rgba(231,237,247,.4); }
+.fs2-lg.is-ai i{ background:linear-gradient(160deg,#1668C8,#0B4DA2); }
+.fs2-lg.is-human i{ background:transparent; border:1px solid rgba(16,48,92,.4); }
 
 .fs2-grid{
   list-style:none; padding:0; margin:0 0 var(--sp-4);
@@ -414,22 +427,22 @@ body{
   padding:12px 12px 11px;
   border-radius:5px;
   border:1px solid var(--line);
-  background:linear-gradient(180deg, rgba(231,237,247,.04), rgba(231,237,247,.01));
+  background:linear-gradient(180deg, rgba(16,48,92,.04), rgba(16,48,92,.01));
   min-width:0;
 }
 .fs2.is-ai{
-  background:linear-gradient(160deg, rgba(59,130,246,.20), rgba(37,99,235,.07));
+  background:linear-gradient(160deg, rgba(22,104,200,.20), rgba(11,77,162,.07));
   border-color:var(--acc-24);
 }
 .fs2.is-human{
   background:transparent;
-  border:1px solid rgba(231,237,247,.32);
+  border:1px solid rgba(16,48,92,.32);
 }
 .fs2-n{ font-family:var(--font-en); font-size:.72rem; line-height:1.2; color:var(--ink-dim); letter-spacing:.1em; }
 .fs2.is-ai .fs2-n{ color:var(--accent); }
 .fs2-t{ font-size:.85rem; font-weight:700; line-height:1.35; color:var(--ink); }
 .fs2-b{ font-size:.78rem; line-height:1.45; color:var(--ink-dim); }
-.fs2.is-human .fs2-b{ color:#E7EDF7; opacity:.75; }
+.fs2.is-human .fs2-b{ color:#10305C; opacity:.75; }
 @media (max-width:1100px){ .fs2-grid{ grid-template-columns:repeat(4,1fr); } }
 @media (max-width:768px){ .fs2-grid{ grid-template-columns:repeat(2,1fr); } .fs2-t{ font-size:.88rem; } .fs2-b{ font-size:.76rem; } }
 
@@ -439,17 +452,42 @@ body{
   display:flex !important; align-items:center;
   gap:clamp(36px,4vw,64px) !important;
   width:max-content;
+  /* 528 行の .nx-stage *{max-width:100%} が width:max-content を版面幅で頭打ちにし、
+     トラックの箱が 7337px ではなく 1280px になっていた。移動量の基準になる
+     「-50%」は自分のボーダーボックス幅で解決するので、これを外さないと
+     -640px しか動かず、1セットぶん送れない。親の .logos.is-marquee は
+     overflow:hidden なので、箱を実寸に戻しても版面はみ出しは起きない。 */
+  max-width:none !important;
   animation:nx-marquee 46s linear infinite !important;
 }
 .logos.is-marquee .logos-track img{
   height:clamp(26px,2.6vw,34px); width:auto; display:block; flex:none;
-  filter:brightness(0) invert(1);
+  filter:brightness(0) saturate(100%) opacity(.62);
   opacity:.62;
   transition:opacity .3s ease;
 }
 .logos.is-marquee:hover .logos-track{ animation-play-state:paused !important; }
 .logos.is-marquee .logos-track img:hover{ opacity:1; }
-@keyframes nx-marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+/* ⚠ transform ではなく translate を動かすこと。
+   deck.css:378-382 の旧「静的グリッド」時代の指定
+     .logos-track{ animation:none !important; transform:none !important; }
+   が残っており、!important 宣言は CSSアニメーションより強いので、
+   transform を動かすキーフレームは値ごと捨てられていた（実測: 46秒の
+   アニメーションが running のまま computed transform が none のまま動かない）。
+   結果、15社のうち画面幅に入る7社（PERSOL〜Spir）しか出ず、残り8社は
+   マスクの外に置き去りだった。animation は 455 行の !important が勝って
+   いたが transform には対抗する宣言が無かった、というのが実体。
+   translate は独立した変形プロパティで deck.css は触っていないため、
+   同じ動きを横取りされずに出せる。
+
+   移動量: トラックは15枚1セット×2。継ぎ目なくつながるのに要る量は
+   「1セットの幅 S ＋ セット間のギャップ1つ」＝ S + 15×gap。
+   -50%（＝トラック総幅 2S+29×gap の半分）は S + 14.5×gap にしかならず、
+   1周ごとに gap の半分だけ横に飛ぶので、足りない半ギャップを足す。
+   gap は上で clamp(36px,4vw,64px) なので、その厳密な半分は
+   clamp(18px,2vw,32px)（3つの区間すべてで正確に 1/2 になる）。
+   style.css:1130 の旧 logos-marquee が calc(-50% - 24px) を使っているのと同じ発想。 */
+@keyframes nx-marquee{ from{ translate:0 } to{ translate:calc(-50% - clamp(18px, 2vw, 32px)) } }
 @media (prefers-reduced-motion: reduce){ .logos.is-marquee .logos-track{ animation:none !important; flex-wrap:wrap; width:100%; } }
 
 /* ============================================================
@@ -473,7 +511,10 @@ body{
 .stat-v small,.bignum-v small,.ch-num b small,.ba2-total small,.price-v small,.plan-price small,.tl-meter-v small{
   font-size:.30em !important; color:var(--ink-dim) !important; font-weight:400 !important; margin-left:5px;
 }
-.case-hero span{ font-size:.30em !important; color:var(--ink-dim) !important; }
+/* 単位（倍・%）。em は親 .case-hero(16px) 基準で解決されるので比率指定だと 5.76px まで
+   潰れて読めない。主数値 .case-hero b の clamp(2.6rem,5vw,4rem) の 36% を rem/vw で直書きする。
+   v2.css の .g3-case .case-hero span より強い #cases でないと勝てない。 */
+#cases .case-hero span{ font-size:clamp(.94rem,1.8vw,1.44rem) !important; }
 
 /* 凡例スウォッチの規格統一 */
 .tl-legend i,.sbl i,.fs2-lg i,.lg i{ width:13px !important; height:13px !important; border-radius:3px !important; }
@@ -499,7 +540,9 @@ html, body{ overflow:hidden !important; height:100%; }
   display:flex !important;
   align-items:center; justify-content:center;
   margin:0 auto !important;
-  padding-right:0 !important;
+  /* 右だけ 0 にすると .chdiv-inner の padding:0 24px が左だけ残り、
+     text-align:center の中心が 12px 右へずれる。左右まとめて 0 にする。 */
+  padding-inline:0 !important;
 }
 .nx-stage{
   transform-origin:center center;
@@ -525,8 +568,8 @@ html, body{ overflow:hidden !important; height:100%; }
 #hero::before, #q-cost::before, #hypothesis::before, #fit::before, #price::before, #why-us::before{
   content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
   background:
-    radial-gradient(ellipse 78% 62% at 50% 46%, rgba(11,15,26,.86) 0%, rgba(11,15,26,.62) 55%, rgba(11,15,26,.9) 100%),
-    linear-gradient(180deg, rgba(11,15,26,.55) 0%, transparent 28%, transparent 72%, rgba(11,15,26,.75) 100%);
+    radial-gradient(ellipse 78% 62% at 50% 46%, rgba(242,247,252,.86) 0%, rgba(242,247,252,.62) 55%, rgba(242,247,252,.9) 100%),
+    linear-gradient(180deg, rgba(242,247,252,.55) 0%, transparent 28%, transparent 72%, rgba(242,247,252,.75) 100%);
 }
 #hero > .slide-in, #q-cost > .slide-in, #hypothesis > .slide-in,
 #fit > .slide-in, #price > .slide-in, #why-us > .slide-in{ z-index:3; }
@@ -545,7 +588,7 @@ html, body{ overflow:hidden !important; height:100%; }
 }
 .vs2-name{ font-size:.95rem; color:var(--ink-dim); text-align:right; }
 .vs2-row.is-key .vs2-name{ color:var(--ink); font-weight:700; }
-.vs2-bar{ display:block; height:clamp(38px,5.4vh,62px); background:rgba(231,237,247,.05); border-radius:5px; overflow:hidden; }
+.vs2-bar{ display:block; height:clamp(38px,5.4vh,62px); background:rgba(16,48,92,.05); border-radius:5px; overflow:hidden; }
 .vs2-bar i{
   display:block; height:100%; width:0; border-radius:5px;
   background:rgba(147,163,190,.35);
@@ -566,10 +609,10 @@ html, body{ overflow:hidden !important; height:100%; }
 .vs2-sub{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-2); margin-bottom:var(--sp-2); }
 .vs2-card{
   padding:var(--sp-3); border-radius:6px; text-align:center;
-  background:linear-gradient(180deg, rgba(231,237,247,.045), rgba(231,237,247,.012));
+  background:linear-gradient(180deg, rgba(16,48,92,.045), rgba(16,48,92,.012));
   border:1px solid var(--line);
 }
-.vs2-card.is-key{ background:linear-gradient(180deg, rgba(59,130,246,.10), rgba(59,130,246,.02)); border-color:var(--acc-24); }
+.vs2-card.is-key{ background:linear-gradient(180deg, rgba(22,104,200,.10), rgba(22,104,200,.02)); border-color:var(--acc-24); }
 .vs2-c-n{ display:block; font-family:var(--font-en); font-size:1.1rem; color:var(--ink-dim); }
 .vs2-c-n small{ font-size:.6em; margin-left:2px; }
 .vs2-c-p{ display:block; font-family:var(--font-en); font-size:clamp(1.6rem,2.8vw,2.2rem); font-weight:700; color:var(--ink); margin:6px 0 4px; }
@@ -587,7 +630,7 @@ html, body{ overflow:hidden !important; height:100%; }
 .qa{
   padding:var(--sp-4) var(--sp-3);
   border-radius:6px;
-  background:linear-gradient(180deg, rgba(231,237,247,.045), rgba(231,237,247,.012));
+  background:linear-gradient(180deg, rgba(16,48,92,.045), rgba(16,48,92,.012));
   border:1px solid var(--line);
 }
 .qa-q{
@@ -608,10 +651,10 @@ html, body{ overflow:hidden !important; height:100%; }
 .pz{
   position:relative; padding:var(--sp-4) var(--sp-3);
   border-radius:6px;
-  background:linear-gradient(180deg, rgba(231,237,247,.045), rgba(231,237,247,.012));
+  background:linear-gradient(180deg, rgba(16,48,92,.045), rgba(16,48,92,.012));
   border:1px solid var(--line);
 }
-.pz.is-key{ background:linear-gradient(180deg, rgba(59,130,246,.10), rgba(59,130,246,.02)); border-color:var(--acc-24); }
+.pz.is-key{ background:linear-gradient(180deg, rgba(22,104,200,.10), rgba(22,104,200,.02)); border-color:var(--acc-24); }
 .pz-badge{ position:absolute; top:-10px; left:var(--sp-3); font-size:.62rem; background:var(--accent); color:#fff; padding:3px 11px; border-radius:100px; font-weight:700; }
 .pz-name{ display:block; font-size:.8rem; color:var(--ink-dim); letter-spacing:.06em; }
 .pz-price{ font-family:var(--font-en); font-size:clamp(2.4rem,4.6vw,3.6rem); font-weight:700; line-height:1; margin:10px 0 6px; color:var(--ink); }
@@ -637,7 +680,7 @@ html, body{ overflow:hidden !important; height:100%; }
 .mp-ph{
   margin:0 0 10px; font-size:.74rem; letter-spacing:.06em; color:var(--ink-dim);
   text-align:center; padding:6px 4px; border-radius:4px;
-  background:rgba(231,237,247,.05); border:1px solid var(--line);
+  background:rgba(16,48,92,.05); border:1px solid var(--line);
 }
 .mp-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
 .mp-list li{
@@ -645,10 +688,10 @@ html, body{ overflow:hidden !important; height:100%; }
   padding:9px 10px; border-radius:4px; font-size:.8rem; line-height:1.3;
   border:1px solid var(--line);
 }
-.mp-n.is-ai{ background:linear-gradient(135deg, rgba(37,99,235,.30), rgba(59,130,246,.14)); border-color:var(--acc-24); color:var(--ink); }
-.mp-n.is-hu{ background:rgba(231,237,247,.03); color:var(--ink-dim); }
+.mp-n.is-ai{ background:linear-gradient(135deg, rgba(11,77,162,.30), rgba(22,104,200,.14)); border-color:var(--acc-24); color:var(--ink); }
+.mp-n.is-hu{ background:rgba(16,48,92,.03); color:var(--ink-dim); }
 .mp-no{ font-family:var(--font-en); font-size:.66rem; color:var(--ink-dim); flex:none; }
-.mp-n.is-ai .mp-no{ color:#93b8fb; }
+.mp-n.is-ai .mp-no{ color:#0B4DA2; }
 .mp-t{ flex:1 1 auto; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .mp-i{ width:15px; height:15px; flex:none; }
 .mp-n.is-ai .mp-i{ color:var(--accent-2); }
@@ -666,30 +709,39 @@ html, body{ overflow:hidden !important; height:100%; }
 #fit::after, #why-us::after, #price::after{ opacity:.10 !important; }
 #fit::before, #why-us::before, #price::before{
   background:
-    radial-gradient(ellipse 80% 64% at 50% 46%, rgba(11,15,26,.90) 0%, rgba(11,15,26,.80) 58%, rgba(11,15,26,.95) 100%),
-    linear-gradient(180deg, rgba(11,15,26,.86), rgba(11,15,26,.90)) !important;
+    radial-gradient(ellipse 80% 64% at 50% 46%, rgba(242,247,252,.90) 0%, rgba(242,247,252,.80) 58%, rgba(242,247,252,.95) 100%),
+    linear-gradient(180deg, rgba(242,247,252,.86), rgba(242,247,252,.90)) !important;
 }
 /* 写真の上に載るカードは不透明にして、下地を透けさせない */
 #fit .fit-col, #fit .g4-col, #why-us .why, #why-us [class*="-card"], #price .pz{
-  background-color:#101620 !important;
+  background-color:#FFFFFF !important;
   backdrop-filter:none;
 }
-#fit .fit-col.is-key, #price .pz.is-key{ background-color:#132038 !important; }
+#fit .fit-col.is-key, #price .pz.is-key{ background-color:#DCEAFA !important; }
 
 /* ---------- 文面 → 採用 の紐付けファネル ---------- */
 .wd-lg{ display:flex; gap:var(--sp-3); list-style:none; padding:0; margin:var(--sp-3) 0 var(--sp-3); flex-wrap:wrap; }
 .wd-lg li{ display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--ink-dim); }
 .wd-lg i{ width:12px; height:12px; border-radius:3px; flex:none; }
-.wd-c1 i, .wd-s.wd-c1{ background:#3B82F6; }
-.wd-c2 i, .wd-s.wd-c2{ background:#2563EB; }
-.wd-c3 i, .wd-s.wd-c3{ background:#4A5A72; }
+.wd-c1 i, .wd-s.wd-c1{ background:#1668C8; }
+.wd-c2 i, .wd-s.wd-c2{ background:#0B4DA2; }
+.wd-c3 i, .wd-s.wd-c3{ background:#9BB0C9; }
+/* 「裁量の大きさ」(#1668C8) と「事業フェーズ」(#0B4DA2) のコントラスト比は 1.48:1 で、
+   カテゴリ色の識別に要る 3:1 を大きく割る。この2色は返信・書類通過・面接・内定の
+   全4行で必ず隣接し、しかも結論文が指す系列がこの2つ。明るいパネル（#E7F0F9）の上で
+   青系3色を全部 3:1 で離すのは原理的に無理（最淡色が背景に対し 1.5:1 まで落ちる）ので、
+   色は変えず境界に白い罫を1本入れる。box-shadow はレイアウトに参加しないので
+   45/35/20% のセグメント幅も deck.js の bars トゥイーン（.wd-bar の width だけを動かす）も
+   一切変わらない。.wd-bar{overflow:hidden} が帯の両端で罫をクリップするので角丸も無傷。
+   白 対 #1668C8 = 5.46:1 / 白 対 #0B4DA2 = 8.08:1。 */
+.wd-s + .wd-s{ box-shadow:-2px 0 0 0 #fff; }
 
 .wd-funnel{ display:flex; flex-direction:column; gap:10px; margin-bottom:var(--sp-3); }
 .wd-row{ display:flex; align-items:center; gap:var(--sp-2); }
 .wd-k{ width:86px; flex:none; font-size:.84rem; color:var(--ink-dim); text-align:right; }
 .wd-bar{
   width:var(--w); height:44px; display:flex; border-radius:4px; overflow:hidden;
-  box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;
+  box-shadow:0 0 0 1px rgba(16,48,92,.05) inset;
   transition:width .9s cubic-bezier(.16,1,.3,1);
 }
 .wd-s{ width:var(--w); height:100%; }
@@ -767,3 +819,51 @@ html, body{ overflow:hidden !important; height:100%; }
 #faq .fq-i{ width:42px; height:42px; margin-bottom:var(--sp-4); }
 #faq .fq-t{ font-size:1.15rem !important; margin-bottom:16px !important; }
 #faq .fq-a{ font-size:.95rem; line-height:2; }
+
+/* ---------- 1週間②：版面が右に貼り付くのを直す ----------
+   .slide-in は .tl-wrap でもあり deck.css で flex-direction:column、
+   さらに deck.css の .slide.tl-slide > .slide-in{ align-items:stretch !important }
+   が効くため、幅1280の .nx-stage が幅1120のコンテナ左端に置かれて右へ溢れ、
+   右余白0px／左余白160pxになる。row + center で他スライドと同じ 80px 均等に戻す。 */
+.slide.tl-slide > .slide-in{ flex-direction:row !important; align-items:center !important; }
+
+/* ============================================================
+   機能スライド：章ラベルを番号行から降ろす（型A／型B）
+   ------------------------------------------------------------
+   .fn-text は上の 336-342 行で grid-template-columns:auto 1fr auto。
+   3トラックの min-content は
+     .fn-badge（nowrap）112.5px ＋ .fn-rail（i を7個並べた固定幅）200px
+     ＋ .sec-label 150.3px ＋ gap 24px×2 ＝ 423.5px
+   になり、テキスト柱（実測 396.8px）に収まらない。
+   はみ出した3列目＝章ラベルが右の図版パネルへ食い込んでいた（実測 57.6px 交差）。
+
+   ラベルを1カラムに折り返させる対症療法だと、150px の和文が 63px 幅の
+   4行スタック（実測 w63×h90）になって柱の外側の溝に浮くだけで直らない。
+   レールを縮める案は 200px→90px と枚ごとにバラつき、「07工程の進行度」を
+   示すUIとしての一貫性が壊れるので採らない。
+   → 3列目そのものを廃し、章ラベルを全幅の独立行に降ろす。
+      番号＋レールの行は 112.5+24+200＝336.5px で柱に収まる。
+
+   ≤900px は 384-386 行が既に1カラムへ落としているので、min-width で囲って
+   デスクトップだけに効かせる（囲まないと .fn-a の 0,3,0 が
+   メディアクエリ内の .fn-slide .fn-text 0,2,0 に勝って2カラムのまま残る）。
+   fixes.css は .fn-text の grid-column/grid-row しか触っていないので衝突しない。
+   ============================================================ */
+@media (min-width:901px){
+  .fn-slide.fn-a .fn-text,
+  .fn-slide.fn-b .fn-text{ grid-template-columns:auto minmax(0,1fr); }
+  .fn-slide.fn-a .sec-label,
+  .fn-slide.fn-b .sec-label{ grid-column:1 / -1; }
+}
+
+/* 型Cの映像は 1920x1200（16:10）のUIモック。rhythm.css:60-65 が 16/8.6 の枠に
+   object-fit:cover で入れるため、モック自身のヘッダー帯（番号バッジ・タイトル・
+   右肩の説明文）が上下から削れる。枠の高さは fit.js の scale に響くので変えず、
+   contain に切り替えて左右のピラーボックスをモックの地色で埋める。
+   background を省くと 381 行の #F2F7FC が白帯として出るので必須。
+   ※ 2026-08-04 時点の index.html には .fn-c を持つ枚が無く（7枚とも型A）、
+      この規則に一致する要素は 0 個。将来 rhythm.css の型Cが戻ったときの保険。 */
+.slide.fn-slide.fn-c .fn-video video{
+  object-fit:contain !important;
+  background:#0B1220 !important;
+}

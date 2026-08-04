@@ -1,0 +1,88 @@
+/* fix-g1.css — 濃色スライド班（hero／章扉01-05／q-cost／cta）の修正
+   ==================================================================
+   対象：青ベタで塗る8枚の上に乗る「デッキUI」と「見出しタブ」。
+   白地スライド用の色がそのまま濃色スライドにも乗っていて読めない、
+   という一点を、白地／青地の二態に分けて解く。
+
+   色は light.css のトークンのみ。生の色は書かない。
+   新規クラスは g1- 接頭辞（このファイルでは新規クラスは使っていない）。
+
+   ▼ 濃色スライドの判定について
+   deck.js は班が編集しないため、body への .on-dark 付与は行わず、
+   CSS だけで同じことをする。deck.js が着地時に .slide へ付ける
+   .is-active を :has() で拾えば、JSに触らずに現在のスライドが
+   濃色かどうかを判定できる（light.css も既に :has() を使用）。
+   ================================================================== */
+
+
+/* ==================================================================
+   1. ページ番号（右下 #deck-counter）
+   ------------------------------------------------------------------
+   欠陥：#deck-cur が var(--accent)=#1668C8。濃色スライドのグラデは
+   右下がちょうど #1668C8 で終わるので、現在ページの数字が地と同色
+   （コントラスト1.00:1）になり完全に消える。/ と総数も --ink-dim で
+   青地に約1.1:1。→ 濃色スライド表示中だけ白系に反転する。
+   ※ .lay-flood（#beforeafter）も同じ青ベタで同じ症状が実測で出るため、
+     デッキUIの判定にだけ含める（同スライドの中身は担当外・不変更）。
+   ================================================================== */
+body:has(.slide.is-active:is(.sec-hero, .chdiv, .sec-cta, .lay-flood, #q-cost)) #deck-cur{
+  color:var(--surface-1) !important;
+}
+body:has(.slide.is-active:is(.sec-hero, .chdiv, .sec-cta, .lay-flood, #q-cost)) #deck-total{
+  color:color-mix(in srgb, var(--surface-1) 72%, transparent) !important;
+}
+body:has(.slide.is-active:is(.sec-hero, .chdiv, .sec-cta, .lay-flood, #q-cost)) #deck-counter i{
+  color:var(--surface-1) !important;
+  opacity:.5;
+}
+
+
+/* ==================================================================
+   2. 操作ヒント（左下 #deck-hint）
+   ------------------------------------------------------------------
+   欠陥：--ink-dim のまま青地に乗って約1.09:1。表紙で読めない。
+   ※ .deck-hint.is-gone{opacity:0} で消える仕組みなので、
+     opacity には触らず color のアルファだけで濃度を作る。
+   ================================================================== */
+body:has(.slide.is-active:is(.sec-hero, .chdiv, .sec-cta, .lay-flood, #q-cost)) #deck-hint{
+  color:color-mix(in srgb, var(--surface-1) 78%, transparent) !important;
+}
+
+
+/* ==================================================================
+   3. 見出しタブ：白地／青地で必ず反転させる
+   ------------------------------------------------------------------
+   欠陥：.slide-tab の始点が var(--navy)=#0B2E63、#q-cost の左上コーナー
+   も #0B2E63。タブ左端と地が同色でタブが面として存在しない。
+   → 濃色スライドの上だけ面を反転（白面＋濃紺文字）。
+     白地スライドの濃紺タブはそのまま。これで全31枚、
+     地がどちらでもタブが必ず面として立つ。
+   ================================================================== */
+.slide.sec-hero > .slide-tab,
+.slide.chdiv   > .slide-tab,
+.slide.sec-cta > .slide-tab,
+.slide#q-cost  > .slide-tab{
+  /* タブは <p> なので light.css の .slide#q-cost p{color:rgba(255,255,255,.9)!important}
+     に負ける。!important で明示的に取り返す。 */
+  background:var(--surface-1) !important;
+  color:var(--navy) !important;
+  box-shadow:none;
+}
+.slide.sec-hero > .slide-tab::after,
+.slide.chdiv   > .slide-tab::after,
+.slide.sec-cta > .slide-tab::after,
+.slide#q-cost  > .slide-tab::after{
+  background:var(--surface-2);
+}
+
+
+/* ==================================================================
+   4. タブと進捗バーの2px重なり
+   ------------------------------------------------------------------
+   欠陥：#deck-progress は position:fixed / z-index:60 で画面最上部に
+   2px 固定。.slide-tab は z-index:5 なので必ず下になり、top:0 の
+   タブは上辺2pxを進捗バーに塗り潰されて角が欠けて見える。
+   → タブを2px下げてバーの真下に置く（突き合わせ）。
+     .slide の padding は変えないので fit.js の倍率計算に影響しない。
+   ================================================================== */
+.slide > .slide-tab{ top:2px; }

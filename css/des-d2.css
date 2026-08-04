@@ -1,0 +1,155 @@
+/* des-d2.css — デザイナー2（フローと機能）担当
+   ==================================================================
+   対象スライド
+     #map      採用フロー15工程（9枚目）
+     #hr-only  人事にしかできない仕事は、3つだけです（8枚目）
+
+   色は light.css のトークンのみ。生の色は書かない。
+   新規クラスはすべて d2- 接頭辞。
+   ================================================================== */
+
+
+/* ==================================================================
+   A. #map ─ 「5つの矢羽根フェーズ帯」＋「濃紺で沈む3マス」
+   ------------------------------------------------------------------
+   狙い：濃紺で塗るのは "人が行う工程" ただ一つ。画面上の濃紺オブジェクトが
+   ちょうど3つになるので、見出しの「3工程だけ」が数えずに読める。
+   矢羽根（.step）は全部 --surface-2 の中立のままで、流れだけを担わせる。
+   ================================================================== */
+
+/* ---- A-1. 凡例：本体の塗りと1対1で対応させる ---- */
+#map .d2-legend{ margin:var(--sp-3) 0 var(--sp-2) !important; gap:var(--sp-5); }
+#map .d2-legend li{ font-size:.94rem; font-weight:600 !important; color:var(--ink) !important; }
+#map .d2-legend i{
+  width:16px; height:16px; border-radius:3px; flex:none; box-sizing:border-box;
+}
+/* AI＝薄い青の面（本体タイルと同じ塗り。極小の四角なので輪郭だけ補う） */
+#map .d2-legend .is-ai i{ background:var(--acc-10); border:1px solid var(--acc-24); }
+/* 人＝濃紺のベタ（本体タイルと完全に同じ） */
+#map .d2-legend .is-hu i{ background:var(--navy); border:none; }
+#map .d2-legend b{ margin-left:2px; }
+
+/* ---- A-2. 5列の等高カード。各列の頭に自分のフェーズの矢羽根を載せる ----
+   矢羽根を列の中に入れることで、帯と列が必ず同じ幅・同じ位置で揃い、
+   折り返しが起きる狭い画面でも「どの工程がどのフェーズか」が崩れない。 */
+#map .d2-flow{ display:flex; align-items:stretch; gap:6px; margin-top:var(--sp-1); }
+#map .d2-flow .mp-col{
+  display:flex; flex-direction:column; gap:10px;
+  background:none; border:none; padding:0; min-width:0;
+}
+
+/* 矢羽根（light.css の .step をそのまま使う。色は --surface-2／--ink の中立のまま）
+   ※ .step は content-box なので、列幅とズレないよう border-box に直す */
+#map .d2-flow .d2-step{
+  box-sizing:border-box; flex:none; margin:0;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; font-size:1rem; font-weight:700; color:var(--ink);
+  padding:16px 22px 16px 30px;
+  clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+}
+/* 先頭だけ左を平らに（light.css の :first-child 相当を列単位で復元する） */
+#map .d2-flow .mp-col:first-child .d2-step{
+  padding-left:22px;
+  clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+}
+
+/* ---- A-3. 工程の入れ物を白カードにして、5列の高さを揃える ---- */
+#map .d2-flow .mp-list{
+  flex:1 1 auto; gap:9px;
+  background:var(--surface-1);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:10px;
+}
+
+/* ---- A-4. タイルの塗りを反転：AIは地に落とし、人だけを浮かせる ---- */
+#map .d2-flow .mp-list li{
+  padding:16px 13px; gap:10px; border-radius:5px;
+  font-size:1.06rem; font-weight:600;
+}
+/* AI 12工程：薄い青の面・枠線なし・影なし＝「地」 */
+#map .d2-flow .mp-n.is-ai{
+  background:var(--acc-10) !important;
+  border:1px solid transparent !important;
+  box-shadow:none !important;
+}
+#map .d2-flow .mp-n.is-ai .mp-t{ color:var(--ink-dim) !important; font-weight:600; }
+#map .d2-flow .mp-n.is-ai .mp-no{ color:var(--accent-2); }
+
+/* 人 3工程：濃紺ベタ・白文字・影つき＝1枚だけ浮く */
+#map .d2-flow .mp-n.is-hu{
+  background:var(--navy) !important;
+  border:1px solid var(--navy) !important;
+  box-shadow:var(--shadow-card);
+}
+#map .d2-flow .mp-n.is-hu .mp-t{ color:var(--surface-1) !important; font-weight:700; }
+#map .d2-flow .mp-n.is-hu .mp-no{ color:var(--surface-2); opacity:.8; }
+#map .d2-flow .mp-n.is-hu .mp-i{ color:var(--surface-1); opacity:1; width:19px; height:19px; }
+
+/* 工程名は投影距離でも読める大きさに（14.4px → 17px） */
+#map .d2-flow .mp-t{ font-size:1.06rem; }
+#map .d2-flow .mp-no{ font-size:.78rem; }
+
+#map .note{ margin-top:var(--sp-3) !important; }
+
+@media (max-width:900px){
+  #map .d2-flow{ flex-wrap:wrap; gap:12px 6px; }
+  #map .d2-flow .mp-col{ flex:1 1 45%; }
+  #map .d2-flow .d2-step{ font-size:.92rem; padding:12px 18px 12px 26px; }
+  #map .d2-flow .mp-list li{ font-size:.96rem; padding:13px 11px; }
+  #map .d2-flow .mp-t{ font-size:.96rem; }
+}
+
+
+/* ==================================================================
+   B. #hr-only ─ 実写3枚を捨て、番号リスト＋イラストの2カラムに
+   ------------------------------------------------------------------
+   狙い：情報を持たない写真（カード高の74%）を消し、その高さを見出しに回す。
+   右にイラストを置いて「面接の場」を図として示す。
+   ================================================================== */
+
+#hr-only .d2-only{
+  display:grid; grid-template-columns:60% 1fr;
+  gap:var(--sp-5); align-items:center;
+  margin:var(--sp-4) 0 0;
+}
+
+/* ---- B-1. 左：番号＋見出しだけの行。カードの箱と影は外す ---- */
+#hr-only .d2-only-list{
+  list-style:none; margin:0; padding:0;
+  border-top:1px solid var(--line);
+}
+#hr-only .d2-only-list li{
+  display:flex; align-items:center; gap:var(--sp-3);
+  padding:var(--sp-3) var(--sp-1);
+  border-bottom:1px solid var(--line);
+  background:none; box-shadow:none;
+}
+#hr-only .d2-only-n{
+  flex:none; width:46px; height:46px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--navy); color:var(--surface-1) !important;
+  font-size:.9rem; font-weight:700; letter-spacing:.04em;
+}
+#hr-only .d2-only-list h3{
+  margin:0 !important;
+  font-size:1.42rem !important; font-weight:700 !important;
+  line-height:1.5 !important; color:var(--ink) !important;
+}
+
+/* ---- B-2. 右：イラストを本文と対等の主役として置く ---- */
+#hr-only .d2-only-ill{ display:flex; justify-content:center; align-items:center; }
+/* 素材の上側に透明の余白が約22%ぶんある。そこを切り落として絵だけを見せ、
+   左の番号リストと高さ・重心を揃える */
+#hr-only .d2-only-ill .ill{
+  width:100%; max-width:360px;
+  aspect-ratio:722/630; object-fit:cover; object-position:center bottom;
+}
+
+@media (max-width:900px){
+  #hr-only .d2-only{ grid-template-columns:1fr; gap:var(--sp-3); }
+  #hr-only .d2-only-ill{ order:-1; }
+  #hr-only .d2-only-ill .ill{ max-width:210px; }
+  #hr-only .d2-only-list h3{ font-size:1.1rem !important; }
+  #hr-only .d2-only-n{ width:38px; height:38px; font-size:.8rem; }
+}

@@ -95,7 +95,7 @@
 }
 
 /* ---------- 目盛り ---------- */
-.imp-grid{ stroke:rgba(255,255,255,.055); stroke-width:1; }
+.imp-grid{ stroke:rgba(16,48,92,.055); stroke-width:1; }
 .imp-axis{ stroke:var(--line); stroke-width:1; }
 .imp-tick{
   fill:var(--ink-dim);

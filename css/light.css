@@ -1,0 +1,350 @@
+/* light.css — 白地＋青のビジネス資料テーマ（最終読み込み・司令塔が管理）
+   ==================================================================
+   参考：日本のBtoB営業資料テンプレート（白地／濃紺の見出し／青の帯・ラベル）
+   全班はこのファイルのトークンだけを使うこと。生の色を書かない。
+   ================================================================== */
+
+:root{
+  /* ---- 地と面 ---- */
+  --bg:        #F2F7FC;   /* ページ地 */
+  --bg-2:      #E7F0F9;   /* 交互スライドの地 */
+  --surface-1: #FFFFFF;   /* カード */
+  --surface-2: #E8F1FB;   /* 強調カード */
+  --line:      rgba(11,37,69,.16);
+
+  /* ---- 文字（白地なので思い切り濃くする） ---- */
+  --ink:       #0B2545;
+  --ink-dim:   #3E5875;
+
+  /* ---- 青 ---- */
+  --accent:    #1668C8;
+  --accent-2:  #0B4DA2;
+  --navy:      #0B2E63;
+  --acc-04: rgba(22,104,200,.05);
+  --acc-10: rgba(22,104,200,.10);
+  --acc-24: rgba(22,104,200,.26);
+  --acc-60: rgba(22,104,200,.60);
+  --glow:   rgba(22,104,200,.22);
+
+  --shadow-card: 0 2px 10px rgba(11,37,69,.06), 0 12px 34px rgba(11,37,69,.05);
+}
+
+html, body{ background:var(--bg); color:var(--ink); }
+#deck, .deck{ background:var(--bg); }
+.slide{ background:var(--bg); }
+.slide.sec-alt{ background:var(--bg-2); }
+.slide.sec-dark{ background:var(--bg-2); }
+/* 暗背景前提の中央グローは白地では汚れに見える */
+.slide::before{ background:none !important; }
+
+/* ==================================================================
+   1. 視認性：白地では同じ字重が痩せて見えるので、全体に重くする
+   ================================================================== */
+body, .lead, .note, p, li, td, th, span, div{ -webkit-font-smoothing:antialiased; }
+.lead{ font-weight:600 !important; color:var(--ink) !important; }
+.note{ font-weight:500 !important; color:var(--ink-dim) !important; }
+.sec-label{ font-weight:700 !important; color:var(--accent-2) !important; }
+h1,h2,h3,.sec-title,.q-big,.chdiv-t,.hero-title,.vision-title,.product-name,.cta-title,.tl-title{
+  color:var(--ink) !important;
+}
+.hl{ color:var(--accent) !important; font-weight:900; }
+b, strong{ font-weight:700; color:var(--ink); }
+small{ font-weight:500; }
+.num{ font-weight:700; }
+
+/* 本文まわりの既定色。薄いグレーで書かれていた箇所を一段濃くする */
+.fq-a, .fit-list li, .fit-why, .mp-t, .pz-for, .pz-list li,
+.wd-lg li, .wd-k, .mp-legend li, .fn-sub, .g5-cn, .g5-cap{
+  color:var(--ink-dim) !important; font-weight:500;
+}
+
+/* ==================================================================
+   2. カード：白地では「枠線」より「白い面＋影」で分ける
+   ================================================================== */
+.fn, .case, .cp, .why, .safe, .only-card, .media, .cmp-col, .stat,
+.fit-col, .fq, .pz, .g5-mini, .g5-chip, .ba2-col, .mp-list li, .only-card{
+  background:var(--surface-1) !important;
+  border:1px solid var(--line) !important;
+  box-shadow:var(--shadow-card);
+}
+.fit-col.is-key, .pz.is-key, .ba2-col.is-key{
+  background:var(--surface-2) !important;
+  border-color:var(--acc-24) !important;
+}
+
+/* ==================================================================
+   3. 濃色で塗るスライド（表紙・章扉・締め）は青ベタ＋白文字
+      参考資料の「01 サービス概要」の面と同じ考え方
+   ================================================================== */
+.slide.sec-hero, .slide.chdiv, .slide.sec-cta{
+  background:linear-gradient(135deg,#0B2E63 0%,#12539F 55%,#1668C8 100%) !important;
+}
+.slide.sec-hero::after, .slide.chdiv::after, .slide.sec-cta::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background-image:var(--chdiv-img);
+  background-size:cover; background-position:center;
+  mix-blend-mode:soft-light; opacity:.5;
+}
+/* 締めスライドだけ、背景写真の地平線をコピーの下に逃がす。
+   sec_cta.webp は 1344x768・水平線が y≈400/768（=0.521）にある道路構図。
+   cover では縦の余白が消えて水平線が 0.52H に貼り付き、リード1行目の字面を横切る。
+
+   地平線の位置は  y = H*((1-S)*P + S*0.521) + Δ   （S=background-size, P/Δ=position）。
+   コピーはブロック中央寄せ＝「0.5H + 一定px」なので、H に比例する比率指定だけで逃がすと
+   別の画面高さで追突する（例：auto 150%/6% は 1366x660 で社名を横切る）。
+   そこで H の係数が 0.5 になる S/P を選び、逃がす量を px で固定する：
+     S=1.8, P=54.7%  →  (1-1.8)*0.547 + 1.8*0.521 = 0.4974 ≒ 0.5
+     Δ=230px         →  地平線 ≒ 中央+230px（社名の字面の最大でも中央+175px）
+   これで 390x844〜2560x1440 まで、字面との間隔が常に 49px 以上残る。
+   no-repeat は、画面が極端に低いときに写真の外側でタイル継ぎ目が出るのを防ぐ保険。
+   sec-hero / chdiv は構図が違うので cover のまま据え置く。 */
+.slide.sec-cta::after{
+  background-size: auto 180%;
+  background-position: 50% calc(54.7% + 230px);
+  background-repeat: no-repeat;
+}
+.slide.sec-hero::before, .slide.chdiv::before, .slide.sec-cta::before{
+  content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(120deg, rgba(11,46,99,.72) 0%, rgba(11,46,99,.30) 58%, rgba(11,46,99,.66) 100%) !important;
+}
+.slide.sec-hero > .slide-in, .slide.chdiv > .slide-in, .slide.sec-cta > .slide-in{ position:relative; z-index:3; }
+.slide.sec-hero :is(h1,h2,h3,.hero-title,.chdiv-t,.cta-title),
+.slide.chdiv :is(h1,h2,h3,.chdiv-t),
+.slide.sec-cta :is(h1,h2,h3,.cta-title){ color:#fff !important; }
+.slide.sec-hero .hero-sub, .slide.sec-cta .lead, .slide.sec-cta p{ color:rgba(255,255,255,.9) !important; }
+.slide.sec-hero .hero-eyebrow, .slide.chdiv .chdiv-n, .slide.sec-cta .sec-label{ color:rgba(255,255,255,.75) !important; }
+.slide.sec-hero .hl, .slide.chdiv .hl, .slide.sec-cta .hl{ color:#8EC6FF !important; }
+.slide.sec-hero .note, .slide.sec-cta .note{ color:rgba(255,255,255,.66) !important; }
+
+/* ==================================================================
+   4. 参考資料に合わせた装飾
+   ================================================================== */
+/* 左端の縦帯：本文スライドの左に細い青のラインを落とす */
+.slide:not(.chdiv):not(.sec-hero):not(.sec-cta):not(.lay-flood)::after{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:10px; z-index:1;
+  background:linear-gradient(180deg,var(--accent-2) 0%,var(--accent) 46%,rgba(22,104,200,.15) 100%);
+  pointer-events:none;
+}
+/* 見出しのラベルは、参考資料と同じ「短い罫線＋英字」 */
+.sec-label{ display:inline-flex; align-items:center; gap:12px; }
+.sec-label::before{
+  content:""; width:26px; height:2px; background:var(--accent); display:inline-block; flex:none;
+}
+
+/* 映像は白いカードに載せて「画面」として見せる */
+.fn-video{
+  background:#0B1220 !important;
+  border:1px solid var(--line) !important;
+  box-shadow:var(--shadow-card);
+}
+
+/* 導入企業ロゴは白地なので、黒の単色に落とす */
+.logo-row img, .logos img, [class*="logo"] img{
+  filter:brightness(0) saturate(100%) opacity(.62) !important;
+}
+
+/* デッキUI（ドット・進捗・ボタン）を白地向けに */
+.deck-dot{ background:rgba(11,37,69,.18) !important; }
+.deck-dot.is-on{ background:var(--accent) !important; }
+#deck-progress{ background:rgba(11,37,69,.10) !important; }
+#deck-progress span{ background:var(--accent) !important; }
+.deck-nav, .deck-ui, #deck-prev, #deck-next{
+  background:rgba(255,255,255,.9) !important;
+  border-color:var(--line) !important;
+  color:var(--ink) !important;
+}
+.deck-flash{ background:linear-gradient(90deg,transparent,rgba(22,104,200,.16),transparent) !important; }
+
+/* ==================================================================
+   5. 反転で残った暗色レイヤーの後始末
+   ================================================================== */
+/* 本文スライドに敷いていた全面写真は、白地では灰色のカブりになるので落とす */
+#hero::after, #q-cost::after, #fit::after, #price::after, #why-us::after{
+  background-image:none !important; opacity:0 !important;
+}
+#hero::before, #q-cost::before, #fit::before, #price::before, #why-us::before{
+  background:none !important;
+}
+/* 問いかけスライドは白地に置くと弱いので、章扉と同じ青ベタにして山を作る */
+.slide#q-cost{ background:linear-gradient(135deg,#0B2E63 0%,#12539F 55%,#1668C8 100%) !important; }
+.slide#q-cost .q-big, .slide#q-cost h2{ color:#fff !important; }
+.slide#q-cost .q-big .hl{ color:#8EC6FF !important; }
+.slide#q-cost .lead, .slide#q-cost p{ color:rgba(255,255,255,.9) !important; }
+.slide#q-cost::after{ display:none !important; }
+
+/* 左の縦帯（本文スライドのみ）。ID指定の ::after に負けないよう詳細度を上げる */
+.slide.slide:not(.chdiv):not(.sec-hero):not(.sec-cta):not(.lay-flood):not(#q-cost)::after{
+  content:"" !important; position:absolute !important; left:0; top:0; bottom:0;
+  width:10px; height:auto; z-index:1; opacity:1 !important;
+  background-image:none !important;
+  background:linear-gradient(180deg,var(--accent-2) 0%,var(--accent) 46%,rgba(22,104,200,.15) 100%) !important;
+  pointer-events:none;
+}
+
+/* 導入企業ロゴは白地で薄すぎたので濃くする */
+.logo-row img, .logos img, [class*="logo"] img{
+  filter:brightness(0) saturate(100%) opacity(.78) !important;
+}
+
+/* ==================================================================
+   6. 見出しタブ：全スライド左上に「いまどの章か」を出す
+      参考資料（TaxCare）の濃紺タブと同じ役割。デッキの骨格になる。
+   ================================================================== */
+.slide-tab{
+  position:absolute; top:0; left:0; z-index:5;
+  margin:0; padding:12px 30px 12px 34px;
+  background:linear-gradient(100deg,var(--navy) 0%,#123F80 100%);
+  color:#fff; font-weight:700; font-size:.86rem; letter-spacing:.02em;
+  border-radius:0 0 4px 0;
+  box-shadow:0 6px 18px rgba(11,37,69,.14);
+  pointer-events:none;
+}
+.slide-tab::after{
+  content:""; position:absolute; right:-14px; top:0; bottom:0; width:14px;
+  background:linear-gradient(100deg,#123F80,#1668C8);
+  clip-path:polygon(0 0, 100% 0, 0 100%);
+}
+/* タブぶんの逃げ。fit.js の版面は .slide の padding を見て倍率を決めるので上を広げる */
+.slide:has(> .slide-tab){ padding-top:78px !important; }
+.slide.fn-slide:has(> .slide-tab){ padding-top:70px !important; }
+@media (max-width:900px){
+  .slide-tab{ font-size:.74rem; padding:9px 20px 9px 24px; }
+  .slide:has(> .slide-tab){ padding-top:58px !important; }
+}
+
+/* ==================================================================
+   7. イラストと吹き出し（参考資料の「感情に寄り添う」部分）
+   ================================================================== */
+.ill{ display:block; height:auto; }
+.ill-sm{ width:clamp(150px,15vw,210px); }
+.ill-md{ width:clamp(210px,21vw,290px); }
+.ill-lg{ width:clamp(260px,27vw,370px); }
+/* スライド右下に添える置き方（本文を邪魔しない） */
+.ill-corner{
+  position:absolute; right:0; bottom:0; z-index:0; opacity:.95; pointer-events:none;
+}
+
+/* 吹き出し：担当者の本音をそのまま言わせる */
+.voice-row{ display:flex; gap:var(--sp-3); flex-wrap:wrap; align-items:flex-start; }
+.voice{
+  position:relative; background:var(--surface-1); border:1px solid var(--line);
+  border-radius:14px; padding:16px 20px; font-size:.95rem; font-weight:600;
+  color:var(--ink); box-shadow:var(--shadow-card); max-width:34ch;
+}
+.voice::after{
+  content:""; position:absolute; left:34px; bottom:-9px; width:16px; height:16px;
+  background:var(--surface-1); border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+  transform:rotate(45deg);
+}
+.voice.is-key{ background:var(--surface-2); border-color:var(--acc-24); }
+.voice.is-key::after{ background:var(--surface-2); border-color:var(--acc-24); }
+
+/* STEP の帯（参考資料の STEP1▶STEP2▶…） */
+.steps{ display:flex; gap:6px; margin:var(--sp-4) 0 var(--sp-3); }
+.step{
+  flex:1 1 0; position:relative; padding:12px 18px 12px 26px;
+  background:var(--surface-2); color:var(--ink); font-weight:700; font-size:.86rem;
+  clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+}
+.step:first-child{ clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%); }
+.step.is-on{ background:var(--navy); color:#fff; }
+
+/* 比較表：自社列だけ色を付けて王冠を載せる */
+.cmp-crown{ position:relative; }
+.cmp-crown::before{
+  content:""; position:absolute; top:-16px; left:50%; transform:translateX(-50%);
+  width:26px; height:16px; background:var(--accent);
+  clip-path:polygon(0 100%, 0 22%, 25% 55%, 50% 0, 75% 55%, 100% 22%, 100% 100%);
+}
+
+/* ==================================================================
+   8. 料金：2つの従量メニュー
+   ================================================================== */
+.pu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-4); margin:var(--sp-5) 0 var(--sp-4); }
+.pu{
+  position:relative; padding:var(--sp-5) var(--sp-4);
+  background:var(--surface-1); border:1px solid var(--line);
+  border-radius:8px; box-shadow:var(--shadow-card);
+}
+.pu.is-key{ background:var(--surface-2); border-color:var(--acc-24); }
+.pu-cat{
+  display:inline-block; background:var(--navy); color:#fff;
+  font-size:.84rem; font-weight:700; padding:8px 18px; border-radius:4px;
+  margin-bottom:var(--sp-4);
+}
+.pu-unit{
+  display:flex; align-items:baseline; gap:6px; flex-wrap:wrap;
+  margin:0 0 12px; color:var(--ink); font-family:var(--font-en);
+}
+.pu-unit b{ font-size:clamp(2.4rem,4.4vw,3.4rem); font-weight:700; line-height:1; color:var(--accent-2); }
+.pu-unit span{ font-family:var(--font-jp); font-size:1rem; font-weight:700; }
+.pu-unit i{ font-style:normal; font-size:1.5rem; color:var(--ink-dim); margin:0 4px; }
+.pu-min{
+  margin:0 0 var(--sp-4); padding-bottom:var(--sp-4);
+  border-bottom:1px solid var(--line);
+  font-size:.95rem; font-weight:600; color:var(--ink);
+}
+.pu-min b{ font-family:var(--font-en); font-size:1.5rem; color:var(--ink); }
+.pu-min span{ font-size:.92rem; }
+.pu-list{ list-style:none; padding:0; margin:0; }
+.pu-list li{ display:flex; align-items:center; gap:10px; font-size:.92rem; font-weight:500; color:var(--ink-dim); padding:8px 0; }
+.pu-list svg{ width:20px; height:20px; flex:none; color:var(--accent); }
+.pu-list b{ color:var(--ink); font-family:var(--font-en); }
+@media (max-width:900px){ .pu-grid{ grid-template-columns:1fr; } }
+
+/* ==================================================================
+   9. 画像アイコン（線で描いたSVGより、生成した2色アイコンのほうが密度が出る）
+   ================================================================== */
+.ic{ display:inline-block; flex:none; object-fit:contain; vertical-align:middle; }
+.ic-xs{ width:20px; height:20px; }
+.ic-sm{ width:26px; height:26px; }
+.ic-md{ width:38px; height:38px; }
+.ic-lg{ width:56px; height:56px; }
+.ic-xl{ width:78px; height:78px; }
+
+/* 装飾グラフィック */
+.deco{ position:absolute; pointer-events:none; z-index:0; }
+.deco-tr{ top:0; right:0; width:clamp(180px,22vw,320px); opacity:.9; }
+.deco-br{ right:0; bottom:0; width:clamp(150px,18vw,260px); opacity:.85; }
+
+/* ==================================================================
+   10. 導入事例：列を揃えた1枚の表にする
+   ================================================================== */
+.cs-table{ margin:var(--sp-5) 0 var(--sp-3); }
+.cs-head, .cs-row{
+  display:grid; grid-template-columns:20% 26% 17% 15% 22%;
+  align-items:center; gap:var(--sp-3);
+}
+.cs-head{
+  padding:0 var(--sp-3) 10px; font-size:.74rem; font-weight:700; color:var(--ink-dim);
+  border-bottom:2px solid var(--line);
+}
+.cs-row{
+  padding:var(--sp-3); border-bottom:1px solid var(--line);
+  background:var(--surface-1);
+}
+.cs-row.is-key{
+  background:var(--surface-2); border:1px solid var(--acc-24); border-radius:6px;
+  box-shadow:var(--shadow-card);
+}
+.cs-co b{ display:block; font-size:.95rem; font-weight:700; color:var(--ink); }
+.cs-co i{ display:block; font-style:normal; font-size:.74rem; color:var(--ink-dim); margin-top:3px; }
+.cs-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+.cs-tag{
+  font-size:.74rem; font-weight:700; padding:5px 11px; border-radius:4px;
+  background:#fff; border:1px solid var(--acc-24); color:var(--accent-2);
+}
+.cs-row.is-key .cs-tag{ background:var(--accent); border-color:var(--accent); color:#fff; }
+.cs-rate{ display:flex; align-items:baseline; gap:7px; font-family:var(--font-en); }
+.cs-rate s{ text-decoration:none; font-size:.86rem; color:var(--ink-dim); }
+.cs-rate em{ font-style:normal; color:var(--ink-dim); }
+.cs-rate b{ font-size:1.1rem; font-weight:700; color:var(--accent-2); }
+.cs-x{ display:flex; align-items:baseline; gap:3px; }
+.cs-x b{ font-family:var(--font-en); font-size:clamp(1.8rem,3vw,2.5rem); font-weight:700; color:var(--ink); line-height:1; }
+.cs-row.is-key .cs-x b{ color:var(--accent); }
+.cs-x span{ font-size:.82rem; font-weight:700; color:var(--ink-dim); }
+.cs-ex{ font-size:.82rem; font-weight:600; color:var(--ink-dim); }
+@media (max-width:900px){
+  .cs-head{ display:none; }
+  .cs-row{ grid-template-columns:1fr 1fr; row-gap:10px; }
+}

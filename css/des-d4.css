@@ -1,0 +1,138 @@
+/* des-d4.css — デザイナー4（比較と根拠）
+   ==================================================================
+   担当: #why-data（文面と採用の紐付け / 22枚目）
+   方針: 「凡例で解く図」を「そのまま読める図」に変える。
+     - 凡例の独立行を廃止し、最上段バーのセグメント内へ色名を直付け
+     - 各行の「裁量の大きさ」セグメントに --w の値（45/50/62/78%）を
+       バー左端の固定列で縦一列に揃えて出す（比率の上昇が数字だけで読める）
+     - 結論は図の下ではなく、細くなった面接・内定行の右の空白へ移し、
+       内定バーから1本の矢印でつなぐ
+   色は light.css のトークンのみ。新規クラスは d4- 接頭辞。
+   ================================================================== */
+
+#why-data{
+  --d4-row-h: 64px;    /* バー行の高さ（数字を入れる余白のため 56 → 64） */
+  --d4-row-gap: 13px;  /* 行間 */
+  --d4-key-w: 96px;    /* .wd-k の幅（brand.css と同値） */
+  --d4-key-gap: 16px;  /* .wd-row の gap（--sp-2） */
+  --d4-bar-x: calc(var(--d4-key-w) + var(--d4-key-gap));   /* バー左端 = 112px */
+  --d4-row4-y: calc(3 * (var(--d4-row-h) + var(--d4-row-gap)));  /* 内定行の上端 */
+  --d4-card-x: 596px;  /* 結論カードの左端（面接バー右端 547px の外側） */
+  --d4-bar4-end: calc(var(--d4-bar-x) + 179px);            /* 内定バーの右端 */
+}
+
+/* ---------- 軸キャプション（新しい数値ではなく、読み方の明示） ---------- */
+#why-data .d4-axis{
+  margin: 0 0 12px;
+  padding-left: var(--d4-bar-x);
+  font-size: .86rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--ink-dim);
+}
+
+/* ---------- ファネル本体 ---------- */
+#why-data .wd-funnel{
+  position: relative;
+  gap: var(--d4-row-gap);
+  margin: 0 0 var(--sp-3);
+}
+#why-data .wd-bar{ height: var(--d4-row-h); }
+#why-data .wd-k{ width: var(--d4-key-w); font-size: .94rem; font-weight: 600; }
+
+/* セグメントの中に字を置けるようにする */
+#why-data .wd-s{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ---------- 比率（％）：各バー左端の固定列に縦一列で揃える ----------
+   右寄せにすると値が上がるほど数字が斜めに動き、隣のセグメントの値と
+   誤読されるため、左端固定で「比率の上昇」を一列で比較させる。       */
+#why-data .d4-pct{
+  order: -1;
+  flex: none;
+  min-width: 52px;
+  padding-left: 14px;
+  font-family: var(--font-en);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .01em;
+  color: var(--surface-1);
+}
+
+/* ---------- 凡例の代わり：最上段のセグメント内に色名を直付け ---------- */
+#why-data .d4-seglab{
+  flex: none;
+  font-style: normal;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--surface-1);
+}
+#why-data .wd-c2 .d4-seglab,
+#why-data .wd-c3 .d4-seglab{ padding-left: 14px; }
+/* 淡い青のセグメントだけ白字が痩せるので濃紺にする */
+#why-data .wd-c3 .d4-seglab{ color: var(--navy); }
+
+/* ---------- 結論カード：内定行の右の空白へ ---------- */
+#why-data .d4-concl-slot{
+  position: absolute;
+  left: var(--d4-card-x);
+  top: var(--d4-row4-y);
+  width: calc(1280px - var(--d4-card-x));
+  height: var(--d4-row-h);
+  display: flex;
+  align-items: center;
+}
+#why-data .wd-out.d4-concl{
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 24px 26px;
+  border-radius: 14px;
+  align-items: center;
+  line-height: 1.6;
+}
+/* 吹き出しの尻尾を左辺の中央へ回し、矢印の先端で受ける */
+#why-data .wd-out.d4-concl::after{
+  left: -9px;
+  top: 50%;
+  bottom: auto;
+  margin-top: -8px;
+  border: 0;
+  border-left: 1px solid var(--acc-24);
+  border-bottom: 1px solid var(--acc-24);
+  transform: rotate(45deg);
+}
+
+/* ---------- 内定バー → 結論カード の矢印 ---------- */
+#why-data .d4-arrow{
+  position: absolute;
+  left: var(--d4-bar4-end);
+  top: calc(var(--d4-row4-y) + (var(--d4-row-h) - 16px) / 2);
+  width: calc(var(--d4-card-x) - 9px - var(--d4-bar4-end));
+  height: 16px;
+  color: var(--accent);
+  pointer-events: none;
+}
+
+/* ---------- 縦長・狭い画面（版面 720px）では図の下へ戻す ---------- */
+@media (max-width: 900px), (orientation: portrait){
+  #why-data{ --d4-row-h: 46px; }
+  #why-data .d4-concl-slot{
+    position: static;
+    width: auto;
+    height: auto;
+    margin-top: var(--sp-3);
+  }
+  #why-data .wd-out.d4-concl::after{ display: none; }
+  #why-data .d4-arrow{ display: none; }
+  #why-data .d4-pct{ min-width: 44px; font-size: .96rem; }
+  #why-data .d4-seglab{ font-size: .78rem; }
+}

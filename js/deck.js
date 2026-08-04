@@ -128,21 +128,59 @@ export function init() {
         { opacity: 0, x: (idx > prev ? '100%' : '-100%'), duration: 0.75, ease: 'power2.out' });
     }
 
-    // 入場：見出し → 中身 の順に段差をつけて出す
+    // 入場アニメ。全スライドで同じ動きが流れると単調になるので、
+    // data-anim で型を切り替える（rise / zoom / push / wipe / bars / flood / chdiv）
     const items = slide.querySelectorAll('.reveal');
     items.forEach((el) => el.classList.remove('is-in'));
 
     const q = (sel) => { const n = slide.querySelectorAll(sel); return n.length ? n : null; };
+    const stage = slide.querySelector('.nx-stage');
+    const blocks = stage ? Array.from(stage.children) : [];
+    const TITLE = '.sec-title, .q-big, .chdiv-t, .hero-title, .vision-title, .product-name, .cta-title, .tl-title';
+    const LABEL = '.sec-label, .chdiv-n, .hero-eyebrow, .fn-badge';
     const tl = gsap.timeline();
-    tl.fromTo(q('.sec-label, .chdiv-n, .hero-eyebrow') || [],
-      { opacity: 0, y: 14, letterSpacing: '0.5em' },
-      { opacity: 1, y: 0, letterSpacing: '0.14em', duration: 0.7, ease: CENTER_EASE }, 0);
+    const kind = slide.dataset.anim || 'rise';
 
-    tl.fromTo(q('.sec-title, .q-big, .chdiv-t, .hero-title, .vision-title, .product-name, .cta-title, .tl-title') || [],
-      { opacity: 0, y: 34, filter: 'blur(10px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.95, ease: CENTER_EASE }, 0.08);
+    // 見出しの出方は型ごとに変える
+    if (kind === 'zoom' || kind === 'chdiv') {
+      tl.fromTo(q(LABEL) || [],
+        { opacity: 0, letterSpacing: '0.6em' },
+        { opacity: 1, letterSpacing: '0.14em', duration: 0.8, ease: CENTER_EASE }, 0);
+      tl.fromTo(q(TITLE) || [],
+        { opacity: 0, scale: 1.14, filter: 'blur(14px)' },
+        { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.1, ease: CENTER_EASE }, 0.05);
+    } else if (kind === 'push') {
+      tl.fromTo(q(LABEL) || [], { opacity: 0, x: -22 }, { opacity: 1, x: 0, duration: 0.6, ease: CENTER_EASE }, 0);
+      tl.fromTo(q(TITLE) || [], { opacity: 0, x: -46 }, { opacity: 1, x: 0, duration: 0.85, ease: CENTER_EASE }, 0.06);
+    } else if (kind === 'wipe') {
+      tl.fromTo(q(LABEL) || [], { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'none' }, 0);
+      tl.fromTo(q(TITLE) || [],
+        { clipPath: 'inset(0 100% 0 0)', opacity: 1 },
+        { clipPath: 'inset(0 0% 0 0)', duration: 0.95, ease: 'power3.inOut' }, 0.05);
+    } else {
+      tl.fromTo(q(LABEL) || [],
+        { opacity: 0, y: 14, letterSpacing: '0.5em' },
+        { opacity: 1, y: 0, letterSpacing: '0.14em', duration: 0.7, ease: CENTER_EASE }, 0);
+      tl.fromTo(q(TITLE) || [],
+        { opacity: 0, y: 34, filter: 'blur(10px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.95, ease: CENTER_EASE }, 0.08);
+    }
 
-    tl.add(() => { items.forEach((el) => el.classList.add('is-in')); }, 0.25);
+    tl.add(() => { items.forEach((el) => el.classList.add('is-in')); }, 0.22);
+
+    // 図版ブロック（見出し以外の .nx-stage 直下）の出方も型ごとに変える
+    const figs = blocks.filter((el) => !el.matches(TITLE) && !el.matches(LABEL) && !el.matches('.note'));
+    if (figs.length) {
+      if (kind === 'zoom') {
+        tl.fromTo(figs, { opacity: 0, scale: 0.93 }, { opacity: 1, scale: 1, duration: 0.9, ease: CENTER_EASE, stagger: 0.07 }, 0.26);
+      } else if (kind === 'push') {
+        tl.fromTo(figs, { opacity: 0, x: 64 }, { opacity: 1, x: 0, duration: 0.8, ease: CENTER_EASE, stagger: 0.08 }, 0.24);
+      } else if (kind === 'wipe') {
+        tl.fromTo(figs, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.0, ease: 'power3.inOut', stagger: 0.1 }, 0.2);
+      } else if (kind === 'flood') {
+        tl.fromTo(figs, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: CENTER_EASE, stagger: 0.1 }, 0.3);
+      }
+    }
 
     // 大きな数値は少し遅らせて「立ち上がる」
     const bigs = slide.querySelectorAll('.stat-v, .bignum-v, .price-v, .tl-meter-v');
@@ -152,12 +190,33 @@ export function init() {
         { opacity: 1, scale: 1, y: 0, duration: 1.0, ease: CENTER_EASE, stagger: 0.09 }, 0.3);
     }
 
+    // 棒グラフの型：横棒を 0 から実寸まで伸ばす（offsetWidth は scale の影響を受けない）
+    if (kind === 'bars') {
+      const bars = slide.querySelectorAll(
+        '.wd-bar, .g2-seg, .g5-seg, .g5-cbar, .g5-mbar, .sb-seg, .g3-base, .g3-arw, .bar-v span'
+      );
+      bars.forEach((el, i) => {
+        const w = el.offsetWidth;
+        if (!w) return;
+        tl.fromTo(el, { width: 0 }, {
+          width: w, duration: 0.95, ease: CENTER_EASE,
+          clearProps: 'width'
+        }, 0.3 + i * 0.045);
+      });
+    }
+
+    // 章扉：背景写真だけゆっくり寄る
+    if (kind === 'chdiv') {
+      const bg = slide.querySelector('.vision-bg');
+      if (bg) tl.fromTo(bg, { scale: 1.14 }, { scale: 1.06, duration: 2.2, ease: 'power2.out' }, 0);
+    }
+
     // カード群は順に
-    const cards = slide.querySelectorAll('.fn, .only-card, .why, .case, .cp, .safe, .flow-steps li, .faq-list details');
+    const cards = slide.querySelectorAll('.fn, .only-card, .why, .case, .cp, .safe, .flow-steps li, .faq-list details, .fq, .pz, .mp-list li');
     if (cards.length) {
       tl.fromTo(cards,
         { opacity: 0, y: 26 },
-        { opacity: 1, y: 0, duration: 0.7, ease: CENTER_EASE, stagger: 0.045 }, 0.28);
+        { opacity: 1, y: 0, duration: 0.7, ease: CENTER_EASE, stagger: 0.03 }, 0.28);
     }
   }
 

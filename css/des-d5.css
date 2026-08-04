@@ -1,0 +1,152 @@
+/* des-d5.css — デザイナー5（締めと導線）担当
+   ==================================================================
+   対象スライド
+     #fit  こんな企業に向いています（25/31枚目）
+
+   色は light.css のトークンのみ。生の色は書かない。
+   新規クラスはすべて d5- 接頭辞。
+   ==================================================================
+
+   狙い
+   ------------------------------------------------------------------
+   旧版は画面上の文字項目が32個（うち本文チップ19個）あり、最小13.12px。
+   3つの白箱が同寸で並ぶため読む順序が無く、それでいて版面は183px余っていた。
+   「詰め込んでいるのに余白は余る」状態。
+
+   新版は表示ブロックを 吹き出し1＋チェック行4＋帯1 の6個に落とし、
+   本文を 13.12px → 22px（帯は15px）へ引き上げる。
+   参考資料（TaxCare）の「1スライド1メッセージ・要素3〜4個・
+   感情を先に代弁してから中身」に合わせる。
+
+   チェック行は1行1命題。スラッシュで2件を1行に押し込まない。
+     行1 規模（従業員50〜300名・年間3〜5名）
+     行2 体制（採用担当1〜2名・兼任）
+     行3 費用（紹介手数料が重い）
+     行4 工数（作成が追いつかない）
+   ※ 数値 50〜300／3〜5／1〜2 は全て行の文中に温存。削っていない。
+   ================================================================== */
+
+
+/* ------------------------------------------------------------------
+   0. 版面：余っていた縦を、行間と左右の余白に回す
+   ------------------------------------------------------------------ */
+#fit .nx-stage,
+#fit .slide-in{ position:relative; }
+
+#fit .sec-title{ margin-bottom:var(--sp-3) !important; }
+
+
+/* ------------------------------------------------------------------
+   1. 吹き出し：見出し直下で、読者の本音を先に言う
+      （light.css の .voice / .voice.is-key をそのまま使う）
+   ------------------------------------------------------------------ */
+#fit .d5-voice{
+  margin:0 0 var(--sp-5);
+  font-size:1.12rem;      /* 18px。旧チップ 13.12px より大きく */
+  font-weight:700;
+  max-width:none; width:max-content; max-width:100%;
+  padding:15px 26px;
+}
+/* この面は .sec-alt（--bg-2）なので、.voice.is-key の --surface-2 では
+   地と同化して吹き出しが消える。面を白に戻し、強調は枠線の --acc-24 で出す。
+   尻尾（::after）も同じ塗りに揃える */
+#fit .d5-voice,
+#fit .d5-voice::after{
+  background:var(--surface-1);
+  border-color:var(--acc-24);
+}
+/* 鉤括弧は HTML 側に置く（::after を尻尾に使っているため） */
+
+
+/* ------------------------------------------------------------------
+   2. チェック行：この1枚の主役。箱で囲わず、罫線だけで4行を刻む
+   ------------------------------------------------------------------ */
+#fit .d5-checks{
+  list-style:none; margin:0 0 var(--sp-5); padding:0;
+  max-width:920px;                 /* 右下のイラストに文字を被せない */
+  border-top:1px solid var(--line);
+}
+#fit .d5-check{
+  display:flex; align-items:center; gap:20px;
+  padding:21px 4px 21px 0;
+  border-bottom:1px solid var(--line);
+  background:none; box-shadow:none;
+}
+/* ✓ は .pu-list と同じ形。--accent で 24px */
+#fit .d5-tick{
+  width:24px; height:24px; flex:none;
+  color:var(--accent);
+}
+#fit .d5-check-t{
+  font-size:1.375rem;              /* 22px */
+  line-height:1.5;
+  font-weight:700;
+  color:var(--ink);
+  letter-spacing:.01em;
+}
+#fit .d5-check-t b.num{
+  font-family:var(--font-en, 'Space Grotesk', 'Noto Sans JP', sans-serif);
+  font-size:1.28em;
+  font-weight:700;
+  color:var(--accent-2);
+  letter-spacing:.01em;
+  margin:0 .06em;
+}
+
+
+/* ------------------------------------------------------------------
+   3. 帯：業界5語＋職種5語を、10個の枠から1本の帯へ
+      語は1つも削らない
+   ------------------------------------------------------------------ */
+/* ラベルと語列が離れて折り返すと対応が崩れるので、
+   1本の帯の中で「ラベル列｜語列」の2行グリッドに固定する */
+#fit .d5-band{
+  display:grid; grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:10px 14px;
+  margin:0;
+  padding:14px 22px;
+  background:var(--surface-2);
+  border:1px solid var(--acc-24);
+  border-radius:6px;
+  max-width:920px;
+}
+#fit .d5-band-k{
+  justify-self:stretch; text-align:center;
+  background:var(--navy); color:var(--surface-1);
+  font-size:.8rem; font-weight:700; letter-spacing:.04em;
+  padding:5px 12px; border-radius:3px;
+  white-space:nowrap;
+}
+#fit .d5-band-v{
+  font-size:.94rem; font-weight:600; color:var(--ink);
+  letter-spacing:.01em;
+}
+
+
+/* ------------------------------------------------------------------
+   4. イラスト：右下。書類の山に埋もれた採用担当で「これ、うちだ」
+      （light.css の .ill / .ill-md / .ill-corner をそのまま使う）
+   ------------------------------------------------------------------ */
+#fit .d5-ill{
+  right:-6px;
+  bottom:-10px;
+  opacity:.98;
+}
+
+
+/* ------------------------------------------------------------------
+   5. 狭い画面
+   ------------------------------------------------------------------ */
+/* 縦長では fit.js の版面が 720px 幅になり、倍率は「幅」で決まる（縦は余る）。
+   つまり縦方向は余裕があるので、文字は縮めず大きめに置いたほうが実寸で読める。 */
+@media (max-width:900px){
+  #fit .d5-voice{ font-size:1.16rem; padding:13px 20px; margin-bottom:var(--sp-4); }
+  #fit .d5-checks{ max-width:none; margin-bottom:var(--sp-4); }
+  #fit .d5-check{ gap:14px; padding:16px 0; align-items:flex-start; }
+  #fit .d5-tick{ width:22px; height:22px; margin-top:3px; }
+  #fit .d5-check-t{ font-size:1.28rem; }
+  #fit .d5-band{ max-width:none; padding:13px 16px; gap:9px 12px; }
+  #fit .d5-band-v{ font-size:1rem; }
+  #fit .d5-ill{ display:none; }
+}

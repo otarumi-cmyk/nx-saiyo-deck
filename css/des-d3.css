@@ -1,0 +1,295 @@
+/* ==================================================================
+   des-d3.css — デザイナー3（実績の見せ方）
+   担当: #scout-num（返信率の伸び） / #cases（導入事例）
+   ・色は light.css のトークンのみ。生の色は書かない。
+   ・新規クラスは d3- 接頭辞。
+   ・数値・出典・文言は一切変更しない（配置と大きさだけを変える）。
+   ================================================================== */
+
+/* ==================================================================
+   1. #scout-num — 左右2分割をやめ、上下3段（見出し／STEP／結果）
+   ================================================================== */
+
+/* lay-split の2カラムを解除。見出しの折り返し幅を 349px → 版面幅にする */
+#scout-num .nx-stage{
+  display:block;
+  column-gap:0;
+  position:relative;
+}
+
+#scout-num .sec-label{ margin-bottom:8px !important; }
+
+/* 一番のフックなので、全幅になった分だけ大きくする（改行は HTML の <br> のまま2行） */
+#scout-num .sec-title{
+  font-size:clamp(2rem,3.4vw,2.9rem) !important;
+  margin-bottom:0 !important;
+}
+
+/* ---- 検証手順の STEP 帯（light.css の .steps / .step を使う） ---- */
+#scout-num .d3-steps{
+  margin:var(--sp-3) 0 28px;
+  gap:8px;
+}
+#scout-num .d3-steps .step{
+  display:flex; flex-direction:column; justify-content:center; gap:5px;
+  padding:13px 20px 13px 34px;
+  /* sec-alt の地（--bg-2）と --surface-2 はほぼ同色で沈むため、地との差が出る白面を使う */
+  background:var(--surface-1);
+  font-size:.96rem; line-height:1.35; font-weight:700; color:var(--ink);
+}
+#scout-num .d3-steps .step i{
+  font-style:normal; font-family:var(--font-en);
+  font-size:.7rem; font-weight:700; letter-spacing:.16em;
+  color:var(--accent-2);
+}
+/* light.css の .step.is-on より詳細度が上がってしまうので、反転をここで作り直す */
+#scout-num .d3-steps .step.is-on{ background:var(--navy); color:var(--surface-1); }
+#scout-num .d3-steps .step.is-on i{ color:inherit; opacity:.72; }
+
+/* ---- 結果（返信率＝主／開封率＝従） ---- */
+#scout-num .d3-rows{ gap:var(--sp-3); }
+
+#scout-num .d3-r{
+  grid-template-columns:9.4% minmax(0,1fr) 16.9%;
+  gap:var(--sp-3);
+  align-items:center;
+}
+/* 主の行だけ帯地を敷いて「ここが本題」を版面で示す */
+#scout-num .d3-r-key{
+  background:var(--surface-1);
+  border-radius:6px;
+  padding:18px var(--sp-4) 18px var(--sp-3);
+}
+#scout-num .d3-r-key .g3-r-k{ font-size:1.3rem; }
+#scout-num .d3-r-sub .g3-r-k{ font-size:.95rem; color:var(--ink-dim); }
+
+/* 基準線（×1.0）は主の行だけに残す。ラベルを貫かないよう棒の上端から引く */
+#scout-num .d3-r-key .g3-r-track::before{ top:26px; }
+#scout-num .d3-r-sub .g3-r-track::before{ display:none; }
+/* 従の行にも同じ内寸を与えて、2本の棒の起点を同じ x に揃える */
+#scout-num .d3-r-sub{ padding:0 var(--sp-4) 0 var(--sp-3); }
+
+/* 凡例の独立行をやめ、語は各バーの直上に置く */
+#scout-num .d3-blab{
+  position:relative; z-index:1;
+  margin:0 0 7px;
+  font-size:.82rem; font-weight:700; letter-spacing:.02em;
+  color:var(--ink-dim);
+}
+/* 基準線の破線が文字を貫かないように、帯地と同じ面でラベル行だけ抜く */
+#scout-num .d3-r-key .d3-blab{ background:var(--surface-1); }
+#scout-num .d3-blab.is-a{ color:var(--accent-2); }
+#scout-num .d3-r-sub .d3-blab{ font-size:.74rem; margin-bottom:5px; }
+
+#scout-num .d3-r-key .g3-base{ height:16px; margin-bottom:14px; }
+#scout-num .d3-r-sub .g3-base{ height:10px; margin-bottom:10px; }
+#scout-num .d3-r-key .g3-base-v{ font-size:.9rem; }
+#scout-num .d3-r-sub .g3-base-v{ font-size:.76rem; }
+
+/* バー高さ：返信率は現状比1.3倍、開封率は0.75倍 */
+#scout-num .d3-r-key .g3-arw{
+  height:84px;
+  clip-path:polygon(0 24%, calc(100% - 34px) 24%, calc(100% - 34px) 0,
+                    100% 50%, calc(100% - 34px) 100%, calc(100% - 34px) 76%, 0 76%);
+}
+#scout-num .d3-r-sub .g3-arw{
+  height:36px;
+  clip-path:polygon(0 27%, calc(100% - 18px) 27%, calc(100% - 18px) 0,
+                    100% 50%, calc(100% - 18px) 100%, calc(100% - 18px) 73%, 0 73%);
+}
+#scout-num .d3-r-key .g3-arw-v{ font-size:1.3rem; right:44px; }
+#scout-num .d3-r-sub .g3-arw-v{ font-size:.78rem; right:28px; }
+
+/* 倍率は右端の浮遊をやめ、矢印の先端に密着させて同じ水平線に乗せる */
+#scout-num .d3-x{
+  position:absolute; left:var(--w); bottom:0; margin:0;
+  display:flex; align-items:flex-end; gap:6px;
+  transform:translateX(20px);
+  white-space:nowrap; color:var(--accent);
+  opacity:0; transition:opacity .45s var(--ease-out) .95s;
+}
+#scout-num .g3-r.is-in .d3-x{ opacity:1; }
+#scout-num .d3-r-key .d3-x{ height:84px; }
+#scout-num .d3-r-sub .d3-x{ height:36px; }
+#scout-num .d3-r-key .d3-x b{ font-size:8rem !important; line-height:.8; }
+#scout-num .d3-r-key .d3-x span{ font-size:1.7rem; line-height:1.25; }
+#scout-num .d3-r-sub .d3-x b{ font-size:2.6rem !important; line-height:.8; }
+#scout-num .d3-r-sub .d3-x span{ font-size:.95rem; line-height:1.25; }
+
+#scout-num .note{ margin-top:var(--sp-3) !important; max-width:none; }
+
+/* 空いた右下に小さく添える（バーと役割が競合しない大きさ・位置） */
+#scout-num .ill.d3-ill{
+  width:auto; height:186px; right:0; bottom:-6px; opacity:.92;
+}
+
+/* ==================================================================
+   2. #cases — 3枚の同型カードをやめ、1主2従を同じ列に載せる
+   ================================================================== */
+
+#cases .d3-cs-top{
+  display:flex; align-items:center; gap:var(--sp-5);
+}
+#cases .d3-cs-hd{ flex:1 1 auto; min-width:0; }
+#cases .d3-cs-hd .sec-title{ margin-bottom:0 !important; }
+#cases .ill.d3-cs-ill{
+  flex:0 0 auto; width:auto; height:248px;
+}
+
+/* 3行を同じ5列＋副KPI列に載せる（横に並べた意味＝再現性が読めるようにする） */
+#cases .d3-tbl{
+  display:grid;
+  /* 版面幅（PC 1280 / 縦画面 720）が変わっても崩れないよう比率で持つ
+     （1280px 換算で 206 / 280 / 150 / 158 / 200 / 残り） */
+  grid-template-columns:16.1% 21.9% 11.7% 12.3% 15.6% 1fr;
+  align-items:stretch;
+  margin-top:var(--sp-4);
+}
+/* セルは行の高さいっぱいに伸ばす（横罫が列ごとに途切れないようにする） */
+#cases .d3-tbl > *{
+  display:flex; flex-direction:column; justify-content:center;
+  padding-left:16px; padding-right:16px; min-width:0; position:relative; z-index:1;
+}
+#cases .d3-tbl > .d3-c1{ padding-left:20px; }
+#cases .d3-tbl > .d3-c6{ padding-right:0; }
+
+#cases .d3-c1{ grid-column:1; }
+#cases .d3-c2{ grid-column:2; }
+#cases .d3-c3{ grid-column:3; }
+#cases .d3-c4{ grid-column:4; }
+#cases .d3-c5{ grid-column:5; }
+#cases .d3-c6{ grid-column:6; }
+#cases .d3-r1{ grid-row:1; }
+#cases .d3-r2{ grid-row:2; }
+#cases .d3-r3{ grid-row:3; }
+#cases .d3-r4{ grid-row:4; }
+
+/* 列見出し：ラベルは1回だけ。列の頭に置いて3行すべてに効かせる */
+#cases .d3-hd{
+  display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:6px;
+  margin:0 0 10px;
+  font-size:.72rem; font-weight:700; letter-spacing:.06em; color:var(--ink-dim);
+}
+#cases .d3-hd .g3-ic-s{ color:var(--accent); }
+#cases .d3-hd-rate{ grid-column:4 / span 2; }
+
+/* 主の行の面（セル背景を分けると継ぎ目が出るので1枚の帯を敷く） */
+#cases .d3-band{
+  grid-column:1 / -1; grid-row:2;
+  align-self:stretch;
+  background:var(--surface-2);
+  /* fix-g4 の #cases 強調カードと同じ締め方（ベタ面＋--acc-60 の枠）に合わせる */
+  border:1px solid var(--acc-60);
+  border-radius:8px;
+  z-index:0; padding:0;
+}
+#cases .d3-tbl > .d3-key{ padding-top:var(--sp-3); padding-bottom:var(--sp-3); }
+/* 従の行は箱・影・アイコン丸を外し、仕切りは横罫のみ */
+#cases .d3-tbl > .d3-thin{
+  padding-top:14px; padding-bottom:14px;
+  border-top:1px solid var(--line);
+}
+
+/* 社名 */
+#cases .d3-nm{
+  display:flex; align-items:center; gap:8px;
+  margin:0; font-weight:700; color:var(--ink); line-height:1.3;
+}
+#cases .d3-key .d3-nm{ font-size:1.12rem; }
+#cases .d3-thin .d3-nm{ font-size:.94rem; }
+#cases .d3-sub{ margin:3px 0 0; font-size:.74rem; color:var(--ink-dim); line-height:1.35; }
+#cases .d3-key .d3-sub{ font-size:.8rem; }
+
+/* 入れた要素チップ（主は約1.6倍） */
+#cases .d3-chips{ justify-content:flex-start; margin:0; gap:8px; }
+#cases .d3-key .d3-chips li{
+  font-size:1.12rem; padding:9px 14px; gap:8px; border-radius:8px;
+}
+#cases .d3-key .d3-chips li .g3-ic-s{ width:19px; height:19px; }
+#cases .d3-thin .d3-chips li{ font-size:.78rem; padding:5px 9px; }
+
+/* 矢印は主の1本だけ */
+#cases .d3-jump{
+  border:0; margin:0;
+  flex-direction:row; align-items:center; justify-content:center;
+}
+#cases .d3-jump .g3-jump-fig{ width:100%; max-width:none; height:auto; }
+#cases .d3-jump.is-in .g3-jump-ln{ stroke-dashoffset:0; }
+#cases .d3-jump.is-in .g3-jump-hd{ opacity:1; }
+#cases .d3-jump.is-in .g3-dot-a{ transform:scale(1); }
+
+/* 0.3% → 2.7% */
+#cases .d3-rate{
+  display:flex; align-items:center; margin:0;
+  font-weight:700; color:var(--ink-dim); line-height:1;
+}
+#cases .d3-key .d3-rate{ font-size:1.05rem; }
+#cases .d3-thin .d3-rate{ font-size:.86rem; }
+#cases .d3-rate .is-a{ color:var(--accent); }
+#cases .d3-key .d3-rate .is-a{ font-size:1.3rem; }
+#cases .d3-ar{
+  display:inline-block; position:relative;
+  width:20px; height:2px; margin:0 9px;
+  background:var(--acc-60);
+}
+#cases .d3-ar::after{
+  content:''; position:absolute; right:0; top:50%;
+  width:7px; height:7px;
+  border-top:2px solid var(--acc-60); border-right:2px solid var(--acc-60);
+  transform:translate(1px,-50%) rotate(45deg);
+}
+
+/* 倍率（主＝スライド最大の数値／従＝その半分） */
+#cases .d3-mul{
+  display:flex; align-items:flex-end; gap:2px; margin:0;
+  color:var(--accent); line-height:.82; letter-spacing:-.02em;
+}
+#cases .d3-key .d3-mul b{ font-size:4.8rem; text-shadow:0 0 44px var(--acc-24); }
+#cases .d3-key .d3-mul span{ font-size:1.35rem; line-height:1.3; opacity:.76; }
+#cases .d3-thin .d3-mul b{ font-size:2.4rem; }
+#cases .d3-thin .d3-mul span{ font-size:.78rem; line-height:1.3; opacity:.76; }
+
+/* 副KPI（指標が揃わないので大きくせず、右端の同じ列に落とす） */
+#cases .d3-tbl .g3-res{ justify-content:flex-start; font-size:.78rem; }
+#cases .d3-thin .g3-res{ font-size:.74rem; }
+
+#cases .note{ margin-top:var(--sp-3) !important; }
+
+/* ==================================================================
+   3. 縦画面・スマホ（fit.js の版面は 720px 固定）
+   ================================================================== */
+@media (max-width:900px){
+  #scout-num .sec-title{ font-size:clamp(1.4rem,5.4vw,1.95rem) !important; }
+  #scout-num .d3-steps{ flex-direction:column; margin:var(--sp-3) 0 var(--sp-4); }
+  #scout-num .d3-steps .step{ padding:11px 16px 11px 26px; font-size:.88rem; }
+  #scout-num .d3-r{ grid-template-columns:10.8% minmax(0,1fr) 18.4%; gap:var(--sp-2); }
+  #scout-num .d3-r-key{ padding:var(--sp-2); }
+  #scout-num .d3-r-key .g3-arw{ height:66px; }
+  #scout-num .d3-r-sub .g3-arw{ height:30px; }
+  #scout-num .d3-r-key .d3-x{ height:66px; }
+  #scout-num .d3-r-sub .d3-x{ height:30px; }
+  #scout-num .d3-r-key .d3-x b{ font-size:3.6rem !important; }
+  #scout-num .d3-r-key .d3-x span{ font-size:1rem; }
+  #scout-num .d3-r-sub .d3-x b{ font-size:1.6rem !important; }
+  #scout-num .d3-r-sub .d3-x span{ font-size:.72rem; }
+  #scout-num .d3-x{ transform:translateX(10px); }
+  #scout-num .ill.d3-ill{ height:112px; }
+
+  #cases .d3-cs-top{ gap:var(--sp-3); }
+  #cases .ill.d3-cs-ill{ height:132px; }
+  #cases .d3-tbl{ grid-template-columns:18.3% 24.4% 10.8% 13.3% 15% 1fr; }
+  #cases .d3-tbl > *{ padding-left:9px; padding-right:9px; }
+  #cases .d3-tbl > .d3-c1{ padding-left:10px; }
+  #cases .d3-key .d3-chips li{ font-size:.82rem; padding:6px 9px; }
+  #cases .d3-key .d3-mul b{ font-size:2.6rem; }
+  #cases .d3-key .d3-nm{ font-size:.9rem; }
+  #cases .d3-key .d3-rate{ font-size:.8rem; }
+  #cases .d3-key .d3-rate .is-a{ font-size:.95rem; }
+  #cases .d3-thin .d3-mul b{ font-size:1.4rem; }
+  /* v2.css の ≤900 と同じ方針：スマホでは動かさず最終状態で出す */
+  #scout-num .d3-x{ transition:none !important; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  #scout-num .d3-x{ transition:none !important; }
+}

@@ -9,30 +9,30 @@
 
 .nx-chart {
   /* 系列色：emphasis（アクセント1色＋沈んだグレー）
-     validate_palette.js --mode dark --surface #0C121A 実測:
+     validate_palette.js --mode dark --surface #E9F1F9 実測:
        CVD ΔE 11.4 (deutan) / normal 15.4 / contrast 全色 ≥3:1 いずれもPASS */
-  --nx-in-1: var(--accent, #00D4FF);   /* 社内の時間・主役   10.4:1 */
+  --nx-in-1: var(--accent, #1668C8);   /* 社内の時間・主役   10.4:1 */
   --nx-in-2: #2C9DBC;                  /* 同じシアンの1段下   5.8:1 */
-  --nx-ex-1: var(--ink-dim, #94A3B4);  /* 外部費用・明        6.3:1 */
+  --nx-ex-1: var(--ink-dim, #56718F);  /* 外部費用・明        6.3:1 */
   --nx-ex-2: #5A6879;                  /* 外部費用・暗        3.30:1 */
   --nx-mute: #6B7A8C;                  /* 雑務／サービス費用  4.29:1 */
 
   /* テキスト・罫線トークン（系列色を文字には乗せない） */
-  --nx-ink: var(--ink, #EAF0F7);
-  --nx-dim: var(--ink-dim, #94A3B4);
-  --nx-grid: rgba(255, 255, 255, .07);
-  --nx-axis: rgba(255, 255, 255, .16);
-  --nx-track: rgba(255, 255, 255, .05);
+  --nx-ink: var(--ink, #10305C);
+  --nx-dim: var(--ink-dim, #56718F);
+  --nx-grid: rgba(16,48,92, .07);
+  --nx-axis: rgba(16,48,92, .16);
+  --nx-track: rgba(16,48,92, .05);
 
   /* サーフェス：隙間・端点リングに使う。スライドの背景と一致させる */
-  --nx-surface: var(--bg, #05070A);
+  --nx-surface: var(--bg, #F2F7FC);
 
   display: block;
   min-width: 0;
   margin: 0;
 }
 
-.sec-alt .nx-chart { --nx-surface: var(--bg-2, #0C121A); }
+.sec-alt .nx-chart { --nx-surface: var(--bg-2, #E9F1F9); }
 
 .nx-chart .nx-t {
   font-family: 'Noto Sans JP', system-ui, sans-serif;
