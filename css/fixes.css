@@ -749,3 +749,44 @@
   .ct-arw{ transform:rotate(90deg); align-self:center; }
   #cta .cta-book-btn{ padding:20px 32px; font-size:1.05rem; }
 }
+
+/* ==================================================================
+   36. 締めの3カード：大きなアイコン＋短い太字（細い線画は遠目に読めない）
+   ================================================================== */
+.ct-flow{ display:none; }
+.ctc-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3);
+  max-width:1020px; margin:var(--sp-5) auto var(--sp-5);
+}
+.ctc{
+  background:#fff; border-radius:10px; padding:26px 22px 22px;
+  text-align:center; box-shadow:0 12px 34px rgba(0,0,0,.22);
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+}
+.ctc-i{ width:78px !important; height:78px !important; object-fit:contain; margin-bottom:10px; }
+.ctc-pre{ font-size:.84rem; font-weight:600; color:var(--ink-dim); }
+.ctc-key{
+  font-size:1.5rem; font-weight:900; color:var(--accent); line-height:1.3;
+  letter-spacing:-.01em; margin-bottom:10px;
+  padding-bottom:12px; border-bottom:1px solid var(--line); width:100%;
+}
+.ctc-d{ font-size:.82rem; font-weight:500; color:var(--ink-dim); line-height:1.65; }
+@media (max-width:900px){ .ctc-grid{ grid-template-columns:1fr; } }
+
+/* ==================================================================
+   37. 向いている企業：条件を絞りすぎていたので、広い言い方に
+   ================================================================== */
+.gf-list{ list-style:none; padding:0; margin:var(--sp-5) 0 var(--sp-4); max-width:760px; }
+.gf-list li{
+  display:flex; align-items:center; gap:18px;
+  padding:22px 4px; border-bottom:1px solid var(--line);
+  font-size:1.5rem; font-weight:700; color:var(--ink); line-height:1.4;
+}
+.gf-list li:first-child{ border-top:1px solid var(--line); }
+.gf-list svg{ width:30px; height:30px; flex:none; color:var(--accent); }
+.gf-note{ font-size:.95rem; font-weight:600; color:var(--ink-dim); margin:0; }
+#fit .fit-ill{ height:360px !important; bottom:6%; right:4%; }
+@media (max-width:900px){
+  .gf-list li{ font-size:1.1rem; padding:16px 2px; gap:12px; }
+  #fit .fit-ill{ display:none; }
+}
