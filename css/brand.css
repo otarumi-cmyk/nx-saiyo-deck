@@ -581,3 +581,24 @@ html, body{ overflow:hidden !important; height:100%; }
   .vs2-name{ font-size:.78rem; }
   .vs2-sub{ grid-template-columns:1fr; }
 }
+
+/* ---------- FAQ：アコーディオンをやめて開いた状態で並べる ---------- */
+.qa-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-2); margin-top:var(--sp-5); }
+.qa{
+  padding:var(--sp-4) var(--sp-3);
+  border-radius:6px;
+  background:linear-gradient(180deg, rgba(231,237,247,.045), rgba(231,237,247,.012));
+  border:1px solid var(--line);
+}
+.qa-q{
+  font-size:.98rem; font-weight:700; color:var(--ink);
+  margin:0 0 var(--sp-2); padding-bottom:var(--sp-2);
+  border-bottom:1px solid var(--line);
+  position:relative; padding-left:22px;
+}
+.qa-q::before{
+  content:"Q"; position:absolute; left:0; top:0;
+  font-family:var(--font-en); font-size:.9rem; font-weight:700; color:var(--accent);
+}
+.qa-a{ font-size:.86rem; line-height:1.9; color:var(--ink-dim); margin:0; }
+@media (max-width:900px){ .qa-grid{ grid-template-columns:1fr; } }
