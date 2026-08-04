@@ -1090,3 +1090,71 @@ body:has(#hero.is-active) .nav-hint{ opacity:1; }
 }
 .fs-flag b{ color:var(--ink); font-weight:700; }
 .fs-flag em{ font-style:normal; font-weight:700; color:var(--accent-2); }
+
+/* ==================================================================
+   48. ファネルの行間が詰まりすぎていたので、余白を取り直す
+   ================================================================== */
+.fs-07{ padding:24px 52px !important; }
+.fs-07 .fs-funnel{ gap:0 !important; }
+.fs-07 .fs-frow{ margin:0; }
+.fs-07 .fs-fbar{ height:42px !important; }
+.fs-gap{ height:auto !important; margin:9px 0 9px 128px !important; }
+.fs-gap-v{ padding:3px 11px; font-size:.84rem; }
+.fs-gap-w{ padding:3px 10px; font-size:.7rem; }
+.fs-gap-l{ width:20px; }
+.fs-flag{ margin-top:20px !important; padding:12px 16px !important; }
+
+/* ==================================================================
+   49. 表紙の案内：右端を白のグラデにして、縦に大きな「＞」を3つ並べる
+   ================================================================== */
+.nav-hint{
+  right:0; top:0; bottom:0; transform:none;
+  width:clamp(190px,17vw,260px);
+  padding:0; border:0; border-radius:0; background:none; backdrop-filter:none;
+  display:flex; flex-direction:row; align-items:center; justify-content:flex-end;
+  gap:0;
+}
+/* 右端だけ白くぼかす */
+.nav-hint::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.16) 45%, rgba(255,255,255,.34) 100%);
+}
+.nav-hint-t{
+  position:relative; z-index:1;
+  writing-mode:vertical-rl; text-orientation:upright;
+  font-size:clamp(.86rem,1.2vw,1rem); font-weight:700; line-height:2.1;
+  letter-spacing:.16em; color:#fff; text-align:center;
+  margin-right:6px;
+  text-shadow:0 1px 6px rgba(6,22,49,.4);
+}
+.nav-hint-t br{ display:none; }
+/* 大きな「＞」を縦に3つ */
+.nav-hint-a{
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  margin-right:clamp(14px,2vw,30px); animation:none;
+}
+.nav-hint-a svg{ display:none; }
+.nav-hint-a::before{ content:none; }
+.nav-chev{
+  display:block; width:clamp(26px,2.4vw,36px); height:clamp(26px,2.4vw,36px);
+  border-right:5px solid #fff; border-bottom:5px solid #fff;
+  transform:rotate(-45deg);
+  opacity:.25; border-radius:3px;
+  animation:navChev 1.6s ease-in-out infinite;
+}
+.nav-chev:nth-child(2){ animation-delay:.18s; }
+.nav-chev:nth-child(3){ animation-delay:.36s; }
+@keyframes navChev{
+  0%,100%{ opacity:.22; }
+  50%    { opacity:1; }
+}
+@media (prefers-reduced-motion: reduce){ .nav-chev{ animation:none; opacity:.7; } }
+@media (max-width:900px){
+  .nav-hint{ width:auto; left:0; right:0; top:auto; bottom:0; height:150px;
+    flex-direction:column; justify-content:flex-end; padding-bottom:78px; }
+  .nav-hint::before{ background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.28)); }
+  .nav-hint-t{ writing-mode:horizontal-tb; margin:0 0 8px; letter-spacing:.02em; }
+  .nav-hint-a{ flex-direction:row; margin:0; }
+  .nav-chev{ transform:rotate(-45deg); }
+}
