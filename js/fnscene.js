@@ -367,25 +367,26 @@ function scene06(root) {
     <p data-i="0"><b>面接官</b>これまでで一番難しかった案件は。</p>
     <p data-i="1"><b>候補者</b>製造業の基幹システムの入れ替えです。</p>
     <p data-i="2"><b>候補者</b>現場の反対が強く、部署ごとに説明会を。</p>`));
+  // タグの羅列では「どういう人か」が伝わらないので、発話から人物像を文章で起こす
   root.appendChild(el('div', 'fs-sum', `
-    <span class="fs-sum-h">評価サマリ（自動）</span>
-    <div class="fs-tag" data-i="0">合意形成の経験</div>
-    <div class="fs-tag" data-i="1">現場を巻き込む姿勢</div>
-    <div class="fs-tag" data-i="2">基幹システムの知見</div>`));
+    <span class="fs-sum-h">評価サマリ<em>自動</em></span>
+    <p class="fs-sum-t">反対の強い現場を、<b>部署ごとの説明会という手段を自分で設計して</b>一つずつ合意に変えていった方です。抵抗の大きい環境でも、正面から関係者を巻き込んで前に進められるタイプと見られます。</p>
+    <p class="fs-sum-t">製造業の基幹システム入れ替えという、<b>業務要件と技術要件の両方を扱う案件</b>を完遂しており、事業側と情報システム側の通訳ができる点が強みです。</p>
+    <p class="fs-sum-n">※ 発話内容のみから生成しています。最終評価は面接官が行います。</p>`));
   return (gsap) => {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
     const bars = root.querySelectorAll('.fs-wave i');
     const lines = root.querySelectorAll('.fs-script p');
-    const tags = root.querySelectorAll('.fs-tag');
+    const sums = root.querySelectorAll('.fs-sum-t, .fs-sum-n');
     tl.fromTo(bars, { scaleY: .06, opacity: .25 },
       { scaleY: 1, opacity: 1, duration: .5, stagger: { each: .022, from: 'start' }, ease: 'power2.out' });
     lines.forEach((l, i) => {
       tl.fromTo(l, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .4 }, .5 + i * 0.55);
     });
-    tl.fromTo(tags, { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .4, stagger: .16 }, 2.2);
+    tl.fromTo(sums, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .45, stagger: .3 }, 2.2);
     tl.addLabel("done");
     tl.to({}, { duration: 4.2 });
-    tl.to(root.querySelectorAll('.fs-script p, .fs-tag'), { opacity: 0, duration: 0.22 })
+    tl.to(root.querySelectorAll('.fs-script p, .fs-sum-t, .fs-sum-n'), { opacity: 0, duration: 0.22 })
       .to(bars, { scaleY: .06, opacity: .25, duration: .3 }, '<');
     return tl;
   };
@@ -401,6 +402,7 @@ function scene07(root) {
   ROWS.forEach(([n, v, w]) => {
     const narrow = w < 22;                       // 数字が収まらない幅
     const r = el('div', 'fs-frow' + (narrow ? ' is-narrow' : ''));
+    r.style.setProperty('--w', w + '%');   // 数値の位置決めに行側でも幅が要る
     r.appendChild(el('span', 'fs-fk', n));
     const track = el('div', 'fs-ftrack');
     const bar = el('b', 'fs-fbar');

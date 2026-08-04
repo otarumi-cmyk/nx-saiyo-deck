@@ -39,7 +39,8 @@ function boot() {
   };
   safe('hero', initHero);
   safe('timeline', initTimeline);
-  safe('viz', initViz);
+  // 数値のカウントアップは冗長なので停止（確定値を最初から表示）
+  // safe('viz', initViz);
   // ビジョンスライド削除に伴い停止
   // safe('core3d', initCore3d);
   safe('charts', initCharts);
