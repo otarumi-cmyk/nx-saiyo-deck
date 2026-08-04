@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/fx.css">
 <link rel="stylesheet" href="css/deck.css">
 <link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/v2.css">
 <link rel="stylesheet" href="css/impact.css">
 <link rel="stylesheet" href="css/fnanim.css">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -56,68 +57,128 @@
   <div class="slide-in wrap">
     <p class="sec-label reveal">COST PER HIRE</p>
     <h2 class="sec-title reveal">安く採る方法はあります。<br>ただし、<span class="hl">107時間</span>かかります。</h2>
-    <div class="ch-grid">
-      <div class="ch-card reveal">
-        <h3 class="ch-name">人材紹介に頼る</h3>
-        <div class="ch-nums">
-          <div class="ch-num is-bad"><b class="num">103<small>万円</small></b><span>1名あたりの費用</span></div>
-          <div class="ch-num"><b class="num">38<small>時間</small></b><span>担当者の工数</span></div>
-        </div>
-        <p class="ch-note">候補者は紹介会社が集めます。<br>担当者は書類確認・日程調整・面接だけ。</p>
-        <p class="ch-verdict is-bad">高い。でも、手はかからない。</p>
+
+    <div class="g2-cmp reveal">
+      <div class="g2-key">
+        <span class="is-a"><i></i>人材紹介</span>
+        <span class="is-b"><i></i>自社採用</span>
       </div>
-      <div class="ch-card reveal is-key">
-        <h3 class="ch-name">媒体・スカウトで自社採用する</h3>
-        <div class="ch-nums">
-          <div class="ch-num"><b class="num">37<small>万円</small></b><span>1名あたりの費用</span></div>
-          <div class="ch-num is-hot"><b class="num">107<small>時間</small></b><span>担当者の工数</span></div>
+
+      <div class="g2-row">
+        <div class="g2-rh">
+          <svg class="g2-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 8.2l3 3.4 3-3.4"/><path d="M9.2 12.9h5.6M9.2 15.3h5.6M12 11.6V17"/></svg>
+          <span class="g2-rt">費用</span>
         </div>
-        <p class="ch-note">母集団形成から自社で行います。<br>スカウト作成・送信だけで約42時間。</p>
-        <p class="ch-verdict is-good">安い。でも、手がかかりすぎる。</p>
+        <div class="g2-bars">
+          <div class="g2-bar" aria-label="人材紹介 103万円"><span class="g2-track"><span class="g2-fill is-a" style="--w:100%"></span></span><b class="g2-v num is-a">103<small>万円</small></b></div>
+          <div class="g2-bar" aria-label="自社採用 37万円"><span class="g2-track"><span class="g2-fill is-b" style="--w:35.9%"></span></span><b class="g2-v num is-b">37<small>万円</small></b></div>
+        </div>
+      </div>
+
+      <div class="g2-row">
+        <div class="g2-rh">
+          <svg class="g2-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6.8v5.5l3.6 2.1"/></svg>
+          <span class="g2-rt">工数</span>
+        </div>
+        <div class="g2-bars">
+          <div class="g2-bar" aria-label="人材紹介 38時間"><span class="g2-track"><span class="g2-fill is-a" style="--w:35.5%"></span></span><b class="g2-v num is-a">38<small>時間</small></b></div>
+          <div class="g2-bar is-hot" aria-label="自社採用 107時間"><span class="g2-track"><span class="g2-fill is-b" style="--w:100%"></span></span><b class="g2-v num is-b">107<small>時間</small></b></div>
+        </div>
       </div>
     </div>
-    <p class="lead reveal">費用は<span class="hl">3分の1</span>。それでも紹介を使い続けているのは、<br><span class="hl">107時間を捻出できないから</span>です。</p>
+
     <p class="note reveal">※ 紹介手数料＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり約103万円。<br>求人広告費＝マイナビ「中途採用状況調査2026年版」1人あたり36.7万円。工数は当社試算です。</p>
   </div>
 </section>
 
-<!-- 107時間の中身 -->
 <section class="slide sec-alt" id="breakdown" data-title="107時間の中身">
   <div class="slide-in wrap">
     <p class="sec-label reveal">BREAKDOWN</p>
-    <h2 class="sec-title reveal">その107時間の中身が、これです。</h2>
-    <div class="stackbar reveal">
-      <span class="sb-seg is-chore" style="--w:39.3%"><i>スカウト作成・送信</i><b>42h</b></span>
-      <span class="sb-seg is-core"  style="--w:18.7%"><i>面接・面談</i><b>20h</b></span>
-      <span class="sb-seg is-chore" style="--w:14.0%"><i>日程調整</i><b>15h</b></span>
-      <span class="sb-seg is-chore" style="--w:11.2%"><i>書類確認</i><b>12h</b></span>
-      <span class="sb-seg is-chore" style="--w:7.5%"><i>評価入力</i><b>8h</b></span>
-      <span class="sb-seg is-chore" style="--w:4.7%"><i>求人票</i><b>5h</b></span>
-      <span class="sb-seg is-chore" style="--w:4.6%"><i>集計</i><b>5h</b></span>
+    <h2 class="sec-title reveal"><span class="hl">107時間</span>の中身。</h2>
+
+    <div class="g2-bd reveal">
+      <div class="g2-caps">
+        <div class="g2-cap is-chore" style="--w:81.3%"><span class="g2-cap-t">雑務</span><b class="g2-cap-v num">87<small>h</small></b></div>
+        <div class="g2-cap is-core" style="--w:18.7%"><span class="g2-cap-t">面接</span><b class="g2-cap-v num">20<small>h</small></b></div>
+      </div>
+
+      <div class="g2-bar-x">
+        <span class="g2-seg is-chore" style="--w:39.3%" aria-label="スカウト作成・送信 42時間">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3.6 2.9 10.7l7.3 2.9 2.9 7.3z"/><path d="M21 3.6 10.2 13.6"/></svg>
+          <b class="num">42<small>h</small></b>
+        </span>
+        <span class="g2-seg is-chore" style="--w:14%" aria-label="日程調整 15時間">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.2" width="17" height="15.3" rx="2.2"/><path d="M3.5 10h17M8.2 3.2v3.8M15.8 3.2v3.8"/></svg>
+          <b class="num">15</b>
+        </span>
+        <span class="g2-seg is-chore" style="--w:11.2%" aria-label="書類確認 12時間">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.6 2.8H6.6a1.8 1.8 0 0 0-1.8 1.8v14.8a1.8 1.8 0 0 0 1.8 1.8h10.8a1.8 1.8 0 0 0 1.8-1.8V8.2z"/><path d="M13.6 2.8v5.4h5.6"/><path d="M8.6 15.4l2.1 2.1 4.2-4.2"/></svg>
+          <b class="num">12</b>
+        </span>
+        <span class="g2-seg is-chore" style="--w:7.5%" aria-label="評価入力 8時間">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4l2.7 5.6 6 .9-4.35 4.3 1.03 6.1L12 17.5l-5.38 2.8 1.03-6.1L3.3 9.9l6-.9z"/></svg>
+          <b class="num">8</b>
+        </span>
+        <span class="g2-seg is-chore" style="--w:4.7%" aria-label="求人票 5時間">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.4v4.6a1.6 1.6 0 0 0 1.6 1.6h2.2l7.8 4.6V4.8L7.8 9.4z"/><path d="M18.6 9.1a3.6 3.6 0 0 1 0 5.5"/></svg>
+          <b class="num">5</b>
+        </span>
+        <span class="g2-seg is-chore" style="--w:4.6%" aria-label="集計 5時間">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.2h16"/><path d="M7.4 20.2v-6.6M12 20.2V6.4M16.6 20.2v-9.4"/></svg>
+          <b class="num">5</b>
+        </span>
+        <span class="g2-seg is-core" style="--w:18.7%" aria-label="面接・面談 20時間">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.6" cy="8.4" r="3.1"/><path d="M3.2 19.6a5.4 5.4 0 0 1 10.8 0"/><circle cx="17.2" cy="9.4" r="2.4"/><path d="M14.6 19.6a4.4 4.4 0 0 1 6.2-4"/></svg>
+        </span>
+      </div>
     </div>
-    <div class="sb-legend reveal">
-      <span class="sbl is-chore"><i></i>人が行う必然性のない作業　<b>87時間</b></span>
-      <span class="sbl is-core"><i></i>面接・面談　<b>20時間</b></span>
-    </div>
-    <p class="note reveal">※ 当社試算。件数はスカウト500通・返信率2.2%・応募120件・面談20件を前提としています。</p>
+
+    <p class="note reveal">※ 当社試算：スカウト500通・返信率2.2%・応募120件・面談20件</p>
   </div>
 </section>
 
-<!-- 担当者の1週間 -->
 <section class="slide tl-slide st-2" id="timeline-2" data-title="1週間②">
-  <div class="slide-in wrap tl-wrap">
-    <p class="sec-label">A WEEK OF A RECRUITER</p>
-    <h2 class="tl-title">上位8つのうち7つが、<br>採用そのものではありません。</h2>
-    <div class="tl-legend">
-      <span class="lg lg-chore"><i></i>雑務（作成・調整・入力・集計）</span>
-      <span class="lg lg-core"><i></i>採用そのもの（面接・見極め・動機づけ）</span>
+  <div class="slide-in wrap tl-wrap g4-week">
+    <p class="sec-label reveal">ONE WEEK</p>
+    <h2 class="tl-title reveal">週<span class="hl">40時間</span>のうち、<br>採用は<span class="hl">7時間</span>だけ。</h2>
+
+    <div class="g4-week-fig reveal">
+      <div class="g4-week-l">
+        <p class="g4-week-num">
+          <span class="g4-week-v num bignum-v" data-count="33">33</span>
+          <span class="g4-week-side">
+            <span class="g4-week-u">時間</span>
+            <span class="g4-week-c">が、雑務。</span>
+          </span>
+        </p>
+        <div class="g4-verbs">
+          <span class="g4-verb"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L20 8a2.8 2.8 0 0 0-4-4L4 16z"/><path d="m14.5 5.5 4 4"/></svg>作成</span>
+          <span class="g4-verb"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h13"/><path d="m14 5.5 3 3-3 3"/><path d="M20 15.5H7"/><path d="m10 12.5-3 3 3 3"/></svg>調整</span>
+          <span class="g4-verb"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6.5 9.8h.01"/><path d="M10 9.8h.01"/><path d="M13.5 9.8h.01"/><path d="M17.5 9.8h.01"/><path d="M8 14.4h8"/></svg>入力</span>
+          <span class="g4-verb"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5h16.5"/><path d="M7.5 17v-6"/><path d="M12 17V5.5"/><path d="M16.5 17V9"/></svg>集計</span>
+        </div>
+      </div>
+
+      <div class="g4-week-r">
+        <div class="g4-cells" role="img" aria-label="1週間40時間のうち、33時間が雑務、7時間が面接">
+          <span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span>
+          <span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span>
+          <span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span>
+          <span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span><span class="g4-cell"></span>
+          <span class="g4-cell"></span><span class="g4-cell is-core"></span><span class="g4-cell is-core"></span><span class="g4-cell is-core"></span><span class="g4-cell is-core"></span><span class="g4-cell is-core"></span><span class="g4-cell is-core"></span><span class="g4-cell is-core"></span>
+        </div>
+        <p class="g4-week-lg">
+          <span class="g4-lg is-chore"><i></i>雑務</span>
+          <span class="g4-lg is-core"><i></i>面接</span>
+          <span class="g4-unit">1マス＝1時間</span>
+        </p>
+      </div>
     </div>
-    <div class="tl-grid" id="tl-grid-2" aria-label="雑務を塗り分けた1週間"></div>
-    <p class="note reveal wip">※ 前ページの107時間が「1名あたりの年間工数」であるのに対し、ここは「ご担当者1名の1週間40時間」の内訳です。配分は当社の想定値で、ご担当者へのヒアリングで確定します。</p>
+
+    <p class="note reveal wip">※ 107時間は年間工数。本図は1週間40時間の当社想定値。</p>
   </div>
 </section>
 
-<!-- 章扉 02 -->
 <section class="slide chdiv" data-img="assets/sec_ai.webp" data-title="章扉 02">
   <div class="slide-in chdiv-inner"><span class="chdiv-n num">02</span><h2 class="chdiv-t">その業務は、AIに任せられます</h2></div>
 </section>
@@ -155,19 +216,47 @@
 
 <!-- 採用フロー全体 -->
 <section class="slide" id="map" data-title="採用フロー全体">
-  <div class="slide-in wrap">
+  <div class="slide-in wrap g4-map">
     <p class="sec-label reveal">COVERAGE</p>
-    <h2 class="sec-title reveal">採用フロー<span class="hl">15工程</span>のうち、<br><span class="hl">12工程</span>をAIが担当します。</h2>
-    <div class="fs2-legend reveal">
-      <span class="fs2-lg is-ai"><i></i>AIが担当（12工程）</span>
-      <span class="fs2-lg is-human"><i></i>人が行う（3工程）</span>
+
+    <div class="g4-map-head reveal">
+      <p class="g4-frac">
+        <span class="g4-frac-v num bignum-v" data-count="12">12</span>
+        <span class="g4-frac-side">
+          <span class="g4-frac-d num">/15</span>
+          <span class="g4-frac-c">工程をAIが担当</span>
+        </span>
+      </p>
+      <h2 class="sec-title g4-map-t">人が動くのは、<br><span class="hl">3工程</span>だけ。</h2>
     </div>
-    <ol class="fs2-grid"><li class="fs2 is-ai reveal"><span class="fs2-n num">01</span><span class="fs2-t">採用要件の定義</span><span class="fs2-b">自動応募要件の作成</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">02</span><span class="fs2-t">求人票の作成</span><span class="fs2-b">自動応募要件の作成</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">03</span><span class="fs2-t">媒体の選定</span><span class="fs2-b">AI採用分析</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">04</span><span class="fs2-t">候補者の検索・抽出</span><span class="fs2-b">AIスカウト</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">05</span><span class="fs2-t">スカウト文の作成</span><span class="fs2-b">AIスカウト</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">06</span><span class="fs2-t">スカウト送信</span><span class="fs2-b">AIスカウト</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">07</span><span class="fs2-t">返信対応</span><span class="fs2-b">AIスカウト</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">08</span><span class="fs2-t">書類選考</span><span class="fs2-b">AI書類選考</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">09</span><span class="fs2-t">適性検査の実施</span><span class="fs2-b">適性検査</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">10</span><span class="fs2-t">面接日程の調整</span><span class="fs2-b">AI日程調整</span></li><li class="fs2 is-human reveal"><span class="fs2-n num">11</span><span class="fs2-t">面接の実施</span><span class="fs2-b">人が行います</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">12</span><span class="fs2-t">面接記録・評価入力</span><span class="fs2-b">AI面接文字起こし</span></li><li class="fs2 is-human reveal"><span class="fs2-n num">13</span><span class="fs2-t">合否の判断</span><span class="fs2-b">人が行います</span></li><li class="fs2 is-human reveal"><span class="fs2-n num">14</span><span class="fs2-t">内定・条件提示</span><span class="fs2-b">人が行います</span></li><li class="fs2 is-ai reveal"><span class="fs2-n num">15</span><span class="fs2-t">歩留まりの分析・改善</span><span class="fs2-b">AI採用分析</span></li></ol>
-    <p class="lead reveal">人が行うのは、<span class="hl">面接</span>・<span class="hl">合否の判断</span>・<span class="hl">内定条件の提示</span>だけです。</p>
+
+    <ol class="g4-rail reveal" aria-label="採用フロー15工程">
+      <li class="g4-node is-ai" aria-label="01 採用要件の定義（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.4"/></svg><span class="g4-node-n num">01</span></li>
+      <li class="g4-node is-ai" aria-label="02 求人票の作成（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 3H7.5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z"/><path d="M13.5 3v5h5"/><path d="M9 13.5h6"/><path d="M9 17h4"/></svg><span class="g4-node-n num">02</span></li>
+      <li class="g4-node is-ai" aria-label="03 媒体の選定（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8.5 4.6L12 12.2 3.5 7.6z"/><path d="m3.5 12 8.5 4.6 8.5-4.6"/><path d="m3.5 16.4 8.5 4.6 8.5-4.6"/></svg><span class="g4-node-n num">03</span></li>
+      <li class="g4-node is-ai" aria-label="04 候補者の検索・抽出（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m15.8 15.8 4.7 4.7"/></svg><span class="g4-node-n num">04</span></li>
+      <li class="g4-node is-ai" aria-label="05 スカウト文の作成（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L20 8a2.8 2.8 0 0 0-4-4L4 16z"/><path d="m14.5 5.5 4 4"/></svg><span class="g4-node-n num">05</span></li>
+      <li class="g4-node is-ai" aria-label="06 スカウト送信（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2.5 11 13"/><path d="M21.5 2.5 15 21.5l-4-8.5-8.5-4z"/></svg><span class="g4-node-n num">06</span></li>
+      <li class="g4-node is-ai" aria-label="07 返信対応（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 13.5a3 3 0 0 1-3 3H9l-4.5 3.5V6.5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z"/><path d="M8.5 10h7"/></svg><span class="g4-node-n num">07</span></li>
+      <li class="g4-node is-ai" aria-label="08 書類選考（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 4.5h17l-6.5 7.5v7l-4 2.5v-9.5z"/></svg><span class="g4-node-n num">08</span></li>
+      <li class="g4-node is-ai" aria-label="09 適性検査の実施（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 4.5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-12a2 2 0 0 0-2-2h-2"/><rect x="9.5" y="2.5" width="5" height="4" rx="1.2"/><path d="m9.6 13.4 2 2 3.6-3.6"/></svg><span class="g4-node-n num">09</span></li>
+      <li class="g4-node is-ai" aria-label="10 面接日程の調整（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2"/><path d="M3.5 10.5h17"/><path d="M8 3.5v4"/><path d="M16 3.5v4"/></svg><span class="g4-node-n num">10</span></li>
+      <li class="g4-node is-human" aria-label="11 面接の実施（人が行う）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.6" cy="8.4" r="3.3"/><circle cx="17.2" cy="10" r="2.4"/><path d="M2.9 20.4a5.7 5.7 0 0 1 11.4 0"/><path d="M16.4 20.4c0-2.5 1.9-4.6 4.4-4.9"/></svg><span class="g4-node-n num">11</span></li>
+      <li class="g4-node is-ai" aria-label="12 面接記録・評価入力（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.8" width="6" height="11" rx="3"/><path d="M5.5 11.6a6.5 6.5 0 0 0 13 0"/><path d="M12 18.2v3"/></svg><span class="g4-node-n num">12</span></li>
+      <li class="g4-node is-human" aria-label="13 合否の判断（人が行う）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v17"/><path d="M6.5 20.5h11"/><path d="m4.5 8 7.5-1.8L19.5 8"/><path d="M4.5 8 2 14.2h5z"/><path d="M19.5 8 17 14.2h5z"/></svg><span class="g4-node-n num">13</span></li>
+      <li class="g4-node is-human" aria-label="14 内定・条件提示（人が行う）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9.2" r="5.2"/><path d="m8.6 13.4-1.4 7.4 4.8-2.4 4.8 2.4-1.4-7.4"/></svg><span class="g4-node-n num">14</span></li>
+      <li class="g4-node is-ai" aria-label="15 歩留まりの分析・改善（AIが担当）"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5h16.5"/><path d="M7.5 17v-6"/><path d="M12 17V5.5"/><path d="M16.5 17V9"/></svg><span class="g4-node-n num">15</span></li>
+    </ol>
+
+    <div class="g4-hum reveal">
+      <span class="g4-hum-h">人が行う</span>
+      <span class="g4-hum-c"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.6" cy="8.4" r="3.3"/><circle cx="17.2" cy="10" r="2.4"/><path d="M2.9 20.4a5.7 5.7 0 0 1 11.4 0"/><path d="M16.4 20.4c0-2.5 1.9-4.6 4.4-4.9"/></svg>面接</span>
+      <span class="g4-hum-c"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v17"/><path d="M6.5 20.5h11"/><path d="m4.5 8 7.5-1.8L19.5 8"/><path d="M4.5 8 2 14.2h5z"/><path d="M19.5 8 17 14.2h5z"/></svg>合否の判断</span>
+      <span class="g4-hum-c"><svg class="g4-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9.2" r="5.2"/><path d="m8.6 13.4-1.4 7.4 4.8-2.4 4.8 2.4-1.4-7.4"/></svg>内定・条件提示</span>
+    </div>
   </div>
 </section>
 
-<!-- 機能 01 -->
 <section class="slide fn-slide" id="fn-01" data-title="自動応募要件の作成">
   <div class="slide-in wrap fn-wrap">
     <div class="fn-video"><video class="fn-v" data-fn="01" muted loop playsinline preload="none" poster="assets/motion/fn01.jpg"><source src="assets/motion/fn01.mp4" type="video/mp4"></video></div>
@@ -322,132 +411,220 @@
   <div class="slide-in wrap">
     <p class="sec-label reveal">AI SCOUT</p>
     <h2 class="sec-title reveal">テンプレート送信と比べて、<span class="hl">7.3倍</span>。</h2>
-    <div class="cmp">
-      <div class="cmp-col reveal">
-        <h3>テンプレートのみ</h3>
-        <div class="cmp-row"><span class="cmp-k">開封率</span><span class="cmp-bar" style="--w:12%"></span><span class="cmp-v num">12%</span></div>
-        <div class="cmp-row"><span class="cmp-k">返信率</span><span class="cmp-bar" style="--w:3%"></span><span class="cmp-v num">0.3%</span></div>
-      </div>
-      <div class="cmp-col is-win reveal">
-        <h3>パーソナライズ</h3>
-        <div class="cmp-row"><span class="cmp-k">開封率</span><span class="cmp-bar" style="--w:40%"></span><span class="cmp-v num">40%</span></div>
-        <div class="cmp-row"><span class="cmp-k">返信率</span><span class="cmp-bar" style="--w:22%"></span><span class="cmp-v num">2.2%</span></div>
+
+    <!-- ラッパの .imp は js/impact.js の二重描画を止めるための目印（impact.js は .imp があれば何もしない） -->
+    <div class="imp g3-imp">
+      <ul class="g3-lg reveal">
+        <li class="g3-lg-b">テンプレート送信</li>
+        <li class="g3-lg-a">AIパーソナライズ</li>
+      </ul>
+      <div class="g3-imp-rows">
+        <div class="g3-r reveal is-key" style="--w:91.25%">
+          <p class="g3-r-k">返信率</p>
+          <div class="g3-r-track">
+            <div class="g3-base"><span class="g3-base-v num">0.3%</span></div>
+            <div class="g3-arw"><span class="g3-arw-v num">2.2%</span></div>
+          </div>
+          <p class="g3-r-x"><b class="num">7.3</b><span>倍</span></p>
+        </div>
+        <div class="g3-r reveal" style="--w:41.25%">
+          <p class="g3-r-k">開封率</p>
+          <div class="g3-r-track">
+            <div class="g3-base"><span class="g3-base-v num">12%</span></div>
+            <div class="g3-arw"><span class="g3-arw-v num">40%</span></div>
+          </div>
+          <p class="g3-r-x"><b class="num">3.3</b><span>倍</span></p>
+        </div>
       </div>
     </div>
-    <p class="note reveal">※ 開封率 12%→40%（3.3倍）／返信率 0.3%→2.2%（7.3倍）。</p>
+
+    <p class="note reveal">※ テンプレート送信との比較です。</p>
   </div>
 </section>
 
 <section class="slide" id="cases" data-title="導入事例">
   <div class="slide-in wrap">
     <p class="sec-label reveal">CASE</p>
-    <h2 class="sec-title reveal">3社が変えたのは、<br><span class="hl">文面の中身</span>です。</h2>
+    <h2 class="sec-title reveal">変えたのは、<span class="hl">文面の中身</span>。</h2>
     <div class="case-grid">
-      <div class="case reveal">
-        <h3>SaaS企業A社<i>営業職／従業員120名</i></h3>
-        <div class="case-hero"><b class="num">38</b><span>%</span></div>
-        <p class="case-hero-k">開封率（テンプレート送信は12%）</p>
-        <div class="case-ba">
-          <div class="cb"><span class="cb-l">返信率 前</span><span class="cb-bar" style="--w:11%"></span><span class="cb-v num">0.3%</span></div>
-          <div class="cb is-after"><span class="cb-l">返信率 後</span><span class="cb-bar" style="--w:89%"></span><span class="cb-v num">2.4%</span></div>
+
+      <article class="case reveal g3-case">
+        <p class="g3-case-h">
+          <span class="g3-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h9a4 4 0 0 0 .6-7.96A5.6 5.6 0 0 0 6.2 10.2 3.9 3.9 0 0 0 7 18Z"/></svg></span>
+          <span class="g3-case-n">SaaS企業A社</span>
+          <span class="g3-case-s">営業職・120名</span>
+        </p>
+        <div class="case-hero"><b class="num">8.0</b><span>倍</span></div>
+        <p class="case-hero-k">返信率</p>
+        <div class="g3-jump">
+          <svg class="g3-jump-fig" viewBox="0 0 152 34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle class="g3-dot-b" cx="12" cy="17" r="4.2"/>
+            <path class="g3-jump-ln" d="M23 17h84"/>
+            <path class="g3-jump-hd" d="m102 12 5 5-5 5"/>
+            <circle class="g3-dot-a" cx="131" cy="17" r="11.9"/>
+          </svg>
+          <span class="g3-jump-lab"><span class="num">0.3%</span><span class="num is-a">2.4%</span></span>
         </div>
-        <dl class="case-why">
-          <dt>導入前</dt><dd>媒体のテンプレートを一斉送信。<br>開封はされても、返信が来ない状態。</dd>
-          <dt>変えたこと</dt><dd>職務経歴書から<b>担当プロダクトと売上規模</b>を抽出。<br>その2点に触れた文面をAIが一人ひとり作成。</dd>
-          <dt>結果</dt><dd>開封率 12%→<b>38%</b>。返信率 <b>8.0倍</b>。</dd>
-        </dl>
-      </div>
-      <div class="case reveal is-key">
-        <h3>IT企業B社<i>エンジニア職／従業員260名</i></h3>
-        <div class="case-hero"><b class="num">2.8</b><span>倍</span></div>
-        <p class="case-hero-k">返信からの面談化率</p>
-        <div class="case-ba">
-          <div class="cb"><span class="cb-l">返信率 前</span><span class="cb-bar" style="--w:11%"></span><span class="cb-v num">0.3%</span></div>
-          <div class="cb is-after"><span class="cb-l">返信率 後</span><span class="cb-bar" style="--w:100%"></span><span class="cb-v num">2.7%</span></div>
+        <p class="g3-chips-k"><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"/><path d="m14 6 4 4"/></svg>入れた要素</p>
+        <ul class="g3-chips">
+          <li><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 21 8v8l-9 5-9-5V8z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>担当プロダクト</li>
+          <li><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20v-7M12 20V5M19 20v-4"/></svg>売上規模</li>
+        </ul>
+        <p class="g3-res"><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m3 10 9 6 9-6"/></svg>開封<b class="num">12%→38%</b></p>
+      </article>
+
+      <article class="case reveal is-key g3-case">
+        <p class="g3-case-h">
+          <span class="g3-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-4 4 4 4"/><path d="m15 8 4 4-4 4"/></svg></span>
+          <span class="g3-case-n">IT企業B社</span>
+          <span class="g3-case-s">エンジニア職・260名</span>
+        </p>
+        <div class="case-hero"><b class="num">9.0</b><span>倍</span></div>
+        <p class="case-hero-k">返信率</p>
+        <div class="g3-jump">
+          <svg class="g3-jump-fig" viewBox="0 0 152 34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle class="g3-dot-b" cx="12" cy="17" r="4.2"/>
+            <path class="g3-jump-ln" d="M23 17h83"/>
+            <path class="g3-jump-hd" d="m101 12 5 5-5 5"/>
+            <circle class="g3-dot-a" cx="131" cy="17" r="12.6"/>
+          </svg>
+          <span class="g3-jump-lab"><span class="num">0.3%</span><span class="num is-a">2.7%</span></span>
         </div>
-        <dl class="case-why">
-          <dt>導入前</dt><dd>競合が同じ候補者に大量送信。開封すらされない。</dd>
-          <dt>変えたこと</dt><dd><b>使用技術スタックと直近の担当案件</b>を引用。<br>自社のどの開発に近いかを冒頭2行で提示。</dd>
-          <dt>結果</dt><dd>返信率 <b>9.0倍</b>。返信からの<b>面談化率が約2.8倍</b>に。</dd>
-        </dl>
-      </div>
-      <div class="case reveal">
-        <h3>成長ベンチャーC社<i>複数職種／従業員65名</i></h3>
-        <div class="case-hero"><b class="num">40</b><span>%減</span></div>
-        <p class="case-hero-k">スカウト単価の削減率</p>
-        <div class="case-ba">
-          <div class="cb"><span class="cb-l">返信率 前</span><span class="cb-bar" style="--w:11%"></span><span class="cb-v num">0.3%</span></div>
-          <div class="cb is-after"><span class="cb-l">返信率 後</span><span class="cb-bar" style="--w:78%"></span><span class="cb-v num">2.1%</span></div>
+        <p class="g3-chips-k"><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"/><path d="m14 6 4 4"/></svg>入れた要素</p>
+        <ul class="g3-chips">
+          <li><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5-8 4.5-8-4.5z"/><path d="m4 12.5 8 4.5 8-4.5"/><path d="m4 16.5 8 4.5 8-4.5"/></svg>技術スタック</li>
+          <li><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>担当案件</li>
+        </ul>
+        <p class="g3-res"><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/></svg>面談化<b class="num">2.8倍</b></p>
+      </article>
+
+      <article class="case reveal g3-case">
+        <p class="g3-case-h">
+          <span class="g3-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M16 8h4v4"/></svg></span>
+          <span class="g3-case-n">成長ベンチャーC社</span>
+          <span class="g3-case-s">複数職種・65名</span>
+        </p>
+        <div class="case-hero"><b class="num">7.0</b><span>倍</span></div>
+        <p class="case-hero-k">返信率</p>
+        <div class="g3-jump">
+          <svg class="g3-jump-fig" viewBox="0 0 152 34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle class="g3-dot-b" cx="12" cy="17" r="4.2"/>
+            <path class="g3-jump-ln" d="M23 17h85"/>
+            <path class="g3-jump-hd" d="m103 12 5 5-5 5"/>
+            <circle class="g3-dot-a" cx="131" cy="17" r="11.1"/>
+          </svg>
+          <span class="g3-jump-lab"><span class="num">0.3%</span><span class="num is-a">2.1%</span></span>
         </div>
-        <dl class="case-why">
-          <dt>導入前</dt><dd>担当者1名が複数職種を兼任。<br>作成が追いつかず、送信数が伸びない。</dd>
-          <dt>変えたこと</dt><dd>作成・送信を全自動化。職種ごとに訴求を出し分け。<br><b>送信数を増やしても工数は増えない</b>状態に。</dd>
-          <dt>結果</dt><dd>返信率 <b>7.0倍</b>。<b>スカウト単価は約40%削減</b>。</dd>
-        </dl>
-      </div>
+        <p class="g3-chips-k"><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"/><path d="m14 6 4 4"/></svg>入れた要素</p>
+        <ul class="g3-chips">
+          <li><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>全自動化</li>
+          <li><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a3 3 0 0 0 3 3h9"/><path d="M6 21v-6a3 3 0 0 1 3-3"/><path d="m15 9 3 3-3 3"/></svg>職種別の訴求</li>
+        </ul>
+        <p class="g3-res"><svg class="g3-ic-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6 4 5 4-5"/><path d="M12 11v8M8.5 13.5h7M8.5 16.5h7"/></svg>単価<b class="num">40%減</b></p>
+      </article>
+
     </div>
-    <p class="note reveal">※ 倍率はテンプレート送信（開封12%／返信0.3%）との比較です。</p>
+    <p class="note reveal">※ 倍率はテンプレート送信（返信率0.3%）比。</p>
   </div>
 </section>
 
-<!-- 分析が当たる理由 -->
 <section class="slide sec-alt" id="why-data" data-title="分析が当たる理由">
   <div class="slide-in wrap">
     <p class="sec-label reveal">WHY IT WORKS</p>
-    <h2 class="sec-title reveal"><span class="hl">どの一文</span>が採用につながったか、<br>分かりますか。</h2>
-    <div class="loop-cmp">
-      <div class="lc-col reveal">
-        <h3 class="lc-h is-bad">単機能ツールを寄せ集めた場合</h3>
-        <div class="lc-chain">
-          <span class="lc-node">スカウト</span><span class="lc-cut">✕</span>
-          <span class="lc-node">書類選考</span><span class="lc-cut">✕</span>
-          <span class="lc-node">面接</span><span class="lc-cut">✕</span>
-          <span class="lc-node">内定</span>
+    <h2 class="sec-title reveal"><span class="hl">どの一文</span>が、採用につながったか。</h2>
+
+    <div class="g1-rail">
+
+      <!-- 分断（単機能ツールの寄せ集め） -->
+      <div class="g1-lane reveal">
+        <p class="g1-lane-k">単機能ツール</p>
+        <div class="g1-mid">
+          <div class="g1-chain">
+            <div class="g1-node"><span class="g1-dot"><svg class="g1-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 2.6 2.9 9.4a.7.7 0 0 0 0 1.3l7.5 2.9 2.9 7.5a.7.7 0 0 0 1.3 0z"/><path d="M21.4 2.6 10.4 13.6"/></svg></span><em>スカウト</em></div>
+            <div class="g1-link"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5.5 5.5 13 13"/><path d="m18.5 5.5-13 13"/></svg></div>
+            <div class="g1-node"><span class="g1-dot"><svg class="g1-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5z"/><path d="M14.5 3v4.5H19"/><path d="m8.8 14.4 2 2 4.2-4.2"/></svg></span><em>書類選考</em></div>
+            <div class="g1-link"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5.5 5.5 13 13"/><path d="m18.5 5.5-13 13"/></svg></div>
+            <div class="g1-node"><span class="g1-dot"><svg class="g1-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.2" cy="8" r="3.2"/><path d="M3.4 20v-1.4a4.2 4.2 0 0 1 4.2-4.2h3.2a4.2 4.2 0 0 1 4.2 4.2V20"/><path d="M16.6 5.2a3 3 0 0 1 0 5.6"/><path d="M17.8 14.6h.4a3.4 3.4 0 0 1 3.4 3.4V20"/></svg></span><em>面接</em></div>
+            <div class="g1-link"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5.5 5.5 13 13"/><path d="m18.5 5.5-13 13"/></svg></div>
+            <div class="g1-node"><span class="g1-dot"><svg class="g1-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.4"/><path d="m8.4 12.2 2.6 2.6 4.6-5.2"/></svg></span><em>内定</em></div>
+          </div>
         </div>
-        <p class="lc-note">ツールごとにデータが分断されます。<br>開封率は分かっても、<b>その文面が採用に至ったか</b>は追えません。<br>改善は担当者の勘に戻ります。</p>
+        <div class="g1-verdict"><svg class="g1-ico g1-ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 7H7a5 5 0 0 0 0 10h3"/><path d="M14 7h3a5 5 0 0 1 0 10h-3"/><path d="M8.4 12h2.3"/><path d="M13.3 12h2.3"/></svg><p><b>データが分断</b><span>勘に戻る</span></p></div>
       </div>
-      <div class="lc-col reveal is-key">
-        <h3 class="lc-h is-good">本サービス（7機能が1本に繋がる）</h3>
-        <div class="lc-chain is-linked">
-          <span class="lc-node">スカウト</span><span class="lc-arw">→</span>
-          <span class="lc-node">書類選考</span><span class="lc-arw">→</span>
-          <span class="lc-node">面接</span><span class="lc-arw">→</span>
-          <span class="lc-node">内定</span>
+
+      <!-- 1本に繋がる（本サービス） -->
+      <div class="g1-lane is-key reveal">
+        <p class="g1-lane-k">本サービス</p>
+        <div class="g1-mid">
+          <div class="g1-chain">
+            <div class="g1-node"><span class="g1-dot"><svg class="g1-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 2.6 2.9 9.4a.7.7 0 0 0 0 1.3l7.5 2.9 2.9 7.5a.7.7 0 0 0 1.3 0z"/><path d="M21.4 2.6 10.4 13.6"/></svg></span><em>スカウト</em></div>
+            <div class="g1-link"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h14"/><path d="m13.5 7 5 5-5 5"/></svg></div>
+            <div class="g1-node"><span class="g1-dot"><svg class="g1-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5z"/><path d="M14.5 3v4.5H19"/><path d="m8.8 14.4 2 2 4.2-4.2"/></svg></span><em>書類選考</em></div>
+            <div class="g1-link"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h14"/><path d="m13.5 7 5 5-5 5"/></svg></div>
+            <div class="g1-node"><span class="g1-dot"><svg class="g1-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.2" cy="8" r="3.2"/><path d="M3.4 20v-1.4a4.2 4.2 0 0 1 4.2-4.2h3.2a4.2 4.2 0 0 1 4.2 4.2V20"/><path d="M16.6 5.2a3 3 0 0 1 0 5.6"/><path d="M17.8 14.6h.4a3.4 3.4 0 0 1 3.4 3.4V20"/></svg></span><em>面接</em></div>
+            <div class="g1-link"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h14"/><path d="m13.5 7 5 5-5 5"/></svg></div>
+            <div class="g1-node"><span class="g1-dot"><svg class="g1-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.4"/><path d="m8.4 12.2 2.6 2.6 4.6-5.2"/></svg></span><em>内定</em></div>
+          </div>
+          <div class="g1-loop">
+            <svg class="g1-ico g1-ico-sm g1-loop-a" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V5"/><path d="m6.5 10.5 5.5-5.5 5.5 5.5"/></svg>
+            <span class="g1-loop-t"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 12a8.6 8.6 0 1 1-2.6-6.1"/><path d="M20.9 4.1v4.6h-4.6"/></svg>結果を学習</span>
+          </div>
         </div>
-        <p class="lc-note"><b>スカウト1通から内定までが1本の線で繋がります。</b><br>「この訴求で送った候補者は内定承諾まで至りやすい」——<br>この粒度で分かるのは、7機能すべてを通しているからです。</p>
+        <div class="g1-verdict"><svg class="g1-ico g1-ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 12a8.6 8.6 0 1 1-2.6-6.1"/><path d="M20.9 4.1v4.6h-4.6"/></svg><p><b>1本に繋がる</b><span>効いた一文が分かる</span></p></div>
       </div>
+
     </div>
-    <p class="lead reveal">分析が当たるかどうかは、AIの性能ではなく<span class="hl">データが1周しているか</span>で決まります。</p>
+
+    <p class="lead reveal">分析が当たるのは、<span class="hl">データが1周している</span>から。</p>
   </div>
 </section>
 
-<!-- なぜ当社か -->
 <section class="slide" id="why-us" data-img="assets/bg_why.webp" data-title="なぜ当社か">
   <div class="slide-in wrap">
     <p class="sec-label reveal">WHY US</p>
-    <h2 class="sec-title reveal">差がつくのは、<br><span class="hl">学習させた中身</span>です。</h2>
-    <div class="why-grid">
-      <div class="why reveal">
-        <span class="num">01</span>
-        <h3 class="why-h">550社・20万件が学習元</h3>
-        <p>同じAIモデルでも、何を学習させたかで出力は変わります。当社が学習させているのは、<b>550社の採用支援で実際に返信が来た文面と、来なかった文面</b>です。</p>
-      </div>
-      <div class="why reveal">
-        <span class="num">02</span>
-        <h3 class="why-h">勝ちパターンが先に分かっている</h3>
-        <p>「30代のSaaS営業には、事業フェーズより裁量の大きさを先に書く」——<b>ターゲット×媒体×訴求の組み合わせ</b>が検証済みで組み込まれています。ゼロから試す必要はありません。</p>
-      </div>
-      <div class="why reveal">
-        <span class="num">03</span>
-        <h3 class="why-h">使うほど、御社専用になる</h3>
-        <p>分析結果が次のスカウト文面に反映されます。<b>御社で返信が来た訴求が、翌週の文面に効いてくる</b>。汎用のAIツールとの差はここで開きます。</p>
+    <h2 class="sec-title reveal">差がつくのは、<span class="hl">学習させた中身</span>。</h2>
+
+    <!-- 学習元：数字で見せる -->
+    <div class="g1-proof reveal">
+      <p class="g1-proof-k">学習元</p>
+      <div class="g1-figs">
+        <div class="g1-fig">
+          <p class="g1-fig-v num">550<span>社</span></p>
+          <p class="g1-fig-k">採用支援</p>
+        </div>
+        <span class="g1-plus" aria-hidden="true"><svg class="g1-ico g1-ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        <div class="g1-fig">
+          <p class="g1-fig-v num">20万<span>件</span></p>
+          <p class="g1-fig-k">採用データ</p>
+        </div>
       </div>
     </div>
-    <p class="lead reveal">導入後は、御社の運用に伴走します。ツールをお渡しして終わりにはしません。</p>
+
+    <!-- 差がつく道すじ -->
+    <div class="g1-flow">
+      <div class="g1-step reveal">
+        <span class="g1-badge"><svg class="g1-ico g1-ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.8" rx="7.6" ry="2.9"/><path d="M19.6 5.8v6c0 1.6-3.4 2.9-7.6 2.9S4.4 13.4 4.4 11.8v-6"/><path d="M19.6 11.8v6c0 1.6-3.4 2.9-7.6 2.9s-7.6-1.3-7.6-2.9v-6"/></svg></span>
+        <p class="g1-step-h">実データ</p>
+        <p class="g1-step-s">返信の成否つき</p>
+      </div>
+      <div class="g1-arw" aria-hidden="true"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="m13.5 7 5 5-5 5"/></svg></div>
+      <div class="g1-step reveal">
+        <span class="g1-badge"><svg class="g1-ico g1-ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.8"/><path d="M12 12h.01"/></svg></span>
+        <p class="g1-step-h">勝ちパターン</p>
+        <p class="g1-step-s">検証済みで内蔵</p>
+      </div>
+      <div class="g1-arw" aria-hidden="true"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="m13.5 7 5 5-5 5"/></svg></div>
+      <div class="g1-step is-key reveal">
+        <span class="g1-badge"><svg class="g1-ico g1-ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.6 12a8.4 8.4 0 0 1 14.2-6.1"/><path d="M20.4 12a8.4 8.4 0 0 1-14.2 6.1"/><path d="M18.2 2.1v3.9h-3.9"/><path d="M5.8 21.9V18h3.9"/></svg></span>
+        <p class="g1-step-h">御社専用</p>
+        <p class="g1-step-s">使うほど最適化</p>
+      </div>
+    </div>
+
+    <p class="lead reveal">導入後も御社の運用に伴走します。</p>
   </div>
 </section>
 
-<!-- 章扉 04 -->
 <section class="slide chdiv" data-img="assets/sec_price.webp" data-title="章扉 04">
   <div class="slide-in chdiv-inner"><span class="chdiv-n num">04</span><h2 class="chdiv-t">向き不向きと、費用</h2></div>
 </section>
@@ -456,142 +633,166 @@
 <section class="slide sec-alt" id="fit" data-img="assets/bg_fit.webp" data-title="向いている企業">
   <div class="slide-in wrap">
     <p class="sec-label reveal">GOOD FIT</p>
-    <h2 class="sec-title reveal">こういう企業に、向いています。</h2>
-    <div class="fit-grid">
-      <div class="fit-col reveal">
-        <h3 class="fit-h">業界</h3>
-        <ul class="fit-list">
-          <li>IT・SaaS・Web</li>
-          <li>広告・マーケティング</li>
-          <li>人材・コンサルティング</li>
-          <li>製造業の技術職・開発職</li>
-          <li>建設・不動産の施工管理／営業</li>
+    <h2 class="sec-title reveal">こんな企業に<span class="hl">向いています</span>。</h2>
+
+    <div class="g1-fit">
+
+      <!-- 業界 -->
+      <section class="g1-blk reveal">
+        <h3 class="g1-blk-h"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.2" y="3.2" width="7.2" height="7.2" rx="1.4"/><rect x="13.6" y="3.2" width="7.2" height="7.2" rx="1.4"/><rect x="3.2" y="13.6" width="7.2" height="7.2" rx="1.4"/><rect x="13.6" y="13.6" width="7.2" height="7.2" rx="1.4"/></svg>業界</h3>
+        <ul class="g1-chips">
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8.4 8.6-4 3.4 4 3.4"/><path d="m15.6 8.6 4 3.4-4 3.4"/><path d="m13.4 5-2.8 14"/></svg>IT・SaaS・Web</li>
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10.2v3.6a1.6 1.6 0 0 0 1.6 1.6h1.8l7 4.4V4.2l-7 4.4H5.1a1.6 1.6 0 0 0-1.6 1.6z"/><path d="M17.6 9.1a4.2 4.2 0 0 1 0 5.8"/><path d="M6.9 15.4v3.4"/></svg>広告・マーケ</li>
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.4 20v-1.4A4.2 4.2 0 0 1 7.6 14.4h2.8a4.2 4.2 0 0 1 4.2 4.2V20"/><path d="M16.4 5.2a3 3 0 0 1 0 5.6"/><path d="M17.8 14.6h.4a3.4 3.4 0 0 1 3.4 3.4V20"/></svg>人材・コンサル</li>
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.6 14.4a1.6 1.6 0 0 0 .3 1.8l.1.1a1.9 1.9 0 1 1-2.7 2.7l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5v.2a1.9 1.9 0 1 1-3.8 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a1.9 1.9 0 1 1-2.7-2.7l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1h-.2a1.9 1.9 0 1 1 0-3.8h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a1.9 1.9 0 1 1 2.7-2.7l.1.1a1.6 1.6 0 0 0 1.8.3h.1a1.6 1.6 0 0 0 1-1.5v-.2a1.9 1.9 0 1 1 3.8 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a1.9 1.9 0 1 1 2.7 2.7l-.1.1a1.6 1.6 0 0 0-.3 1.8v.1a1.6 1.6 0 0 0 1.5 1h.2a1.9 1.9 0 1 1 0 3.8h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>製造の技術職</li>
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5V7.4L12 3.5l8 3.9v13.1"/><path d="M2.5 20.5h19"/><path d="M9.5 20.5v-5h5v5"/><path d="M9.5 10.5h1.2M13.3 10.5h1.2"/></svg>建設・不動産</li>
         </ul>
-        <p class="fit-why">スカウト媒体に候補者が登録されている領域なら、<br>業界は問いません。</p>
-      </div>
-      <div class="fit-col reveal">
-        <h3 class="fit-h">規模・体制</h3>
-        <ul class="fit-list">
-          <li>従業員 <b>50〜300名</b></li>
-          <li>中途採用 <b>年3〜5名</b></li>
-          <li>採用担当が <b>1〜2名</b></li>
-          <li>担当者が他業務と <b>兼任</b>している</li>
+      </section>
+
+      <!-- 規模・体制（数字で見せる） -->
+      <section class="g1-blk reveal">
+        <h3 class="g1-blk-h"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.8" y="3" width="6.4" height="5" rx="1"/><rect x="2.5" y="16" width="6" height="5" rx="1"/><rect x="15.5" y="16" width="6" height="5" rx="1"/><path d="M12 8v4"/><path d="M5.5 16v-2.5h13V16"/></svg>規模・体制</h3>
+        <div class="g1-tiles">
+          <div class="g1-tile"><span class="g1-tile-v num">50〜300<span>名</span></span><p class="g1-tile-k">従業員</p></div>
+          <div class="g1-tile"><span class="g1-tile-v num">3〜5<span>名</span></span><p class="g1-tile-k">年間採用</p></div>
+          <div class="g1-tile"><span class="g1-tile-v num">1〜2<span>名</span></span><p class="g1-tile-k">採用担当</p></div>
+        </div>
+        <p class="g1-solo"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.5h3.6l9.4 9h3.6"/><path d="M3.5 16.5h3.6l2.9-2.8"/><path d="m13.6 10.4 2.9-2.9"/><path d="M17.4 4.7 20.5 7.5l-3.1 2.8"/><path d="M17.4 13.7l3.1 2.8-3.1 2.8"/></svg>兼任あり</p>
+      </section>
+
+      <!-- こんな状況 -->
+      <section class="g1-blk is-key reveal">
+        <h3 class="g1-blk-h"><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.6 21.2 19a1.4 1.4 0 0 1-1.2 2.1H4a1.4 1.4 0 0 1-1.2-2.1z"/><path d="M12 9.5v4.2"/><path d="M12 17.4h.01"/></svg>こんな状況</h3>
+        <ul class="g1-cards">
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.4"/><path d="M12 7.2v9.6"/><path d="M14.4 9.4h-3.6a1.9 1.9 0 0 0 0 3.8h2.4a1.9 1.9 0 0 1 0 3.8H9.4"/></svg>紹介手数料が重い</li>
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.4 3.6a2.2 2.2 0 0 1 3.1 3.1L8.2 18h-3.1v-3.1z"/><path d="m14.6 5.4 3.1 3.1"/></svg>作成が追いつかない</li>
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.2 4.2 19.8 19.8"/><path d="M8.5 3.5v5"/><path d="M15.5 3.5v5"/><path d="M5.5 8.5h13v2.6a6.5 6.5 0 0 1-6.5 6.5 6.5 6.5 0 0 1-4.6-1.9"/><path d="M12 17.6V21"/></svg>媒体が活きない</li>
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11l-1 7.2 3 8a1.4 1.4 0 0 1-1.3 1.8H6.8a1.4 1.4 0 0 1-1.3-1.8l3-8z"/><path d="M8.2 14.6h7.6"/></svg>ノウハウが残らない</li>
+          <li><svg class="g1-ico g1-ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6.2" r="2.8"/><path d="M12 9v6.5"/><path d="m12 15.5-4.4 5.2"/><path d="m12 15.5 4.4 5.2"/><path d="M5 11.5h14"/></svg>1人で複数職種</li>
         </ul>
-        <p class="fit-why">専任チームを持てない規模ほど、<br>雑務の比重は大きくなります。</p>
-      </div>
-      <div class="fit-col reveal is-key">
-        <h3 class="fit-h">こんな状況なら、特に</h3>
-        <ul class="fit-list">
-          <li><b>人材紹介の手数料が重い。</b>依存を減らしたい</li>
-          <li>スカウトを送りたいが、<b>作成が追いつかない</b></li>
-          <li>媒体は契約しているが、<b>使いこなせていない</b></li>
-          <li>退職・異動で、<b>ノウハウが残らない</b></li>
-          <li>複数職種を <b>1人で回している</b></li>
-        </ul>
-        <p class="fit-why">1つでも当てはまる場合は、<br>現在の採用工数の洗い出しからご相談いただけます。</p>
-      </div>
+      </section>
+
     </div>
-    <p class="lead reveal">対応職種は、営業・エンジニア・マーケター・カスタマーサクセス・コーポレートです。</p>
+
+    <div class="g1-jobs reveal">
+      <p class="g1-jobs-k">対応職種</p>
+      <ul>
+        <li>営業</li><li>エンジニア</li><li>マーケター</li><li>カスタマーサクセス</li><li>コーポレート</li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<!-- 料金プラン -->
 <section class="slide" id="price" data-title="料金プラン">
   <div class="slide-in wrap">
     <p class="sec-label reveal">PRICE</p>
-    <h2 class="sec-title reveal">採用の量に合わせて、3プラン。</h2>
-    <div class="pm-wrap reveal">
-      <table class="pm">
-        <thead>
-          <tr>
-            <th class="pm-fn">できること</th>
-            <th><span class="pm-name">ライト</span><span class="pm-price num">3<small>万円／月</small></span><span class="pm-target">年1〜2名</span></th>
-            <th class="is-key"><span class="pm-badge">推奨</span><span class="pm-name">スタンダード</span><span class="pm-price num">10<small>万円／月</small></span><span class="pm-target">年3〜5名</span></th>
-            <th><span class="pm-name">フル</span><span class="pm-price num">30<small>万円／月</small></span><span class="pm-target">年10名以上</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="pm-fn">AIスカウト<i>月間の送信上限</i></td><td class="num">100通</td><td class="is-key num">500通</td><td class="num">2,000通</td></tr>
-          <tr><td class="pm-fn">自動応募要件の作成</td><td class="ok">●</td><td class="is-key ok">●</td><td class="ok">●</td></tr>
-          <tr><td class="pm-fn">AI日程調整（半自動）</td><td class="ok">●</td><td class="is-key ok">●</td><td class="ok">●</td></tr>
-          <tr><td class="pm-fn">AI書類選考</td><td class="no">—</td><td class="is-key ok">●</td><td class="ok">●</td></tr>
-          <tr><td class="pm-fn">適性検査</td><td class="no">—</td><td class="is-key ok">●</td><td class="ok">●</td></tr>
-          <tr><td class="pm-fn">AI面接文字起こし</td><td class="no">—</td><td class="is-key ok">●</td><td class="ok">●</td></tr>
-          <tr><td class="pm-fn">AI採用分析<i>媒体選定・歩留まり分析</i></td><td class="no">—</td><td class="is-key ok">●</td><td class="ok">●</td></tr>
-          <tr><td class="pm-fn">同時に回せる職種</td><td class="num">1職種</td><td class="is-key num">3職種</td><td class="num">10職種</td></tr>
-          <tr><td class="pm-fn">接続できる媒体</td><td class="num">1媒体</td><td class="is-key num">3媒体</td><td class="num">10媒体</td></tr>
-          <tr><td class="pm-fn">初期設定</td><td>当社が実施</td><td class="is-key">当社が実施</td><td class="is-key">要件設計から伴走</td></tr>
-          <tr><td class="pm-fn">運用サポート</td><td>メール</td><td class="is-key">メール・チャット</td><td class="is-key">専任担当が伴走</td></tr>
-        </tbody>
-      </table>
+    <h2 class="sec-title reveal">採用の量で、3プラン。</h2>
+    <div class="pz-grid">
+      <div class="pz reveal">
+        <span class="pz-name">ライト</span>
+        <p class="pz-price num">3<small>万円 / 月</small></p>
+        <p class="pz-for">年1〜2名を採用</p>
+        <ul class="pz-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3.6 2.9 10.7l7.3 2.9 2.9 7.3z"/><path d="M21 3.6 10.2 13.6"/></svg><span>スカウト <b class="num">100</b>通 / 月</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2.4"/><path d="M8.4 12.2l2.5 2.5 4.7-5.1"/></svg><span>スカウト・日程調整・要件作成</span></li>
+        </ul>
+      </div>
+      <div class="pz reveal is-key">
+        <span class="pz-badge">推奨</span>
+        <span class="pz-name">スタンダード</span>
+        <p class="pz-price num">10<small>万円 / 月</small></p>
+        <p class="pz-for">年3〜5名を採用</p>
+        <ul class="pz-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3.6 2.9 10.7l7.3 2.9 2.9 7.3z"/><path d="M21 3.6 10.2 13.6"/></svg><span>スカウト <b class="num">500</b>通 / 月</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2.4"/><path d="M8.4 12.2l2.5 2.5 4.7-5.1"/></svg><span><b>7機能すべて</b></span></li>
+        </ul>
+      </div>
+      <div class="pz reveal">
+        <span class="pz-name">フル</span>
+        <p class="pz-price num">30<small>万円 / 月</small></p>
+        <p class="pz-for">年10名以上を採用</p>
+        <ul class="pz-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3.6 2.9 10.7l7.3 2.9 2.9 7.3z"/><path d="M21 3.6 10.2 13.6"/></svg><span>スカウト <b class="num">2,000</b>通 / 月</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2.4"/><path d="M8.4 12.2l2.5 2.5 4.7-5.1"/></svg><span><b>7機能すべて</b></span></li>
+        </ul>
+      </div>
     </div>
-    <p class="note reveal wip">※ 送信上限・職種数は調整中です。初期費用・最低契約期間は別途ご案内します。</p>
+    <p class="note reveal wip">※ 料金・送信数は調整中です。</p>
   </div>
 </section>
 
-<!-- 費用対効果 -->
 <section class="slide sec-alt" id="roi" data-title="費用対効果">
   <div class="slide-in wrap">
     <p class="sec-label reveal">ROI</p>
-    <h2 class="sec-title reveal">どのプランでも、<span class="hl">効果が費用を上回ります。</span></h2>
-    <div class="roi-table">
-      <div class="rt-row rt-head">
-        <span>プラン</span><span>想定の年間採用数</span><span>削減できる人件費</span><span>紹介1名分の内製化</span><span>年間費用</span><span>差引</span>
+    <h2 class="sec-title reveal">効果が、<span class="hl">費用を上回る。</span></h2>
+
+    <div class="g5-roi reveal">
+      <div class="g5-roi-bars">
+        <p class="g5-roi-plan">スタンダード<i>年4名</i></p>
+        <div class="g5-bar">
+          <span class="g5-bl">費用</span>
+          <span class="g5-track"><span class="g5-seg is-cost" style="--w:58%"><b>120万円</b></span></span>
+        </div>
+        <div class="g5-bar">
+          <span class="g5-bl">効果</span>
+          <span class="g5-track">
+            <span class="g5-seg is-a" style="--w:50.2%"><i>人件費</i></span>
+            <span class="g5-seg is-b" style="--w:49.8%"><i>紹介1名</i></span>
+          </span>
+        </div>
       </div>
-      <div class="rt-row reveal">
-        <span class="rt-plan">ライト<i>3万円／月</i></span>
-        <span class="num">2名</span>
-        <span class="num">52万円</span>
-        <span class="num">103万円</span>
-        <span class="num">36万円</span>
-        <span class="rt-plus num">＋119万円</span>
+      <p class="g5-delta is-roi"><span>差引</span><b>＋87<small>万円</small></b></p>
+    </div>
+
+    <div class="g5-minis">
+      <div class="g5-mini reveal">
+        <span class="g5-mname">ライト</span>
+        <span class="g5-mbars"><i class="g5-mbar is-cost" style="--w:23%"></i><i class="g5-mbar is-gain" style="--w:100%"></i></span>
+        <b>＋119万円</b>
       </div>
-      <div class="rt-row reveal is-key">
-        <span class="rt-plan">スタンダード<i>10万円／月</i></span>
-        <span class="num">4名</span>
-        <span class="num">104万円</span>
-        <span class="num">103万円</span>
-        <span class="num">120万円</span>
-        <span class="rt-plus num">＋87万円</span>
-      </div>
-      <div class="rt-row reveal">
-        <span class="rt-plan">フル<i>30万円／月</i></span>
-        <span class="num">12名</span>
-        <span class="num">313万円</span>
-        <span class="num">206万円<i>（2名分）</i></span>
-        <span class="num">360万円</span>
-        <span class="rt-plus num">＋159万円</span>
+      <div class="g5-mini reveal">
+        <span class="g5-mname">フル</span>
+        <span class="g5-mbars"><i class="g5-mbar is-cost" style="--w:69%"></i><i class="g5-mbar is-gain" style="--w:100%"></i></span>
+        <b>＋159万円</b>
       </div>
     </div>
-    <p class="lead reveal">採用の量が増えるほど、削減できる時間と紹介手数料も増えます。<br><span class="hl">どの規模でも、費用対効果は成立します。</span></p>
-    <p class="note reveal">※ 人材紹介手数料 約103万円＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり。人件費＝AIが引き取る1名あたり87時間 × 時給換算3,000円（当社試算）。</p>
+
+    <p class="note reveal">※ 紹介手数料 約103万円＝厚生労働省「令和6年度 職業紹介事業報告書の集計結果」常用就職1件あたり。人件費＝1名87時間×時給換算3,000円（当社試算）。</p>
   </div>
 </section>
 
-<!-- 代行との比較 -->
 <section class="slide sec-alt" id="cmp-scout" data-title="代行との比較">
   <div class="slide-in wrap">
-    <p class="sec-label reveal">VS OUTSOURCING</p>
-    <h2 class="sec-title reveal">同じ500通でも、代行の<span class="hl">3分の1</span>です。</h2>
-    <div class="vs2 reveal">
-      <div class="vs2-row">
-        <span class="vs2-name">スカウト代行</span>
-        <span class="vs2-bar"><i style="--w:100%"></i></span>
-        <span class="vs2-val num">30<small>万円</small></span>
+    <p class="sec-label reveal">VS AGENCY</p>
+    <h2 class="sec-title reveal">代行なら、<span class="hl">月60万円</span>。</h2>
+
+    <div class="g5-cmp reveal">
+      <div class="g5-cmp-bars">
+        <p class="g5-cap">1,000通</p>
+        <div class="g5-crow">
+          <span class="g5-cn">スカウト代行</span>
+          <span class="g5-cbar is-them" style="--w:100%"><b>60万円</b></span>
+        </div>
+        <div class="g5-crow is-ours">
+          <span class="g5-cn">本サービス</span>
+          <span class="g5-cbar is-ours" style="--w:16.7%"><b>10万円</b></span>
+        </div>
       </div>
-      <div class="vs2-row is-key">
-        <span class="vs2-name">本サービス</span>
-        <span class="vs2-bar"><i style="--w:33.3%"></i></span>
-        <span class="vs2-val num">10<small>万円</small></span>
+      <p class="g5-delta"><span>差額</span><b>−50<small>万円</small></b></p>
+    </div>
+
+    <div class="g5-chips">
+      <div class="g5-chip reveal">
+        <svg class="g5-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 3.5L2.8 10.2l7 2.9 2.9 7z"/><path d="M9.8 13.1l10.7-9.6"/></svg>
+        <b>100<small>円</small></b><small>1通あたり</small>
       </div>
-      <p class="vs2-diff num">−20<small>万円 / 月</small></p>
+      <div class="g5-chip reveal">
+        <svg class="g5-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="8" r="3.4"/><path d="M3.5 20c.7-3.8 3.3-5.9 6.5-5.9 1 0 2 .2 2.8.6"/><path d="M17.5 14.5v6M14.5 17.5h6"/></svg>
+        <b><small>月</small>46<small>万円</small></b><small>担当1名増員</small>
+      </div>
     </div>
-    <div class="vs2-sub reveal">
-      <div class="vs2-card"><span class="vs2-c-n num">100<small>通</small></span><span class="vs2-c-p num">3<small>万円</small></span><span class="vs2-c-u">1通 300円</span></div>
-      <div class="vs2-card is-key"><span class="vs2-c-n num">500<small>通</small></span><span class="vs2-c-p num">10<small>万円</small></span><span class="vs2-c-u">1通 200円</span></div>
-      <div class="vs2-card"><span class="vs2-c-n num">2,000<small>通</small></span><span class="vs2-c-p num">30<small>万円</small></span><span class="vs2-c-u">1通 150円</span></div>
-    </div>
-    <p class="note reveal">※ スカウト代行の単価は1通500〜800円。中間値の600円で算出しています。</p>
+
+    <p class="note reveal">※ 代行単価は1通500〜800円の中間値600円で算出。本サービスはスタンダード（月10万円）。</p>
   </div>
 </section>
 
@@ -604,19 +805,36 @@
   <div class="slide-in wrap">
     <p class="sec-label reveal">FAQ</p>
     <h2 class="sec-title reveal">よくあるご質問</h2>
-    <div class="qa-grid">
-      <div class="qa reveal">
-        <p class="qa-q">既存のATSと併用できますか。</p>
-        <p class="qa-a">併用を前提としています。<br>連携範囲は御社の運用に合わせて設定します。</p>
-      </div>
-      <div class="qa reveal">
-        <p class="qa-q">個人情報はどう扱われますか。</p>
-        <p class="qa-a">契約で定めた期間のみ保管し、<br>当社のAIモデルの学習には利用しません。</p>
-      </div>
-      <div class="qa reveal">
-        <p class="qa-q">運用にかかる工数はどのくらいですか。</p>
-        <p class="qa-a">面接と、日程調整時の送信確認が中心です。<br>初期設定は当社が実施します。</p>
-      </div>
+
+    <div class="g5-faq">
+
+      <details class="g5-q reveal">
+        <summary>
+          <svg class="g5-qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 14.5l5-5"/><path d="M12.6 7.4l1.9-1.9a3.6 3.6 0 015.1 5.1l-1.9 1.9"/><path d="M11.4 16.6l-1.9 1.9a3.6 3.6 0 01-5.1-5.1l1.9-1.9"/></svg>
+          <span class="g5-qt">ATS連携</span>
+          <svg class="g5-qx" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13"/></svg>
+        </summary>
+        <p>併用を前提としています。連携範囲は御社の運用に合わせて設定します。</p>
+      </details>
+
+      <details class="g5-q reveal">
+        <summary>
+          <svg class="g5-qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2l7.2 2.9v5.4c0 4.2-2.9 7.6-7.2 9-4.3-1.4-7.2-4.8-7.2-9V6.1z"/><path d="M9.2 12.1l2 2 3.6-4"/></svg>
+          <span class="g5-qt">個人情報</span>
+          <svg class="g5-qx" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13"/></svg>
+        </summary>
+        <p>御社との契約で定めた期間のみ保管し、当社のAIモデルの学習には利用しません。アクセス権限は、御社が指定した担当者に限定します。</p>
+      </details>
+
+      <details class="g5-q reveal">
+        <summary>
+          <svg class="g5-qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12.6" r="7.8"/><path d="M12 8.4v4.2l2.8 1.8"/><path d="M9.4 2.6h5.2"/></svg>
+          <span class="g5-qt">運用工数</span>
+          <svg class="g5-qx" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13"/></svg>
+        </summary>
+        <p>面接と、日程調整時の送信確認が中心です。初期設定は当社が実施します。</p>
+      </details>
+
     </div>
   </div>
 </section>

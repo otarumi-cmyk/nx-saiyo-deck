@@ -602,3 +602,24 @@ html, body{ overflow:hidden !important; height:100%; }
 }
 .qa-a{ font-size:.86rem; line-height:1.9; color:var(--ink-dim); margin:0; }
 @media (max-width:900px){ .qa-grid{ grid-template-columns:1fr; } }
+
+/* ---------- 料金：細かい制限を出さず、価格と規模と機能だけ ---------- */
+.pz-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-2); margin:var(--sp-5) 0 var(--sp-3); }
+.pz{
+  position:relative; padding:var(--sp-4) var(--sp-3);
+  border-radius:6px;
+  background:linear-gradient(180deg, rgba(231,237,247,.045), rgba(231,237,247,.012));
+  border:1px solid var(--line);
+}
+.pz.is-key{ background:linear-gradient(180deg, rgba(59,130,246,.10), rgba(59,130,246,.02)); border-color:var(--acc-24); }
+.pz-badge{ position:absolute; top:-10px; left:var(--sp-3); font-size:.62rem; background:var(--accent); color:#fff; padding:3px 11px; border-radius:100px; font-weight:700; }
+.pz-name{ display:block; font-size:.8rem; color:var(--ink-dim); letter-spacing:.06em; }
+.pz-price{ font-family:var(--font-en); font-size:clamp(2.4rem,4.6vw,3.6rem); font-weight:700; line-height:1; margin:10px 0 6px; color:var(--ink); }
+.pz.is-key .pz-price{ color:var(--accent); }
+.pz-price small{ font-size:.26em; margin-left:6px; color:var(--ink-dim); font-weight:400; }
+.pz-for{ font-size:.82rem; color:var(--ink-dim); margin:0 0 var(--sp-3); padding-bottom:var(--sp-3); border-bottom:1px solid var(--line); }
+.pz-list{ list-style:none; padding:0; margin:0; }
+.pz-list li{ display:flex; align-items:center; gap:10px; font-size:.84rem; color:var(--ink-dim); padding:7px 0; line-height:1.5; }
+.pz-list svg{ width:18px; height:18px; flex:none; color:var(--accent); }
+.pz-list b{ color:var(--ink); font-weight:700; }
+@media (max-width:900px){ .pz-grid{ grid-template-columns:1fr; } }
