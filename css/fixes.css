@@ -978,3 +978,39 @@
 .logo-row img, .logos img, [class*="logo"] img{
   filter:none !important; opacity:1 !important;
 }
+
+/* ==================================================================
+   45. 費用対効果：ブロックを3つに絞り、引き算だけを見せる
+       （前は6ブロックあり、569万円が2回出ていた）
+   ================================================================== */
+.roi3{ display:flex; align-items:stretch; gap:var(--sp-3); margin:var(--sp-5) 0 var(--sp-4); }
+.roi3-b{
+  flex:1 1 0; min-width:0;
+  background:var(--surface-1); border:1px solid var(--line); border-radius:10px;
+  padding:28px 26px; box-shadow:var(--shadow-card);
+  display:flex; flex-direction:column; justify-content:center; gap:10px;
+}
+.roi3-b.is-res{
+  flex:1.15 1 0;
+  background:linear-gradient(140deg,#0B2E63,#12539F); border-color:transparent;
+  box-shadow:0 14px 36px rgba(11,37,69,.3);
+}
+.roi3-k{ font-size:1rem; font-weight:700; color:var(--ink-dim); }
+.roi3-b.is-res .roi3-k{ color:rgba(255,255,255,.8); }
+.roi3-v{
+  font-family:var(--font-en); font-size:clamp(2.6rem,5vw,4rem); font-weight:700;
+  color:var(--ink); line-height:1; letter-spacing:-.02em;
+}
+.roi3-b.is-res .roi3-v{ color:#fff; font-size:clamp(3rem,5.6vw,4.6rem); text-shadow:0 2px 16px rgba(0,0,0,.28); }
+.roi3-v small{ font-family:var(--font-jp); font-size:.3em; margin-left:4px; color:var(--ink-dim); }
+.roi3-b.is-res .roi3-v small{ color:rgba(255,255,255,.82); }
+.roi3-n{ font-size:.76rem; font-weight:500; color:var(--ink-dim); line-height:1.6; }
+.roi3-b.is-res .roi3-n{ color:rgba(255,255,255,.66); }
+.roi3-op{
+  display:flex; align-items:center; font-size:2.4rem; font-weight:700;
+  color:var(--ink-dim); flex:none;
+}
+@media (max-width:900px){
+  .roi3{ flex-direction:column; }
+  .roi3-op{ justify-content:center; }
+}
