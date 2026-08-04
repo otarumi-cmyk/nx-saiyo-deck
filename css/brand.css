@@ -623,3 +623,80 @@ html, body{ overflow:hidden !important; height:100%; }
 .pz-list svg{ width:18px; height:18px; flex:none; color:var(--accent); }
 .pz-list b{ color:var(--ink); font-weight:700; }
 @media (max-width:900px){ .pz-grid{ grid-template-columns:1fr; } }
+
+/* ---------- 採用フロー15工程：フェーズ→工程の図解 ---------- */
+.mp-legend{ display:flex; gap:var(--sp-4); list-style:none; padding:0; margin:var(--sp-4) 0 var(--sp-3); }
+.mp-legend li{ display:flex; align-items:center; gap:8px; font-size:.82rem; color:var(--ink-dim); }
+.mp-legend i{ width:12px; height:12px; border-radius:3px; flex:none; }
+.mp-legend .is-ai i{ background:var(--accent); }
+.mp-legend .is-hu i{ background:transparent; border:1.5px solid var(--ink-dim); }
+.mp-legend b{ color:var(--ink); font-family:var(--font-en); font-weight:700; }
+
+.mp-flow{ display:flex; align-items:flex-start; gap:6px; margin-top:var(--sp-1); }
+.mp-col{ flex:1 1 0; min-width:0; }
+.mp-ph{
+  margin:0 0 10px; font-size:.74rem; letter-spacing:.06em; color:var(--ink-dim);
+  text-align:center; padding:6px 4px; border-radius:4px;
+  background:rgba(231,237,247,.05); border:1px solid var(--line);
+}
+.mp-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+.mp-list li{
+  display:flex; align-items:center; gap:8px;
+  padding:9px 10px; border-radius:4px; font-size:.8rem; line-height:1.3;
+  border:1px solid var(--line);
+}
+.mp-n.is-ai{ background:linear-gradient(135deg, rgba(37,99,235,.30), rgba(59,130,246,.14)); border-color:var(--acc-24); color:var(--ink); }
+.mp-n.is-hu{ background:rgba(231,237,247,.03); color:var(--ink-dim); }
+.mp-no{ font-family:var(--font-en); font-size:.66rem; color:var(--ink-dim); flex:none; }
+.mp-n.is-ai .mp-no{ color:#93b8fb; }
+.mp-t{ flex:1 1 auto; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mp-i{ width:15px; height:15px; flex:none; }
+.mp-n.is-ai .mp-i{ color:var(--accent-2); }
+.mp-n.is-hu .mp-i{ color:var(--ink-dim); opacity:.7; }
+.mp-chev{ flex:none; align-self:center; color:var(--acc-24); margin-top:14px; }
+.mp-chev svg{ width:11px; height:24px; display:block; }
+@media (max-width:900px){
+  .mp-flow{ flex-wrap:wrap; }
+  .mp-col{ flex:1 1 45%; }
+  .mp-chev{ display:none; }
+}
+
+/* ---------- 視認性：本文スライドの背景写真は「気配」まで落とす ---------- */
+/* .30 だと写真の輪郭が本文の裏に出て読めなくなっていた（#fit / #why-us / #price） */
+#fit::after, #why-us::after, #price::after{ opacity:.10 !important; }
+#fit::before, #why-us::before, #price::before{
+  background:
+    radial-gradient(ellipse 80% 64% at 50% 46%, rgba(11,15,26,.90) 0%, rgba(11,15,26,.80) 58%, rgba(11,15,26,.95) 100%),
+    linear-gradient(180deg, rgba(11,15,26,.86), rgba(11,15,26,.90)) !important;
+}
+/* 写真の上に載るカードは不透明にして、下地を透けさせない */
+#fit .fit-col, #fit .g4-col, #why-us .why, #why-us [class*="-card"], #price .pz{
+  background-color:#101620 !important;
+  backdrop-filter:none;
+}
+#fit .fit-col.is-key, #price .pz.is-key{ background-color:#132038 !important; }
+
+/* ---------- 文面 → 採用 の紐付けファネル ---------- */
+.wd-lg{ display:flex; gap:var(--sp-3); list-style:none; padding:0; margin:var(--sp-3) 0 var(--sp-3); flex-wrap:wrap; }
+.wd-lg li{ display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--ink-dim); }
+.wd-lg i{ width:12px; height:12px; border-radius:3px; flex:none; }
+.wd-c1 i, .wd-s.wd-c1{ background:#3B82F6; }
+.wd-c2 i, .wd-s.wd-c2{ background:#2563EB; }
+.wd-c3 i, .wd-s.wd-c3{ background:#4A5A72; }
+
+.wd-funnel{ display:flex; flex-direction:column; gap:10px; margin-bottom:var(--sp-3); }
+.wd-row{ display:flex; align-items:center; gap:var(--sp-2); }
+.wd-k{ width:86px; flex:none; font-size:.84rem; color:var(--ink-dim); text-align:right; }
+.wd-bar{
+  width:var(--w); height:44px; display:flex; border-radius:4px; overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;
+  transition:width .9s cubic-bezier(.16,1,.3,1);
+}
+.wd-s{ width:var(--w); height:100%; }
+.wd-out{
+  display:flex; align-items:center; gap:10px; margin:0 0 var(--sp-2);
+  font-size:.92rem; color:var(--ink);
+}
+.wd-out svg{ width:20px; height:20px; flex:none; color:var(--accent-2); }
+.wd-out b{ color:var(--accent-2); font-weight:700; }
+@media (max-width:900px){ .wd-k{ width:64px; font-size:.76rem; } .wd-bar{ height:34px; } }
