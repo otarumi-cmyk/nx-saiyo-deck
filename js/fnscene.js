@@ -75,6 +75,7 @@ function scene01(root) {
     });
     tl.fromTo(root.querySelectorAll('.fs-add'), { opacity: 0, scale: .7 },
       { opacity: 1, scale: 1, duration: .3, stagger: .08 }, 3.1);
+    tl.addLabel("done");
     tl.to({}, { duration: 4.8 });
     tl.to(root.querySelectorAll('.fs-line, .fs-field'), { opacity: 0, duration: 0.22 });
     return tl;
@@ -116,11 +117,16 @@ function scene02(root) {
     <div class="fs-mail-h"><span>生成されたスカウト文面</span><em>自動</em></div>
     <p class="fs-subj">20名のマネジメント経験を、事業ごとお任せしたい</p>
     <div class="fs-mailbody">
-      <p>◯◯ 様</p>
-      <p class="fs-hi" data-i="2">SaaSのインサイドセールスで年間120社・達成率128%、さらに20名のチームを見てこられたご経歴を拝見しました。</p>
-      <p class="fs-hi" data-i="1">弊社はまだ型が固まっていない立ち上げ期です。128%を出せた型を、組織の仕組みに変えていただく役割をお願いしたいと考えています。</p>
-      <p class="fs-hi" data-i="0">マネジメントの範囲は事業単位。裁量は現職より広がります。</p>
-      <p class="fs-sign">株式会社NEXT 採用担当</p>
+      <p>〇〇様</p>
+      <p>はじめまして。株式会社NEXTの採用担当です。</p>
+      <p class="fs-hi" data-i="1">SaaSのインサイドセールスとして年間120社・目標達成率128％という実績を残しながら、20名規模のチームを率いてこられたご経歴を拝見し、ぜひ一度お話ししたくご連絡しました。</p>
+      <p>数字そのものはもちろんですが、私たちが特に惹かれたのは、プレイヤーとして成果を上げながら、チーム全体の成果にも責任を持ってこられた点です。</p>
+      <p class="fs-hi" data-i="2">当社はいま、事業拡大に向けて、営業を「個人の力で伸ばす組織」から「仕組みで伸び続ける組織」へ進化させるフェーズにあります。</p>
+      <p>〇〇様には、これまで培われた現場の勝ち筋を、営業戦略・KPI設計・育成・組織づくりへと広げ、事業全体の成長を牽引していただきたいと考えています。</p>
+      <p class="fs-hi" data-i="0">今回お声がけしたのは、既存チームを管理するだけのポジションではありません。事業責任者候補として、戦略から実行まで大きな裁量を持っていただくことを想定しています。</p>
+      <p>すぐの転職をお考えでなくても構いません。まずは30分ほど、当社の事業とお任せしたい役割について、率直にお話しできないでしょうか。</p>
+      <p>〇〇様が次のキャリアで実現したいことも、ぜひ伺えればうれしいです。</p>
+      <p class="fs-sign">株式会社NEXT　採用担当</p>
     </div>`;
   root.appendChild(mail);
 
@@ -148,6 +154,7 @@ function scene02(root) {
       }
     });
     tl.fromTo(root.querySelector('.fs-sign'), { opacity: 0 }, { opacity: 1, duration: .3 }, 3.7);
+    tl.addLabel("done");
     tl.to({}, { duration: 3.4 });
     tl.call(() => picks.forEach((p) => p.classList.remove('is-on')));
     tl.to(root.querySelectorAll('.fs-fact, .fs-pick, .fs-hi, .fs-subj, .fs-sign'),
@@ -228,6 +235,7 @@ function scene03(root) {
           onUpdate: () => { sc.textContent = Math.round(o.v); },
         }, '<');
     });
+    tl.addLabel("done");
     tl.to({}, { duration: 4.8 });
     tl.to(root.querySelectorAll('.fs-row, .fs-verdict'), { opacity: 0, duration: 0.22 });
     return tl;
@@ -289,6 +297,7 @@ function scene04(root) {
     tl.fromTo(root.querySelectorAll('.fs-ax'), { opacity: 0 }, { opacity: 1, duration: .35, stagger: .05 }, .55);
     tl.fromTo(root.querySelectorAll('.fs-q'), { opacity: 0, x: 20 },
       { opacity: 1, x: 0, duration: .42, stagger: .34 }, 1.15);
+    tl.addLabel("done");
     tl.to({}, { duration: 4.9 });
     tl.to(root.querySelectorAll('.fs-q, .fs-shape'), { opacity: 0, duration: 0.22 });
     return tl;
@@ -330,11 +339,12 @@ function scene05(root) {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
     const cals = root.querySelectorAll('.fs-cal');
     tl.fromTo(cals, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: .45, stagger: .18 });
-    tl.to({}, { duration: 3.1 });
+    tl.to({}, { duration: 0.5 });
     tl.to(cals, { x: 0, y: (i) => (1 - i) * 18, scale: .96, opacity: .62, duration: .7, ease: 'power2.inOut' });
     tl.fromTo(merged, { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: .55 }, '<+.25');
     tl.fromTo(merged.querySelectorAll('i[data-free="1"]'),
       { scale: .5, opacity: 0 }, { scale: 1, opacity: 1, duration: .4, stagger: .1 }, '>-.15');
+    tl.addLabel("done");
     tl.to({}, { duration: 4.3 });
     tl.to([merged, cals], { opacity: 0, duration: 0.22 });
     tl.set(cals, { x: -30, y: 0, scale: 1 });
@@ -373,6 +383,7 @@ function scene06(root) {
       tl.fromTo(l, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .4 }, .5 + i * 0.55);
     });
     tl.fromTo(tags, { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .4, stagger: .16 }, 2.2);
+    tl.addLabel("done");
     tl.to({}, { duration: 4.2 });
     tl.to(root.querySelectorAll('.fs-script p, .fs-tag'), { opacity: 0, duration: 0.22 })
       .to(bars, { scaleY: .06, opacity: .25, duration: .3 }, '<');
@@ -421,6 +432,7 @@ function scene07(root) {
         }, '<');
     });
     tl.fromTo(root.querySelector('.fs-fnote'), { opacity: 0 }, { opacity: 1, duration: .5 }, 1.7);
+    tl.addLabel("done");
     tl.to({}, { duration: 4.5 });
     tl.to(bars, { width: 0, opacity: 0, duration: .3, stagger: .04 })
       .to([vals, root.querySelector('.fs-fnote')], { opacity: 0, duration: 0.22 }, '<');
@@ -450,6 +462,7 @@ export function init() {
 
     if (reduce || !gsap) return;         // 動きを抑える設定なら静止画として見せる
     built[key] = { slide, make, tl: null };
+    window.__nxScenes = built;   // 静止画書き出し用に外から seek する
   });
 
   // 表示中のスライドだけ動かす（裏で回すとバッテリーを食うだけ）

@@ -366,3 +366,47 @@
 .fs-02 .fs-mail{ align-self:center; }
 .fs-02 .fs-mailbody{ padding:16px 18px 18px; }
 .fs-02 .fs-left{ align-self:center; }
+
+/* ==================================================================
+   22. 濃色パネルの中の b / strong / small が紺のまま沈んでいた
+       light.css の「b, strong { color: var(--ink) }」が
+       親から継承した白を上書きしてしまうため、濃色面では明示的に戻す。
+   ================================================================== */
+.ro-res, .ro-res b, .ro-res small, .ro-res span, .ro-res i{ color:#fff !important; }
+.ro-res span, .ro-res i{ color:rgba(255,255,255,.74) !important; }
+
+.cm-head .cm-v.is-ours, .cm-head .cm-v.is-ours b, .cm-head .cm-v.is-ours small{ color:#fff !important; }
+.pu-cat, .pu-cat b, .pu-cat small{ color:#fff !important; }
+.step.is-on, .step.is-on b, .step.is-on small{ color:#fff !important; }
+.slide-tab, .slide-tab b, .slide-tab small{ color:#fff !important; }
+
+/* 濃色スライド全般（表紙・章扉・q-cost・Before/After・fn-02・締め）でも同じ事故を止める */
+.slide.sec-hero :is(b,strong,small),
+.slide.chdiv :is(b,strong,small),
+.slide.sec-cta :is(b,strong,small),
+.slide.lay-flood :is(b,strong,small),
+.slide#q-cost :is(b,strong,small),
+.slide.fn-slide.is-peak .fn-text :is(b,strong,small){ color:inherit !important; }
+
+/* 濃紺パネル内の白抜き数字が発光で滲まないように */
+.ro-res b{ text-shadow:none !important; }
+
+/* ==================================================================
+   23. スカウト文面が長文になったので、読める密度に組み直す
+   ================================================================== */
+.fs-02{ gap:20px; }
+.fs-02 .fs-left{ flex:0 0 29%; }
+.fs-02 .fs-mail{ flex:1 1 auto; max-height:100%; }
+.fs-02 .fs-mail-h{ padding:8px 15px; font-size:.66rem; }
+.fs-02 .fs-subj{ padding:10px 16px 9px; font-size:.85rem; }
+.fs-02 .fs-mailbody{ padding:11px 16px 13px; gap:6px; }
+.fs-02 .fs-mailbody p{ font-size:.7rem; line-height:1.72; }
+.fs-02 .fs-hi{ padding:1px 4px; }
+.fs-02 .fs-sign{ margin-top:3px !important; font-size:.66rem !important; }
+.fs-02 .fs-cand{ padding:11px 13px; }
+.fs-02 .fs-cand-h{ font-size:.62rem !important; margin-bottom:6px !important; }
+.fs-02 .fs-fact{ font-size:.72rem; margin-bottom:4px; }
+.fs-02 .fs-picks-h{ font-size:.62rem; }
+.fs-02 .fs-pick{ padding:6px 10px; }
+.fs-02 .fs-pick b{ font-size:.74rem; }
+.fs-02 .fs-pick span{ font-size:.62rem; }
