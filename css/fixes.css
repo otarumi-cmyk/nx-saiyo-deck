@@ -879,3 +879,102 @@
   letter-spacing:-.02em; text-shadow:0 2px 14px rgba(0,0,0,.28);
 }
 #roi .ro-res b small{ font-size:.34em !important; margin-left:4px; }
+
+/* ==================================================================
+   41. 費用対効果：人件費の総額から雑務ぶんを切り出す形に
+   ================================================================== */
+.rz{ display:grid; grid-template-columns:1.15fr 44px 1fr 44px 0.72fr; align-items:center; margin:var(--sp-4) 0 var(--sp-3); }
+.rz-col{ background:var(--surface-1); border:1px solid var(--line); border-radius:8px; padding:var(--sp-3) var(--sp-4); box-shadow:var(--shadow-card); }
+.rz-h{ display:block; font-size:.78rem; font-weight:700; color:var(--accent-2); margin-bottom:12px; }
+.rz-step{ display:flex; align-items:baseline; justify-content:space-between; gap:var(--sp-2); padding:9px 12px; border-radius:5px; background:var(--bg); }
+.rz-step.is-key{ background:var(--surface-2); box-shadow:0 0 0 1px var(--acc-24) inset; }
+.rz-k{ font-size:.84rem; font-weight:600; color:var(--ink-dim); }
+.rz-v{ font-family:var(--font-en); font-size:1.5rem; font-weight:700; color:var(--ink); white-space:nowrap; }
+.rz-step.is-key .rz-v{ font-size:1.9rem; color:var(--accent-2); }
+.rz-v small{ font-family:var(--font-jp); font-size:.46em; margin-left:2px; color:var(--ink-dim); }
+.rz-arrow{ text-align:center; padding:7px 0; font-size:.8rem; color:var(--ink-dim); }
+.rz-arrow span{ display:block; font-weight:700; color:var(--ink); }
+.rz-arrow span b{ color:var(--accent); }
+.rz-arrow i{ font-style:normal; font-size:.68rem; }
+.rz-arrow::before{ content:"▼"; display:block; color:var(--acc-60); font-size:.6rem; margin-bottom:3px; }
+.rz-line{ display:flex; align-items:baseline; justify-content:space-between; gap:var(--sp-2); padding:10px 0; border-bottom:1px dashed var(--line); font-size:.86rem; font-weight:600; color:var(--ink); }
+.rz-line i{ display:block; font-style:normal; font-size:.7rem; font-weight:500; color:var(--ink-dim); margin-top:3px; }
+.rz-line b{ font-family:var(--font-en); font-size:1.2rem; white-space:nowrap; }
+.rz-line b small{ font-family:var(--font-jp); font-size:.5em; margin-left:2px; color:var(--ink-dim); }
+.rz-total{ display:flex; align-items:baseline; justify-content:space-between; margin-top:var(--sp-3); padding-top:var(--sp-3); border-top:2px solid var(--line); font-size:.84rem; font-weight:700; color:var(--ink-dim); }
+.rz-total b{ font-family:var(--font-en); font-size:2rem; font-weight:700; color:var(--ink); }
+.rz-total b small{ font-family:var(--font-jp); font-size:.44em; margin-left:3px; }
+.rz-op{ display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:700; color:var(--ink-dim); }
+.rz-res{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:var(--navy); color:#fff; border-radius:8px; padding:var(--sp-5) var(--sp-3); }
+.rz-res span{ font-size:.92rem; font-weight:700; color:rgba(255,255,255,.74); letter-spacing:.06em; }
+.rz-res b{ font-family:var(--font-en); font-size:clamp(2.4rem,4.4vw,3.5rem); font-weight:700; line-height:1; text-shadow:0 2px 14px rgba(0,0,0,.28); }
+.rz-res b small{ font-family:var(--font-jp); font-size:.34em; margin-left:4px; }
+@media (max-width:900px){ .rz{ grid-template-columns:1fr; } .rz-op{ padding:8px 0; } }
+
+/* ==================================================================
+   42. 費用対効果：高さの揃わない3ブロックをやめ、左→右の一本の流れに
+   ================================================================== */
+.rf{ display:flex; align-items:stretch; gap:0; margin:var(--sp-4) 0 var(--sp-3); }
+.rf-b{
+  flex:1 1 0; min-width:0; background:var(--surface-1); border:1px solid var(--line);
+  border-radius:8px; padding:20px 22px; box-shadow:var(--shadow-card);
+  display:flex; flex-direction:column; justify-content:center; gap:8px;
+}
+.rf-b.is-key{ background:var(--navy); border-color:var(--navy); }
+.rf-k{ font-size:.86rem; font-weight:600; color:var(--ink-dim); }
+.rf-b.is-key .rf-k{ color:rgba(255,255,255,.76); }
+.rf-v{ font-family:var(--font-en); font-size:clamp(1.9rem,3.2vw,2.6rem); font-weight:700; color:var(--ink); line-height:1; }
+.rf-b.is-key .rf-v{ color:#fff; }
+.rf-v small{ font-family:var(--font-jp); font-size:.36em; margin-left:3px; color:var(--ink-dim); }
+.rf-b.is-key .rf-v small{ color:rgba(255,255,255,.76); }
+.rf-a{
+  flex:0 0 132px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  position:relative;
+}
+.rf-a b{ font-family:var(--font-en); font-size:1.35rem; font-weight:700; color:var(--accent); line-height:1; }
+.rf-a b small{ font-family:var(--font-jp); font-size:.6em; }
+.rf-a i{ font-style:normal; font-size:.68rem; color:var(--ink-dim); text-align:center; line-height:1.45; }
+.rf-a::before{
+  content:""; position:absolute; left:8px; right:8px; top:50%; height:2px;
+  background:linear-gradient(90deg,var(--acc-24),var(--accent)); z-index:-1;
+}
+
+.rr{ display:flex; align-items:stretch; gap:var(--sp-2); margin-top:var(--sp-3); }
+.rr-c{
+  flex:1 1 0; background:var(--surface-1); border:1px solid var(--line); border-radius:8px;
+  padding:16px 20px; display:flex; flex-direction:column; justify-content:center; gap:6px;
+}
+.rr-res{
+  flex:1.1 1 0; background:linear-gradient(135deg,#0B2E63,#12539F); border-radius:8px;
+  padding:16px 20px; display:flex; flex-direction:column; justify-content:center; gap:6px;
+  box-shadow:0 10px 28px rgba(11,37,69,.26);
+}
+.rr-k{ font-size:.82rem; font-weight:600; color:var(--ink-dim); }
+.rr-k i{ display:block; font-style:normal; font-size:.68rem; margin-top:3px; }
+.rr-res .rr-k{ color:rgba(255,255,255,.76); font-size:.9rem; letter-spacing:.06em; }
+.rr-v{ font-family:var(--font-en); font-size:1.9rem; font-weight:700; color:var(--ink); line-height:1; }
+.rr-res .rr-v{ color:#fff; font-size:clamp(2.2rem,3.8vw,3.1rem); text-shadow:0 2px 14px rgba(0,0,0,.26); }
+.rr-v small{ font-family:var(--font-jp); font-size:.4em; margin-left:3px; color:var(--ink-dim); }
+.rr-res .rr-v small{ color:rgba(255,255,255,.8); }
+.rr-op{ display:flex; align-items:center; font-size:1.6rem; font-weight:700; color:var(--ink-dim); }
+@media (max-width:900px){ .rf,.rr{ flex-direction:column; } .rf-a{ flex:none; padding:10px 0; } .rf-a::before{ display:none; } }
+
+/* ==================================================================
+   43. ボタンが目立たない原因は背景側だった。
+       締めのスライドの地を濃紺に落として、水色のボタンを浮かせる。
+       （ボタン自体のデザインは変えない）
+   ================================================================== */
+.slide.sec-cta{
+  background:linear-gradient(150deg,#061631 0%,#0A2650 46%,#0E3468 100%) !important;
+}
+.slide.sec-cta::after{ opacity:.26 !important; }          /* 背景写真を弱める */
+.slide.sec-cta::before{
+  background:linear-gradient(180deg, rgba(6,22,49,.62) 0%, rgba(6,22,49,.30) 45%, rgba(6,22,49,.78) 100%) !important;
+}
+/* 3枚の白カードも、濃紺の上でほどよく落ち着かせる */
+#cta .ctc{ box-shadow:0 10px 30px rgba(0,0,0,.34); }
+
+/* 44. 導入企業ロゴ：モノクロ化をやめ、各社のブランドカラーのまま出す */
+.logo-row img, .logos img, [class*="logo"] img{
+  filter:none !important; opacity:1 !important;
+}
